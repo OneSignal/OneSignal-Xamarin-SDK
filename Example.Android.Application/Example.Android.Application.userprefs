@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="Example.Android.Application/Example.Android.Application.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Xamarin_Android_API_15" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Example.Android.Application" expanded="True">
+            <Node name="Example.Android.Application" expanded="True">
+              <Node name="References" expanded="True" />
+            </Node>
+            <Node name="OneSignal.Android.Binding" expanded="True" selected="True">
+              <Node name="Jars" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="googleplayservices-location" is-shell="true">
+  <name>Google Play Services - Location</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <version>27.0.0.0</version>
+  <summary>Add location awareness to your app with automated location tracking, geofencing, and activity recognition.</summary>
+  <packages>
+    <package id="Xamarin.GooglePlayServices.Location" version="27.0.0.0" framework="android" />
+  </packages>
+  <samples>
+    <sample id="LocationSample">
+      <name>Location Sample</name>
+      <summary>Location Sample</summary>
+    </sample>
+    <sample id="PlacesAsync">
+      <name>Places Async Sample</name>
+      <summary>Places Async Sample</summary>
+    </sample>
+  </samples>
+</component>

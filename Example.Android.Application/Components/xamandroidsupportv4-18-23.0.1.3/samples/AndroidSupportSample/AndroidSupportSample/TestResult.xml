@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="../AndroidSupportSample.UITests/bin/Release/AndroidSupportSample.UITests.dll" total="3" failures="0" not-run="0" date="2015-07-23" time="13:15:32">
+  <environment nunit-version="2.4.8.0" clr-version="4.0.30319.17020" os-version="Unix 14.4.0.0" platform="Unix" cwd="/Users/redth/AeroFS/xamarin/components/JenkinsRoot/AndroidSupport/AndroidSupportV4/samples/AndroidSupportSample/AndroidSupportSample" machine-name="Redth" user="redth" user-domain="Redth" />
+  <culture-info current-culture="en-CA" current-uiculture="en-CA" />
+  <test-suite name="../AndroidSupportSample.UITests/bin/Release/AndroidSupportSample.UITests.dll" success="True" time="43.304" asserts="0">
+    <results>
+      <test-suite name="AndroidSupportSample" success="True" time="43.302" asserts="0">
+        <results>
+          <test-suite name="UITests" success="True" time="43.299" asserts="0">
+            <results>
+              <test-suite name="Tests" success="True" time="43.292" asserts="0">
+                <results>
+                  <test-case name="AndroidSupportSample.UITests.Tests.AppLaunches" executed="True" success="True" time="29.614" asserts="0" />
+                  <test-case name="AndroidSupportSample.UITests.Tests.LaunchingShouldDisplayList" executed="True" success="True" time="5.385" asserts="1" />
+                  <test-case name="AndroidSupportSample.UITests.Tests.TappingItemShouldDisplayDetails" executed="True" success="True" time="8.285" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
