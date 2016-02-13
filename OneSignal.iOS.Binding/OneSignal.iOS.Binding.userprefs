@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="OneSignal.iOS.Binding/OneSignal.iOS.Binding.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OneSignal.iOS.Binding/obj/Release/ios/SupportDelegates.g.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OneSignal.iOS.Binding/OneSignal.linkwith.cs">
     <Files>
-      <File FileName="OneSignal.iOS.Binding/ApiDefinition.cs" Line="51" Column="55" />
-      <File FileName="OneSignal.iOS.Binding/StructsAndEnums.cs" Line="9" Column="3" />
-      <File FileName="OneSignal.iOS.Binding/OneSignal.linkwith.cs" Line="3" Column="126" />
-      <File FileName="OneSignal.iOS.Binding/obj/Release/ios/SupportDelegates.g.cs" Line="39" Column="70" />
+      <File FileName="OneSignal.iOS.Binding/StructsAndEnums.cs" Line="1" Column="1" />
+      <File FileName="OneSignal.iOS.Binding/obj/Release/ios/SupportDelegates.g.cs" Line="1" Column="1" />
+      <File FileName="OneSignal.iOS.Binding/ApiDefinition.cs" Line="1" Column="1" />
+      <File FileName="OneSignal.iOS.Binding/OneSignal.linkwith.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

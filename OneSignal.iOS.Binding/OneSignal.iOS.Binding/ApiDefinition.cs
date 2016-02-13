@@ -29,6 +29,10 @@ interface OneSignal
 	[Export ("initWithLaunchOptions:autoRegister:")]
 	IntPtr Constructor (NSDictionary launchOptions, bool autoRegister);
 
+	// -(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId;
+	[Export ("initWithLaunchOptions:appId:")]
+	IntPtr Constructor (NSDictionary launchOptions, string appId);
+
 	// -(id)initWithLaunchOptions:(NSDictionary *)launchOptions handleNotification:(OneSignalHandleNotificationBlock)callback;
 	[Export ("initWithLaunchOptions:handleNotification:")]
 	IntPtr Constructor (NSDictionary launchOptions, OneSignalHandleNotificationBlock callback);
@@ -45,7 +49,7 @@ interface OneSignal
 	[Export ("registerForPushNotifications")]
 	void RegisterForPushNotifications ();
 
-	// +(void)setLogLevel:(ONE_S_LOG_LEVEL)logLevel visualLevel:(ONE_S_LOG_LEVEL)visualLogLevel;
+	// +(void)setLogLevel:(OneSLogLevel)logLevel visualLevel:(OneSLogLevel)visualLogLevel;
 	[Static]
 	[Export ("setLogLevel:visualLevel:")]
 	void SetLogLevel (OneSLogLevel logLevel, OneSLogLevel visualLogLevel);

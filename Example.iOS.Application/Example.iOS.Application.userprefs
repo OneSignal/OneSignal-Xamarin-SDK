@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Example.iOS.Application/AppDelegate.cs">
     <Files>
-      <File FileName="Example.iOS.Application/AppDelegate.cs" Line="22" Column="5" />
+      <File FileName="Example.iOS.Application/AppDelegate.cs" Line="41" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

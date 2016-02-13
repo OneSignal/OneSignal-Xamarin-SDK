@@ -98,6 +98,27 @@ public unsafe partial class OneSignal : NSObject {
 		}
 	}
 	
+	[Export ("initWithLaunchOptions:appId:")]
+	[CompilerGenerated]
+	public OneSignal (NSDictionary launchOptions, string appId)
+		: base (NSObjectFlag.Empty)
+	{
+		if (launchOptions == null)
+			throw new ArgumentNullException ("launchOptions");
+		if (appId == null)
+			throw new ArgumentNullException ("appId");
+		var nsappId = NSString.CreateNative (appId);
+		
+		IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
+		if (IsDirectBinding) {
+			InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("initWithLaunchOptions:appId:"), launchOptions.Handle, nsappId), "initWithLaunchOptions:appId:");
+		} else {
+			InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:appId:"), launchOptions.Handle, nsappId), "initWithLaunchOptions:appId:");
+		}
+		NSString.ReleaseNative (nsappId);
+		
+	}
+	
 	[Export ("initWithLaunchOptions:handleNotification:")]
 	[CompilerGenerated]
 	public unsafe OneSignal (NSDictionary launchOptions, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalHandleNotificationBlock))]global::OneSignalHandleNotificationBlock callback)
