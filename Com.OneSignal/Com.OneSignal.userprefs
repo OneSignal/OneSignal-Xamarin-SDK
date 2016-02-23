@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Com.OneSignal/Com.OneSignal.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Com.OneSignal/OneSignal.cs">
+    <Files>
+      <File FileName="Com.OneSignal/OneSignalIOS.cs" Line="1" Column="1" />
+      <File FileName="Com.OneSignal/OneSignal.cs" Line="17" Column="40" />
+      <File FileName="Com.OneSignal/OneSignalAndroid.cs" Line="38" Column="38" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
