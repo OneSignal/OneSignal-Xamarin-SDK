@@ -1,14 +1,17 @@
 ﻿using System;
 using ObjCRuntime;
 
-[Native]
-public enum OneSLogLevel : ulong
+namespace Com.OneSignal.iOS
 {
-	None,
-	Fatal,
-	Error,
-	Warn,
-	Info,
-	Debug,
-	Verbose
+	[Native]
+	public enum OneSLogLevel : ulong
+	{
+		None,
+		Fatal,
+		Error,
+		Warn,
+		Info,
+		Debug,
+		Verbose
+	}
 }

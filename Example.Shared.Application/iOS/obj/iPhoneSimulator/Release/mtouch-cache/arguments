@@ -1,0 +1,38 @@
+# Version: 9.4.1.25 (cycle6-xi: 962a050)
+# [first argument, ignore] # /Users/vivek/projects/OneSignal-Xamarin-SDK/Example.Shared.Application/iOS/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/9.4.1.25/bin/mtouch \
+	--cache \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/Example.Shared.Application/iOS/obj/iPhoneSimulator/Release/mtouch-cache \
+	--sim \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/Example.Shared.Application/iOS/bin/iPhoneSimulator/Release/Example.Shared.Application.iOS.app \
+	--executable \
+	Example.Shared.Application.iOS \
+	--nolink \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	9.2 \
+	--targetver \
+	8.0 \
+	--new-refcount \
+	--abi=i386 \
+	--symbollist \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/Example.Shared.Application/iOS/obj/iPhoneSimulator/Release/mtouch-symbols.list \
+	--dsym=no \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/bin/Release/OneSignal.iOS.Binding.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	-r \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/bin/Release/OneSignal.iOS.Binding.dll \
+	--target-framework \
+	"Xamarin.iOS,v1.0" \
+	/Users/vivek/projects/OneSignal-Xamarin-SDK/Example.Shared.Application/iOS/bin/iPhoneSimulator/Release//Example.Shared.Application.iOS.exe \

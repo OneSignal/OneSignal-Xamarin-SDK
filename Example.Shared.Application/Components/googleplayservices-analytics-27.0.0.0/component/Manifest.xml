@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="googleplayservices-analytics" is-shell="true">
+  <name>Google Play Services - Analytics</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <version>27.0.0.0</version>
+  <summary>Collect data from your mobile apps.</summary>
+  <packages>
+    <package id="Xamarin.GooglePlayServices.Analytics" version="27.0.0.0" framework="android" />
+  </packages>
+  <samples>
+    <sample id="AnalyticsSample">
+      <name>Analytics Sample</name>
+      <summary>Analytics Sample</summary>
+    </sample>
+  </samples>
+</component>

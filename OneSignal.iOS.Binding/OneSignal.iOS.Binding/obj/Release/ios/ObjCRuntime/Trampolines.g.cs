@@ -56,7 +56,7 @@ namespace ObjCRuntime {
 			[MonoPInvokeCallback (typeof (DOneSignalHandleNotificationBlock))]
 			static unsafe void Invoke (IntPtr block, IntPtr arg0, IntPtr arg1, bool arg2) {
 				var descriptor = (BlockLiteral *) block;
-				var del = (global::OneSignalHandleNotificationBlock) (descriptor->Target);
+				var del = (global::Com.OneSignal.iOS.OneSignalHandleNotificationBlock) (descriptor->Target);
 				if (del != null)
 					del (NSString.FromHandle (arg0),  Runtime.GetNSObject<NSDictionary> (arg1), arg2);
 			}
@@ -80,12 +80,12 @@ namespace ObjCRuntime {
 			}
 			
 			[Preserve (Conditional=true)]
-			public unsafe static global::OneSignalHandleNotificationBlock Create (IntPtr block)
+			public unsafe static global::Com.OneSignal.iOS.OneSignalHandleNotificationBlock Create (IntPtr block)
 			{
 				if (block == IntPtr.Zero)
 					return null;
 				if (BlockLiteral.IsManagedBlock (block)) {
-					var existing_delegate = ((BlockLiteral *) block)->Target as global::OneSignalHandleNotificationBlock;
+					var existing_delegate = ((BlockLiteral *) block)->Target as global::Com.OneSignal.iOS.OneSignalHandleNotificationBlock;
 					if (existing_delegate != null)
 						return existing_delegate;
 				}
@@ -115,7 +115,7 @@ namespace ObjCRuntime {
 			[MonoPInvokeCallback (typeof (DOneSignalResultSuccessBlock))]
 			static unsafe void Invoke (IntPtr block, IntPtr arg0) {
 				var descriptor = (BlockLiteral *) block;
-				var del = (global::OneSignalResultSuccessBlock) (descriptor->Target);
+				var del = (global::Com.OneSignal.iOS.OneSignalResultSuccessBlock) (descriptor->Target);
 				if (del != null)
 					del ( Runtime.GetNSObject<NSDictionary> (arg0));
 			}
@@ -139,12 +139,12 @@ namespace ObjCRuntime {
 			}
 			
 			[Preserve (Conditional=true)]
-			public unsafe static global::OneSignalResultSuccessBlock Create (IntPtr block)
+			public unsafe static global::Com.OneSignal.iOS.OneSignalResultSuccessBlock Create (IntPtr block)
 			{
 				if (block == IntPtr.Zero)
 					return null;
 				if (BlockLiteral.IsManagedBlock (block)) {
-					var existing_delegate = ((BlockLiteral *) block)->Target as global::OneSignalResultSuccessBlock;
+					var existing_delegate = ((BlockLiteral *) block)->Target as global::Com.OneSignal.iOS.OneSignalResultSuccessBlock;
 					if (existing_delegate != null)
 						return existing_delegate;
 				}
@@ -170,7 +170,7 @@ namespace ObjCRuntime {
 			[MonoPInvokeCallback (typeof (DOneSignalFailureBlock))]
 			static unsafe void Invoke (IntPtr block, IntPtr arg0) {
 				var descriptor = (BlockLiteral *) block;
-				var del = (global::OneSignalFailureBlock) (descriptor->Target);
+				var del = (global::Com.OneSignal.iOS.OneSignalFailureBlock) (descriptor->Target);
 				if (del != null)
 					del ( Runtime.GetNSObject<NSError> (arg0));
 			}
@@ -194,12 +194,12 @@ namespace ObjCRuntime {
 			}
 			
 			[Preserve (Conditional=true)]
-			public unsafe static global::OneSignalFailureBlock Create (IntPtr block)
+			public unsafe static global::Com.OneSignal.iOS.OneSignalFailureBlock Create (IntPtr block)
 			{
 				if (block == IntPtr.Zero)
 					return null;
 				if (BlockLiteral.IsManagedBlock (block)) {
-					var existing_delegate = ((BlockLiteral *) block)->Target as global::OneSignalFailureBlock;
+					var existing_delegate = ((BlockLiteral *) block)->Target as global::Com.OneSignal.iOS.OneSignalFailureBlock;
 					if (existing_delegate != null)
 						return existing_delegate;
 				}
@@ -225,7 +225,7 @@ namespace ObjCRuntime {
 			[MonoPInvokeCallback (typeof (DOneSignalIdsAvailableBlock))]
 			static unsafe void Invoke (IntPtr block, IntPtr arg0, IntPtr arg1) {
 				var descriptor = (BlockLiteral *) block;
-				var del = (global::OneSignalIdsAvailableBlock) (descriptor->Target);
+				var del = (global::Com.OneSignal.iOS.OneSignalIdsAvailableBlock) (descriptor->Target);
 				if (del != null)
 					del (NSString.FromHandle (arg0), NSString.FromHandle (arg1));
 			}
@@ -249,12 +249,12 @@ namespace ObjCRuntime {
 			}
 			
 			[Preserve (Conditional=true)]
-			public unsafe static global::OneSignalIdsAvailableBlock Create (IntPtr block)
+			public unsafe static global::Com.OneSignal.iOS.OneSignalIdsAvailableBlock Create (IntPtr block)
 			{
 				if (block == IntPtr.Zero)
 					return null;
 				if (BlockLiteral.IsManagedBlock (block)) {
-					var existing_delegate = ((BlockLiteral *) block)->Target as global::OneSignalIdsAvailableBlock;
+					var existing_delegate = ((BlockLiteral *) block)->Target as global::Com.OneSignal.iOS.OneSignalIdsAvailableBlock;
 					if (existing_delegate != null)
 						return existing_delegate;
 				}
