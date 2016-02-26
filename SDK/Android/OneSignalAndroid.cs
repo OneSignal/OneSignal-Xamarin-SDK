@@ -56,7 +56,9 @@ namespace Com.OneSignal
 
 		public void GetTags ()
 		{
-			Com.OneSignal.Android.OneSignal.GetTags (new GetTagsHandler ());
+			System.Console.WriteLine ("GetTags UNIMPLEMENTED!");
+			// Calling the below code results in a null pointer exception
+			//Com.OneSignal.Android.OneSignal.GetTags (new GetTagsHandler ());
 		}
 
 		public void DeleteTag (string key)
@@ -130,8 +132,10 @@ namespace Com.OneSignal
 		{
 			public void NotificationOpened (string message, JSONObject additionalData, bool isActive)
 			{
-				var dict = Json.Deserialize (additionalData.ToString ()) as Dictionary<string, object>;
-				Com.OneSignal.OneSignal.notificationOpenedDelegate (message, dict, isActive);
+				Dictionary<string, object> dict = null;
+				if (additionalData != null)
+					dict = Json.Deserialize (additionalData.ToString ()) as Dictionary<string, object>;
+				OneSignal.notificationOpenedDelegate (message, dict, isActive);
 			}
 
 			public System.IntPtr Handle
@@ -146,7 +150,10 @@ namespace Com.OneSignal
 		{
 			public void TagsAvailable (JSONObject jsonObject)
 			{
-				OneSignal.tagsAvailableDelegate (Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>);
+				Dictionary<string, object> dict = null;
+				if (jsonObject != null)
+					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
+				OneSignal.tagsAvailableDelegate (dict);
 			}
 
 			public System.IntPtr Handle
@@ -161,12 +168,18 @@ namespace Com.OneSignal
 		{
 			public void OnSuccess (JSONObject jsonObject)
 			{
-				OneSignal.onPostNotificationSuccessDelegate (Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>);
+				Dictionary<string, object> dict = null;
+				if (jsonObject != null)
+					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
+				OneSignal.onPostNotificationSuccessDelegate (dict);
 			}
 
 			public void OnFailure (JSONObject jsonObject)
 			{
-				OneSignal.onPostNotificationFailureDelegate (Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>);
+				Dictionary<string, object> dict = null;
+				if (jsonObject != null)
+					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
+				OneSignal.onPostNotificationFailureDelegate (dict);
 			}
 
 			public System.IntPtr Handle

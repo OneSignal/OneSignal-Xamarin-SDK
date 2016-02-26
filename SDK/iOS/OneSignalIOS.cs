@@ -37,6 +37,8 @@ namespace Com.OneSignal
 
 		public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict)
 		{
+			if (nsDict == null)
+				return null;
 			Foundation.NSError error;
 			Foundation.NSData jsonData = Foundation.NSJsonSerialization.Serialize (nsDict, (Foundation.NSJsonWritingOptions)0, out error);
 			Foundation.NSString jsonNSString = Foundation.NSString.FromData (jsonData, Foundation.NSStringEncoding.UTF8);
