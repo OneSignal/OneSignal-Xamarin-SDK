@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.example_shared_application">
+	<uses-sdk android:minSdkVersion="15" />
+		<permission android:name="com.companyname.example.shared.application.droid.permission.C2D_MESSAGE"
+		android:protectionLevel="signature" />
+		<uses-permission android:name="com.companyname.example.shared.application.droid.permission.C2D_MESSAGE" />
+		<uses-permission android:name="android.permission.INTERNET" />
+		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+		<uses-permission android:name="android.permission.WAKE_LOCK" />
+		<uses-permission android:name="android.permission.VIBRATE" />
+		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<application android:label="Example.Shared.Application">
+		<meta-data android:name="onesignal_app_id"
+		android:value="EDIT_APPID_TO_TEST_THIS_APP" />
+		<meta-data android:name="onesignal_google_project_number"
+		android:value="str:EDIT_GPN_TO_TEST_THIS_APP" />
+
+		<receiver android:name="com.onesignal.GcmBroadcastReceiver"
+		android:permission="com.google.android.c2dm.permission.SEND" >
+		<intent-filter>
+		<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		<category android:name="com.companyname.example.shared.application.droid" />
+		</intent-filter>
+		</receiver>
+		<receiver android:name="com.onesignal.NotificationOpenedReceiver" />
+		<service android:name="com.onesignal.GcmIntentService" />
+		<service android:name="com.onesignal.SyncService" android:stopWithTask="false" />
+		<activity android:name="com.onesignal.PermissionsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+	</application>
+</manifest>

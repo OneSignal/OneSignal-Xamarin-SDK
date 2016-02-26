@@ -52,4 +52,7 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\onesignal-main.aar" />
+  </ItemGroup>
 </Project>

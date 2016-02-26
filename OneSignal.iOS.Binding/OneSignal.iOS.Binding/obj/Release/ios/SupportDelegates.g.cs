@@ -33,7 +33,10 @@ using NewsstandKit;
 using CoreAnimation;
 using CoreFoundation;
 
-public delegate void OneSignalFailureBlock (NSError arg0);
-public delegate void OneSignalHandleNotificationBlock (string arg0, NSDictionary arg1, bool arg2);
-public delegate void OneSignalIdsAvailableBlock (string arg0, string arg1);
-public delegate void OneSignalResultSuccessBlock (NSDictionary arg0);
+namespace Com.OneSignal.iOS {
+	public delegate void OneSignalFailureBlock (NSError arg0);
+	public delegate void OneSignalHandleNotificationBlock (string arg0, NSDictionary arg1, bool arg2);
+	public delegate void OneSignalIdsAvailableBlock (string arg0, string arg1);
+	public delegate void OneSignalResultSuccessBlock (NSDictionary arg0);
+}
+
