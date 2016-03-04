@@ -56,9 +56,7 @@ namespace Com.OneSignal
 
 		public void GetTags ()
 		{
-			System.Console.WriteLine ("GetTags UNIMPLEMENTED!");
-			// Calling the below code results in a null pointer exception
-			//Com.OneSignal.Android.OneSignal.GetTags (new GetTagsHandler ());
+			Com.OneSignal.Android.OneSignal.GetTags (new GetTagsHandler ());
 		}
 
 		public void DeleteTag (string key)
@@ -113,22 +111,15 @@ namespace Com.OneSignal
 			Com.OneSignal.Android.OneSignal.SetLogLevel ((int)logLevel, (int)visualLevel);
 		}
 			
-		private class IdsAvailableHandler : Com.OneSignal.Android.OneSignal.IIdsAvailableHandler
+		private class IdsAvailableHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IIdsAvailableHandler
 		{
 			public void IdsAvailable (string p0, string p1)
 			{
 				OneSignal.idsAvailableDelegate (p0, p1);
 			}
-
-			public System.IntPtr Handle
-			{
-				get;
-			}
-
-			public void Dispose () { }
 		}
 
-		private class NotificationOpenedHandler : Com.OneSignal.Android.OneSignal.INotificationOpenedHandler
+		private class NotificationOpenedHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.INotificationOpenedHandler
 		{
 			public void NotificationOpened (string message, JSONObject additionalData, bool isActive)
 			{
@@ -137,16 +128,9 @@ namespace Com.OneSignal
 					dict = Json.Deserialize (additionalData.ToString ()) as Dictionary<string, object>;
 				OneSignal.notificationOpenedDelegate (message, dict, isActive);
 			}
-
-			public System.IntPtr Handle
-			{
-				get;
-			}
-
-			public void Dispose () { }
 		}
 
-		private class GetTagsHandler : Com.OneSignal.Android.OneSignal.IGetTagsHandler
+		private class GetTagsHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IGetTagsHandler
 		{
 			public void TagsAvailable (JSONObject jsonObject)
 			{
@@ -155,16 +139,9 @@ namespace Com.OneSignal
 					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
 				OneSignal.tagsAvailableDelegate (dict);
 			}
-
-			public System.IntPtr Handle
-			{
-				get;
-			}
-
-			public void Dispose () { }
 		}
 
-		private class PostNotificationResponseHandler : Com.OneSignal.Android.OneSignal.IPostNotificationResponseHandler
+		private class PostNotificationResponseHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IPostNotificationResponseHandler
 		{
 			public void OnSuccess (JSONObject jsonObject)
 			{
@@ -181,13 +158,6 @@ namespace Com.OneSignal
 					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
 				OneSignal.onPostNotificationFailureDelegate (dict);
 			}
-
-			public System.IntPtr Handle
-			{
-				get;
-			}
-
-			public void Dispose () { }
 		}
 	}
 }
