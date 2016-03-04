@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.onesignal" > <!-- NOTE: See release version for tags with placeholders -->
     <!-- NOTE: See release version for tags with placeholders -->
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="9" />
 
     <!-- INTERNET and c2dm RECEIVE are basic requirements for push messages through Google's GCM. -->
     <uses-permission android:name="android.permission.INTERNET" />
