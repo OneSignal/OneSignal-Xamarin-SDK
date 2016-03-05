@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="OneSignal.iOS.Binding/OneSignal.iOS.Binding.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="OneSignal.iOS.Binding/OneSignal.linkwith.cs">
+    <Files>
+      <File FileName="OneSignal.iOS.Binding/OneSignal.linkwith.cs" Line="3" Column="128" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

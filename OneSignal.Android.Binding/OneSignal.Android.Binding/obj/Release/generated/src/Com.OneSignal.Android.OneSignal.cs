@@ -11,7 +11,7 @@ namespace Com.OneSignal.Android {
 
 		// Metadata.xml XPath field reference: path="/api/package[@name='com.onesignal']/class[@name='OneSignal']/field[@name='VERSION']"
 		[Register ("VERSION")]
-		public const string Version = (string) "020101";
+		public const string Version = (string) "020103";
 
 		static IntPtr sdkType_jfieldId;
 

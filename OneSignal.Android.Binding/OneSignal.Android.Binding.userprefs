@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="OneSignal.Android.Binding/OneSignal.Android.Binding.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Xamarin_Android_API_15" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="OneSignal.Android.Binding/Transforms/Metadata.xml">
+    <Files>
+      <File FileName="OneSignal.Android.Binding/Transforms/Metadata.xml" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

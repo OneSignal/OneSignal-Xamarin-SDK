@@ -27,7 +27,7 @@ If you would like to contribute to this project, fork this repo and send over a 
 ```shell
 gradle assemble
 ```
-* Import ```onesignal.main.aar``` from there into ```OneSignal.Android.Binding```'s Jars folder.
+* Import ```onesignal-main.aar``` from there into ```OneSignal.Android.Binding```'s Jars folder.
 * Build the binding!
 * Import the resultant binding ```OneSignal.Android.Binding.dll``` in your Xamarin.Android application.
 
