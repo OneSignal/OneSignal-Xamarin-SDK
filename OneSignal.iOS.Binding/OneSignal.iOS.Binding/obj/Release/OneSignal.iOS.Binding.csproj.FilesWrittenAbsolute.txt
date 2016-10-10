@@ -3,3 +3,8 @@
 /Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/bin/Release/OneSignal.iOS.Binding.dll
 /Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/obj/Release/OneSignal.iOS.Binding.dll
 /Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/obj/Release/OneSignal.iOS.Binding.dll.mdb
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/obj/Release/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/obj/Release/OneSignal.iOS.Binding.dll
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/obj/Release/OneSignal.iOS.Binding.dll.mdb
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/bin/Release/OneSignal.iOS.Binding.dll.mdb
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.iOS.Binding/OneSignal.iOS.Binding/bin/Release/OneSignal.iOS.Binding.dll

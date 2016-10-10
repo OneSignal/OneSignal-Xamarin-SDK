@@ -8,8 +8,7 @@ namespace Example.Shared.Application.iOS
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -17,31 +16,68 @@ namespace Example.Shared.Application.iOS
 			set;
 		}
 
-		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
-		{
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions) {
+
+         OneSignal.NotificationReceived exampleNotificationReceivedDelegate = delegate (OSNotification notification)
+         {
+            try
+            {
+               System.Console.WriteLine("OneSignal Notification Received: {0}", notification.payload.body);
+               Dictionary<string, object> additionalData = notification.payload.additionalData;
+
+               if (additionalData.Count > 0)
+                  System.Console.WriteLine("additionalData: {0}", additionalData);
+            }
+            catch (System.Exception e)
+            {
+               System.Console.WriteLine(e.StackTrace);
+            }
+         };
+         
 			// Notification Opened Delegate
-			OneSignal.NotificationOpened exampleNotificationOpenedDelegate = delegate(string message, Dictionary<string, object> additionalData, bool isActive) {
+			OneSignal.NotificationOpened exampleNotificationOpenedDelegate = delegate(OSNotificationOpenedResult result)
+         {
 				try
 				{
-					System.Console.WriteLine ("OneSignal Notification opened:\nMessage: {0}", message);
+               System.Console.WriteLine ("OneSignal Notification opened: {0}", result.notification.payload.body);
+               
+               Dictionary<string, object> additionalData = result.notification.payload.additionalData;
+               List<Dictionary<string, object>> actionButtons = result.notification.payload.actionButtons;
+               
+               if (additionalData.Count > 0)
+                  System.Console.WriteLine("additionalData: {0}", additionalData);
 
-					if (additionalData != null)
-					{
-						if (additionalData.ContainsKey("customKey"))
-							System.Console.WriteLine ("customKey: {0}", additionalData ["customKey"]);
-
-						System.Console.WriteLine ("additionalData: {0}", additionalData);
-					}
+               if (actionButtons.Count > 0)
+                  System.Console.WriteLine ("actionButtons: {0}", actionButtons);
 				}
 				catch (System.Exception e)
 				{
 					System.Console.WriteLine (e.StackTrace);
 				}
 			};
-
-			// Initialize OneSignal
-			OneSignal.Init (exampleNotificationOpenedDelegate);
-
+         
+         // Initialize OneSignal
+         OneSignal.StartInit("5eb5a37e-b458-11e3-ac11-000c2940e62c")
+                  .HandleNotificationReceived(exampleNotificationReceivedDelegate)
+                  .HandleNotificationOpened(exampleNotificationOpenedDelegate)
+                  .InFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                  .Settings(new Dictionary<string, bool> { { OneSignal.kOSSettingsKeyAutoPrompt, true }, { OneSignal.kOSSettingsKeyInAppLaunchURL, false } })
+                  .EndInit();
+         
+         OneSignal.IdsAvailable((playerID, pushToken) =>
+            {
+               try
+               {
+                  System.Console.WriteLine("Player ID: " + playerID);
+                  if (pushToken != null)
+                     System.Console.WriteLine("Push Token: " + pushToken);
+               }
+               catch (System.Exception e)
+               {
+                  System.Console.WriteLine(e.StackTrace);
+               }
+            });
+         
 			return true;
 		}
 	}

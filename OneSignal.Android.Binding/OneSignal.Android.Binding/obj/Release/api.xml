@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <api>
-<package name="android.app">
-<interface abstract="true" deprecated="not deprecated" final="false" name="OnActivityPausedListener" static="false" visibility="public">
-<method abstract="true" deprecated="not deprecated" final="false" name="onPaused" native="false" return="void" static="false" synchronized="false" visibility="public">
-<parameter name="p0" type="android.app.Activity">
-</parameter>
-</method>
-</interface>
-</package>
 <package name="com.onesignal">
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ActivityLifecycleHandler" static="false" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ActivityLifecycleHandler.1" static="true" visibility=""/>
@@ -61,28 +53,6 @@
 </method>
 </class>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ActivityLifecycleListenerCompat" static="false" visibility=""/>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ActivityLifecycleListenerCompat.1" static="true" visibility="">
-<implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
-</implements>
-<method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
-</method>
-</class>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ActivityLifecycleListenerCompat.1.1" static="false" visibility="">
-<implements name="android.app.OnActivityPausedListener" name-generic-aware="android.app.OnActivityPausedListener">
-</implements>
-<method abstract="false" deprecated="not deprecated" final="false" name="onPaused" native="false" return="void" static="false" synchronized="false" visibility="public">
-<parameter name="p0" type="android.app.Activity">
-</parameter>
-</method>
-</class>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AdvertisingIdProviderFallback" static="false" visibility="">
-<implements name="com.onesignal.AdvertisingIdentifierProvider" name-generic-aware="com.onesignal.AdvertisingIdentifierProvider">
-</implements>
-<method abstract="false" deprecated="not deprecated" final="false" name="getIdentifier" native="false" return="java.lang.String" static="false" synchronized="false" visibility="public">
-<parameter name="p0" type="android.content.Context">
-</parameter>
-</method>
-</class>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AdvertisingIdProviderGPS" static="false" visibility="">
 <implements name="com.onesignal.AdvertisingIdentifierProvider" name-generic-aware="com.onesignal.AdvertisingIdentifierProvider">
 </implements>
@@ -100,25 +70,21 @@
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AndroidSupportV4Compat" static="false" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AndroidSupportV4Compat.ActivityCompat" static="true" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AndroidSupportV4Compat.ActivityCompatApi23" static="true" visibility=""/>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AndroidSupportV4Compat.ContextCompat" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AndroidSupportV4Compat.ContextCompat" static="true" visibility="">
+<method abstract="false" deprecated="not deprecated" final="false" name="getColor" native="false" return="int" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="int">
+</parameter>
+</method>
+</class>
 <interface abstract="true" deprecated="not deprecated" final="false" name="AndroidSupportV4Compat.RequestPermissionsRequestCodeValidator" static="true" visibility="">
 <method abstract="true" deprecated="not deprecated" final="false" name="validateRequestPermissionsRequestCode" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="int">
 </parameter>
 </method>
 </interface>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="BackgroundBroadcaster" static="false" visibility="public">
-<constructor deprecated="not deprecated" final="false" name="BackgroundBroadcaster" static="false" type="com.onesignal.BackgroundBroadcaster" visibility="public">
-</constructor>
-<method abstract="false" deprecated="not deprecated" final="false" name="Invoke" native="false" return="void" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="android.content.Context">
-</parameter>
-<parameter name="p1" type="android.os.Bundle">
-</parameter>
-<parameter name="p2" type="boolean">
-</parameter>
-</method>
-</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="BadgeCountUpdater" static="false" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" name="BuildConfig" static="false" visibility="public">
 <constructor deprecated="not deprecated" final="false" name="BuildConfig" static="false" type="com.onesignal.BuildConfig" visibility="public">
 </constructor>
@@ -185,33 +151,32 @@
 </parameter>
 </method>
 </interface>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationBundleProcessor" static="false" visibility="public">
-<constructor deprecated="not deprecated" final="false" name="NotificationBundleProcessor" static="false" type="com.onesignal.NotificationBundleProcessor" visibility="public">
-</constructor>
-<method abstract="false" deprecated="not deprecated" final="false" name="Process" native="false" return="void" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="android.content.Context">
-</parameter>
-<parameter name="p1" type="android.os.Bundle">
-</parameter>
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="bundleAsJSONObject" native="false" return="org.json.JSONObject" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="android.os.Bundle">
-</parameter>
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="bundleAsJsonArray" native="false" return="org.json.JSONArray" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="android.os.Bundle">
-</parameter>
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="newJsonArray" native="false" return="org.json.JSONArray" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="org.json.JSONObject">
-</parameter>
-</method>
-</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationBundleProcessor" static="false" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationBundleProcessor.1" static="true" visibility="">
 <implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
 </implements>
 <method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
+</class>
+<class abstract="true" deprecated="not deprecated" extends="android.app.IntentService" extends-generic-aware="android.app.IntentService" final="false" name="NotificationExtenderService" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="NotificationExtenderService" static="false" type="com.onesignal.NotificationExtenderService" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="true" name="displayNotification" native="false" return="com.onesignal.OSNotificationDisplayedResult" static="false" synchronized="false" visibility="protected">
+<parameter name="p0" type="com.onesignal.NotificationExtenderService.OverrideSettings">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="true" name="onHandleIntent" native="false" return="void" static="false" synchronized="false" visibility="protected">
+<parameter name="p0" type="android.content.Intent">
+</parameter>
+</method>
+<method abstract="true" deprecated="not deprecated" final="false" name="onNotificationProcessing" native="false" return="boolean" static="false" synchronized="false" visibility="protected">
+<parameter name="p0" type="com.onesignal.OSNotificationReceivedResult">
+</parameter>
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationExtenderService.OverrideSettings" static="true" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="NotificationExtenderService.OverrideSettings" static="false" type="com.onesignal.NotificationExtenderService.OverrideSettings" visibility="public">
+</constructor>
 </class>
 <class abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" name="NotificationOpenedActivity" static="false" visibility="public">
 <constructor deprecated="not deprecated" final="false" name="NotificationOpenedActivity" static="false" type="com.onesignal.NotificationOpenedActivity" visibility="public">
@@ -237,10 +202,176 @@
 </parameter>
 </method>
 </class>
+<class abstract="false" deprecated="not deprecated" extends="android.app.IntentService" extends-generic-aware="android.app.IntentService" final="false" name="NotificationRestoreService" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="NotificationRestoreService" static="false" type="com.onesignal.NotificationRestoreService" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="onHandleIntent" native="false" return="void" static="false" synchronized="false" visibility="protected">
+<parameter name="p0" type="android.content.Intent">
+</parameter>
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationRestorer" static="false" visibility="">
+<method abstract="false" deprecated="not deprecated" final="false" name="restore" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+</method>
+<field deprecated="not deprecated" final="false" name="restored" static="true" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NotificationRestorer.1" static="true" visibility="">
+<implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
+</implements>
+<method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotification" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotification" static="false" type="com.onesignal.OSNotification" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="stringify" native="false" return="java.lang.String" static="false" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="false" name="androidNotificationId" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="displayType" static="false" transient="false" type="com.onesignal.OSNotification.DisplayType" type-generic-aware="com.onesignal.OSNotification.DisplayType" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="groupedNotifications" static="false" transient="false" type="java.util.List" type-generic-aware="java.util.List&lt;com.onesignal.OSNotificationPayload&gt;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="isAppInFocus" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="payload" static="false" transient="false" type="com.onesignal.OSNotificationPayload" type-generic-aware="com.onesignal.OSNotificationPayload" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="shown" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Enum" extends-generic-aware="java.lang.Enum&lt;com.onesignal.OSNotification.DisplayType&gt;" final="true" name="OSNotification.DisplayType" static="true" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="valueOf" native="false" return="com.onesignal.OSNotification.DisplayType" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="values" native="false" return="com.onesignal.OSNotification.DisplayType[]" static="true" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="InAppAlert" static="true" transient="false" type="com.onesignal.OSNotification.DisplayType" type-generic-aware="com.onesignal.OSNotification.DisplayType" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="None" static="true" transient="false" type="com.onesignal.OSNotification.DisplayType" type-generic-aware="com.onesignal.OSNotification.DisplayType" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="Notification" static="true" transient="false" type="com.onesignal.OSNotification.DisplayType" type-generic-aware="com.onesignal.OSNotification.DisplayType" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationAction" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationAction" static="false" type="com.onesignal.OSNotificationAction" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="actionID" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="type" static="false" transient="false" type="com.onesignal.OSNotificationAction.ActionType" type-generic-aware="com.onesignal.OSNotificationAction.ActionType" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Enum" extends-generic-aware="java.lang.Enum&lt;com.onesignal.OSNotificationAction.ActionType&gt;" final="true" name="OSNotificationAction.ActionType" static="true" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="valueOf" native="false" return="com.onesignal.OSNotificationAction.ActionType" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="values" native="false" return="com.onesignal.OSNotificationAction.ActionType[]" static="true" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="ActionTaken" static="true" transient="false" type="com.onesignal.OSNotificationAction.ActionType" type-generic-aware="com.onesignal.OSNotificationAction.ActionType" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="Opened" static="true" transient="false" type="com.onesignal.OSNotificationAction.ActionType" type-generic-aware="com.onesignal.OSNotificationAction.ActionType" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationDisplayedResult" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationDisplayedResult" static="false" type="com.onesignal.OSNotificationDisplayedResult" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="androidNotificationId" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationOpenResult" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationOpenResult" static="false" type="com.onesignal.OSNotificationOpenResult" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="stringify" native="false" return="java.lang.String" static="false" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="false" name="action" static="false" transient="false" type="com.onesignal.OSNotificationAction" type-generic-aware="com.onesignal.OSNotificationAction" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="notification" static="false" transient="false" type="com.onesignal.OSNotification" type-generic-aware="com.onesignal.OSNotification" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationPayload" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationPayload" static="false" type="com.onesignal.OSNotificationPayload" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="actionButtons" static="false" transient="false" type="java.util.List" type-generic-aware="java.util.List&lt;com.onesignal.OSNotificationPayload.ActionButton&gt;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="additionalData" static="false" transient="false" type="org.json.JSONObject" type-generic-aware="org.json.JSONObject" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="backgroundImageLayout" static="false" transient="false" type="com.onesignal.OSNotificationPayload.BackgroundImageLayout" type-generic-aware="com.onesignal.OSNotificationPayload.BackgroundImageLayout" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="bigPicture" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="body" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="fromProjectNumber" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="groupKey" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="groupMessage" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="largeIcon" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="launchURL" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="ledColor" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="lockScreenVisibility" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="notificationID" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="rawPayload" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="smallIcon" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="smallIconAccentColor" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="sound" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="title" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationPayload.ActionButton" static="true" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationPayload.ActionButton" static="false" type="com.onesignal.OSNotificationPayload.ActionButton" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="icon" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="id" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="text" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationPayload.BackgroundImageLayout" static="true" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationPayload.BackgroundImageLayout" static="false" type="com.onesignal.OSNotificationPayload.BackgroundImageLayout" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="bodyTextColor" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="image" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="titleTextColor" static="false" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSNotificationReceivedResult" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="OSNotificationReceivedResult" static="false" type="com.onesignal.OSNotificationReceivedResult" visibility="public">
+</constructor>
+<field deprecated="not deprecated" final="false" name="isAppInFocus" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="payload" static="false" transient="false" type="com.onesignal.OSNotificationPayload" type-generic-aware="com.onesignal.OSNotificationPayload" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="restoring" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+</class>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OSUtils" static="false" visibility=""/>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal" static="false" visibility="public">
 <constructor deprecated="not deprecated" final="false" name="OneSignal" static="false" type="com.onesignal.OneSignal" visibility="public">
 </constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="cancelNotification" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="int">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="clearOneSignalNotifications" native="false" return="void" static="true" synchronized="false" visibility="public">
+</method>
 <method abstract="false" deprecated="not deprecated" final="false" name="deleteTag" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
 </parameter>
@@ -251,14 +382,6 @@
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="deleteTags" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="java.util.Collection&lt;java.lang.String&gt;">
-</parameter>
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="enableInAppAlertNotification" native="false" return="void" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="boolean">
-</parameter>
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="enableNotificationsWhenActive" native="false" return="void" static="true" synchronized="false" visibility="public">
-<parameter name="p0" type="boolean">
 </parameter>
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="enableSound" native="false" return="void" static="true" synchronized="false" visibility="public">
@@ -273,7 +396,7 @@
 <parameter name="p0" type="com.onesignal.OneSignal.GetTagsHandler">
 </parameter>
 </method>
-<method abstract="false" deprecated="not deprecated" final="false" name="handleNotificationOpened" native="false" return="void" static="true" synchronized="false" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="handleNotificationOpen" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="android.content.Context">
 </parameter>
 <parameter name="p1" type="org.json.JSONArray">
@@ -303,9 +426,17 @@
 <parameter name="p3" type="com.onesignal.OneSignal.NotificationOpenedHandler">
 </parameter>
 </method>
-<method abstract="false" deprecated="not deprecated" final="false" name="onPaused" native="false" return="void" static="true" synchronized="false" visibility="public">
-</method>
-<method abstract="false" deprecated="not deprecated" final="false" name="onResumed" native="false" return="void" static="true" synchronized="false" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="init" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="java.lang.String">
+</parameter>
+<parameter name="p2" type="java.lang.String">
+</parameter>
+<parameter name="p3" type="com.onesignal.OneSignal.NotificationOpenedHandler">
+</parameter>
+<parameter name="p4" type="com.onesignal.OneSignal.NotificationReceivedHandler">
+</parameter>
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="postNotification" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
@@ -323,6 +454,8 @@
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="removeNotificationOpenedHandler" native="false" return="void" static="true" synchronized="false" visibility="public">
 </method>
+<method abstract="false" deprecated="not deprecated" final="false" name="removeNotificationReceivedHandler" native="false" return="void" static="true" synchronized="false" visibility="public">
+</method>
 <method abstract="false" deprecated="not deprecated" final="false" name="sendTag" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
 </parameter>
@@ -335,6 +468,18 @@
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="sendTags" native="false" return="void" static="true" synchronized="false" visibility="public">
 <parameter name="p0" type="org.json.JSONObject">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="setInFocusDisplaying" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="com.onesignal.OneSignal.OSInFocusDisplayOption">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="setInFocusDisplaying" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="int">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="setLocationShared" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="boolean">
 </parameter>
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="setLogLevel" native="false" return="void" static="true" synchronized="false" visibility="public">
@@ -357,7 +502,11 @@
 <parameter name="p0" type="android.content.Context">
 </parameter>
 </method>
-<field deprecated="not deprecated" final="true" name="VERSION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;020103&quot;" visibility="public" volatile="false">
+<method abstract="false" deprecated="not deprecated" final="false" name="syncHashedEmail" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+</method>
+<field deprecated="not deprecated" final="true" name="VERSION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;030300&quot;" visibility="public" volatile="false">
 </field>
 <field deprecated="not deprecated" final="false" name="sdkType" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" visibility="public" volatile="false">
 </field>
@@ -368,9 +517,18 @@
 <method abstract="false" deprecated="not deprecated" final="false" name="complete" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
 </parameter>
+<parameter name="p1" type="int">
+</parameter>
 </method>
 </class>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.10" static="true" visibility="">
+<implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
+</implements>
+<method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.11" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.12" static="true" visibility="">
 <implements name="com.onesignal.LocationGMS.LocationHandler" name-generic-aware="com.onesignal.LocationGMS.LocationHandler">
 </implements>
 <method abstract="false" deprecated="not deprecated" final="false" name="complete" native="false" return="void" static="false" synchronized="false" visibility="public">
@@ -398,29 +556,24 @@
 </parameter>
 </method>
 </class>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.3" static="true" visibility="">
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.3" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.4" static="true" visibility="">
 <implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
 </implements>
 <method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
 </class>
-<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.4" static="true" visibility=""/>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.5" static="true" visibility="">
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.5" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.6" static="true" visibility="">
 <implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
 </implements>
 <method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
 </class>
-<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.6" static="true" visibility="">
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.7" static="true" visibility="">
 <method abstract="false" deprecated="not deprecated" final="false" name="onSuccess" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
 </parameter>
-</method>
-</class>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.7" static="true" visibility="">
-<implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
-</implements>
-<method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
 </class>
 <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.8" static="true" visibility="">
@@ -429,16 +582,33 @@
 <method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
 </class>
-<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignal.9" static="true" visibility=""/>
-<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.Builder" static="true" visibility="public">
-<method abstract="false" deprecated="not deprecated" final="false" name="init" native="false" return="void" static="false" synchronized="false" visibility="public">
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.9" static="true" visibility="">
+<implements name="java.lang.Runnable" name-generic-aware="java.lang.Runnable">
+</implements>
+<method abstract="false" deprecated="not deprecated" final="false" name="run" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
-<method abstract="false" deprecated="not deprecated" final="false" name="setAutoPromptLocation" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignal.Builder" static="true" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="autoPromptLocation" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="boolean">
 </parameter>
 </method>
+<method abstract="false" deprecated="not deprecated" final="false" name="disableGmsMissingPrompt" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="boolean">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="inFocusDisplaying" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="com.onesignal.OneSignal.OSInFocusDisplayOption">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="init" native="false" return="void" static="false" synchronized="false" visibility="public">
+</method>
 <method abstract="false" deprecated="not deprecated" final="false" name="setNotificationOpenedHandler" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="com.onesignal.OneSignal.NotificationOpenedHandler">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="setNotificationReceivedHandler" native="false" return="com.onesignal.OneSignal.Builder" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="com.onesignal.OneSignal.NotificationReceivedHandler">
 </parameter>
 </method>
 </class>
@@ -480,14 +650,30 @@
 </class>
 <interface abstract="true" deprecated="not deprecated" final="false" name="OneSignal.NotificationOpenedHandler" static="true" visibility="public">
 <method abstract="true" deprecated="not deprecated" final="false" name="notificationOpened" native="false" return="void" static="false" synchronized="false" visibility="public">
-<parameter name="p0" type="java.lang.String">
-</parameter>
-<parameter name="p1" type="org.json.JSONObject">
-</parameter>
-<parameter name="p2" type="boolean">
+<parameter name="p0" type="com.onesignal.OSNotificationOpenResult">
 </parameter>
 </method>
 </interface>
+<interface abstract="true" deprecated="not deprecated" final="false" name="OneSignal.NotificationReceivedHandler" static="true" visibility="public">
+<method abstract="true" deprecated="not deprecated" final="false" name="notificationReceived" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="com.onesignal.OSNotification">
+</parameter>
+</method>
+</interface>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Enum" extends-generic-aware="java.lang.Enum&lt;com.onesignal.OneSignal.OSInFocusDisplayOption&gt;" final="true" name="OneSignal.OSInFocusDisplayOption" static="true" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="valueOf" native="false" return="com.onesignal.OneSignal.OSInFocusDisplayOption" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="values" native="false" return="com.onesignal.OneSignal.OSInFocusDisplayOption[]" static="true" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="InAppAlert" static="true" transient="false" type="com.onesignal.OneSignal.OSInFocusDisplayOption" type-generic-aware="com.onesignal.OneSignal.OSInFocusDisplayOption" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="None" static="true" transient="false" type="com.onesignal.OneSignal.OSInFocusDisplayOption" type-generic-aware="com.onesignal.OneSignal.OSInFocusDisplayOption" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="Notification" static="true" transient="false" type="com.onesignal.OneSignal.OSInFocusDisplayOption" type-generic-aware="com.onesignal.OneSignal.OSInFocusDisplayOption" visibility="public" volatile="false">
+</field>
+</class>
 <interface abstract="true" deprecated="not deprecated" final="false" name="OneSignal.PostNotificationResponseHandler" static="true" visibility="public">
 <method abstract="true" deprecated="not deprecated" final="false" name="onFailure" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="org.json.JSONObject">
@@ -534,10 +720,10 @@
 </field>
 </class>
 <class abstract="false" deprecated="not deprecated" extends="android.database.sqlite.SQLiteOpenHelper" extends-generic-aware="android.database.sqlite.SQLiteOpenHelper" final="false" name="OneSignalDbHelper" static="false" visibility="public">
-<constructor deprecated="not deprecated" final="false" name="OneSignalDbHelper" static="false" type="com.onesignal.OneSignalDbHelper" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="getInstance" native="false" return="com.onesignal.OneSignalDbHelper" static="true" synchronized="true" visibility="public">
 <parameter name="p0" type="android.content.Context">
 </parameter>
-</constructor>
+</method>
 <method abstract="false" deprecated="not deprecated" final="false" name="onCreate" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="android.database.sqlite.SQLiteDatabase">
 </parameter>
@@ -579,8 +765,17 @@
 <method abstract="false" deprecated="not deprecated" final="false" name="stopAndPersist" native="false" return="void" static="true" synchronized="false" visibility="public">
 </method>
 </class>
-<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignalStateSynchronizer.1" static="true" visibility=""/>
-<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignalStateSynchronizer.2" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignalStateSynchronizer.1" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignalStateSynchronizer.2" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignalStateSynchronizer.3" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignalStateSynchronizer.4" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="com.onesignal.OneSignalRestClient.ResponseHandler" extends-generic-aware="com.onesignal.OneSignalRestClient.ResponseHandler" final="false" name="OneSignalStateSynchronizer.5" static="true" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="OneSignalStateSynchronizer.GetTagsResult" static="true" visibility="">
+<field deprecated="not deprecated" final="false" name="result" static="false" transient="false" type="org.json.JSONObject" type-generic-aware="org.json.JSONObject" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="false" name="serverSuccess" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+</field>
+</class>
 <class abstract="false" deprecated="not deprecated" extends="android.os.HandlerThread" extends-generic-aware="android.os.HandlerThread" final="false" name="OneSignalStateSynchronizer.NetworkHandlerThread" static="true" visibility="">
 <method abstract="false" deprecated="not deprecated" final="false" name="runNewJob" native="false" return="void" static="false" synchronized="false" visibility="public">
 </method>
@@ -617,6 +812,8 @@
 <interface abstract="true" deprecated="not deprecated" final="false" name="PushRegistrator.RegisteredHandler" static="true" visibility="public">
 <method abstract="true" deprecated="not deprecated" final="false" name="complete" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
+</parameter>
+<parameter name="p1" type="int">
 </parameter>
 </method>
 </interface>
@@ -748,6 +945,289 @@
 </method>
 <method abstract="false" deprecated="not deprecated" final="false" name="onSuccess" native="false" return="void" static="false" synchronized="false" visibility="public">
 <parameter name="p0" type="java.lang.String">
+</parameter>
+</method>
+</class>
+</package>
+<package name="com.onesignal.shortcutbadger">
+<interface abstract="true" deprecated="not deprecated" final="false" name="Badger" static="false" visibility="public">
+<method abstract="true" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="true" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</interface>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Exception" extends-generic-aware="java.lang.Exception" final="false" name="ShortcutBadgeException" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="ShortcutBadgeException" static="false" type="com.onesignal.shortcutbadger.ShortcutBadgeException" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+</constructor>
+<constructor deprecated="not deprecated" final="false" name="ShortcutBadgeException" static="false" type="com.onesignal.shortcutbadger.ShortcutBadgeException" visibility="public">
+<parameter name="p0" type="java.lang.String">
+</parameter>
+<parameter name="p1" type="java.lang.Exception">
+</parameter>
+</constructor>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" name="ShortcutBadger" static="false" visibility="public">
+<method abstract="false" deprecated="not deprecated" final="false" name="applyCount" native="false" return="boolean" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="int">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="applyCountOrThrow" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="removeCount" native="false" return="boolean" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="removeCountOrThrow" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+</class>
+</package>
+<package name="com.onesignal.shortcutbadger.impl">
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AdwHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="AdwHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.AdwHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="CLASSNAME" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;CNAME&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="COUNT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;COUNT&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="INTENT_UPDATE_COUNTER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;org.adw.launcher.counter.SEND&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="PACKAGENAME" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;PNAME&quot;" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ApexHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="ApexHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.ApexHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="AsusHomeLauncher" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="AsusHomeLauncher" static="false" type="com.onesignal.shortcutbadger.impl.AsusHomeLauncher" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="DefaultBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="DefaultBadger" static="false" type="com.onesignal.shortcutbadger.impl.DefaultBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="HuaweiHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="HuaweiHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.HuaweiHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NewHtcHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="NewHtcHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.NewHtcHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="COUNT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;count&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="EXTRA_COMPONENT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;com.htc.launcher.extra.COMPONENT&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="EXTRA_COUNT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;com.htc.launcher.extra.COUNT&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="INTENT_SET_NOTIFICATION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;com.htc.launcher.action.SET_NOTIFICATION&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="INTENT_UPDATE_SHORTCUT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;com.htc.launcher.action.UPDATE_SHORTCUT&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="PACKAGENAME" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;packagename&quot;" visibility="public" volatile="false">
+</field>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="NovaHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="NovaHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.NovaHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="SolidHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="SolidHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.SolidHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="SonyHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="SonyHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.SonyHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="android.content.AsyncQueryHandler" extends-generic-aware="android.content.AsyncQueryHandler" final="false" name="SonyHomeBadger.1" static="false" visibility=""/>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="XiaomiHomeBadger" static="false" visibility="public">
+<implements name="com.onesignal.shortcutbadger.Badger" name-generic-aware="com.onesignal.shortcutbadger.Badger">
+</implements>
+<constructor deprecated="not deprecated" final="false" name="XiaomiHomeBadger" static="false" type="com.onesignal.shortcutbadger.impl.XiaomiHomeBadger" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="executeBadge" native="false" return="void" static="false" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.ComponentName">
+</parameter>
+<parameter name="p2" type="int">
+</parameter>
+<exception name="ShortcutBadgeException" type="com.onesignal.shortcutbadger.ShortcutBadgeException">
+</exception>
+</method>
+<method abstract="false" deprecated="not deprecated" final="false" name="getSupportLaunchers" native="false" return="java.util.List&lt;java.lang.String&gt;" static="false" synchronized="false" visibility="public">
+</method>
+<field deprecated="not deprecated" final="true" name="EXTRA_UPDATE_APP_COMPONENT_NAME" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;android.intent.extra.update_application_component_name&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="EXTRA_UPDATE_APP_MSG_TEXT" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;android.intent.extra.update_application_message_text&quot;" visibility="public" volatile="false">
+</field>
+<field deprecated="not deprecated" final="true" name="INTENT_ACTION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;android.intent.action.APPLICATION_MESSAGE_UPDATE&quot;" visibility="public" volatile="false">
+</field>
+</class>
+</package>
+<package name="com.onesignal.shortcutbadger.util">
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="BroadcastHelper" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="BroadcastHelper" static="false" type="com.onesignal.shortcutbadger.util.BroadcastHelper" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="canResolveBroadcast" native="false" return="boolean" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.content.Context">
+</parameter>
+<parameter name="p1" type="android.content.Intent">
+</parameter>
+</method>
+</class>
+<class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="CloseHelper" static="false" visibility="public">
+<constructor deprecated="not deprecated" final="false" name="CloseHelper" static="false" type="com.onesignal.shortcutbadger.util.CloseHelper" visibility="public">
+</constructor>
+<method abstract="false" deprecated="not deprecated" final="false" name="close" native="false" return="void" static="true" synchronized="false" visibility="public">
+<parameter name="p0" type="android.database.Cursor">
 </parameter>
 </method>
 </class>

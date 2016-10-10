@@ -17,8 +17,9 @@ using GLKit;
 using Metal;
 using MapKit;
 using ModelIO;
-using Security;
 using SceneKit;
+using Security;
+using AudioUnit;
 using CoreVideo;
 using CoreMedia;
 using QuickLook;
@@ -34,9 +35,10 @@ using CoreAnimation;
 using CoreFoundation;
 
 namespace Com.OneSignal.iOS {
-	public delegate void OneSignalFailureBlock (NSError arg0);
-	public delegate void OneSignalHandleNotificationBlock (string arg0, NSDictionary arg1, bool arg2);
-	public delegate void OneSignalIdsAvailableBlock (string arg0, string arg1);
-	public delegate void OneSignalResultSuccessBlock (NSDictionary arg0);
+	public delegate void OSFailureBlock (NSError arg0);
+	public delegate void OSHandleNotificationActionBlock (Com.OneSignal.iOS.OSNotificationOpenedResult arg0);
+	public delegate void OSHandleNotificationReceivedBlock (Com.OneSignal.iOS.OSNotification arg0);
+	public delegate void OSIdsAvailableBlock (string arg0, string arg1);
+	public delegate void OSResultSuccessBlock (NSDictionary arg0);
 }
 

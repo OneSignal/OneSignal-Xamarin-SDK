@@ -10,10 +10,6 @@
 		<uses-permission android:name="android.permission.VIBRATE" />
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<application android:label="Example.Shared.Application">
-		<meta-data android:name="onesignal_app_id"
-		android:value="EDIT_APPID_TO_TEST_THIS_APP" />
-		<meta-data android:name="onesignal_google_project_number"
-		android:value="str:EDIT_GPN_TO_TEST_THIS_APP" />
 
 		<receiver android:name="com.onesignal.GcmBroadcastReceiver"
 		android:permission="com.google.android.c2dm.permission.SEND" >

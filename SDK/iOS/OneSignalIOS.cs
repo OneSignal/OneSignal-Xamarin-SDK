@@ -25,132 +25,191 @@
  * THE SOFTWARE.
  */
 
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using OneSignalPush.MiniJSON;
 
 namespace Com.OneSignal
 {
-	public class OneSignalIOS : OneSignalPlatform
-	{
-		private Com.OneSignal.iOS.OneSignal mOneSignal;
+   public class OneSignalIOS : OneSignalPlatform {
 
-		public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict)
-		{
-			if (nsDict == null)
-				return null;
-			Foundation.NSError error;
-			Foundation.NSData jsonData = Foundation.NSJsonSerialization.Serialize (nsDict, (Foundation.NSJsonWritingOptions)0, out error);
-			Foundation.NSString jsonNSString = Foundation.NSString.FromData (jsonData, Foundation.NSStringEncoding.UTF8);
-			string jsonString = jsonNSString.ToString ();
-			return Json.Deserialize (jsonString) as Dictionary<string, object>;
-		}
+      public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict) {
+         if(nsDict == null)
+            return null;
+         Foundation.NSError error;
+         Foundation.NSData jsonData = Foundation.NSJsonSerialization.Serialize (nsDict, 0, out error);
+         Foundation.NSString jsonNSString = Foundation.NSString.FromData (jsonData, Foundation.NSStringEncoding.UTF8);
+         string jsonString = jsonNSString.ToString ();
+         return Json.Deserialize (jsonString) as Dictionary<string, object>;
+      }
+      
+      private OSNotificationOpenedResult OSNotificationOpenedResultToNative(iOS.OSNotificationOpenedResult result)
+      {
+         var openresult = new OSNotificationOpenedResult();
+         openresult.action = new OSNotificationAction();
+         iOS.OSNotificationAction action = result.Action;
+         openresult.action.actionID = action.ActionID;
+         openresult.action.type = (OSNotificationAction.ActionType)(int)action.Type;
 
-		public OneSignalIOS (bool autoRegister, OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
-		{
-			this.SetLogLevel (logLevel, visualLevel);
-			if (Com.OneSignal.OneSignal.notificationOpenedDelegate != null)
-				mOneSignal = new Com.OneSignal.iOS.OneSignal (new Foundation.NSDictionary (), NotificationOpenedHandler, autoRegister);
-			else
-				mOneSignal = new Com.OneSignal.iOS.OneSignal (new Foundation.NSDictionary (), autoRegister);
-		}
-			
-		public void RegisterForPushNotifications ()
-		{
-			this.mOneSignal.RegisterForPushNotifications ();
-		}
+         openresult.notification = OSNotificationToNative(result.Notification);
 
-		public void SendTag (string tagName, string tagValue)
-		{
-			this.mOneSignal.SendTag (tagName, tagValue);
-		}
+         return openresult;
+      }
 
-		public void SendTags (IDictionary<string, string> tags)
-		{
-			string jsonString = Json.Serialize (tags);
-			this.mOneSignal.SendTagsWithJsonString (jsonString);
-		}
+      private OSNotification OSNotificationToNative(iOS.OSNotification notif)
+      {
+         var notification = new OSNotification();
+         notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
+         notification.shown = notif.Shown;
+         notification.silentNotification = notif.SilentNotification;
+         
+         notification.payload = new OSNotificationPayload();
 
-		public void GetTags ()
-		{
-			this.mOneSignal.GetTags (GetTagsHandler);
-		}
 
-		public void DeleteTag (string key)
-		{
-			this.mOneSignal.DeleteTag (key);
-		}
+         notification.payload.actionButtons = new List<Dictionary<string, object>>();
+         if (notif.Payload.ActionButtons != null)
+         {
+            for (int i = 0; i < (int)notif.Payload.ActionButtons.Count; ++i)
+            {
+               Foundation.NSDictionary element = notif.Payload.ActionButtons.GetItem<Foundation.NSDictionary>((uint)i);
+               notification.payload.actionButtons.Add(NSDictToPureDict(element));
+            }
+         }
 
-		public void DeleteTags (IList<string> keys)
-		{
-			Foundation.NSObject[] objs = new Foundation.NSObject[keys.Count];
-			for (int i = 0; i < keys.Count; i++)
-			{
-				objs [i] = (Foundation.NSObject)(Foundation.NSString)keys [i];
-			}
-			this.mOneSignal.DeleteTags (objs);
-		}
+         notification.payload.additionalData = new Dictionary<string, object>();
+         if (notif.Payload.AdditionalData != null)
+         {
+            foreach (KeyValuePair<Foundation.NSObject, Foundation.NSObject> element in notif.Payload.AdditionalData)
+            {
+               notification.payload.additionalData.Add((Foundation.NSString)element.Key, element.Value);
+            }
+         }
 
-		public void IdsAvailable ()
-		{
-			this.mOneSignal.IdsAvailable (IdsAvailableHandler);
-		}
+         notification.payload.badge = (int)notif.Payload.Badge;
+         notification.payload.body = notif.Payload.Body;
+         notification.payload.contentAvailable = notif.Payload.ContentAvailable;
+         notification.payload.launchURL = notif.Payload.LaunchURL;
+         notification.payload.notificationID = notif.Payload.NotificationID;
+         notification.payload.sound = notif.Payload.Sound;
+         notification.payload.subtitle = notif.Payload.Subtitle;
+         notification.payload.title = notif.Payload.Title;
 
-		public void EnableInAppAlertNotification (bool enable)
-		{
-			this.mOneSignal.EnableInAppAlertNotification (enable);
-		}
+         return notification;
+      }
 
-		public void SetSubscription (bool enable)
-		{
-			this.mOneSignal.SetSubscription (enable);
-		}
+      public OneSignalIOS(string appId, bool autoPrompt, bool inAppLaunchURLs, OneSignal.OSInFocusDisplayOption displayOption, OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
+      {
+         var convertedLogLevel = (iOS.OneSLogLevel)((ulong)((int)logLevel));
+         var convertedVisualLevel = (iOS.OneSLogLevel)((ulong)((int)visualLevel));
 
-		public void PostNotification (Dictionary<string, object> data)
-		{
-			string jsonString = Json.Serialize (data);
-			this.mOneSignal.PostNotificationWithJsonString (jsonString, PostNotificationSuccessHandler, PostNotificationFailureHandler);
-		}
+         iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
+         var dict = new Foundation.NSDictionary("kOSSettingsKeyInAppLaunchURL", new Foundation.NSNumber(inAppLaunchURLs), 
+                                                "kOSSettingsKeyAutoPrompt", new Foundation.NSNumber(autoPrompt),
+                                                "kOSSettingsKeyInFocusDisplayOption", new Foundation.NSNumber((int)displayOption)
+                                               );
+         iOS.OneSignal.InitWithLaunchOptions(new Foundation.NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
 
-		public void SetLogLevel (OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
-		{
-			Com.OneSignal.iOS.OneSLogLevel convertedLogLevel = (Com.OneSignal.iOS.OneSLogLevel)((ulong)((int)logLevel));
-			Com.OneSignal.iOS.OneSLogLevel convertedVisualLevel = (Com.OneSignal.iOS.OneSLogLevel)((ulong)((int)visualLevel));
-			Com.OneSignal.iOS.OneSignal.SetLogLevel (convertedLogLevel, convertedVisualLevel);
-		}
+      }
 
-		public void IdsAvailableHandler (string playerID, string pushToken)
-		{
-			Com.OneSignal.OneSignal.idsAvailableDelegate (playerID, pushToken);
-		}
+      public void RegisterForPushNotifications() {
+         iOS.OneSignal.RegisterForPushNotifications();
+      }
 
-		public void NotificationOpenedHandler (string message, Foundation.NSDictionary additionalData, bool isActive)
-		{
-			Dictionary<string, object> dict = NSDictToPureDict (additionalData);
-			Com.OneSignal.OneSignal.notificationOpenedDelegate (message, dict, isActive);
-		}
+      public void SendTag(string tagName, string tagValue) {
+         iOS.OneSignal.SendTag (tagName, tagValue);
+      }
 
-		public void GetTagsHandler (Foundation.NSDictionary result)
-		{
-			Dictionary<string, object> dict = NSDictToPureDict (result);
-			Com.OneSignal.OneSignal.tagsAvailableDelegate (dict);
-		}
+      public void SendTags(IDictionary<string, string> tags) {
+         string jsonString = Json.Serialize (tags);
+         iOS.OneSignal.SendTagsWithJsonString (jsonString);
+      }
 
-		public void PostNotificationSuccessHandler (Foundation.NSDictionary result)
-		{
-			Dictionary<string, object> dict = NSDictToPureDict (result);
-			Com.OneSignal.OneSignal.onPostNotificationSuccessDelegate (dict);
-		}
+      public void GetTags() {
+         iOS.OneSignal.GetTags (GetTagsHandler);
+      }
 
-		public void PostNotificationFailureHandler (Foundation.NSError error)
-		{
-			if (error.UserInfo != null && error.UserInfo ["returned"] != null)
-			{
-				Dictionary<string, object> dict = NSDictToPureDict (error.UserInfo);
-				Com.OneSignal.OneSignal.onPostNotificationFailureDelegate (dict);
-			}
-			else
-				Com.OneSignal.OneSignal.onPostNotificationFailureDelegate (new Dictionary<string, object> { {"error", "HTTP no response error"} });
-		}
-	}
+      public void DeleteTag(string key)
+      {
+         iOS.OneSignal.DeleteTag (key);
+      }
+
+      public void DeleteTags (IList<string> keys)
+      {
+         Foundation.NSObject[] objs = new Foundation.NSObject[keys.Count];
+         for (int i = 0; i < keys.Count; i++)
+         {
+            objs [i] = (Foundation.NSString)keys[i];
+         }
+         iOS.OneSignal.DeleteTags (objs);
+      }
+
+      public void IdsAvailable ()
+      {
+         iOS.OneSignal.IdsAvailable (IdsAvailableHandler);
+      }
+
+      public void SetSubscription (bool enable)
+      {
+         iOS.OneSignal.SetSubscription (enable);
+      }
+
+      public void PostNotification (Dictionary<string, object> data)
+      {
+         string jsonString = Json.Serialize (data);
+         iOS.OneSignal.PostNotificationWithJsonString (jsonString, PostNotificationSuccessHandler, PostNotificationFailureHandler);
+      }
+
+      public void SetLogLevel (OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
+      {
+         var convertedLogLevel = (iOS.OneSLogLevel)((ulong)((int)logLevel));
+         var convertedVisualLevel = (iOS.OneSLogLevel)((ulong)((int)visualLevel));
+         iOS.OneSignal.SetLogLevel (convertedLogLevel, convertedVisualLevel);
+      }
+
+      public void IdsAvailableHandler (string playerID, string pushToken)
+      {
+         OneSignal.onIdsAvailable(playerID, pushToken);
+      }
+                                                           
+      public void NotificationOpenedHandler (iOS.OSNotificationOpenedResult result)
+      {
+         OneSignal.onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+      }
+      public void NotificationReceivedHandler(iOS.OSNotification notification)
+      {
+         OneSignal.onPushNotificationReceived(OSNotificationToNative(notification));
+      }
+
+      public void GetTagsHandler (Foundation.NSDictionary result)
+      {
+         Dictionary<string, object> dict = NSDictToPureDict(result);
+         OneSignal.onTagsReceived(dict);
+      }
+
+      public void PostNotificationSuccessHandler (Foundation.NSDictionary result)
+      {
+         Dictionary<string, object> dict = NSDictToPureDict (result);
+         OneSignal.onPostNotificationSuccess (dict);
+      }
+
+      public void PostNotificationFailureHandler (Foundation.NSError error)
+      {
+         if (error.UserInfo != null && error.UserInfo ["returned"] != null)
+         {
+            Dictionary<string, object> dict = NSDictToPureDict (error.UserInfo);
+            OneSignal.onPostNotificationFailed (dict);
+         }
+         else
+            OneSignal.onPostNotificationFailed (new Dictionary<string, object> { {"error", "HTTP no response error"} });
+      }
+
+      public void SyncHashedEmail(string email)
+      {
+            iOS.OneSignal.SyncHashedEmail(email);
+      }
+
+      public void PromptLocation()
+      {
+         iOS.OneSignal.PromptLocation();
+      }
+   }
 }

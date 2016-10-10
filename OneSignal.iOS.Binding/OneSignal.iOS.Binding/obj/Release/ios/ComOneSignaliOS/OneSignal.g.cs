@@ -17,8 +17,9 @@ using GLKit;
 using Metal;
 using MapKit;
 using ModelIO;
-using Security;
 using SceneKit;
+using Security;
+using AudioUnit;
 using CoreVideo;
 using CoreMedia;
 using QuickLook;
@@ -69,168 +70,9 @@ namespace Com.OneSignal.iOS {
 			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
 		}
 
-		[Export ("initWithLaunchOptions:")]
-		[CompilerGenerated]
-		public OneSignal (NSDictionary launchOptions)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("initWithLaunchOptions:"), launchOptions.Handle), "initWithLaunchOptions:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:"), launchOptions.Handle), "initWithLaunchOptions:");
-			}
-		}
-		
-		[Export ("initWithLaunchOptions:autoRegister:")]
-		[CompilerGenerated]
-		public OneSignal (NSDictionary launchOptions, bool autoRegister)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_bool (this.Handle, Selector.GetHandle ("initWithLaunchOptions:autoRegister:"), launchOptions.Handle, autoRegister), "initWithLaunchOptions:autoRegister:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_bool (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:autoRegister:"), launchOptions.Handle, autoRegister), "initWithLaunchOptions:autoRegister:");
-			}
-		}
-		
-		[Export ("initWithLaunchOptions:appId:")]
-		[CompilerGenerated]
-		public OneSignal (NSDictionary launchOptions, string appId)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			if (appId == null)
-				throw new ArgumentNullException ("appId");
-			var nsappId = NSString.CreateNative (appId);
-			
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("initWithLaunchOptions:appId:"), launchOptions.Handle, nsappId), "initWithLaunchOptions:appId:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:appId:"), launchOptions.Handle, nsappId), "initWithLaunchOptions:appId:");
-			}
-			NSString.ReleaseNative (nsappId);
-			
-		}
-		
-		[Export ("initWithLaunchOptions:handleNotification:")]
-		[CompilerGenerated]
-		public unsafe OneSignal (NSDictionary launchOptions, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalHandleNotificationBlock))]OneSignalHandleNotificationBlock callback)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			if (callback == null)
-				throw new ArgumentNullException ("callback");
-			BlockLiteral *block_ptr_callback;
-			BlockLiteral block_callback;
-			block_callback = new BlockLiteral ();
-			block_ptr_callback = &block_callback;
-			block_callback.SetupBlock (Trampolines.SDOneSignalHandleNotificationBlock.Handler, callback);
-			
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("initWithLaunchOptions:handleNotification:"), launchOptions.Handle, (IntPtr) block_ptr_callback), "initWithLaunchOptions:handleNotification:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:handleNotification:"), launchOptions.Handle, (IntPtr) block_ptr_callback), "initWithLaunchOptions:handleNotification:");
-			}
-			block_ptr_callback->CleanupBlock ();
-			
-		}
-		
-		[Export ("initWithLaunchOptions:appId:handleNotification:")]
-		[CompilerGenerated]
-		public unsafe OneSignal (NSDictionary launchOptions, string appId, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalHandleNotificationBlock))]OneSignalHandleNotificationBlock callback)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			if (appId == null)
-				throw new ArgumentNullException ("appId");
-			if (callback == null)
-				throw new ArgumentNullException ("callback");
-			var nsappId = NSString.CreateNative (appId);
-			BlockLiteral *block_ptr_callback;
-			BlockLiteral block_callback;
-			block_callback = new BlockLiteral ();
-			block_ptr_callback = &block_callback;
-			block_callback.SetupBlock (Trampolines.SDOneSignalHandleNotificationBlock.Handler, callback);
-			
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotification:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_callback), "initWithLaunchOptions:appId:handleNotification:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotification:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_callback), "initWithLaunchOptions:appId:handleNotification:");
-			}
-			NSString.ReleaseNative (nsappId);
-			block_ptr_callback->CleanupBlock ();
-			
-		}
-		
-		[Export ("initWithLaunchOptions:handleNotification:autoRegister:")]
-		[CompilerGenerated]
-		public unsafe OneSignal (NSDictionary launchOptions, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalHandleNotificationBlock))]OneSignalHandleNotificationBlock callback, bool autoRegister)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			if (callback == null)
-				throw new ArgumentNullException ("callback");
-			BlockLiteral *block_ptr_callback;
-			BlockLiteral block_callback;
-			block_callback = new BlockLiteral ();
-			block_ptr_callback = &block_callback;
-			block_callback.SetupBlock (Trampolines.SDOneSignalHandleNotificationBlock.Handler, callback);
-			
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_bool (this.Handle, Selector.GetHandle ("initWithLaunchOptions:handleNotification:autoRegister:"), launchOptions.Handle, (IntPtr) block_ptr_callback, autoRegister), "initWithLaunchOptions:handleNotification:autoRegister:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr_bool (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:handleNotification:autoRegister:"), launchOptions.Handle, (IntPtr) block_ptr_callback, autoRegister), "initWithLaunchOptions:handleNotification:autoRegister:");
-			}
-			block_ptr_callback->CleanupBlock ();
-			
-		}
-		
-		[Export ("initWithLaunchOptions:appId:handleNotification:autoRegister:")]
-		[CompilerGenerated]
-		public unsafe OneSignal (NSDictionary launchOptions, string appId, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalHandleNotificationBlock))]OneSignalHandleNotificationBlock callback, bool autoRegister)
-			: base (NSObjectFlag.Empty)
-		{
-			if (launchOptions == null)
-				throw new ArgumentNullException ("launchOptions");
-			if (appId == null)
-				throw new ArgumentNullException ("appId");
-			if (callback == null)
-				throw new ArgumentNullException ("callback");
-			var nsappId = NSString.CreateNative (appId);
-			BlockLiteral *block_ptr_callback;
-			BlockLiteral block_callback;
-			block_callback = new BlockLiteral ();
-			block_ptr_callback = &block_callback;
-			block_callback.SetupBlock (Trampolines.SDOneSignalHandleNotificationBlock.Handler, callback);
-			
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_bool (this.Handle, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotification:autoRegister:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_callback, autoRegister), "initWithLaunchOptions:appId:handleNotification:autoRegister:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr_IntPtr_IntPtr_bool (this.SuperHandle, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotification:autoRegister:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_callback, autoRegister), "initWithLaunchOptions:appId:handleNotification:autoRegister:");
-			}
-			NSString.ReleaseNative (nsappId);
-			block_ptr_callback->CleanupBlock ();
-			
-		}
-		
 		[Export ("deleteTag:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void DeleteTag (string key, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void DeleteTag (string key, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (key == null)
 				throw new ArgumentNullException ("key");
@@ -243,18 +85,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("deleteTag:onSuccess:onFailure:"), nskey, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("deleteTag:onSuccess:onFailure:"), nskey, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("deleteTag:onSuccess:onFailure:"), nskey, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			NSString.ReleaseNative (nskey);
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
@@ -263,24 +101,20 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("deleteTag:")]
 		[CompilerGenerated]
-		public virtual void DeleteTag (string key)
+		public static void DeleteTag (string key)
 		{
 			if (key == null)
 				throw new ArgumentNullException ("key");
 			var nskey = NSString.CreateNative (key);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("deleteTag:"), nskey);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("deleteTag:"), nskey);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("deleteTag:"), nskey);
 			NSString.ReleaseNative (nskey);
 			
 		}
 		
 		[Export ("deleteTags:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void DeleteTags (NSObject[] keys, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void DeleteTags (NSObject[] keys, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (keys == null)
 				throw new ArgumentNullException ("keys");
@@ -293,18 +127,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("deleteTags:onSuccess:onFailure:"), nsa_keys.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("deleteTags:onSuccess:onFailure:"), nsa_keys.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("deleteTags:onSuccess:onFailure:"), nsa_keys.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			nsa_keys.Dispose ();
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
@@ -313,52 +143,33 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("deleteTags:")]
 		[CompilerGenerated]
-		public virtual void DeleteTags (NSObject[] keys)
+		public static void DeleteTags (NSObject[] keys)
 		{
 			if (keys == null)
 				throw new ArgumentNullException ("keys");
 			var nsa_keys = NSArray.FromNSObjects (keys);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("deleteTags:"), nsa_keys.Handle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("deleteTags:"), nsa_keys.Handle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("deleteTags:"), nsa_keys.Handle);
 			nsa_keys.Dispose ();
 			
 		}
 		
 		[Export ("deleteTagsWithJsonString:")]
 		[CompilerGenerated]
-		public virtual void DeleteTagsWithJsonString (string jsonString)
+		public static void DeleteTagsWithJsonString (string jsonString)
 		{
 			if (jsonString == null)
 				throw new ArgumentNullException ("jsonString");
 			var nsjsonString = NSString.CreateNative (jsonString);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("deleteTagsWithJsonString:"), nsjsonString);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("deleteTagsWithJsonString:"), nsjsonString);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("deleteTagsWithJsonString:"), nsjsonString);
 			NSString.ReleaseNative (nsjsonString);
 			
 		}
 		
-		[Export ("enableInAppAlertNotification:")]
-		[CompilerGenerated]
-		public virtual void EnableInAppAlertNotification (bool enable)
-		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_bool (this.Handle, Selector.GetHandle ("enableInAppAlertNotification:"), enable);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_bool (this.SuperHandle, Selector.GetHandle ("enableInAppAlertNotification:"), enable);
-			}
-		}
-		
 		[Export ("getTags:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void GetTags ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void GetTags ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (successBlock == null)
 				throw new ArgumentNullException ("successBlock");
@@ -368,18 +179,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("getTags:onFailure:"), (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("getTags:onFailure:"), (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("getTags:onFailure:"), (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
 			
@@ -387,7 +194,7 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("getTags:")]
 		[CompilerGenerated]
-		public unsafe virtual void GetTags ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock)
+		public unsafe static void GetTags ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock)
 		{
 			if (successBlock == null)
 				throw new ArgumentNullException ("successBlock");
@@ -395,20 +202,16 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("getTags:"), (IntPtr) block_ptr_successBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("getTags:"), (IntPtr) block_ptr_successBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("getTags:"), (IntPtr) block_ptr_successBlock);
 			block_ptr_successBlock->CleanupBlock ();
 			
 		}
 		
 		[Export ("IdsAvailable:")]
 		[CompilerGenerated]
-		public unsafe virtual void IdsAvailable ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalIdsAvailableBlock))]OneSignalIdsAvailableBlock idsAvailableBlock)
+		public unsafe static void IdsAvailable ([BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSIdsAvailableBlock))]OSIdsAvailableBlock idsAvailableBlock)
 		{
 			if (idsAvailableBlock == null)
 				throw new ArgumentNullException ("idsAvailableBlock");
@@ -416,33 +219,146 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_idsAvailableBlock;
 			block_idsAvailableBlock = new BlockLiteral ();
 			block_ptr_idsAvailableBlock = &block_idsAvailableBlock;
-			block_idsAvailableBlock.SetupBlock (Trampolines.SDOneSignalIdsAvailableBlock.Handler, idsAvailableBlock);
+			block_idsAvailableBlock.SetupBlock (Trampolines.SDOSIdsAvailableBlock.Handler, idsAvailableBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("IdsAvailable:"), (IntPtr) block_ptr_idsAvailableBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("IdsAvailable:"), (IntPtr) block_ptr_idsAvailableBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("IdsAvailable:"), (IntPtr) block_ptr_idsAvailableBlock);
 			block_ptr_idsAvailableBlock->CleanupBlock ();
+			
+		}
+		
+		[Export ("initWithLaunchOptions:appId:")]
+		[CompilerGenerated]
+		public static NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId)
+		{
+			if (launchOptions == null)
+				throw new ArgumentNullException ("launchOptions");
+			if (appId == null)
+				throw new ArgumentNullException ("appId");
+			var nsappId = NSString.CreateNative (appId);
+			
+			NSObject ret;
+			ret = Runtime.GetNSObject (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("initWithLaunchOptions:appId:"), launchOptions.Handle, nsappId));
+			NSString.ReleaseNative (nsappId);
+			
+			return ret;
+		}
+		
+		[Export ("initWithLaunchOptions:appId:handleNotificationAction:")]
+		[CompilerGenerated]
+		public unsafe static NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSHandleNotificationActionBlock))]OSHandleNotificationActionBlock actionCallback)
+		{
+			if (launchOptions == null)
+				throw new ArgumentNullException ("launchOptions");
+			if (appId == null)
+				throw new ArgumentNullException ("appId");
+			if (actionCallback == null)
+				throw new ArgumentNullException ("actionCallback");
+			var nsappId = NSString.CreateNative (appId);
+			BlockLiteral *block_ptr_actionCallback;
+			BlockLiteral block_actionCallback;
+			block_actionCallback = new BlockLiteral ();
+			block_ptr_actionCallback = &block_actionCallback;
+			block_actionCallback.SetupBlock (Trampolines.SDOSHandleNotificationActionBlock.Handler, actionCallback);
+			
+			NSObject ret;
+			ret = Runtime.GetNSObject (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotificationAction:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_actionCallback));
+			NSString.ReleaseNative (nsappId);
+			block_ptr_actionCallback->CleanupBlock ();
+			
+			return ret;
+		}
+		
+		[Export ("initWithLaunchOptions:appId:handleNotificationAction:settings:")]
+		[CompilerGenerated]
+		public unsafe static NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSHandleNotificationActionBlock))]OSHandleNotificationActionBlock actionCallback, NSDictionary settings)
+		{
+			if (launchOptions == null)
+				throw new ArgumentNullException ("launchOptions");
+			if (appId == null)
+				throw new ArgumentNullException ("appId");
+			if (actionCallback == null)
+				throw new ArgumentNullException ("actionCallback");
+			if (settings == null)
+				throw new ArgumentNullException ("settings");
+			var nsappId = NSString.CreateNative (appId);
+			BlockLiteral *block_ptr_actionCallback;
+			BlockLiteral block_actionCallback;
+			block_actionCallback = new BlockLiteral ();
+			block_ptr_actionCallback = &block_actionCallback;
+			block_actionCallback.SetupBlock (Trampolines.SDOSHandleNotificationActionBlock.Handler, actionCallback);
+			
+			NSObject ret;
+			ret = Runtime.GetNSObject (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotificationAction:settings:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_actionCallback, settings.Handle));
+			NSString.ReleaseNative (nsappId);
+			block_ptr_actionCallback->CleanupBlock ();
+			
+			return ret;
+		}
+		
+		[Export ("initWithLaunchOptions:appId:handleNotificationReceived:handleNotificationAction:settings:")]
+		[CompilerGenerated]
+		public unsafe static NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSHandleNotificationReceivedBlock))]OSHandleNotificationReceivedBlock erceivedCallback, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSHandleNotificationActionBlock))]OSHandleNotificationActionBlock actionCallback, NSDictionary settings)
+		{
+			if (launchOptions == null)
+				throw new ArgumentNullException ("launchOptions");
+			if (appId == null)
+				throw new ArgumentNullException ("appId");
+			if (erceivedCallback == null)
+				throw new ArgumentNullException ("erceivedCallback");
+			if (actionCallback == null)
+				throw new ArgumentNullException ("actionCallback");
+			if (settings == null)
+				throw new ArgumentNullException ("settings");
+			var nsappId = NSString.CreateNative (appId);
+			BlockLiteral *block_ptr_erceivedCallback;
+			BlockLiteral block_erceivedCallback;
+			block_erceivedCallback = new BlockLiteral ();
+			block_ptr_erceivedCallback = &block_erceivedCallback;
+			block_erceivedCallback.SetupBlock (Trampolines.SDOSHandleNotificationReceivedBlock.Handler, erceivedCallback);
+			BlockLiteral *block_ptr_actionCallback;
+			BlockLiteral block_actionCallback;
+			block_actionCallback = new BlockLiteral ();
+			block_ptr_actionCallback = &block_actionCallback;
+			block_actionCallback.SetupBlock (Trampolines.SDOSHandleNotificationActionBlock.Handler, actionCallback);
+			
+			NSObject ret;
+			ret = Runtime.GetNSObject (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("initWithLaunchOptions:appId:handleNotificationReceived:handleNotificationAction:settings:"), launchOptions.Handle, nsappId, (IntPtr) block_ptr_erceivedCallback, (IntPtr) block_ptr_actionCallback, settings.Handle));
+			NSString.ReleaseNative (nsappId);
+			block_ptr_erceivedCallback->CleanupBlock ();
+			block_ptr_actionCallback->CleanupBlock ();
+			
+			return ret;
+		}
+		
+		[Export ("onesignal_Log:message:")]
+		[CompilerGenerated]
+		public static void Onesignal_Log (OneSLogLevel logLevel, string message)
+		{
+			if (message == null)
+				throw new ArgumentNullException ("message");
+			var nsmessage = NSString.CreateNative (message);
+			
+			if (IntPtr.Size == 8) {
+				global::ApiDefinition.Messaging.void_objc_msgSend_UInt64_IntPtr (class_ptr, Selector.GetHandle ("onesignal_Log:message:"), (UInt64)logLevel, nsmessage);
+			} else {
+				global::ApiDefinition.Messaging.void_objc_msgSend_UInt32_IntPtr (class_ptr, Selector.GetHandle ("onesignal_Log:message:"), (UInt32)logLevel, nsmessage);
+			}
+			NSString.ReleaseNative (nsmessage);
 			
 		}
 		
 		[Export ("postNotification:")]
 		[CompilerGenerated]
-		public virtual void PostNotification (NSDictionary jsonData)
+		public static void PostNotification (NSDictionary jsonData)
 		{
 			if (jsonData == null)
 				throw new ArgumentNullException ("jsonData");
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("postNotification:"), jsonData.Handle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("postNotification:"), jsonData.Handle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("postNotification:"), jsonData.Handle);
 		}
 		
 		[Export ("postNotification:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void PostNotification (NSDictionary jsonData, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void PostNotification (NSDictionary jsonData, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (jsonData == null)
 				throw new ArgumentNullException ("jsonData");
@@ -454,18 +370,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("postNotification:onSuccess:onFailure:"), jsonData.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("postNotification:onSuccess:onFailure:"), jsonData.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("postNotification:onSuccess:onFailure:"), jsonData.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
 			
@@ -473,7 +385,7 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("postNotificationWithJsonString:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void PostNotificationWithJsonString (string jsonData, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void PostNotificationWithJsonString (string jsonData, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (jsonData == null)
 				throw new ArgumentNullException ("jsonData");
@@ -486,38 +398,37 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("postNotificationWithJsonString:onSuccess:onFailure:"), nsjsonData, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("postNotificationWithJsonString:onSuccess:onFailure:"), nsjsonData, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("postNotificationWithJsonString:onSuccess:onFailure:"), nsjsonData, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			NSString.ReleaseNative (nsjsonData);
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
 			
 		}
 		
+		[Export ("promptLocation")]
+		[CompilerGenerated]
+		public static void PromptLocation ()
+		{
+			global::ApiDefinition.Messaging.void_objc_msgSend (class_ptr, Selector.GetHandle ("promptLocation"));
+		}
+		
 		[Export ("registerForPushNotifications")]
 		[CompilerGenerated]
-		public virtual void RegisterForPushNotifications ()
+		public static void RegisterForPushNotifications ()
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend (this.Handle, Selector.GetHandle ("registerForPushNotifications"));
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("registerForPushNotifications"));
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend (class_ptr, Selector.GetHandle ("registerForPushNotifications"));
 		}
 		
 		[Export ("sendTag:value:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void SendTag (string key, string value, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void SendTag (string key, string value, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (key == null)
 				throw new ArgumentNullException ("key");
@@ -533,18 +444,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("sendTag:value:onSuccess:onFailure:"), nskey, nsvalue, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("sendTag:value:onSuccess:onFailure:"), nskey, nsvalue, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("sendTag:value:onSuccess:onFailure:"), nskey, nsvalue, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			NSString.ReleaseNative (nskey);
 			NSString.ReleaseNative (nsvalue);
 			block_ptr_successBlock->CleanupBlock ();
@@ -554,7 +461,7 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("sendTag:value:")]
 		[CompilerGenerated]
-		public virtual void SendTag (string key, string value)
+		public static void SendTag (string key, string value)
 		{
 			if (key == null)
 				throw new ArgumentNullException ("key");
@@ -563,11 +470,7 @@ namespace Com.OneSignal.iOS {
 			var nskey = NSString.CreateNative (key);
 			var nsvalue = NSString.CreateNative (value);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("sendTag:value:"), nskey, nsvalue);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("sendTag:value:"), nskey, nsvalue);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("sendTag:value:"), nskey, nsvalue);
 			NSString.ReleaseNative (nskey);
 			NSString.ReleaseNative (nsvalue);
 			
@@ -575,7 +478,7 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("sendTags:onSuccess:onFailure:")]
 		[CompilerGenerated]
-		public unsafe virtual void SendTags (NSDictionary keyValuePair, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalResultSuccessBlock))]OneSignalResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOneSignalFailureBlock))]OneSignalFailureBlock failureBlock)
+		public unsafe static void SendTags (NSDictionary keyValuePair, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSResultSuccessBlock))]OSResultSuccessBlock successBlock, [BlockProxy (typeof (ObjCRuntime.Trampolines.NIDOSFailureBlock))]OSFailureBlock failureBlock)
 		{
 			if (keyValuePair == null)
 				throw new ArgumentNullException ("keyValuePair");
@@ -587,18 +490,14 @@ namespace Com.OneSignal.iOS {
 			BlockLiteral block_successBlock;
 			block_successBlock = new BlockLiteral ();
 			block_ptr_successBlock = &block_successBlock;
-			block_successBlock.SetupBlock (Trampolines.SDOneSignalResultSuccessBlock.Handler, successBlock);
+			block_successBlock.SetupBlock (Trampolines.SDOSResultSuccessBlock.Handler, successBlock);
 			BlockLiteral *block_ptr_failureBlock;
 			BlockLiteral block_failureBlock;
 			block_failureBlock = new BlockLiteral ();
 			block_ptr_failureBlock = &block_failureBlock;
-			block_failureBlock.SetupBlock (Trampolines.SDOneSignalFailureBlock.Handler, failureBlock);
+			block_failureBlock.SetupBlock (Trampolines.SDOSFailureBlock.Handler, failureBlock);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("sendTags:onSuccess:onFailure:"), keyValuePair.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr_IntPtr_IntPtr (this.SuperHandle, Selector.GetHandle ("sendTags:onSuccess:onFailure:"), keyValuePair.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr_IntPtr_IntPtr (class_ptr, Selector.GetHandle ("sendTags:onSuccess:onFailure:"), keyValuePair.Handle, (IntPtr) block_ptr_successBlock, (IntPtr) block_ptr_failureBlock);
 			block_ptr_successBlock->CleanupBlock ();
 			block_ptr_failureBlock->CleanupBlock ();
 			
@@ -606,30 +505,22 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("sendTags:")]
 		[CompilerGenerated]
-		public virtual void SendTags (NSDictionary keyValuePair)
+		public static void SendTags (NSDictionary keyValuePair)
 		{
 			if (keyValuePair == null)
 				throw new ArgumentNullException ("keyValuePair");
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("sendTags:"), keyValuePair.Handle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("sendTags:"), keyValuePair.Handle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("sendTags:"), keyValuePair.Handle);
 		}
 		
 		[Export ("sendTagsWithJsonString:")]
 		[CompilerGenerated]
-		public virtual void SendTagsWithJsonString (string jsonString)
+		public static void SendTagsWithJsonString (string jsonString)
 		{
 			if (jsonString == null)
 				throw new ArgumentNullException ("jsonString");
 			var nsjsonString = NSString.CreateNative (jsonString);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("sendTagsWithJsonString:"), nsjsonString);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("sendTagsWithJsonString:"), nsjsonString);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("sendTagsWithJsonString:"), nsjsonString);
 			NSString.ReleaseNative (nsjsonString);
 			
 		}
@@ -647,46 +538,47 @@ namespace Com.OneSignal.iOS {
 		
 		[Export ("setSubscription:")]
 		[CompilerGenerated]
-		public virtual void SetSubscription (bool enable)
+		public static void SetSubscription (bool enable)
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_bool (this.Handle, Selector.GetHandle ("setSubscription:"), enable);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_bool (this.SuperHandle, Selector.GetHandle ("setSubscription:"), enable);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_bool (class_ptr, Selector.GetHandle ("setSubscription:"), enable);
+		}
+		
+		[Export ("syncHashedEmail:")]
+		[CompilerGenerated]
+		public static void SyncHashedEmail (string email)
+		{
+			if (email == null)
+				throw new ArgumentNullException ("email");
+			var nsemail = NSString.CreateNative (email);
+			
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("syncHashedEmail:"), nsemail);
+			NSString.ReleaseNative (nsemail);
+			
 		}
 		
 		[CompilerGenerated]
-		public virtual string App_id {
+		public static string App_id {
 			[Export ("app_id")]
 			get {
-				if (IsDirectBinding) {
-					return NSString.FromHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend (this.Handle, Selector.GetHandle ("app_id")));
-				} else {
-					return NSString.FromHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("app_id")));
-				}
+				return NSString.FromHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend (class_ptr, Selector.GetHandle ("app_id")));
 			}
 			
 		}
 		
 		[CompilerGenerated]
-		static object __mt_DefaultClient_var_static;
-		[CompilerGenerated]
-		public static OneSignal DefaultClient {
-			[Export ("defaultClient")]
+		public static OSUserNotificationCenterDelegate NotificationCenterDelegate {
+			[Export ("notificationCenterDelegate")]
 			get {
-				OneSignal ret;
-				ret =  Runtime.GetNSObject<OneSignal> (global::ApiDefinition.Messaging.IntPtr_objc_msgSend (class_ptr, Selector.GetHandle ("defaultClient")));
-				if (!NSObject.IsNewRefcountEnabled ())
-					__mt_DefaultClient_var_static = ret;
+				OSUserNotificationCenterDelegate ret;
+				ret =  Runtime.GetNSObject<OSUserNotificationCenterDelegate> (global::ApiDefinition.Messaging.IntPtr_objc_msgSend (class_ptr, Selector.GetHandle ("notificationCenterDelegate")));
 				return ret;
 			}
 			
-			[Export ("setDefaultClient:")]
+			[Export ("setNotificationCenterDelegate:")]
 			set {
 				if (value == null)
 					throw new ArgumentNullException ("value");
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("setDefaultClient:"), value.Handle);
+				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (class_ptr, Selector.GetHandle ("setNotificationCenterDelegate:"), value.Handle);
 			}
 		}
 		

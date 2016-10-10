@@ -25,7 +25,6 @@
  * THE SOFTWARE.
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using Org.Json;
 using OneSignalPush.MiniJSON;
@@ -33,122 +32,216 @@ using Android.App;
 
 namespace Com.OneSignal
 {
-	public class OneSignalAndroid : OneSignalPlatform
-	{
-		public OneSignalAndroid (OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
-		{
-			this.SetLogLevel (logLevel, visualLevel);
-			if (Com.OneSignal.OneSignal.notificationOpenedDelegate != null)
-				Com.OneSignal.Android.OneSignal.StartInit (Application.Context).SetNotificationOpenedHandler (new NotificationOpenedHandler()).Init ();
-			else
-				Com.OneSignal.Android.OneSignal.StartInit (Application.Context).Init ();
+	public class OneSignalAndroid : OneSignalPlatform {
+      
+      static OSNotificationOpenedResult OSNotificationOpenedResultToNative(Android.OSNotificationOpenResult result)
+      {
+
+         OSNotificationAction.ActionType actionType = OSNotificationAction.ActionType.Opened;
+         if (result.Action.Type == Android.OSNotificationAction.ActionType.Opened)
+            actionType = OSNotificationAction.ActionType.Opened;
+         else
+            actionType = OSNotificationAction.ActionType.ActionTaken;
+                
+         var openresult = new OSNotificationOpenedResult();
+         openresult.action = new OSNotificationAction();
+         Android.OSNotificationAction action = result.Action;
+         openresult.action.actionID = action.ActionID;
+         openresult.action.type = actionType;
+
+         openresult.notification = OSNotificationToNative(result.Notification);
+
+         return openresult;
+      }
+
+      static OSNotification OSNotificationToNative(Android.OSNotification notif)
+      {
+         var notification = new OSNotification();
+         notification.shown = notif.Shown;
+         notification.androidNotificationId = notif.AndroidNotificationId;
+         notif.GroupedNotifications = notif.GroupedNotifications;
+         notif.IsAppInFocus = notif.IsAppInFocus;
+         
+         notification.payload = new OSNotificationPayload();
+
+
+         notification.payload.actionButtons = new List<Dictionary<string, object>>();
+         if (notif.Payload.ActionButtons != null)
+         {
+            foreach (Android.OSNotificationPayload.ActionButton button in notif.Payload.ActionButtons)
+            {
+               var d = new Dictionary<string, object>();
+               d.Add(button.Id, button.Text);
+               notification.payload.actionButtons.Add(d);
+            }
+         }
+
+         notification.payload.additionalData = new Dictionary<string, object>();
+         if (notif.Payload.AdditionalData != null)
+         {
+            var iterator = notif.Payload.AdditionalData.Keys();
+            while (iterator.HasNext)
+            {
+               var key = (string)iterator.Next();
+               notification.payload.additionalData.Add(key, notif.Payload.AdditionalData.Get(key));
+            }
+         }
+         
+         notification.payload.body = notif.Payload.Body;
+         notification.payload.launchURL = notif.Payload.LaunchURL;
+         notification.payload.notificationID = notif.Payload.NotificationID;
+         notification.payload.sound = notif.Payload.Sound;
+         notification.payload.title = notif.Payload.Title;
+         notification.payload.bigPicture = notif.Payload.BigPicture; 
+         notification.payload.fromProjectNumber = notif.Payload.FromProjectNumber; 
+         notification.payload.groupMessage = notif.Payload.GroupKey; 
+         notification.payload.groupMessage = notif.Payload.GroupMessage; 
+         notification.payload.largeIcon = notif.Payload.LargeIcon; 
+         notification.payload.ledColor = notif.Payload.LedColor; 
+         notification.payload.lockScreenVisibility = notif.Payload.LockScreenVisibility; 
+         notification.payload.smallIcon = notif.Payload.SmallIcon; 
+         notification.payload.smallIconAccentColor = notif.Payload.SmallIconAccentColor;
+
+         return notification;
+      }
+
+      public OneSignalAndroid(string appid, string googleProjectNumber, OneSignal.OSInFocusDisplayOption displayOption, OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
+      {  
+			SetLogLevel (logLevel, visualLevel);
+
+         //Convert OneSignal.OSInFocusDisplayOptions to Android.OneSignal.OSInFocusDisplayOption
+         Android.OneSignal.OSInFocusDisplayOption option = Android.OneSignal.OSInFocusDisplayOption.InAppAlert;
+         switch (displayOption)
+         {
+            case OneSignal.OSInFocusDisplayOption.None: option = Android.OneSignal.OSInFocusDisplayOption.None; break;
+            case OneSignal.OSInFocusDisplayOption.Notification: option = Android.OneSignal.OSInFocusDisplayOption.Notification; break;
+            case OneSignal.OSInFocusDisplayOption.InAppAlert: option = Android.OneSignal.OSInFocusDisplayOption.InAppAlert; break;
+         }
+
+         Android.OneSignal.Init(Application.Context, googleProjectNumber, appid, new NotificationOpenedHandler(), new NotificationReceivedHandler());
+         Android.OneSignal.SetInFocusDisplaying(option);
 		}
 			
 		public void SendTag (string tagName, string tagValue)
 		{
-			Com.OneSignal.Android.OneSignal.SendTag (tagName, tagValue);
+			Android.OneSignal.SendTag (tagName, tagValue);
 		}
 
 		public void SendTags (IDictionary<string, string> tags)
 		{
-			Com.OneSignal.Android.OneSignal.SendTags (Json.Serialize (tags));
+			Android.OneSignal.SendTags (Json.Serialize (tags));
 		}
 
 		public void GetTags ()
 		{
-			Com.OneSignal.Android.OneSignal.GetTags (new GetTagsHandler ());
+		   Android.OneSignal.GetTags (new GetTagsHandler ());
 		}
 
 		public void DeleteTag (string key)
 		{
-			Com.OneSignal.Android.OneSignal.DeleteTag (key);
+			Android.OneSignal.DeleteTag (key);
 		}
 
 		public void DeleteTags (IList<string> keys)
 		{
-			Com.OneSignal.Android.OneSignal.DeleteTags (Json.Serialize (keys));
+			Android.OneSignal.DeleteTags (Json.Serialize (keys));
 		}
 
 		public void IdsAvailable ()
 		{
-			Com.OneSignal.Android.OneSignal.IdsAvailable (new IdsAvailableHandler ());
+			Android.OneSignal.IdsAvailable (new IdsAvailableHandler ());
 		}
 
 		public void RegisterForPushNotifications () { } // Doesn't apply to Android as the Native SDK always registers with GCM.
 
 		public void EnableVibrate (bool enable)
 		{
-			Com.OneSignal.Android.OneSignal.EnableVibrate (enable);
+			Android.OneSignal.EnableVibrate (enable);
 		}
 
-		public void EnableSound (bool enable)
-		{
-			Com.OneSignal.Android.OneSignal.EnableSound (enable);
-		}
+      public void EnableSound(bool enable)
+      {
+         Android.OneSignal.EnableSound(enable);
+      }
 
-		public void EnableInAppAlertNotification (bool enable)
+		public void SetInFocusDisplaying(OneSignal.OSInFocusDisplayOption display)
 		{
-			Com.OneSignal.Android.OneSignal.EnableInAppAlertNotification (enable);
-		}
-
-		public void EnableNotificationsWhenActive (bool enable)
-		{
-			Com.OneSignal.Android.OneSignal.EnableNotificationsWhenActive (enable);
-		}
+      		Android.OneSignal.SetInFocusDisplaying((int)display);
+   	}
 
 		public void SetSubscription (bool enable)
 		{
-			Com.OneSignal.Android.OneSignal.SetSubscription (enable);
+			Android.OneSignal.SetSubscription (enable);
 		}
 
 		public void PostNotification (Dictionary<string, object> data)
 		{
-			Com.OneSignal.Android.OneSignal.PostNotification (Json.Serialize (data), new PostNotificationResponseHandler ());
+			Android.OneSignal.PostNotification (Json.Serialize (data), new PostNotificationResponseHandler ());
+		}
+
+		public void SyncHashedEmail(string email)
+		{
+   		Android.OneSignal.SyncHashedEmail(email);
+  		}
+
+		public void PromptLocation()
+		{
+    		Android.OneSignal.PromptLocation();
+  		}
+  
+		public void ClearOneSignalNotifications()
+		{
+			Android.OneSignal.ClearOneSignalNotifications();
 		}
 
 		public void SetLogLevel (OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
 		{
-			Com.OneSignal.Android.OneSignal.SetLogLevel ((int)logLevel, (int)visualLevel);
+			Android.OneSignal.SetLogLevel ((int)logLevel, (int)visualLevel);
 		}
 			
-		private class IdsAvailableHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IIdsAvailableHandler
+		private class IdsAvailableHandler : Java.Lang.Object, Android.OneSignal.IIdsAvailableHandler
 		{
 			public void IdsAvailable (string p0, string p1)
 			{
-				OneSignal.idsAvailableDelegate (p0, p1);
+            OneSignal.onIdsAvailable(p0, p1);
 			}
 		}
 
-		private class NotificationOpenedHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.INotificationOpenedHandler
+      private class NotificationReceivedHandler : Java.Lang.Object, Android.OneSignal.INotificationReceivedHandler
 		{
-			public void NotificationOpened (string message, JSONObject additionalData, bool isActive)
+         public void NotificationReceived(Android.OSNotification notification)
 			{
-				Dictionary<string, object> dict = null;
-				if (additionalData != null)
-					dict = Json.Deserialize (additionalData.ToString ()) as Dictionary<string, object>;
-				OneSignal.notificationOpenedDelegate (message, dict, isActive);
+            OneSignal.onPushNotificationReceived(OSNotificationToNative(notification));
 			}
 		}
+      
+      private class NotificationOpenedHandler : Java.Lang.Object, Android.OneSignal.INotificationOpenedHandler
+      {
+         public void NotificationOpened(Android.OSNotificationOpenResult result)
+         {
+            OneSignal.onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+         }
+      }
 
-		private class GetTagsHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IGetTagsHandler
+		private class GetTagsHandler : Java.Lang.Object, Android.OneSignal.IGetTagsHandler
 		{
 			public void TagsAvailable (JSONObject jsonObject)
 			{
 				Dictionary<string, object> dict = null;
 				if (jsonObject != null)
 					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
-				OneSignal.tagsAvailableDelegate (dict);
+            OneSignal.onTagsReceived (dict);
 			}
 		}
 
-		private class PostNotificationResponseHandler : Java.Lang.Object, Com.OneSignal.Android.OneSignal.IPostNotificationResponseHandler
+		private class PostNotificationResponseHandler : Java.Lang.Object, Android.OneSignal.IPostNotificationResponseHandler
 		{
 			public void OnSuccess (JSONObject jsonObject)
 			{
 				Dictionary<string, object> dict = null;
 				if (jsonObject != null)
 					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
-				OneSignal.onPostNotificationSuccessDelegate (dict);
+            OneSignal.onPostNotificationSuccess (dict);
 			}
 
 			public void OnFailure (JSONObject jsonObject)
@@ -156,7 +249,7 @@ namespace Com.OneSignal
 				Dictionary<string, object> dict = null;
 				if (jsonObject != null)
 					dict = Json.Deserialize (jsonObject.ToString ()) as Dictionary<string, object>;
-				OneSignal.onPostNotificationFailureDelegate (dict);
+            OneSignal.onPostNotificationFailed (dict);
 			}
 		}
 	}

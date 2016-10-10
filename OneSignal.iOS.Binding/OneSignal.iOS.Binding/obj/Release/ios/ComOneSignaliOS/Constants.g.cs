@@ -17,8 +17,9 @@ using GLKit;
 using Metal;
 using MapKit;
 using ModelIO;
-using Security;
 using SceneKit;
+using Security;
+using AudioUnit;
 using CoreVideo;
 using CoreMedia;
 using QuickLook;
@@ -36,6 +37,46 @@ using CoreFoundation;
 namespace Com.OneSignal.iOS {
 	public unsafe static partial class Constants  {
 		
+		[CompilerGenerated]
+		static NSString _kOSSettingsKeyAutoPrompt;
+		[Field ("kOSSettingsKeyAutoPrompt",  "__Internal")]
+		public static unsafe NSString kOSSettingsKeyAutoPrompt {
+			get {
+				if (_kOSSettingsKeyAutoPrompt == null)
+					_kOSSettingsKeyAutoPrompt = Dlfcn.GetStringConstant (Libraries.__Internal.Handle, "kOSSettingsKeyAutoPrompt");
+				return _kOSSettingsKeyAutoPrompt;
+			}
+		}
+		[CompilerGenerated]
+		static NSString _kOSSettingsKeyInAppAlerts;
+		[Field ("kOSSettingsKeyInAppAlerts",  "__Internal")]
+		public static unsafe NSString kOSSettingsKeyInAppAlerts {
+			get {
+				if (_kOSSettingsKeyInAppAlerts == null)
+					_kOSSettingsKeyInAppAlerts = Dlfcn.GetStringConstant (Libraries.__Internal.Handle, "kOSSettingsKeyInAppAlerts");
+				return _kOSSettingsKeyInAppAlerts;
+			}
+		}
+		[CompilerGenerated]
+		static NSString _kOSSettingsKeyInAppLaunchURL;
+		[Field ("kOSSettingsKeyInAppLaunchURL",  "__Internal")]
+		public static unsafe NSString kOSSettingsKeyInAppLaunchURL {
+			get {
+				if (_kOSSettingsKeyInAppLaunchURL == null)
+					_kOSSettingsKeyInAppLaunchURL = Dlfcn.GetStringConstant (Libraries.__Internal.Handle, "kOSSettingsKeyInAppLaunchURL");
+				return _kOSSettingsKeyInAppLaunchURL;
+			}
+		}
+		[CompilerGenerated]
+		static NSString _kOSSettingsKeyInFocusDisplayOption;
+		[Field ("kOSSettingsKeyInFocusDisplayOption",  "__Internal")]
+		public static unsafe NSString kOSSettingsKeyInFocusDisplayOption {
+			get {
+				if (_kOSSettingsKeyInFocusDisplayOption == null)
+					_kOSSettingsKeyInFocusDisplayOption = Dlfcn.GetStringConstant (Libraries.__Internal.Handle, "kOSSettingsKeyInFocusDisplayOption");
+				return _kOSSettingsKeyInFocusDisplayOption;
+			}
+		}
 		[CompilerGenerated]
 		static NSString _ONESIGNAL_VERSION;
 		[Field ("ONESIGNAL_VERSION",  "__Internal")]
