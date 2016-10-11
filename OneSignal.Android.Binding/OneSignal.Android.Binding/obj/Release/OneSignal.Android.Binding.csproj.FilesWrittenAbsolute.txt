@@ -1,6 +1,6 @@
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/MonoAndroid,Version=v6.0.AssemblyAttribute.cs
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.obj.Release.__AndroidLibraryProjects__.zip
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/bin/Release/OneSignal.Android.Binding.dll.mdb
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/bin/Release/OneSignal.Android.Binding.dll
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.dll
-/Users/vivek/projects/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.dll.mdb
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/MonoAndroid,Version=v6.0.AssemblyAttribute.cs
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.obj.Release.__AndroidLibraryProjects__.zip
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/bin/Release/OneSignal.Android.Binding.dll.mdb
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/bin/Release/OneSignal.Android.Binding.dll
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.dll
+/Users/josephkalash/GitHub/OneSignal/Xamarin/OneSignal-Xamarin-SDK/OneSignal.Android.Binding/OneSignal.Android.Binding/obj/Release/OneSignal.Android.Binding.dll.mdb

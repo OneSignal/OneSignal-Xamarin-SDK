@@ -1,12 +1,14 @@
-﻿<Properties StartupItem="OneSignal.Android.Binding/OneSignal.Android.Binding.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Xamarin_Android_API_15" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OneSignal.Android.Binding/Transforms/Metadata.xml">
+﻿<Properties StartupConfiguration="{9144F592-91B9-4ACA-BC3C-D771F8319996}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../../../Library/Frameworks/Xamarin.Android.framework/Versions/7.0.1-3/lib/xbuild/Xamarin/Android/Xamarin.Android.Bindings.targets">
     <Files>
       <File FileName="OneSignal.Android.Binding/Transforms/Metadata.xml" Line="1" Column="1" />
+      <File FileName="../../../../../../../Library/Frameworks/Xamarin.Android.framework/Versions/7.0.1-3/lib/xbuild/Xamarin/Android/Xamarin.Android.Bindings.targets" Line="48" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.OneSignal.Android.Binding PreferredExecutionTarget="Android.Android_Accelerated_x86" />
 </Properties>
