@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>Example.Shared.Application</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.hiptic.ios10-test</string>
+	<string>com.onesignal.example</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

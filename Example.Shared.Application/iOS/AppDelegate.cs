@@ -57,7 +57,7 @@ namespace Example.Shared.Application.iOS
 			};
          
          // Initialize OneSignal
-         OneSignal.StartInit("5eb5a37e-b458-11e3-ac11-000c2940e62c")
+         OneSignal.StartInit("b2f7f966-d8cc-11e4-bed1-df8f05be55ba")
                   .HandleNotificationReceived(exampleNotificationReceivedDelegate)
                   .HandleNotificationOpened(exampleNotificationOpenedDelegate)
                   .InFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)

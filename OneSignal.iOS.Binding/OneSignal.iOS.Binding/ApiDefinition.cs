@@ -4,20 +4,6 @@ using OSNotificationDisplayType = Com.OneSignal.iOS.OSInFocusDisplayOption;
 
 namespace Com.OneSignal.iOS
 {
-	// @protocol OSUserNotificationCenterDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface OSUserNotificationCenterDelegate
-	{
-		// @optional -(void)userNotificationCenter:(id)center willPresentNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler;
-		[Export ("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
-		void WillPresentNotification (NSObject center, NSObject notification, Action<nuint> completionHandler);
-
-		// @optional -(void)userNotificationCenter:(id)center didReceiveNotificationResponse:(id)response withCompletionHandler:(void (^)())completionHandler;
-		[Export ("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
-		void DidReceiveNotificationResponse (NSObject center, NSObject response, Action completionHandler);
-	}
-
 	// @interface OSNotificationAction : NSObject
 	[BaseType (typeof(NSObject))]
 	interface OSNotificationAction
@@ -75,7 +61,7 @@ namespace Com.OneSignal.iOS
 		[Export ("attachments")]
 		NSDictionary Attachments { get; }
 
-		// @property (readonly) NSDictionary * actionButtons;
+		// @property (readonly) NSArray * actionButtons;
 		[Export ("actionButtons")]
 		NSArray ActionButtons { get; }
 
@@ -99,6 +85,10 @@ namespace Com.OneSignal.iOS
 		// @property (readonly, getter = wasShown) BOOL shown;
 		[Export ("shown")]
 		bool Shown { [Bind ("wasShown")] get; }
+
+		// @property (readonly, getter = wasAppInFocus) BOOL isAppInFocus;
+		[Export ("isAppInFocus")]
+		bool IsAppInFocus { [Bind ("wasAppInFocus")] get; }
 
 		// @property (readonly, getter = isSilentNotification) BOOL silentNotification;
 		[Export ("silentNotification")]
@@ -145,24 +135,19 @@ namespace Com.OneSignal.iOS
 	// typedef void (^OSHandleNotificationActionBlock)(OSNotificationOpenedResult *);
 	delegate void OSHandleNotificationActionBlock (OSNotificationOpenedResult arg0);
 
-
 	partial interface Constants
 	{
-		[Static]
 		// extern NSString *const kOSSettingsKeyAutoPrompt;
 		[Field ("kOSSettingsKeyAutoPrompt", "__Internal")]
 		NSString kOSSettingsKeyAutoPrompt { get; }
 
-		[Static]
 		// extern NSString *const kOSSettingsKeyInAppAlerts;
 		[Field ("kOSSettingsKeyInAppAlerts", "__Internal")]
 		NSString kOSSettingsKeyInAppAlerts { get; }
 
-		[Static]
 		// extern NSString *const kOSSettingsKeyInAppLaunchURL;
 		[Field ("kOSSettingsKeyInAppLaunchURL", "__Internal")]
 		NSString kOSSettingsKeyInAppLaunchURL { get; }
-
 
 		// extern NSString *const kOSSettingsKeyInFocusDisplayOption;
 		[Field ("kOSSettingsKeyInFocusDisplayOption", "__Internal")]
@@ -188,10 +173,10 @@ namespace Com.OneSignal.iOS
 		[Export ("initWithLaunchOptions:appId:handleNotificationAction:settings:")]
 		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationActionBlock actionCallback, NSDictionary settings);
 
-		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationReceived:(OSHandleNotificationReceivedBlock)erceivedCallback handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
+		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationReceived:(OSHandleNotificationReceivedBlock)receivedCallback handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
 		[Static]
 		[Export ("initWithLaunchOptions:appId:handleNotificationReceived:handleNotificationAction:settings:")]
-		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationReceivedBlock erceivedCallback, OSHandleNotificationActionBlock actionCallback, NSDictionary settings);
+		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationReceivedBlock receivedCallback, OSHandleNotificationActionBlock actionCallback, NSDictionary settings);
 
 		// +(NSString *)app_id;
 		[Static]
@@ -203,12 +188,12 @@ namespace Com.OneSignal.iOS
 		[Export ("registerForPushNotifications")]
 		void RegisterForPushNotifications ();
 
-		// +(void)setLogLevel:(OneSLogLevel)logLevel visualLevel:(OneSLogLevel)visualLogLevel;
+		// +(void)setLogLevel:(ONE_S_LOG_LEVEL)logLevel visualLevel:(ONE_S_LOG_LEVEL)visualLogLevel;
 		[Static]
 		[Export ("setLogLevel:visualLevel:")]
 		void SetLogLevel (OneSLogLevel logLevel, OneSLogLevel visualLogLevel);
 
-		// +(void)onesignal_Log:(OneSLogLevel)logLevel message:(NSString *)message;
+		// +(void)onesignal_Log:(ONE_S_LOG_LEVEL)logLevel message:(NSString *)message;
 		[Static]
 		[Export ("onesignal_Log:message:")]
 		void Onesignal_Log (OneSLogLevel logLevel, string message);
@@ -298,24 +283,27 @@ namespace Com.OneSignal.iOS
 		[Export ("postNotificationWithJsonString:onSuccess:onFailure:")]
 		void PostNotificationWithJsonString (string jsonData, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
+		// +(NSString *)parseNSErrorAsJsonString:(NSError *)error;
+		[Static]
+		[Export ("parseNSErrorAsJsonString:")]
+		string ParseNSErrorAsJsonString (NSError error);
+
 		// +(void)promptLocation;
 		[Static]
 		[Export ("promptLocation")]
 		void PromptLocation ();
 
+		// +(void)setLocationShared:(BOOL)enable;
+		[Static]
+		[Export ("setLocationShared:")]
+		void SetLocationShared (bool enable);
+
 		// +(void)syncHashedEmail:(NSString *)email;
 		[Static]
 		[Export ("syncHashedEmail:")]
 		void SyncHashedEmail (string email);
-
-		// +(id<OSUserNotificationCenterDelegate>)notificationCenterDelegate;
-		// +(void)setNotificationCenterDelegate:(id<OSUserNotificationCenterDelegate>)delegate;
-		[Static]
-		[Export ("notificationCenterDelegate")]
-		OSUserNotificationCenterDelegate NotificationCenterDelegate { get; set; }
 	}
 
-	[Static]
 	partial interface Constants
 	{
 		// extern NSString *const ONESIGNAL_VERSION;

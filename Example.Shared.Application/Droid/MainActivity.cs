@@ -53,7 +53,7 @@ namespace Example.Shared.Application.Droid
          };
          
          // Initialize OneSignal
-         OneSignal.StartInit("4ba9ec31-b65a-4f5f-b210-a5077a245b3d", "703322744261")
+         OneSignal.StartInit("b2f7f966-d8cc-11e4-bed1-df8f05be55ba")
                   .HandleNotificationReceived(exampleNotificationReceivedDelegate)
                   .HandleNotificationOpened(exampleNotificationOpenedDelegate)
                   .InFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)

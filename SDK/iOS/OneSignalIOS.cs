@@ -98,8 +98,8 @@ namespace Com.OneSignal
 
       public OneSignalIOS(string appId, bool autoPrompt, bool inAppLaunchURLs, OneSignal.OSInFocusDisplayOption displayOption, OneSignal.LOG_LEVEL logLevel, OneSignal.LOG_LEVEL visualLevel)
       {
-         var convertedLogLevel = (iOS.OneSLogLevel)((ulong)((int)logLevel));
-         var convertedVisualLevel = (iOS.OneSLogLevel)((ulong)((int)visualLevel));
+         var convertedLogLevel = (iOS.OneSLogLevel)((int)logLevel);
+         var convertedVisualLevel = (iOS.OneSLogLevel)((int)visualLevel);
 
          iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
          var dict = new Foundation.NSDictionary("kOSSettingsKeyInAppLaunchURL", new Foundation.NSNumber(inAppLaunchURLs), 

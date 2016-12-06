@@ -1,0 +1,9 @@
+Bin/
+obj/
+
+*.suo
+
+# Ignore Mac OSX and Windows temp files
+.DS_Store
+Thumbs.db
+*.apk
