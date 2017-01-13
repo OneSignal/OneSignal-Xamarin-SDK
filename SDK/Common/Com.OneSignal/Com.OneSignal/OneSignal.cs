@@ -176,11 +176,8 @@ namespace Com.OneSignal
 	      // inAppLaunchURL                   = (iOS) Set false to force a ULRL to launch through Safari instead of in-app webview.
          
 	      public XamarinBuilder Settings(Dictionary<string, bool> settings) {
-            #if UNITY_IPHONE
-	         //bool autoPrompt, bool inAppAlerts, bool inAppLaunchURL
-	            iOSSettings = settings;
-            #endif
-	         return this;
+            iOSSettings = settings;
+            return this;
 	      }
 
 	      public void EndInit() {
