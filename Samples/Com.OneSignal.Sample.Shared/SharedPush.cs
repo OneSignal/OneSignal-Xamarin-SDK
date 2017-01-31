@@ -10,7 +10,7 @@ namespace Com.OneSignal.Sample.Shared
 
         public void Register()
         {
-            OneSignal.Current.RegisterForPushNotifications();
+            OneSignal.Current.Init("", "");
         }
     }
 }

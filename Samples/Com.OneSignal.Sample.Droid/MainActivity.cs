@@ -10,7 +10,7 @@ namespace Com.OneSignal.Sample.Droid
     public class MainActivity : Activity
     {
         int count = 1;
-        SharedPush SharedViewModel = new SharedPush();
+        SharedPush SharedCode = new SharedPush();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -19,6 +19,8 @@ namespace Com.OneSignal.Sample.Droid
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
+            SharedCode.Register();
+
             // Get our button from the layout resource,
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.myButton);
@@ -26,7 +28,7 @@ namespace Com.OneSignal.Sample.Droid
             button.Click += delegate { 
                 button.Text = $"{count++} clicks!";
 
-                OneSignal.Current.Init("13a4dc6b-d31b-4f3d-ab00-a2697ecf2f99", "249064290992");
+
             };
         }
     }
