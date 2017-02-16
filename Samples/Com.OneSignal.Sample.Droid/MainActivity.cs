@@ -27,8 +27,6 @@ namespace Com.OneSignal.Sample.Droid
 
             button.Click += delegate { 
                 button.Text = $"{count++} clicks!";
-
-
             };
         }
     }

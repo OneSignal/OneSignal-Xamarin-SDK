@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using Com.OneSignal.Sample.Shared;
 
 namespace Com.OneSignal.Sample.iOS
 {
@@ -20,6 +21,8 @@ namespace Com.OneSignal.Sample.iOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            SharedPush SharedCode = new SharedPush();
+            SharedCode.Register();
 
             return true;
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Com.OneSignal.Abstractions;
-using Com.OneSignal.iOS;
 using OSNotificationOpenedResult = Com.OneSignal.Abstractions.OSNotificationOpenedResult;
 using OSNotification = Com.OneSignal.Abstractions.OSNotification;
 using OSNotificationAction = Com.OneSignal.Abstractions.OSNotificationAction;
@@ -10,7 +9,7 @@ using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption
 
 namespace Com.OneSignal
 {
-    public class OneSignalImplementation : OneSignalBase, IOneSignal
+    public class OneSignalImplementation : OneSignalShared
     {
         public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict)
         {
@@ -85,12 +84,12 @@ namespace Com.OneSignal
 
             if (builder.iOSSettings != null)
             {
-                if (builder.iOSSettings.ContainsKey(kOSSettingsKeyAutoPrompt))
-                    autoPrompt = builder.iOSSettings[kOSSettingsKeyAutoPrompt];
-                if (builder.iOSSettings.ContainsKey(kOSSettingsKeyInAppLaunchURL))
-                    inAppLaunchURL = builder.iOSSettings[kOSSettingsKeyInAppLaunchURL];
+                if (builder.iOSSettings.ContainsKey(OneSignal.kOSSettingsKeyAutoPrompt))
+                    autoPrompt = builder.iOSSettings[OneSignal.kOSSettingsKeyAutoPrompt];
+                if (builder.iOSSettings.ContainsKey(OneSignal.kOSSettingsKeyInAppLaunchURL))
+                    inAppLaunchURL = builder.iOSSettings[OneSignal.kOSSettingsKeyInAppLaunchURL];
             }
-            Init(builder.appID, autoPrompt, inAppLaunchURL, builder.displayOption, logLevel, visualLogLevel);
+            Init(builder.mAppId, autoPrompt, inAppLaunchURL, builder.displayOption, logLevel, visualLogLevel);
         }
 
         public void Init(string appId, bool autoPrompt, bool inAppLaunchURLs, OSInFocusDisplayOption displayOption, LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
@@ -103,21 +102,22 @@ namespace Com.OneSignal
                                                    "kOSSettingsKeyAutoPrompt", new Foundation.NSNumber(autoPrompt),
                                                    "kOSSettingsKeyInFocusDisplayOption", new Foundation.NSNumber((int)displayOption)
                                                   );
+            iOS.OneSignal.SetMSDKType("xam");
             iOS.OneSignal.InitWithLaunchOptions(new Foundation.NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
 
         }
 
-        public void RegisterForPushNotifications()
+        public override void RegisterForPushNotifications()
         {
             iOS.OneSignal.RegisterForPushNotifications();
         }
 
-        public void SendTag(string tagName, string tagValue)
+        public override void SendTag(string tagName, string tagValue)
         {
             iOS.OneSignal.SendTag(tagName, tagValue);
         }
 
-        public void SendTags(IDictionary<string, string> tags)
+        public override void SendTags(IDictionary<string, string> tags)
         {
             string jsonString = Json.Serialize(tags);
             iOS.OneSignal.SendTagsWithJsonString(jsonString);
@@ -128,12 +128,12 @@ namespace Com.OneSignal
             iOS.OneSignal.GetTags(GetTagsHandler);
         }
 
-        public void DeleteTag(string key)
+        public override void DeleteTag(string key)
         {
             iOS.OneSignal.DeleteTag(key);
         }
 
-        public void DeleteTags(IList<string> keys)
+        public override void DeleteTags(IList<string> keys)
         {
             Foundation.NSObject[] objs = new Foundation.NSObject[keys.Count];
             for (int i = 0; i < keys.Count; i++)
@@ -148,7 +148,7 @@ namespace Com.OneSignal
             iOS.OneSignal.IdsAvailable(IdsAvailableHandler);
         }
 
-        public void SetSubscription(bool enable)
+        public override void SetSubscription(bool enable)
         {
             iOS.OneSignal.SetSubscription(enable);
         }
@@ -205,12 +205,12 @@ namespace Com.OneSignal
                 onPostNotificationFailed(new Dictionary<string, object> { { "error", "HTTP no response error" } });
         }
 
-        public void SyncHashedEmail(string email)
+        public override void SyncHashedEmail(string email)
         {
             iOS.OneSignal.SyncHashedEmail(email);
         }
 
-        public void PromptLocation()
+        public override void PromptLocation()
         {
             iOS.OneSignal.PromptLocation();
         }

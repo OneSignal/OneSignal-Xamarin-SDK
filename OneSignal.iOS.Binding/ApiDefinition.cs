@@ -302,6 +302,11 @@ namespace Com.OneSignal.iOS
 		[Static]
 		[Export ("syncHashedEmail:")]
 		void SyncHashedEmail (string email);
+
+      // +(void)setMSDKType:(NSString *)type;
+      [Static]
+      [Export("setMSDKType:")]
+      void SetMSDKType(string type);
 	}
 
 	partial interface Constants

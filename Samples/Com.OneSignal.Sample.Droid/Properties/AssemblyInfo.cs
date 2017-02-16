@@ -10,7 +10,7 @@ using Android.App;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("martijnvandijk")]
+[assembly: AssemblyCopyright("OneSignal")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
