@@ -4,7 +4,7 @@ using Com.OneSignal.Abstractions;
 
 namespace Com.OneSignal
 {
-    public class OneSignalImplementation : OneSignalShared
+   public class OneSignalImplementation : OneSignalShared, IOneSignal
     {
         public void Init(string appid, OSInFocusDisplayOption displayOption, LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
         {

@@ -8,8 +8,8 @@ namespace Com.OneSignal.Abstractions
       public string mAppId;
       public Dictionary<string, bool> iOSSettings;
       public OSInFocusDisplayOption displayOption = OSInFocusDisplayOption.InAppAlert;
-      public OneSignalShared.NotificationReceived _notificationReceivedDelegate;
-      public OneSignalShared.NotificationOpened _notificationOpenedDelegate;
+      public NotificationReceived _notificationReceivedDelegate;
+      public NotificationOpened _notificationOpenedDelegate;
       OneSignalShared mOneSignalShared;
 
       internal XamarinBuilder(string appId, OneSignalShared oneSignalShared)
@@ -19,14 +19,14 @@ namespace Com.OneSignal.Abstractions
       }
 
       // inNotificationReceivedDelegate   = Calls this delegate when a notification is received.
-      public XamarinBuilder HandleNotificationReceived(OneSignalShared.NotificationReceived inNotificationReceivedDelegate)
+      public XamarinBuilder HandleNotificationReceived(NotificationReceived inNotificationReceivedDelegate)
       {
          _notificationReceivedDelegate = inNotificationReceivedDelegate;
          return this;
       }
 
       // inNotificationOpenedDelegate     = Calls this delegate when a push notification is opened.
-      public XamarinBuilder HandleNotificationOpened(OneSignalShared.NotificationOpened inNotificationOpenedDelegate)
+      public XamarinBuilder HandleNotificationOpened(NotificationOpened inNotificationOpenedDelegate)
       {
          _notificationOpenedDelegate = inNotificationOpenedDelegate;
          return this;

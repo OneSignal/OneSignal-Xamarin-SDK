@@ -6,12 +6,9 @@ namespace Com.OneSignal
 {
    public class OneSignal
    {
-      public const string kOSSettingsKeyAutoPrompt = "kOSSettingsKeyAutoPrompt";
-      public const string kOSSettingsKeyInAppLaunchURL = "kOSSettingsKeyInAppLaunchURL";
+      static readonly Lazy<IOneSignal> Implementation = new Lazy<IOneSignal>(CreateOneSignal);
 
-      static readonly Lazy<OneSignalShared> Implementation = new Lazy<OneSignalShared>(CreateOneSignal);
-
-      public static OneSignalShared Current
+      public static IOneSignal Current
       {
          get
          {
@@ -23,7 +20,7 @@ namespace Com.OneSignal
          }
       }
 
-      static OneSignalShared CreateOneSignal()
+      static IOneSignal CreateOneSignal()
       {
 #if PORTABLE
          Debug.WriteLine("PORTABLE Reached");
