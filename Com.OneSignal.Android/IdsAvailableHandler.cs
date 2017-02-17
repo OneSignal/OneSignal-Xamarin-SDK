@@ -1,4 +1,7 @@
 ﻿using System;
+
+using Com.OneSignal.Android;
+
 namespace Com.OneSignal
 {
     public class IdsAvailableHandler : Java.Lang.Object, Android.OneSignal.IIdsAvailableHandler

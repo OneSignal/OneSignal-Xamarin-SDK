@@ -117,6 +117,18 @@
       <Project>{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}</Project>
       <Name>Com.OneSignal.Sample.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
+      <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
+      <Name>Com.OneSignal.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Com.OneSignal.iOS\Com.OneSignal.iOS.csproj">
+      <Project>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</Project>
+      <Name>Com.OneSignal.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
+      <Name>OneSignal.iOS.Binding</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

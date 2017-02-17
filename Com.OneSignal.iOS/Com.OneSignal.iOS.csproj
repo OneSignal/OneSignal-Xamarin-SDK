@@ -41,9 +41,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\SDK\iOS\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +53,10 @@
     <ProjectReference Include="..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
       <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
       <Name>Com.OneSignal.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
+      <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
