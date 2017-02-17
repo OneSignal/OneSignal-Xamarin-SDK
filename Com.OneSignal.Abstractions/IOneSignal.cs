@@ -11,7 +11,7 @@ namespace Com.OneSignal.Abstractions
       void RegisterForPushNotifications();
       void SendTag(string tagName, string tagValue);
       void SendTags(IDictionary<string, string> tags);
-      void GetTags();
+      void GetTags(TagsReceived inTagsReceivedDelegate);
       void DeleteTag(string key);
       void DeleteTags(IList<string> keys);
       void IdsAvailable();
