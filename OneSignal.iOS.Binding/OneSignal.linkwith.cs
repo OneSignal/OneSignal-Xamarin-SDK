@@ -1,3 +1,3 @@
 using ObjCRuntime;
 
-[assembly: LinkWith ("OneSignal.a", SmartLink = true, ForceLoad = true, Frameworks="SystemConfiguration")]
+[assembly: LinkWith ("OneSignal.a", ForceLoad = true, Frameworks="SystemConfiguration")]

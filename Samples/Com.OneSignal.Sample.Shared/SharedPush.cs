@@ -27,6 +27,11 @@ namespace Com.OneSignal.Sample.Shared
               Debug.WriteLine("HandleNotificationReceived: {0}", notification.payload.body);
            })
            .EndInit();
+
+         OneSignal.Current.IdsAvailable((playerID, pushToken) =>
+         {
+            Debug.WriteLine("OneSignal.Current.IdsAvailable:D playerID: {0}, pushToken: {1}", playerID, pushToken);
+         });
       }
 
       // Just for iOS.

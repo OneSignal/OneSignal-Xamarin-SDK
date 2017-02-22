@@ -11,10 +11,10 @@ namespace Com.OneSignal.Abstractions
       void RegisterForPushNotifications();
       void SendTag(string tagName, string tagValue);
       void SendTags(IDictionary<string, string> tags);
-      void GetTags(TagsReceived inTagsReceivedDelegate);
+      void GetTags(TagsReceived tagsReceivedDelegate);
       void DeleteTag(string key);
       void DeleteTags(IList<string> keys);
-      void IdsAvailable();
+      void IdsAvailable(IdsAvailableCallback idsAvailableCallback);
       void SetSubscription(bool enable);
       void PostNotification(Dictionary<string, object> data);
       void SyncHashedEmail(string email);
