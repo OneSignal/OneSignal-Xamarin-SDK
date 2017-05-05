@@ -1,0 +1,12 @@
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/obj/Release/.NETPortable,Version=v4.5,Profile=Profile78.AssemblyAttribute.cs
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Com.OneSignal.dll.mdb
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Com.OneSignal.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/obj/Release/Com.OneSignal.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/obj/Release/Com.OneSignal.dll.mdb
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Xamarin.Forms.Core.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Xamarin.Forms.Xaml.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Xamarin.Forms.Platform.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Mono.Android.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/OneSignal.Android.Binding.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/OneSignal.iOS.Binding.dll
+/Users/vivek/Desktop/Com.OneSignal/Com.OneSignal/bin/Release/Xamarin.iOS.dll
