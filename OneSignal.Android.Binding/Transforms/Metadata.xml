@@ -1,3 +1,7 @@
 ﻿<metadata>
-	<attr path="/api/package[@name='com.onesignal']" name="managedName">Com.OneSignal.Android</attr>
+
+  <!-- https://stackoverflow.com/a/34141109 -->
+  <attr path="/api/package[@name='com.onesignal']/class[@name='NotificationExtenderService']" name="extends">Android.App.IntentService</attr>
+  
+  <attr path="/api/package[@name='com.onesignal']" name="managedName">Com.OneSignal.Android</attr>
 </metadata>
