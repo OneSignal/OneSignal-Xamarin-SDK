@@ -1,11 +1,15 @@
+[![NuGet](https://img.shields.io/nuget/v/Com.OneSignal.svg?label=NuGet)](https://www.nuget.org/packages/Com.OneSignal)
+
 OneSignal Xamarin Push Notification Plugin
 ==========================================
 
 [OneSignal](https://onesignal.com) is a free push notification service for mobile apps. This plugin makes it easy to integrate your Xamarin application with OneSignal.
 
-- See https://documentation.onesignal.com/docs/xamarin-sdk-setup for setup documentation.
+## Setup
 
-Getting Started
+- See [setup documentation](https://documentation.onesignal.com/docs/xamarin-sdk-setup) for full documentation.
+
+## Sample
 ---------------
 
 * Open ```Example.Shared.Application``` in Xamarin.
@@ -15,10 +19,7 @@ Getting Started
 * In the iOS project's ```Info.plist``` replace ```EDIT_APPID_TO_TEST_THIS_APP``` with your OneSignal Application ID.
 * Build and deploy applications to your devices and send a test notification via the OneSignal dashboard.
 
-Contributing
-------------
-
-If you would like to contribute to this project, fork this repository and send over a pull request!
+## Building the project:
 
 ### Building the OneSignal Xamarin.Android Binding
 1. Clone [OneSignal-Android-SDK](https://github.com/one-signal/OneSignal-Android-SDK).
@@ -47,3 +48,12 @@ sharpie bind -framework iOS_SDK/Framework/OneSignal.framework -sdk iphoneos9.2 -
 8. In ```StructAndEnums.cs```, change ```nuint``` to ```ulong```.
 9. Build the binding!
 10. Import the resultant binding ```OneSignal.iOS.Binding.dll``` in your Xamarin.iOS application.
+
+
+## Contributing
+
+If you would like to contribute to this project, fork this repository and send over a pull request!
+
+ 
+### License
+[MIT Licence](README) 
