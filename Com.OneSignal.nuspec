@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Com.OneSignal</id>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <title>OneSignal SDK for Xamarin</title>
         <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
@@ -17,19 +17,19 @@
                 <dependency id="Xamarin.Android.Support.v4" version="23.0.1.3" />
                 <dependency id="Xamarin.GooglePlayServices.Gcm" version="27.0.0" />
             </group>
+			<group targetFramework="netstandard1.0">
+           <dependency id="NETStandard.Library" version="1.6.1" />
+         </group>
         </dependencies>
     </metadata>
     <files>
-        <file src="Com.OneSignal.Android/bin/Release/Com.OneSignal.Abstractions.dll" target="lib/MonoAndroid/Com.OneSignal.Abstractions.dll" />
-        <file src="Com.OneSignal.Android/bin/Release/Com.OneSignal.dll" target="lib/MonoAndroid/Com.OneSignal.dll" />
-        <file src="Com.OneSignal.Android/bin/Release/Com.OneSignal.dll.mdb" target="lib/MonoAndroid/Com.OneSignal.dll.mdb" />
-        <file src="Com.OneSignal.Android/bin/Release/OneSignal.Android.Binding.dll" target="lib/MonoAndroid/OneSignal.Android.Binding.dll" />
-        <file src="Com.OneSignal.Android/bin/Release/OneSignal.Android.Binding.dll.mdb" target="lib/MonoAndroid/OneSignal.Android.Binding.dll.mdb" />
-        <file src="Com.OneSignal.Abstractions/bin/Release/Com.OneSignal.Abstractions.dll" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Com.OneSignal.Abstractions.dll" />
-        <file src="Com.OneSignal/bin/Release/Com.OneSignal.dll" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Com.OneSignal.dll" />
-        <file src="Com.OneSignal.iOS/bin/Release/Com.OneSignal.Abstractions.dll" target="lib/Xamarin.iOS10/Com.OneSignal.Abstractions.dll" />
-        <file src="Com.OneSignal.iOS/bin/Release/Com.OneSignal.dll" target="lib/Xamarin.iOS10/Com.OneSignal.dll" />
-        <file src="Com.OneSignal.iOS/bin/Release/Com.OneSignal.dll.mdb" target="lib/Xamarin.iOS10/Com.OneSignal.dll.mdb" />
-        <file src="Com.OneSignal.iOS/bin/Release/OneSignal.iOS.Binding.dll" target="lib/Xamarin.iOS10/OneSignal.iOS.Binding.dll" />
+		<!--Core-->
+		<file src="Com.OneSignal\bin\Release\netstandard1.0\Com.OneSignal.*" target="lib\netstandard1.0" />
+		
+		<!--Xamarin.Android-->
+		<file src="Com.OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
+		
+		<!--Xamarin.iOS Unified-->
+		<file src="Com.OneSignal.iOS\bin\Release\OneSignal.*" target="lib\Xamarin.iOS10" />
     </files>
 </package>
