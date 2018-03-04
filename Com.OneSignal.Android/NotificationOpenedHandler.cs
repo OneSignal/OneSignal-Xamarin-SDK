@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Com.OneSignal.Abstractions;
+using Com.OneSignal.Android;
+using Java.Lang;
+using OSNotification = Com.OneSignal.Abstractions.OSNotification;
+using OSNotificationAction = Com.OneSignal.Abstractions.OSNotificationAction;
+using OSNotificationPayload = Com.OneSignal.Abstractions.OSNotificationPayload;
 
 namespace Com.OneSignal
 {
-    public class NotificationOpenedHandler : Java.Lang.Object, Android.OneSignal.INotificationOpenedHandler
+    public class NotificationOpenedHandler : Object, Android.OneSignal.INotificationOpenedHandler
     {
-        public void NotificationOpened(Android.OSNotificationOpenResult result)
+        #region INotificationOpenedHandler Members
+
+        public void NotificationOpened(OSNotificationOpenResult result)
         {
             (OneSignal.Current as OneSignalImplementation).onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
         }
 
-        public static OSNotificationOpenedResult OSNotificationOpenedResultToNative(Android.OSNotificationOpenResult result)
-        {
+        #endregion
 
-            OSNotificationAction.ActionType actionType = OSNotificationAction.ActionType.Opened;
+        #region Methods
+
+        public static OSNotificationOpenedResult OSNotificationOpenedResultToNative(OSNotificationOpenResult result)
+        {
+            var actionType = OSNotificationAction.ActionType.Opened;
             if (result.Action.Type == Android.OSNotificationAction.ActionType.Opened)
                 actionType = OSNotificationAction.ActionType.Opened;
             else
@@ -22,7 +31,7 @@ namespace Com.OneSignal
 
             var openresult = new OSNotificationOpenedResult();
             openresult.action = new OSNotificationAction();
-            Android.OSNotificationAction action = result.Action;
+            var action = result.Action;
             openresult.action.actionID = action.ActionID;
             openresult.action.type = actionType;
 
@@ -39,47 +48,55 @@ namespace Com.OneSignal
             notif.GroupedNotifications = notif.GroupedNotifications;
             notif.IsAppInFocus = notif.IsAppInFocus;
 
-            notification.payload = new OSNotificationPayload();
-
-
-            notification.payload.actionButtons = new List<Dictionary<string, object>>();
-            if (notif.Payload.ActionButtons != null)
-            {
-                foreach (Android.OSNotificationPayload.ActionButton button in notif.Payload.ActionButtons)
-                {
-                    var d = new Dictionary<string, object>();
-                    d.Add(button.Id, button.Text);
-                    notification.payload.actionButtons.Add(d);
-                }
-            }
-
-            notification.payload.additionalData = new Dictionary<string, object>();
-            if (notif.Payload.AdditionalData != null)
-            {
-                var iterator = notif.Payload.AdditionalData.Keys();
-                while (iterator.HasNext)
-                {
-                    var key = (string)iterator.Next();
-                    notification.payload.additionalData.Add(key, notif.Payload.AdditionalData.Get(key));
-                }
-            }
-
-            notification.payload.body = notif.Payload.Body;
-            notification.payload.launchURL = notif.Payload.LaunchURL;
-            notification.payload.notificationID = notif.Payload.NotificationID;
-            notification.payload.sound = notif.Payload.Sound;
-            notification.payload.title = notif.Payload.Title;
-            notification.payload.bigPicture = notif.Payload.BigPicture;
-            notification.payload.fromProjectNumber = notif.Payload.FromProjectNumber;
-            notification.payload.groupMessage = notif.Payload.GroupKey;
-            notification.payload.groupMessage = notif.Payload.GroupMessage;
-            notification.payload.largeIcon = notif.Payload.LargeIcon;
-            notification.payload.ledColor = notif.Payload.LedColor;
-            notification.payload.lockScreenVisibility = notif.Payload.LockScreenVisibility;
-            notification.payload.smallIcon = notif.Payload.SmallIcon;
-            notification.payload.smallIconAccentColor = notif.Payload.SmallIconAccentColor;
+            notification.payload = TransformPayloadToNative(notif.Payload);
 
             return notification;
         }
+
+        public static OSNotificationPayload TransformPayloadToNative(Android.OSNotificationPayload androidPayload)
+        {
+            var payload = new OSNotificationPayload();
+
+            payload.actionButtons = new List<Dictionary<string, object>>();
+            if (androidPayload.ActionButtons != null)
+            {
+                foreach (Android.OSNotificationPayload.ActionButton button in androidPayload.ActionButtons)
+                {
+                    var d = new Dictionary<string, object>();
+                    d.Add(button.Id, button.Text);
+                    payload.actionButtons.Add(d);
+                }
+            }
+
+            payload.additionalData = new Dictionary<string, object>();
+            if (androidPayload.AdditionalData != null)
+            {
+                var iterator = androidPayload.AdditionalData.Keys();
+                while (iterator.HasNext)
+                {
+                    var key = (string)iterator.Next();
+                    payload.additionalData.Add(key, androidPayload.AdditionalData.Get(key));
+                }
+            }
+
+            payload.body = androidPayload.Body;
+            payload.launchURL = androidPayload.LaunchURL;
+            payload.notificationID = androidPayload.NotificationID;
+            payload.sound = androidPayload.Sound;
+            payload.title = androidPayload.Title;
+            payload.bigPicture = androidPayload.BigPicture;
+            payload.fromProjectNumber = androidPayload.FromProjectNumber;
+            payload.groupMessage = androidPayload.GroupKey;
+            payload.groupMessage = androidPayload.GroupMessage;
+            payload.largeIcon = androidPayload.LargeIcon;
+            payload.ledColor = androidPayload.LedColor;
+            payload.lockScreenVisibility = androidPayload.LockScreenVisibility;
+            payload.smallIcon = androidPayload.SmallIcon;
+            payload.smallIconAccentColor = androidPayload.SmallIconAccentColor;
+
+            return payload;
+        }
+
+        #endregion
     }
 }
