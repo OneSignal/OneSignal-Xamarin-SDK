@@ -16,4 +16,7 @@ namespace Com.OneSignal.Abstractions
 
    public delegate void OnPostNotificationSuccess(Dictionary<string, object> response);
    public delegate void OnPostNotificationFailure(Dictionary<string, object> response);
+
+   public delegate void OnSetEmailSuccess();
+   public delegate void OnSetEmailFailure(Dictionary<string, object> response);
 }

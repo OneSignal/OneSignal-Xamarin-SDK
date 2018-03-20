@@ -126,6 +126,12 @@ namespace Com.OneSignal.iOS
 	// typedef void (^OSFailureBlock)(NSError *);
 	delegate void OSFailureBlock (NSError arg0);
 
+  // typedef void (^OSResultEmailSuccessBlock)();
+  delegate void OSEmailSuccessBlock();
+
+  // typedef void (^OSEmailFailureBlock)();
+  delegate void OSEmailFailureBlock(NSError arg0);
+
 	// typedef void (^OSIdsAvailableBlock)(NSString *, NSString *);
 	delegate void OSIdsAvailableBlock (string arg0, string arg1);
 
@@ -303,10 +309,25 @@ namespace Com.OneSignal.iOS
 		[Export ("syncHashedEmail:")]
 		void SyncHashedEmail (string email);
 
-      // +(void)setMSDKType:(NSString *)type;
-      [Static]
-      [Export("setMSDKType:")]
-      void SetMSDKType(string type);
+    // + (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+    [Static]
+    [Export("setEmail:withEmailAuthHashToken:withSuccess:withFailure:")]
+    void SetEmail(string email, string emailAuthToken, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+
+    // + (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+    [Static]
+    [Export ("setEmail:withSuccess:withFailure:")]
+    void SetEmail(string email, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+
+    // + (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+    [Static]
+    [Export("logoutEmailWithSuccess:withFailure:")]
+    void LogoutEmail(OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+
+    // +(void)setMSDKType:(NSString *)type;
+    [Static]
+    [Export("setMSDKType:")]
+    void SetMSDKType(string type);
 	}
 
 	partial interface Constants
