@@ -17,11 +17,15 @@ namespace Com.OneSignal.Abstractions
       void IdsAvailable(IdsAvailableCallback idsAvailableCallback);
       void SetSubscription(bool enable);
       void PostNotification(Dictionary<string, object> data, OnPostNotificationSuccess success, OnPostNotificationFailure failure);
+      void PostNotification(Dictionary<string, object> data);
       void SyncHashedEmail(string email);
       void PromptLocation();
       void SetEmail(string email, string emailAuthToken, OnSetEmailSuccess success, OnSetEmailFailure failure);
+      void SetEmail(string email, string emailAuthToken);
       void SetEmail(string email, OnSetEmailSuccess success, OnSetEmailFailure failure);
+      void SetEmail(string email);
       void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure);
+      void LogoutEmail();
    }
 }
  
