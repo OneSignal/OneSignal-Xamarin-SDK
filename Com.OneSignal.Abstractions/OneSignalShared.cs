@@ -49,6 +49,12 @@ namespace Com.OneSignal.Abstractions
       internal OnPostNotificationSuccess postNotificationSuccessDelegate;
       internal OnPostNotificationFailure postNotificationFailureDelegate;
 
+      internal OnSetEmailSuccess setEmailSuccessDelegate;
+      internal OnSetEmailFailure setEmailFailureDelegate;
+
+      internal OnSetEmailSuccess logoutEmailSuccessDelegate;
+      internal OnSetEmailFailure logoutEmailFailureDelegate;
+
       public XamarinBuilder builder;
 
       // Init - Only required method you call to setup OneSignal to receive push notifications.
@@ -76,6 +82,36 @@ namespace Com.OneSignal.Abstractions
          postNotificationFailureDelegate = inOnPostNotificationFailure;
 
          PostNotification(data);
+      }
+
+      public abstract void SetEmail(string email, string emailAuthCode);
+
+      public void SetEmail(string email, string emailAuthCode, OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure) 
+      {
+         setEmailSuccessDelegate = inSetEmailSuccess;
+         setEmailFailureDelegate = inSetEmailFailure;
+
+         SetEmail(email, emailAuthCode);
+      }
+
+      public abstract void SetEmail(string email);
+
+      public void SetEmail(string email, OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure) 
+      {
+         setEmailSuccessDelegate = inSetEmailSuccess;
+         setEmailFailureDelegate = inSetEmailFailure;
+         
+         SetEmail(email);
+      }
+
+      public abstract void LogoutEmail();
+
+      public void LogoutEmail(OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure)
+      {
+        logoutEmailSuccessDelegate = inSetEmailSuccess;
+        logoutEmailFailureDelegate = inSetEmailFailure;
+
+        LogoutEmail();
       }
 
       // Called from the native SDK - Called when a push notification received.
@@ -134,6 +170,46 @@ namespace Com.OneSignal.Abstractions
             postNotificationFailureDelegate = null;
             postNotificationSuccessDelegate = null;
             tempPostNotificationFailureDelegate(response);
+         }
+      }
+
+      public void onSetEmailSuccess() 
+      {
+         if (setEmailSuccessDelegate != null) {
+            OnSetEmailSuccess tempSuccessDelegate = setEmailSuccessDelegate;
+            setEmailSuccessDelegate = null;
+            setEmailFailureDelegate = null;
+            tempSuccessDelegate();
+         }
+      }
+
+      public void onSetEmailFailed(Dictionary<string, object> error)
+      {
+         if (setEmailFailureDelegate != null) {
+            OnSetEmailFailure tempFailureDelegate = setEmailFailureDelegate;
+            setEmailFailureDelegate = null;
+            setEmailSuccessDelegate = null;
+            tempFailureDelegate(error);
+         }
+      }
+
+      public void onLogoutEmailSuccess()
+      {
+         if (logoutEmailSuccessDelegate != null) {
+            OnSetEmailSuccess tempSuccessDelegate = logoutEmailSuccessDelegate;
+            logoutEmailSuccessDelegate = null;
+            logoutEmailFailureDelegate = null;
+            tempSuccessDelegate();
+         }
+      }
+
+      public void onLogoutEmailFailed(Dictionary<string, object> error)
+      {
+         if (logoutEmailFailureDelegate != null) {
+            OnSetEmailFailure tempFailureDelegate = logoutEmailFailureDelegate;
+            logoutEmailFailureDelegate = null;
+            logoutEmailSuccessDelegate = null;
+            tempFailureDelegate(error);
          }
       }
    }

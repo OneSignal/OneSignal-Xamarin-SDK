@@ -108,5 +108,20 @@ namespace Com.OneSignal
 
             Android.OneSignal.SetLogLevel((int)logLevel, (int)visualLevel);
         }
+
+        public override void SetEmail(string email, string emailAuthCode)
+        {
+            Android.OneSignal.SetEmail(email, emailAuthCode, new EmailUpdateHandler());
+        }
+
+        public override void SetEmail(string email) 
+        {
+            Android.OneSignal.SetEmail(email, null, new EmailUpdateHandler());
+        }
+
+        public override void LogoutEmail()
+        {
+            Android.OneSignal.LogoutEmail(new EmailUpdateHandler());
+        }
     }
 }
