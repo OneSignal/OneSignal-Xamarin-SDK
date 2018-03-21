@@ -5,18 +5,18 @@ using Org.Json;
 
 namespace Com.OneSignal
 {
-  public class EmailUpdateHandler : Java.Lang.Object
+  public class EmailUpdateHandler : Java.Lang.Object, Android.OneSignal.IEmailUpdateHandler
   {
-    public void OnSuccess() 
+    public void OnSuccess()
     {
       (OneSignal.Current as OneSignalImplementation).onSetEmailSuccess();
     }
 
-    public void OnFailure(JSONObject jsonObject) 
+    public void OnFailure(Android.OneSignal.EmailUpdateError error)
     {
-      Dictionary<string, object> dict = null;
+      var result = new Dictionary<string, object> () {{"message", error.Message}};
 
-      (OneSignal.Current as OneSignalImplementation).onSetEmailFailed(dict);
+      (OneSignal.Current as OneSignalImplementation).onPostNotificationFailed(result);
     }
   }
 }
