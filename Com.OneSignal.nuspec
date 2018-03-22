@@ -14,9 +14,9 @@
         <tags>xamarin, monodroid, C#, OneSignal, push</tags>
         <dependencies>
             <group targetFramework="MonoAndroid0.0">
-                <dependency id="Xamarin.Android.Support.v4" version="27.0.2" />
-                <dependency id="Xamarin.Android.Support.CustomTabs" version="27.0.2" />
-                <dependency id="Xamarin.GooglePlayServices.Gcm" version="60.1142.1" />
+                <dependency id="Xamarin.Android.Support.v4" version="[26.0.0, 27.2.0)" />
+                <dependency id="Xamarin.Android.Support.CustomTabs" version="[26.0.0, 27.2.0)" />
+                <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 60.1143.0)" />
             </group>
             <group targetFramework="netstandard1.0">
                 <dependency id="NETStandard.Library" version="1.6.1" />
