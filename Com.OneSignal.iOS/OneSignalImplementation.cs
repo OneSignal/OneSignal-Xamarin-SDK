@@ -7,6 +7,7 @@ using OSNotificationAction = Com.OneSignal.Abstractions.OSNotificationAction;
 using OSNotificationPayload = Com.OneSignal.Abstractions.OSNotificationPayload;
 using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption;
 using System.Diagnostics;
+using UserNotifications;
 
 namespace Com.OneSignal
 {
@@ -254,6 +255,7 @@ namespace Com.OneSignal
       }
     }
 
+    [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
     public override void SyncHashedEmail(string email)
     {
        iOS.OneSignal.SyncHashedEmail(email);
@@ -262,6 +264,16 @@ namespace Com.OneSignal
     public override void PromptLocation()
     {
        iOS.OneSignal.PromptLocation();
+    }
+
+    public void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent) 
+    {
+      iOS.OneSignal.DidReceiveNotificationExtensionRequest(request, replacementContent);
+    }
+
+    public void ServiceExtensionTimeWillExpireRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent)
+    {
+      iOS.OneSignal.ServiceExtensionTimeWillExpireRequest(request, replacementContent);
     }
    }
 }

@@ -32,8 +32,10 @@ namespace Com.OneSignal.Abstractions
       public abstract void DeleteTag(string key);
       public abstract void DeleteTags(IList<string> keys);
       public abstract void SetSubscription(bool enable);
-      public abstract void SyncHashedEmail(string email);
       public abstract void PromptLocation();
+
+      [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
+      public abstract void SyncHashedEmail(string email);
 
 
 

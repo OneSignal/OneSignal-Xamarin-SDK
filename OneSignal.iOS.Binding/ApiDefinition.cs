@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using OSNotificationDisplayType = Com.OneSignal.iOS.OSInFocusDisplayOption;
+using UserNotifications;
 
 namespace Com.OneSignal.iOS
 {
@@ -328,6 +329,16 @@ namespace Com.OneSignal.iOS
     [Static]
     [Export("setMSDKType:")]
     void SetMSDKType(string type);
+
+    //+ (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
+    [Static]
+    [Export("didReceiveNotificationExtensionRequest:withMutableNotificationContent:")]
+    void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
+
+    //+ (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
+    [Static]
+    [Export("serviceExtensionTimeWillExpireRequest:withMutableNotificationContent:")]
+    void ServiceExtensionTimeWillExpireRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
 	}
 
 	partial interface Constants
