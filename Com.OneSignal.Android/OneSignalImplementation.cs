@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Android.App;
+using System;
 using Com.OneSignal.Abstractions;
 
 namespace Com.OneSignal
@@ -87,6 +88,7 @@ namespace Com.OneSignal
             Android.OneSignal.PostNotification(Json.Serialize(data), new PostNotificationResponseHandler());
         }
 
+        [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
         public override void SyncHashedEmail(string email)
         {
             Android.OneSignal.SyncHashedEmail(email);

@@ -18,6 +18,8 @@ namespace Com.OneSignal.Abstractions
       void SetSubscription(bool enable);
       void PostNotification(Dictionary<string, object> data, OnPostNotificationSuccess success, OnPostNotificationFailure failure);
       void PostNotification(Dictionary<string, object> data);
+
+      [Obsolete("SyncHashedEmail has been deprecated. Please use setEmail() instead.")]
       void SyncHashedEmail(string email);
       void PromptLocation();
       void SetEmail(string email, string emailAuthToken, OnSetEmailSuccess success, OnSetEmailFailure failure);

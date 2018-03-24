@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.OneSignal.Sample.iOS", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.OneSignal.Sample.Shared", "Samples\Com.OneSignal.Sample.Shared\Com.OneSignal.Sample.Shared.csproj", "{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalNotificationServiceExtension", "Samples\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj", "{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,10 +141,23 @@ Global
 		{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|Any CPU.Build.0 = Release|iPhone
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|iPhone.ActiveCfg = Release|iPhone
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|iPhone.Build.0 = Release|iPhone
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}.Debug|iPhone.Build.0 = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20DF0789-7E6E-4A87-AE94-79FDC166B4AE} = {9DE071C3-1289-41AE-A45F-B4F244552BAE}
 		{4F85DB2A-0410-44FA-A55A-54669503DBD9} = {9DE071C3-1289-41AE-A45F-B4F244552BAE}
 		{0CB5DFF3-C26E-4B92-87AC-7E6875F76448} = {9DE071C3-1289-41AE-A45F-B4F244552BAE}
+		{2DD024D6-B178-4229-A4D1-3E1B1B1B7390} = {9DE071C3-1289-41AE-A45F-B4F244552BAE}
 	EndGlobalSection
 EndGlobal
