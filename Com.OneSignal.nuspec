@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Com.OneSignal</id>
-        <version>3.1.0-beta</version>
+        <version>3.1.0</version>
         <title>OneSignal SDK for Xamarin</title>
         <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
@@ -31,6 +31,6 @@
         <file src="Com.OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
         
         <!--Xamarin.iOS Unified-->
-        <file src="Com.OneSignal.iOS\bin\Release\OneSignal.*" target="lib\Xamarin.iOS10" />
+        <file src="Com.OneSignal.iOS\bin\Release\*OneSignal.*" target="lib\Xamarin.iOS10" />
     </files>
 </package>
