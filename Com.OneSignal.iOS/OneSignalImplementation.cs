@@ -43,7 +43,7 @@ namespace Com.OneSignal
       notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
       notification.shown = notif.Shown;
       notification.silentNotification = notif.SilentNotification;
-
+      notification.isAppInFocus = notif.IsAppInFocus;
       notification.payload = new OSNotificationPayload();
 
 
