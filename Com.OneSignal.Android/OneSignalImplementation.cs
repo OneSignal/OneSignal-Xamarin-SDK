@@ -41,9 +41,11 @@ namespace Com.OneSignal
             Android.OneSignal.SendTags(Json.Serialize(tags));
         }
 
-        public override void GetTags()
+        public override void GetTags(TagsReceived tagsReceived)
         {
-            Android.OneSignal.GetTags(new TagsHandler());
+			if (tagsReceived == null)
+				throw new ArgumentNullException(nameof(tagsReceived));
+            Android.OneSignal.GetTags(new TagsHandler(tagsReceived));
         }
 
         public override void DeleteTag(string key)
@@ -56,9 +58,11 @@ namespace Com.OneSignal
             Android.OneSignal.DeleteTags(Json.Serialize(keys));
         }
 
-        public override void IdsAvailable()
+        public override void IdsAvailable(IdsAvailableCallback idsAvailable)
         {
-            Android.OneSignal.IdsAvailable(new IdsAvailableHandler());
+			if (idsAvailable == null)
+				throw new ArgumentNullException(nameof(idsAvailable));
+            Android.OneSignal.IdsAvailable(new IdsAvailableHandler(idsAvailable));
         }
 
         public override void RegisterForPushNotifications() { } // Doesn't apply to Android as the Native SDK always registers with GCM.
@@ -83,9 +87,9 @@ namespace Com.OneSignal
             Android.OneSignal.SetSubscription(enable);
         }
 
-        public override void PostNotification(Dictionary<string, object> data)
+        public override void PostNotification(Dictionary<string, object> data, OnPostNotificationSuccess success, OnPostNotificationFailure failure)
         {
-            Android.OneSignal.PostNotification(Json.Serialize(data), new PostNotificationResponseHandler());
+            Android.OneSignal.PostNotification(Json.Serialize(data), new PostNotificationResponseHandler(success, failure));
         }
 
         [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
@@ -111,19 +115,19 @@ namespace Com.OneSignal
             Android.OneSignal.SetLogLevel((int)logLevel, (int)visualLevel);
         }
 
-        public override void SetEmail(string email, string emailAuthCode)
+        public override void SetEmail(string email, string emailAuthCode, OnSetEmailSuccess success, OnSetEmailFailure failure)
         {
-            Android.OneSignal.SetEmail(email, emailAuthCode, new EmailUpdateHandler());
+            Android.OneSignal.SetEmail(email, emailAuthCode, new EmailUpdateHandler(success, failure));
         }
 
-        public override void SetEmail(string email) 
+        public override void SetEmail(string email, OnSetEmailSuccess success, OnSetEmailFailure failure) 
         {
-            Android.OneSignal.SetEmail(email, null, new EmailUpdateHandler());
+            Android.OneSignal.SetEmail(email, null, new EmailUpdateHandler(success, failure));
         }
 
-        public override void LogoutEmail()
+        public override void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure)
         {
-            Android.OneSignal.LogoutEmail(new EmailUpdateHandler());
+            Android.OneSignal.LogoutEmail(new EmailUpdateHandler(success, failure));
         }
     }
 }

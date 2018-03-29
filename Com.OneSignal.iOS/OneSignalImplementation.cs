@@ -125,9 +125,11 @@ namespace Com.OneSignal
       iOS.OneSignal.SendTagsWithJsonString(jsonString);
     }
 
-    public override void GetTags()
+    public override void GetTags(TagsReceived tagsReceived)
     {
-      iOS.OneSignal.GetTags(GetTagsHandler);
+	  if (tagsReceived == null)
+		throw new ArgumentNullException(nameof(tagsReceived));
+      iOS.OneSignal.GetTags(tags=>  tagsReceived(NSDictToPureDict(tags)));
     }
 
     public override void DeleteTag(string key)
@@ -145,9 +147,11 @@ namespace Com.OneSignal
       iOS.OneSignal.DeleteTags(objs);
     }
 
-    public override void IdsAvailable()
+    public override void IdsAvailable(IdsAvailableCallback idsAvailable)
     {
-      iOS.OneSignal.IdsAvailable(IdsAvailableHandler);
+	  if (idsAvailable == null)
+	    throw new ArgumentNullException(nameof(idsAvailable));
+	  iOS.OneSignal.IdsAvailable((playerId, pushToken) => idsAvailable(playerId, pushToken));
     }
 
     public override void SetSubscription(bool enable)
@@ -155,25 +159,71 @@ namespace Com.OneSignal
       iOS.OneSignal.SetSubscription(enable);
     }
 
-    public override void PostNotification(Dictionary<string, object> data)
+    public override void PostNotification(Dictionary<string, object> data, OnPostNotificationSuccess success, OnPostNotificationFailure failure)
     {
       string jsonString = Json.Serialize(data);
-      iOS.OneSignal.PostNotificationWithJsonString(jsonString, PostNotificationSuccessHandler, PostNotificationFailureHandler);
+      iOS.OneSignal.PostNotificationWithJsonString(jsonString, 
+		  result => success?.Invoke(NSDictToPureDict(result)),
+		  error =>
+		  {
+			  if (failure != null)
+			  {
+				  Dictionary<string, object> dict;
+				  if (error.UserInfo != null && error.UserInfo["returned"] != null)
+					  dict = NSDictToPureDict(error.UserInfo);
+				  else
+					  dict = new Dictionary<string, object> { { "error", "HTTP no response error" } };
+				  failure(dict);
+			  }
+		  });
     }
 
-    public override void SetEmail(string email, string emailAuthCode)
+    public override void SetEmail(string email, string emailAuthCode, OnSetEmailSuccess success, OnSetEmailFailure failure)
     {
-      iOS.OneSignal.SetEmail(email, emailAuthCode, SetEmailSuccessHandler, SetEmailFailureHandler);
+      iOS.OneSignal.SetEmail(email, emailAuthCode, () => success?.Invoke(), error =>
+		  {
+			  if (failure != null)
+			  {
+				  Dictionary<string, object> dict;
+				  if (error.UserInfo != null)
+					  dict = NSDictToPureDict(error.UserInfo);
+				  else
+					  dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
+				  failure(dict);
+			  }
+		  });
     }
 
-    public override void SetEmail(string email)
+    public override void SetEmail(string email, OnSetEmailSuccess success, OnSetEmailFailure failure)
     {
-      iOS.OneSignal.SetEmail(email, SetEmailSuccessHandler, SetEmailFailureHandler);
+      iOS.OneSignal.SetEmail(email, () => success?.Invoke(), error =>
+		  {
+			  if (failure != null)
+			  {
+				  Dictionary<string, object> dict;
+				  if (error.UserInfo != null)
+					  dict = NSDictToPureDict(error.UserInfo);
+				  else
+					  dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
+				  failure(dict);
+			  }
+		  });
     }
 
-    public override void LogoutEmail()
+    public override void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure)
     {
-      iOS.OneSignal.LogoutEmail(LogoutEmailSuccessHandler, LogoutEmailFailureHandler);
+      iOS.OneSignal.LogoutEmail(() => success?.Invoke(), error =>
+		  {
+			  if (failure != null)
+			  {
+				  Dictionary<string, object> dict;
+				  if (error.UserInfo != null)
+					  dict = NSDictToPureDict(error.UserInfo);
+				  else
+					  dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
+				  failure(dict);
+			  }
+		  });
     }
 
     public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
@@ -185,10 +235,10 @@ namespace Com.OneSignal
       iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
     }
 
-    public void IdsAvailableHandler(string playerID, string pushToken)
-    {
-      onIdsAvailable(playerID, pushToken);
-    }
+    //public void IdsAvailableHandler(string playerID, string pushToken)
+    //{
+    //  onIdsAvailable(playerID, pushToken);
+    //}
 
     public void NotificationOpenedHandler(iOS.OSNotificationOpenedResult result)
     {
@@ -199,61 +249,61 @@ namespace Com.OneSignal
       onPushNotificationReceived(OSNotificationToNative(notification));
     }
 
-    public void GetTagsHandler(Foundation.NSDictionary result)
-    {
-      Dictionary<string, object> dict = NSDictToPureDict(result);
-      onTagsReceived(dict);
-    }
+    //public void GetTagsHandler(Foundation.NSDictionary result)
+    //{
+    //  Dictionary<string, object> dict = NSDictToPureDict(result);
+    //  onTagsReceived(dict);
+    //}
 
-    public void PostNotificationSuccessHandler(Foundation.NSDictionary result)
-    {
-      Dictionary<string, object> dict = NSDictToPureDict(result);
-      onPostNotificationSuccess(dict);
-    }
+    //public void PostNotificationSuccessHandler(Foundation.NSDictionary result)
+    //{
+    //  Dictionary<string, object> dict = NSDictToPureDict(result);
+    //  onPostNotificationSuccess(dict);
+    //}
 
-    public void PostNotificationFailureHandler(Foundation.NSError error)
-    {
-      if (error.UserInfo != null && error.UserInfo["returned"] != null)
-      {
-        Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
-        onPostNotificationFailed(dict);
-      }
-      else
-        onPostNotificationFailed(new Dictionary<string, object> { { "error", "HTTP no response error" } });
-    }
+    //public void PostNotificationFailureHandler(Foundation.NSError error)
+    //{
+    //  if (error.UserInfo != null && error.UserInfo["returned"] != null)
+    //  {
+    //    Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
+    //    onPostNotificationFailed(dict);
+    //  }
+    //  else
+    //    onPostNotificationFailed(new Dictionary<string, object> { { "error", "HTTP no response error" } });
+    //}
 
-    public void SetEmailSuccessHandler()
-    {
-      onSetEmailSuccess();
-    }
+    //public void SetEmailSuccessHandler()
+    //{
+    //  onSetEmailSuccess();
+    //}
 
-    public void SetEmailFailureHandler(Foundation.NSError error)
-    {
-      if (error.UserInfo != null)
-      {
-        Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
-        onSetEmailFailed(dict);
-      }
-      else
-      {
-        onSetEmailFailed(new Dictionary<string, object> { { "error", "An unknown error occurred" } });
-      }
-    }
+    //public void SetEmailFailureHandler(Foundation.NSError error)
+    //{
+    //  if (error.UserInfo != null)
+    //  {
+    //    Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
+    //    onSetEmailFailed(dict);
+    //  }
+    //  else
+    //  {
+    //    onSetEmailFailed(new Dictionary<string, object> { { "error", "An unknown error occurred" } });
+    //  }
+    //}
 
-    public void LogoutEmailSuccessHandler()
-    {
-      onLogoutEmailSuccess();
-    }
+    //public void LogoutEmailSuccessHandler()
+    //{
+    //  onLogoutEmailSuccess();
+    //}
 
-    public void LogoutEmailFailureHandler(Foundation.NSError error)
-    {
-      if (error.UserInfo != null) {
-        Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
-        onLogoutEmailFailed(dict);
-      } else {
-        onLogoutEmailFailed(new Dictionary<string, object> { { "error", "An unknown error occurred" } });
-      }
-    }
+    //public void LogoutEmailFailureHandler(Foundation.NSError error)
+    //{
+    //  if (error.UserInfo != null) {
+    //    Dictionary<string, object> dict = NSDictToPureDict(error.UserInfo);
+    //    onLogoutEmailFailed(dict);
+    //  } else {
+    //    onLogoutEmailFailed(new Dictionary<string, object> { { "error", "An unknown error occurred" } });
+    //  }
+    //}
 
     [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
     public override void SyncHashedEmail(string email)
