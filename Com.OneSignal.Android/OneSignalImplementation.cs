@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Android.App;
 using System;
+using System.Diagnostics;
 using Com.OneSignal.Abstractions;
 
 namespace Com.OneSignal
@@ -99,7 +100,7 @@ namespace Com.OneSignal
             Android.OneSignal.PromptLocation();
         }
 
-        public void ClearOneSignalNotifications()
+        public override void ClearOneSignalNotifications()
         {
             Android.OneSignal.ClearOneSignalNotifications();
         }

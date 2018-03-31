@@ -145,6 +145,11 @@ namespace Com.OneSignal
       iOS.OneSignal.DeleteTags(objs);
     }
 
+    public override void ClearOneSignalNotifications()
+    {
+       throw new NotImplementedException();
+    }
+      
     public override void IdsAvailable()
     {
       iOS.OneSignal.IdsAvailable(IdsAvailableHandler);
