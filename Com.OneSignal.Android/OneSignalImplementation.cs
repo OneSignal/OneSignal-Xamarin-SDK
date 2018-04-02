@@ -99,7 +99,7 @@ namespace Com.OneSignal
             Android.OneSignal.PromptLocation();
         }
 
-        public void ClearOneSignalNotifications()
+        public override void ClearAndroidOneSignalNotifications()
         {
             Android.OneSignal.ClearOneSignalNotifications();
         }

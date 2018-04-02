@@ -145,6 +145,11 @@ namespace Com.OneSignal
       iOS.OneSignal.DeleteTags(objs);
     }
 
+    public override void ClearAndroidOneSignalNotifications()
+    {
+         Debug.WriteLine("ClearAndroidOneSignalNotifications() is an android-only function, and is not implemented in iOS.");
+    }
+      
     public override void IdsAvailable()
     {
       iOS.OneSignal.IdsAvailable(IdsAvailableHandler);
