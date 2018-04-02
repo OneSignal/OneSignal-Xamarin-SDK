@@ -34,7 +34,7 @@ namespace Com.OneSignal.Abstractions
       public abstract void SetSubscription(bool enable);
       public abstract void PromptLocation();
 
-      public abstract void ClearOneSignalNotifications();
+      public abstract void ClearAndroidOneSignalNotifications();
 
       [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
       public abstract void SyncHashedEmail(string email);
