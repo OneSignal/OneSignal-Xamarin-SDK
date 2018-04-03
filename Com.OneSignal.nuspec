@@ -14,9 +14,19 @@
         <summary>OneSignal is a free push notification service for mobile apps. This plugin makes it easy to integrate your Xamarin app with OneSignal</summary>
         <tags>xamarin, monodroid, C#, OneSignal, push</tags>
         <dependencies>
-            <group targetFramework="MonoAndroid0.0">
+            <group targetFramework="MonoAndroid8.1">
+                <dependency id="Xamarin.Android.Support.v4" version="[27.0.0, 27.2.0)" />
+                <dependency id="Xamarin.Android.Support.CustomTabs" version="[27.0.0, 27.2.0)" />
+                <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 60.1143.0)" />
+            </group>
+            <group targetFramework="MonoAndroid8.0">
                 <dependency id="Xamarin.Android.Support.v4" version="[26.0.0, 27.2.0)" />
                 <dependency id="Xamarin.Android.Support.CustomTabs" version="[26.0.0, 27.2.0)" />
+                <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 60.1143.0)" />
+            </group>
+            <group targetFramework="MonoAndroid7.1">
+                <dependency id="Xamarin.Android.Support.v4" version="[25.0.0, 26.0.0)" />
+                <dependency id="Xamarin.Android.Support.CustomTabs" version="[25.0.0, 26.0.0)" />
                 <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 60.1143.0)" />
             </group>
             <group targetFramework="netstandard1.0">
