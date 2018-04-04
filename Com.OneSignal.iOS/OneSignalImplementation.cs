@@ -37,14 +37,14 @@ namespace Com.OneSignal
          return openresult;
       }
 
-      private OSNotification OSNotificationToNative(iOS.OSNotification notif)
-      {
-         var notification = new OSNotification();
-         notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
-         notification.shown = notif.Shown;
-         notification.silentNotification = notif.SilentNotification;
-
-         notification.payload = new OSNotificationPayload();
+    private OSNotification OSNotificationToNative(iOS.OSNotification notif)
+    {
+      var notification = new OSNotification();
+      notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
+      notification.shown = notif.Shown;
+      notification.silentNotification = notif.SilentNotification;
+      notification.isAppInFocus = notif.IsAppInFocus;
+      notification.payload = new OSNotificationPayload();
 
 
          notification.payload.actionButtons = new List<Dictionary<string, object>>();
@@ -147,14 +147,19 @@ namespace Com.OneSignal
          iOS.OneSignal.DeleteTags(objs);
       }
 
-      public override void IdsAvailable(IdsAvailableCallback idsAvailable)
-      {
-         if (idsAvailable == null)
-            throw new ArgumentNullException(nameof(idsAvailable));
-         iOS.OneSignal.IdsAvailable((playerId, pushToken) => idsAvailable(playerId, pushToken));
-      }
+		public override void ClearAndroidOneSignalNotifications()
+		{
+			Debug.WriteLine("ClearAndroidOneSignalNotifications() is an android-only function, and is not implemented in iOS.");
+		}
 
-      public override void SetSubscription(bool enable)
+		public override void IdsAvailable(IdsAvailableCallback idsAvailable)
+		{
+			if (idsAvailable == null)
+				throw new ArgumentNullException(nameof(idsAvailable));
+			iOS.OneSignal.IdsAvailable((playerId, pushToken) => idsAvailable(playerId, pushToken));
+		}
+
+		public override void SetSubscription(bool enable)
       {
          iOS.OneSignal.SetSubscription(enable);
       }

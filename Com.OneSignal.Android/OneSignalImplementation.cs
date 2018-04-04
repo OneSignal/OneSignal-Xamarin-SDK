@@ -103,12 +103,12 @@ namespace Com.OneSignal
          Android.OneSignal.PromptLocation();
       }
 
-      public void ClearOneSignalNotifications()
-      {
-         Android.OneSignal.ClearOneSignalNotifications();
-      }
+		public override void ClearAndroidOneSignalNotifications()
+		{
+			Android.OneSignal.ClearOneSignalNotifications();
+		}
 
-      public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
+		public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
       {
          base.SetLogLevel(logLevel, visualLevel);
 
