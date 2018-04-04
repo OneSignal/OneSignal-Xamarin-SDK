@@ -24,60 +24,6 @@ namespace Com.OneSignal
          return Json.Deserialize(jsonString) as Dictionary<string, object>;
       }
 
-      private OSNotificationOpenedResult OSNotificationOpenedResultToNative(iOS.OSNotificationOpenedResult result)
-      {
-         var openresult = new OSNotificationOpenedResult();
-         openresult.action = new OSNotificationAction();
-         iOS.OSNotificationAction action = result.Action;
-         openresult.action.actionID = action.ActionID;
-         openresult.action.type = (OSNotificationAction.ActionType)(int)action.Type;
-
-         openresult.notification = OSNotificationToNative(result.Notification);
-
-         return openresult;
-      }
-
-    private OSNotification OSNotificationToNative(iOS.OSNotification notif)
-    {
-      var notification = new OSNotification();
-      notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
-      notification.shown = notif.Shown;
-      notification.silentNotification = notif.SilentNotification;
-      notification.isAppInFocus = notif.IsAppInFocus;
-      notification.payload = new OSNotificationPayload();
-
-
-         notification.payload.actionButtons = new List<Dictionary<string, object>>();
-         if (notif.Payload.ActionButtons != null)
-         {
-            for (int i = 0; i < (int)notif.Payload.ActionButtons.Count; ++i)
-            {
-               Foundation.NSDictionary element = notif.Payload.ActionButtons.GetItem<Foundation.NSDictionary>((uint)i);
-               notification.payload.actionButtons.Add(NSDictToPureDict(element));
-            }
-         }
-
-         notification.payload.additionalData = new Dictionary<string, object>();
-         if (notif.Payload.AdditionalData != null)
-         {
-            foreach (KeyValuePair<Foundation.NSObject, Foundation.NSObject> element in notif.Payload.AdditionalData)
-            {
-               notification.payload.additionalData.Add((Foundation.NSString)element.Key, element.Value);
-            }
-         }
-
-         notification.payload.badge = (int)notif.Payload.Badge;
-         notification.payload.body = notif.Payload.Body;
-         notification.payload.contentAvailable = notif.Payload.ContentAvailable;
-         notification.payload.launchURL = notif.Payload.LaunchURL;
-         notification.payload.notificationID = notif.Payload.NotificationID;
-         notification.payload.sound = notif.Payload.Sound;
-         notification.payload.subtitle = notif.Payload.Subtitle;
-         notification.payload.title = notif.Payload.Title;
-
-         return notification;
-      }
-
       // Init - Only required method you call to setup OneSignal to receive push notifications.
       public override void InitPlatform()
       {
@@ -242,11 +188,11 @@ namespace Com.OneSignal
 
       public void NotificationOpenedHandler(iOS.OSNotificationOpenedResult result)
       {
-         onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+         onPushNotificationOpened(result.ToAbstract());
       }
       public void NotificationReceivedHandler(iOS.OSNotification notification)
       {
-         onPushNotificationReceived(OSNotificationToNative(notification));
+         onPushNotificationReceived(notification.ToAbstract());
       }
 
       [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
