@@ -36,5 +36,5 @@ To make it easier to become familiar with our SDK, we have included a sample pro
 
 #### Supports:
 * iOS 7 - 11.3
-* Android (and derivatives like Amazon ADM)
+* Android 4.0.3 (API Level 15) through 8.1 (API Level 27), and derivatives such as Amazon ADM
 * Xamarin Forms and Single View projects
