@@ -29,6 +29,10 @@ namespace Com.OneSignal.Abstractions
       void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure);
       void LogoutEmail();
       void ClearAndroidOneSignalNotifications();
+
+      void UserDidProvidePrivacyConsent(bool granted);
+      bool RequiresUserPrivacyConsent();
+      void SetRequiresUserPrivacyConsent(bool required);
    }
 }
  

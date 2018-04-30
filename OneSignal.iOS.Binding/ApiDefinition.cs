@@ -310,35 +310,50 @@ namespace Com.OneSignal.iOS
 		[Export ("syncHashedEmail:")]
 		void SyncHashedEmail (string email);
 
-    // + (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
-    [Static]
-    [Export("setEmail:withEmailAuthHashToken:withSuccess:withFailure:")]
-    void SetEmail(string email, string emailAuthToken, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      // + (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      [Static]
+      [Export("setEmail:withEmailAuthHashToken:withSuccess:withFailure:")]
+      void SetEmail(string email, string emailAuthToken, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      
+      // + (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      [Static]
+      [Export ("setEmail:withSuccess:withFailure:")]
+      void SetEmail(string email, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      
+      // + (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      [Static]
+      [Export("logoutEmailWithSuccess:withFailure:")]
+      void LogoutEmail(OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      
+      // +(void)setMSDKType:(NSString *)type;
+      [Static]
+      [Export("setMSDKType:")]
+      void SetMSDKType(string type);
+      
+      //+ (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
+      [Static]
+      [Export("didReceiveNotificationExtensionRequest:withMutableNotificationContent:")]
+      void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
+      
+      //+ (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
+      [Static]
+      [Export("serviceExtensionTimeWillExpireRequest:withMutableNotificationContent:")]
+      void ServiceExtensionTimeWillExpireRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
 
-    // + (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
-    [Static]
-    [Export ("setEmail:withSuccess:withFailure:")]
-    void SetEmail(string email, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      //+ (void)consentGranted:(BOOL)granted;
+      [Static]
+      [Export("consentGranted:")]
+      void ConsentGranted(bool granted);
 
-    // + (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
-    [Static]
-    [Export("logoutEmailWithSuccess:withFailure:")]
-    void LogoutEmail(OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
+      //+ (BOOL)requiresUserPrivacyConsent;
+      [Static]
+      [Export("requiresUserPrivacyConsent")]
+      bool RequiresUserPrivacyConsent();
 
-    // +(void)setMSDKType:(NSString *)type;
-    [Static]
-    [Export("setMSDKType:")]
-    void SetMSDKType(string type);
-
-    //+ (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
-    [Static]
-    [Export("didReceiveNotificationExtensionRequest:withMutableNotificationContent:")]
-    void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
-
-    //+ (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
-    [Static]
-    [Export("serviceExtensionTimeWillExpireRequest:withMutableNotificationContent:")]
-    void ServiceExtensionTimeWillExpireRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent);
+      //+ (void)setRequiresUserPrivacyConsent:(BOOL)required;
+      [Static]
+      [Export("setRequiresUserPrivacyConsent:")]
+      void SetRequiresUserPrivacyConsent(bool required);
 	}
 
 	partial interface Constants
