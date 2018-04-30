@@ -40,5 +40,17 @@ namespace Com.OneSignal.Sample.Shared
       {
          OneSignal.Current.RegisterForPushNotifications();
       }
+      
+      public static void ConsentStatusChanged(bool consent) {
+         OneSignal.Current.UserDidProvidePrivacyConsent(consent);
+      }
+      
+      public static bool UserDidProvideConsent() {
+         return !OneSignal.Current.RequiresUserPrivacyConsent();
+      }
+      
+      public static void SetRequiresConsent(bool required) {
+         OneSignal.Current.SetRequiresUserPrivacyConsent(required);
+      }
    }
 }

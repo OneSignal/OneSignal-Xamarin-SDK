@@ -22,12 +22,19 @@ namespace Com.OneSignal.Sample.iOS
          {
             SharedPush.RegisterIOS();
          };
+
+         PrivacyConsentControl.SelectedSegment = SharedPush.UserDidProvideConsent() ? 1 : 0;
       }
 
       public override void DidReceiveMemoryWarning()
       {
          base.DidReceiveMemoryWarning();
          // Release any cached data, images, etc that aren't in use.
+      }
+
+      partial void ConsentChanged(UISegmentedControl sender)
+      {
+         SharedPush.ConsentStatusChanged(sender.SelectedSegment == 1);
       }
    }
 }
