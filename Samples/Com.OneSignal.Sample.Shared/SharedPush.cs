@@ -14,6 +14,9 @@ namespace Com.OneSignal.Sample.Shared
       {
          OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.WARN);
 
+         //if you want to require user consent, change this to true
+         SharedPush.SetRequiresConsent(false);
+
          OneSignal.Current.StartInit("b2f7f966-d8cc-11e4-bed1-df8f05be55ba").Settings(new Dictionary<string, bool>() {
             { IOSSettings.kOSSettingsKeyAutoPrompt, false },
             { IOSSettings.kOSSettingsKeyInAppLaunchURL, true } })
