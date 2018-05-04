@@ -82,5 +82,11 @@ namespace Com.OneSignal.Abstractions
 	  public void SetEmail(string email) => SetEmail(email, null, null);
 
 	  public void LogoutEmail() => LogoutEmail(null, null);
+
+	  public abstract void UserDidProvidePrivacyConsent(bool granted);
+   
+	  public abstract bool RequiresUserPrivacyConsent();
+   
+	  public abstract void SetRequiresUserPrivacyConsent(bool required);
 	}
 }

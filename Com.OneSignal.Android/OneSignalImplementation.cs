@@ -129,5 +129,21 @@ namespace Com.OneSignal
       {
          Android.OneSignal.LogoutEmail(new EmailUpdateHandler(success, failure));
       }
+
+      public override void UserDidProvidePrivacyConsent(bool granted)
+      {
+         Android.OneSignal.ProvideUserConsent(granted);
+      }
+
+      public override bool RequiresUserPrivacyConsent()
+      {
+         return !Android.OneSignal.UserProvidedPrivacyConsent();
+      }
+
+      public override void SetRequiresUserPrivacyConsent(bool required)
+      {
+         Android.OneSignal.SetRequiresUserPrivacyConsent(required);
+      }
+
    }
 }

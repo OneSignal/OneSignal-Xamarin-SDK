@@ -230,6 +230,20 @@ namespace Com.OneSignal
                 }
              });
       }
+      
+      
+
+      public override void UserDidProvidePrivacyConsent(bool granted) {
+         iOS.OneSignal.ConsentGranted(granted);
+      }
+      
+      public override bool RequiresUserPrivacyConsent() {
+         return iOS.OneSignal.RequiresUserPrivacyConsent();
+      }
+      
+      public override void SetRequiresUserPrivacyConsent(bool required) {
+         iOS.OneSignal.SetRequiresUserPrivacyConsent(required);
+      }
 
       public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
       {

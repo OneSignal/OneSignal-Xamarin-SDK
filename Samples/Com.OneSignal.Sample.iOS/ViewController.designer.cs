@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -16,11 +16,24 @@ namespace Com.OneSignal.Sample.iOS
         [Outlet]
         UIKit.UIButton Button { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UISegmentedControl PrivacyConsentControl { get; set; }
+
+        [Action ("ConsentChanged:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ConsentChanged (UIKit.UISegmentedControl sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (Button != null) {
                 Button.Dispose ();
                 Button = null;
+            }
+
+            if (PrivacyConsentControl != null) {
+                PrivacyConsentControl.Dispose ();
+                PrivacyConsentControl = null;
             }
         }
     }

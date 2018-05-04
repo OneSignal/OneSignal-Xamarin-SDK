@@ -26,7 +26,17 @@ namespace Com.OneSignal.Sample.Droid
          button.Click += delegate
          {
             button.Text = $"{count++} clicks!";
+            System.Diagnostics.Debug.WriteLine("Button clicked");
          };
+
+         Switch consentButton = FindViewById<Switch>(Resource.Id.consentSwitch);
+         consentButton.CheckedChange += (o, e) =>
+         {
+            SharedPush.ConsentStatusChanged(consentButton.Checked);
+            System.Diagnostics.Debug.WriteLine("Changing consent state");
+         };
+
+         consentButton.Checked = SharedPush.UserDidProvideConsent();
       }
    }
 }
