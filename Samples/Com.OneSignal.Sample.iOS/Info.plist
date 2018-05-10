@@ -42,7 +42,5 @@
 	<string>OneSignalXamarminExample</string>
 	<key>OneSignal_require_privacy_consent</key>
 	<true/>
-	<key>CFBundleIdentifier</key>
-	<string>com.testapp.brad</string>
 </dict>
 </plist>

@@ -273,6 +273,10 @@ namespace Com.OneSignal
       {
          iOS.OneSignal.PromptLocation();
       }
+      
+      public override void SetLocationShared(bool shared) {
+         iOS.OneSignal.SetLocationShared(shared);
+      }
 
       public void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent)
       {
