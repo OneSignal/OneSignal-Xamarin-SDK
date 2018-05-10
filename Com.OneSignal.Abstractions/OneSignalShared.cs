@@ -75,18 +75,20 @@ namespace Com.OneSignal.Abstractions
          }
       }
 
-	  public void PostNotification(Dictionary<string, object> data) => PostNotification(data, null, null);
-		 
-	  public void SetEmail(string email, string emailAuthToken) => SetEmail(email, emailAuthToken, null, null);
+      public void PostNotification(Dictionary<string, object> data) => PostNotification(data, null, null);
+       
+      public void SetEmail(string email, string emailAuthToken) => SetEmail(email, emailAuthToken, null, null);
+      
+      public void SetEmail(string email) => SetEmail(email, null, null);
+      
+      public void LogoutEmail() => LogoutEmail(null, null);
+      
+      public abstract void UserDidProvidePrivacyConsent(bool granted);
+      
+      public abstract bool RequiresUserPrivacyConsent();
+      
+      public abstract void SetRequiresUserPrivacyConsent(bool required);
 
-	  public void SetEmail(string email) => SetEmail(email, null, null);
-
-	  public void LogoutEmail() => LogoutEmail(null, null);
-
-	  public abstract void UserDidProvidePrivacyConsent(bool granted);
-   
-	  public abstract bool RequiresUserPrivacyConsent();
-   
-	  public abstract void SetRequiresUserPrivacyConsent(bool required);
+      public abstract void SetLocationShared(bool shared);
 	}
 }

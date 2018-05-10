@@ -145,5 +145,9 @@ namespace Com.OneSignal
          Android.OneSignal.SetRequiresUserPrivacyConsent(required);
       }
 
+      public override void SetLocationShared(bool shared)
+      {
+         Android.OneSignal.SetLocationShared(shared);
+      }
    }
 }
