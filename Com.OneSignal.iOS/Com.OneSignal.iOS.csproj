@@ -24,7 +24,8 @@
     <IOSDebuggerPort>59137</IOSDebuggerPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -37,6 +38,27 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="OneSignal.iOS.Binding">
+      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

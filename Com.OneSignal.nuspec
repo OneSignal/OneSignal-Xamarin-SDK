@@ -42,6 +42,8 @@
         <file src="Com.OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
         
         <!--Xamarin.iOS Unified-->
-        <file src="Com.OneSignal.iOS\bin\Release\*OneSignal.*" target="lib\Xamarin.iOS10" />
+        <file src="Com.OneSignal.iOS\bin\$configuration$\*OneSignal.*" target="lib\Xamarin.iOS10" />
+        <file src="Com.OneSignal\bin\$configuration$\netstandard1.0\Com.OneSignal.pdb" target="lib\netstandard1.0\" />
+        <file src="Com.OneSignal.Abstractions\bin\$configuration$\netstandard1.0\Com.OneSignal.Abstractions.pdb" target="lib\netstandard1.0\" />
     </files>
 </package>
