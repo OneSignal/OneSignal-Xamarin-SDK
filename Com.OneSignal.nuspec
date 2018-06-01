@@ -45,6 +45,6 @@
         <file src="Com.OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
         
         <!--Xamarin.iOS Unified-->
-        <file src="Com.OneSignal.iOS\bin\$configuration$\*OneSignal.*" target="lib\Xamarin.iOS10" />
+        <file src="Com.OneSignal.iOS\bin\Release\*OneSignal.*" target="lib\Xamarin.iOS10" />
     </files>
 </package>

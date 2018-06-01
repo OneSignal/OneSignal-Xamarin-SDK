@@ -41,45 +41,6 @@
     <Reference Include="OneSignal.iOS.Binding">
       <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
     </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

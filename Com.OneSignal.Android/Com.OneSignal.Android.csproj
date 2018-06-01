@@ -43,18 +43,6 @@
     <Reference Include="OneSignal.Android.Binding">
       <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
     </Reference>
-    <Reference Include="OneSignal.Android.Binding">
-      <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.Android.Binding">
-      <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.Android.Binding">
-      <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.Android.Binding">
-      <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
