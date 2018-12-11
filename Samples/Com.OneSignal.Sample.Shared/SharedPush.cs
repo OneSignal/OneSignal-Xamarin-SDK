@@ -55,5 +55,13 @@ namespace Com.OneSignal.Sample.Shared
       public static void SetRequiresConsent(bool required) {
          OneSignal.Current.SetRequiresUserPrivacyConsent(required);
       }
+      
+      public static void SetExternalUserId(string externalId) {
+         OneSignal.Current.SetExternalUserId(externalId);
+      }
+      
+      public static void RemoveExternalUserId() {
+         OneSignal.Current.RemoveExternalUserId();
+      }
    }
 }

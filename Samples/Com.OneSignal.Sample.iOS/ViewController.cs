@@ -4,8 +4,19 @@ using UIKit;
 
 namespace Com.OneSignal.Sample.iOS
 {
-   public partial class ViewController : UIViewController
+   public class ExternalIdTextViewDelegate : UITextFieldDelegate
    {
+      public override bool ShouldReturn(UITextField textField)
+      {
+         textField.ResignFirstResponder();
+         return false;
+      }
+   }
+
+   public partial class ViewController : UIViewController 
+   {
+      ExternalIdTextViewDelegate textDelegate = new ExternalIdTextViewDelegate();
+
       protected ViewController(IntPtr handle) : base(handle)
       {
          // Note: this .ctor should not contain any initialization logic.
@@ -24,6 +35,10 @@ namespace Com.OneSignal.Sample.iOS
          };
 
          PrivacyConsentControl.SelectedSegment = SharedPush.UserDidProvideConsent() ? 1 : 0;
+
+         UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
+
+         externalIdField.Delegate = textDelegate;
       }
 
       public override void DidReceiveMemoryWarning()
@@ -35,6 +50,17 @@ namespace Com.OneSignal.Sample.iOS
       partial void ConsentChanged(UISegmentedControl sender)
       {
          SharedPush.ConsentStatusChanged(sender.SelectedSegment == 1);
+      }
+
+      partial void SetExternalUserId(UIButton sender)
+      {
+         UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
+         SharedPush.SetExternalUserId(externalIdField.Text);
+      }
+
+      partial void RemoveExternalUserId(UIButton sender)
+      {
+         SharedPush.RemoveExternalUserId();
       }
    }
 }

@@ -24,6 +24,14 @@ namespace Com.OneSignal.Sample.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void ConsentChanged (UIKit.UISegmentedControl sender);
 
+        [Action ("RemoveExternalUserId:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void RemoveExternalUserId (UIKit.UIButton sender);
+
+        [Action ("SetExternalUserId:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SetExternalUserId (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (Button != null) {

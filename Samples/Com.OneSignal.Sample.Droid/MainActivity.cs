@@ -37,6 +37,22 @@ namespace Com.OneSignal.Sample.Droid
          };
 
          consentButton.Checked = SharedPush.UserDidProvideConsent();
+
+         Button setExternalIdButton = FindViewById<Button>(Resource.Id.setExternalIdButton);
+
+         TextView externalIdField = FindViewById<TextView>(Resource.Id.externalIdField);
+         
+         setExternalIdButton.Click += delegate
+         {
+            SharedPush.SetExternalUserId(externalIdField.Text);
+         };
+
+         Button removeExternalIdButton = FindViewById<Button>(Resource.Id.removeExternalIdButton);
+
+         removeExternalIdButton.Click += delegate
+         {
+            SharedPush.RemoveExternalUserId();
+         };
       }
    }
 }
