@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,26 +23,60 @@
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="205" misplaced="YES">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="205">
                                 <rect key="frame" x="106" y="391" width="201" height="29"/>
                                 <segments>
                                     <segment title="No Consent"/>
                                     <segment title="Consent"/>
                                 </segments>
                                 <connections>
-                                    <action selector="ConsentChanged:" destination="BYZ-38-t0r" id="839" eventType="valueChanged"/>
+                                    <action selector="ConsentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="839"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1057" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="92" y="475" width="229" height="30"/>
+                                <state key="normal" title="Set External User ID"/>
+                                <connections>
+                                    <action selector="SetExternalUserId:" destination="BYZ-38-t0r" id="1068" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1059" translatesAutoresizingMaskIntoConstraints="NO" placeholder="External User ID" textAlignment="center" tag="3">
+                                <rect key="frame" x="106" y="437" width="201" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="ExternalIdChanged:" destination="BYZ-38-t0r" id="1069" eventType="valueChanged"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1070" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="92" y="513" width="229" height="30"/>
+                                <state key="normal" title="Remove External User ID"/>
+                                <connections>
+                                    <action selector="RemoveExternalUserId:" destination="BYZ-38-t0r" id="1072" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="333" id="415"/>
+                            <constraint firstItem="205" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="centerY" constant="23" id="416"/>
+                            <constraint firstItem="205" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX" id="417"/>
+                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="418"/>
+                            <constraint firstItem="205" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX" id="419"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HiD-uS-i16"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YgX-7e-bMc"/>
-                            <constraint id="415" firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="333"/>
-                            <constraint id="416" firstItem="205" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="centerY" constant="23"/>
-                            <constraint id="417" firstItem="205" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX"/>
-                            <constraint id="418" firstItem="oBE-Ac-vcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
-                            <constraint id="419" firstItem="205" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX"/>
+                            <constraint id="1060" firstItem="1059" firstAttribute="top" secondItem="205" secondAttribute="centerY" constant="32"/>
+                            <constraint id="1061" firstItem="1059" firstAttribute="centerY" secondItem="205" secondAttribute="centerY" constant="47"/>
+                            <constraint id="1062" firstItem="205" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
+                            <constraint id="1063" firstItem="1059" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="86"/>
+                            <constraint id="1064" firstAttribute="trailingMargin" secondItem="1059" secondAttribute="trailing" constant="87"/>
+                            <constraint id="1065" firstItem="1057" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72"/>
+                            <constraint id="1066" firstAttribute="trailingMargin" secondItem="1057" secondAttribute="trailing" constant="73"/>
+                            <constraint id="1067" firstItem="1057" firstAttribute="top" secondItem="1059" secondAttribute="bottom" constant="8"/>
+                            <constraint id="3433" firstItem="1070" firstAttribute="top" secondItem="1057" secondAttribute="bottom" constant="8"/>
+                            <constraint id="3434" firstItem="1070" firstAttribute="leading" secondItem="1057" secondAttribute="leading"/>
+                            <constraint id="3435" firstItem="1070" firstAttribute="trailing" secondItem="1057" secondAttribute="trailing"/>
                         </constraints>
                     </view>
                     <connections>

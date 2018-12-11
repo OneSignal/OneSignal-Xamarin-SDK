@@ -354,6 +354,16 @@ namespace Com.OneSignal.iOS
       [Static]
       [Export("setRequiresUserPrivacyConsent:")]
       void SetRequiresUserPrivacyConsent(bool required);
+
+      //+ (void)setExternalUserId(NSString *)externalId;
+      [Static]
+      [Export("setExternalUserId:")]
+      void SetExternalUserId(string externalId);
+
+      //+ (void)removeExternalUserId;
+      [Static]
+      [Export("removeExternalUserId")]
+      void RemoveExternalUserId();
 	}
 
 	partial interface Constants

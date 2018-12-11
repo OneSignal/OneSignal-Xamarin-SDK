@@ -244,6 +244,14 @@ namespace Com.OneSignal
       public override void SetRequiresUserPrivacyConsent(bool required) {
          iOS.OneSignal.SetRequiresUserPrivacyConsent(required);
       }
+      
+      public override void SetExternalUserId(string externalId) {
+         iOS.OneSignal.SetExternalUserId(externalId);
+      }
+      
+      public override void RemoveExternalUserId() {
+         iOS.OneSignal.RemoveExternalUserId();
+      }
 
       public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
       {

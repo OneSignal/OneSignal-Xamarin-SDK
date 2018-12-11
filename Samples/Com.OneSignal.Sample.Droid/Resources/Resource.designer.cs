@@ -357,23 +357,23 @@ namespace Com.OneSignal.Sample.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0018
-			public const int action0 = 2131427352;
-			
-			// aapt resource value: 0x7f0b0015
-			public const int action_container = 2131427349;
-			
 			// aapt resource value: 0x7f0b001c
-			public const int action_divider = 2131427356;
+			public const int action0 = 2131427356;
 			
-			// aapt resource value: 0x7f0b0016
-			public const int action_image = 2131427350;
+			// aapt resource value: 0x7f0b0019
+			public const int action_container = 2131427353;
 			
-			// aapt resource value: 0x7f0b0017
-			public const int action_text = 2131427351;
+			// aapt resource value: 0x7f0b0020
+			public const int action_divider = 2131427360;
 			
-			// aapt resource value: 0x7f0b0026
-			public const int actions = 2131427366;
+			// aapt resource value: 0x7f0b001a
+			public const int action_image = 2131427354;
+			
+			// aapt resource value: 0x7f0b001b
+			public const int action_text = 2131427355;
+			
+			// aapt resource value: 0x7f0b002a
+			public const int actions = 2131427370;
 			
 			// aapt resource value: 0x7f0b0006
 			public const int adjust_height = 2131427334;
@@ -390,32 +390,38 @@ namespace Com.OneSignal.Sample.Droid
 			// aapt resource value: 0x7f0b0010
 			public const int blocking = 2131427344;
 			
-			// aapt resource value: 0x7f0b0019
-			public const int cancel_action = 2131427353;
+			// aapt resource value: 0x7f0b001d
+			public const int cancel_action = 2131427357;
 			
-			// aapt resource value: 0x7f0b0021
-			public const int chronometer = 2131427361;
+			// aapt resource value: 0x7f0b0025
+			public const int chronometer = 2131427365;
+			
+			// aapt resource value: 0x7f0b0015
+			public const int consentSwitch = 2131427349;
 			
 			// aapt resource value: 0x7f0b000d
 			public const int dark = 2131427341;
 			
-			// aapt resource value: 0x7f0b0028
-			public const int end_padder = 2131427368;
+			// aapt resource value: 0x7f0b002c
+			public const int end_padder = 2131427372;
+			
+			// aapt resource value: 0x7f0b0016
+			public const int externalIdField = 2131427350;
 			
 			// aapt resource value: 0x7f0b0011
 			public const int forever = 2131427345;
 			
-			// aapt resource value: 0x7f0b0023
-			public const int icon = 2131427363;
-			
 			// aapt resource value: 0x7f0b0027
-			public const int icon_group = 2131427367;
+			public const int icon = 2131427367;
+			
+			// aapt resource value: 0x7f0b002b
+			public const int icon_group = 2131427371;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int icon_only = 2131427337;
 			
-			// aapt resource value: 0x7f0b0022
-			public const int info = 2131427362;
+			// aapt resource value: 0x7f0b0026
+			public const int info = 2131427366;
 			
 			// aapt resource value: 0x7f0b0012
 			public const int italic = 2131427346;
@@ -429,8 +435,8 @@ namespace Com.OneSignal.Sample.Droid
 			// aapt resource value: 0x7f0b0001
 			public const int line3 = 2131427329;
 			
-			// aapt resource value: 0x7f0b001b
-			public const int media_actions = 2131427355;
+			// aapt resource value: 0x7f0b001f
+			public const int media_actions = 2131427359;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int myButton = 2131427348;
@@ -441,26 +447,32 @@ namespace Com.OneSignal.Sample.Droid
 			// aapt resource value: 0x7f0b0013
 			public const int normal = 2131427347;
 			
-			// aapt resource value: 0x7f0b0025
-			public const int notification_background = 2131427365;
+			// aapt resource value: 0x7f0b0029
+			public const int notification_background = 2131427369;
 			
-			// aapt resource value: 0x7f0b001e
-			public const int notification_main_column = 2131427358;
+			// aapt resource value: 0x7f0b0022
+			public const int notification_main_column = 2131427362;
 			
-			// aapt resource value: 0x7f0b001d
-			public const int notification_main_column_container = 2131427357;
+			// aapt resource value: 0x7f0b0021
+			public const int notification_main_column_container = 2131427361;
 			
-			// aapt resource value: 0x7f0b0024
-			public const int right_icon = 2131427364;
+			// aapt resource value: 0x7f0b0018
+			public const int removeExternalIdButton = 2131427352;
 			
-			// aapt resource value: 0x7f0b001f
-			public const int right_side = 2131427359;
+			// aapt resource value: 0x7f0b0028
+			public const int right_icon = 2131427368;
+			
+			// aapt resource value: 0x7f0b0023
+			public const int right_side = 2131427363;
+			
+			// aapt resource value: 0x7f0b0017
+			public const int setExternalIdButton = 2131427351;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int standard = 2131427338;
 			
-			// aapt resource value: 0x7f0b001a
-			public const int status_bar_latest_event_content = 2131427354;
+			// aapt resource value: 0x7f0b001e
+			public const int status_bar_latest_event_content = 2131427358;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int tag_transition_group = 2131427330;
@@ -471,8 +483,8 @@ namespace Com.OneSignal.Sample.Droid
 			// aapt resource value: 0x7f0b0004
 			public const int text2 = 2131427332;
 			
-			// aapt resource value: 0x7f0b0020
-			public const int time = 2131427360;
+			// aapt resource value: 0x7f0b0024
+			public const int time = 2131427364;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int title = 2131427333;
@@ -493,14 +505,14 @@ namespace Com.OneSignal.Sample.Droid
 		public partial class Integer
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int cancel_button_image_alpha = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int cancel_button_image_alpha = 2131099649;
 			
-			// aapt resource value: 0x7f050000
-			public const int google_play_services_version = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int google_play_services_version = 2131099648;
 			
-			// aapt resource value: 0x7f050002
-			public const int status_bar_notification_info_maxnum = 2131034114;
+			// aapt resource value: 0x7f060002
+			public const int status_bar_notification_info_maxnum = 2131099650;
 			
 			static Integer()
 			{
@@ -592,65 +604,68 @@ namespace Com.OneSignal.Sample.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060013
-			public const int app_name = 2131099667;
+			// aapt resource value: 0x7f050014
+			public const int app_name = 2131034132;
 			
-			// aapt resource value: 0x7f060001
-			public const int common_google_play_services_enable_button = 2131099649;
+			// aapt resource value: 0x7f050002
+			public const int common_google_play_services_enable_button = 2131034114;
 			
-			// aapt resource value: 0x7f060002
-			public const int common_google_play_services_enable_text = 2131099650;
+			// aapt resource value: 0x7f050003
+			public const int common_google_play_services_enable_text = 2131034115;
 			
-			// aapt resource value: 0x7f060003
-			public const int common_google_play_services_enable_title = 2131099651;
+			// aapt resource value: 0x7f050004
+			public const int common_google_play_services_enable_title = 2131034116;
 			
-			// aapt resource value: 0x7f060004
-			public const int common_google_play_services_install_button = 2131099652;
+			// aapt resource value: 0x7f050005
+			public const int common_google_play_services_install_button = 2131034117;
 			
-			// aapt resource value: 0x7f060005
-			public const int common_google_play_services_install_text = 2131099653;
+			// aapt resource value: 0x7f050006
+			public const int common_google_play_services_install_text = 2131034118;
 			
-			// aapt resource value: 0x7f060006
-			public const int common_google_play_services_install_title = 2131099654;
+			// aapt resource value: 0x7f050007
+			public const int common_google_play_services_install_title = 2131034119;
 			
-			// aapt resource value: 0x7f060007
-			public const int common_google_play_services_notification_ticker = 2131099655;
+			// aapt resource value: 0x7f050008
+			public const int common_google_play_services_notification_ticker = 2131034120;
 			
-			// aapt resource value: 0x7f060000
-			public const int common_google_play_services_unknown_issue = 2131099648;
+			// aapt resource value: 0x7f050001
+			public const int common_google_play_services_unknown_issue = 2131034113;
 			
-			// aapt resource value: 0x7f060008
-			public const int common_google_play_services_unsupported_text = 2131099656;
+			// aapt resource value: 0x7f050009
+			public const int common_google_play_services_unsupported_text = 2131034121;
 			
-			// aapt resource value: 0x7f060009
-			public const int common_google_play_services_update_button = 2131099657;
+			// aapt resource value: 0x7f05000a
+			public const int common_google_play_services_update_button = 2131034122;
 			
-			// aapt resource value: 0x7f06000a
-			public const int common_google_play_services_update_text = 2131099658;
+			// aapt resource value: 0x7f05000b
+			public const int common_google_play_services_update_text = 2131034123;
 			
-			// aapt resource value: 0x7f06000b
-			public const int common_google_play_services_update_title = 2131099659;
+			// aapt resource value: 0x7f05000c
+			public const int common_google_play_services_update_title = 2131034124;
 			
-			// aapt resource value: 0x7f06000c
-			public const int common_google_play_services_updating_text = 2131099660;
+			// aapt resource value: 0x7f05000d
+			public const int common_google_play_services_updating_text = 2131034125;
 			
-			// aapt resource value: 0x7f06000d
-			public const int common_google_play_services_wear_update_text = 2131099661;
+			// aapt resource value: 0x7f05000e
+			public const int common_google_play_services_wear_update_text = 2131034126;
 			
-			// aapt resource value: 0x7f06000e
-			public const int common_open_on_phone = 2131099662;
+			// aapt resource value: 0x7f05000f
+			public const int common_open_on_phone = 2131034127;
 			
-			// aapt resource value: 0x7f06000f
-			public const int common_signin_button_text = 2131099663;
+			// aapt resource value: 0x7f050010
+			public const int common_signin_button_text = 2131034128;
 			
-			// aapt resource value: 0x7f060010
-			public const int common_signin_button_text_long = 2131099664;
+			// aapt resource value: 0x7f050011
+			public const int common_signin_button_text_long = 2131034129;
 			
-			// aapt resource value: 0x7f060012
-			public const int hello = 2131099666;
+			// aapt resource value: 0x7f050000
+			public const int gcm_fallback_notification_channel_label = 2131034112;
 			
-			// aapt resource value: 0x7f060011
-			public const int status_bar_notification_info_overflow = 2131099665;
+			// aapt resource value: 0x7f050013
+			public const int hello = 2131034131;
+			
+			// aapt resource value: 0x7f050012
+			public const int status_bar_notification_info_overflow = 2131034130;
 			
 			static String()
 			{
