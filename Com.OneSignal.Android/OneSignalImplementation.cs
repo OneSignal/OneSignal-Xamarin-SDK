@@ -149,5 +149,14 @@ namespace Com.OneSignal
       {
          Android.OneSignal.SetLocationShared(shared);
       }
+      
+      public override void SetExternalUserId(string externalId) 
+      {
+         Android.OneSignal.SetExternalUserId(externalId);
+      }
+      
+      public override void RemoveExternalUserId() {
+         Android.OneSignal.RemoveExternalUserId();
+      }
    }
 }

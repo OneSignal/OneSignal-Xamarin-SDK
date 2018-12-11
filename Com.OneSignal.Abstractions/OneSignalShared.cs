@@ -90,5 +90,9 @@ namespace Com.OneSignal.Abstractions
       public abstract void SetRequiresUserPrivacyConsent(bool required);
 
       public abstract void SetLocationShared(bool shared);
+
+      public abstract void SetExternalUserId(string externalId);
+
+      public abstract void RemoveExternalUserId();
 	}
 }

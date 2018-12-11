@@ -34,6 +34,9 @@ namespace Com.OneSignal.Abstractions
       void UserDidProvidePrivacyConsent(bool granted);
       bool RequiresUserPrivacyConsent();
       void SetRequiresUserPrivacyConsent(bool required);
+
+      void SetExternalUserId(string externalId);
+      void RemoveExternalUserId();
    }
 }
  
