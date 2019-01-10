@@ -38,9 +38,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -40,9 +40,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="OneSignal.Android.Binding">
-      <HintPath>..\OneSignal.Android.Binding\bin\Release\OneSignal.Android.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
