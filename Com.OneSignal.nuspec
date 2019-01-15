@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Com.OneSignal</id>
-        <version>3.2.2</version>
+        <version>3.3.0-beta</version>
         <title>OneSignal SDK for Xamarin</title>
         <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
@@ -17,7 +17,7 @@
             <group targetFramework="MonoAndroid9.0">
                 <dependency id="Xamarin.Android.Support.v4" version="[28.0.0, 29.0.0)" />
                 <dependency id="Xamarin.Android.Support.CustomTabs" version="[28.0.0, 29.0.0)" />
-                <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 60.1143.0)" />
+                <dependency id="Xamarin.GooglePlayServices.Gcm" version="[42.1021.1, 71.0.0)" />
             </group>
             <group targetFramework="MonoAndroid8.1">
                 <dependency id="Xamarin.Android.Support.v4" version="[27.0.0, 27.2.0)" />
