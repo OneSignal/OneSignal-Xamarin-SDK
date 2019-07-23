@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Com.OneSignal.Abstractions
 {
@@ -52,13 +53,12 @@ namespace Com.OneSignal.Abstractions
 
       public abstract void SetEmail(string email, string emailAuthCode, OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure);
 
-
       public abstract void SetEmail(string email, OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure);
 
       public abstract void LogoutEmail(OnSetEmailSuccess inSetEmailSuccess, OnSetEmailFailure inSetEmailFailure);
 
       // Called from the native SDK - Called when a push notification received.
-      public void onPushNotificationReceived(OSNotification notification)
+      public void OnPushNotificationReceived(OSNotification notification)
       {
          if (builder._notificationReceivedDelegate != null)
          {
@@ -67,11 +67,19 @@ namespace Com.OneSignal.Abstractions
       }
 
       // Called from the native SDK - Called when a push notification is opened by the user
-      public void onPushNotificationOpened(OSNotificationOpenedResult result)
+      public void OnPushNotificationOpened(OSNotificationOpenedResult result)
       {
          if (builder._notificationOpenedDelegate != null)
          {
             builder._notificationOpenedDelegate(result);
+         }
+      }
+
+      public void OnInAppMessageClicked(OSInAppMessageAction action)
+      {
+         if (builder._inAppMessageClickedDelegate != null)
+         {
+            builder._inAppMessageClickedDelegate(action);
          }
       }
 
@@ -94,5 +102,17 @@ namespace Com.OneSignal.Abstractions
       public abstract void SetExternalUserId(string externalId);
 
       public abstract void RemoveExternalUserId();
+
+      public abstract void AddTrigger(string key, object value);
+
+      public abstract void AddTriggers(Dictionary<string, object> triggers);
+
+      public abstract void RemoveTriggerForKey(string key);
+
+      public abstract void RemoveTriggersForKeys(List<String> keys);
+
+      public abstract object GetTriggerValueForKey(string key);
+
+      public abstract void PauseInAppMessages(bool pause);
 	}
 }

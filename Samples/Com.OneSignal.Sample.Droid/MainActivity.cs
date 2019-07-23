@@ -2,6 +2,7 @@
 using Android.Widget;
 using Android.OS;
 using Com.OneSignal.Sample.Shared;
+using System;
 
 namespace Com.OneSignal.Sample.Droid
 {
@@ -53,6 +54,12 @@ namespace Com.OneSignal.Sample.Droid
          {
             SharedPush.RemoveExternalUserId();
          };
+      }
+
+      private void SetAltText(String text)
+      {
+         TextView altTextView = FindViewById<TextView>(Resource.Id.altText);
+         altTextView.Text = text;
       }
    }
 }

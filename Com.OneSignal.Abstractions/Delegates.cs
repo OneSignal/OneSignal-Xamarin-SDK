@@ -11,6 +11,10 @@ namespace Com.OneSignal.Abstractions
    // result = The Notification open result describing : 1. The notification opened 2. The action taken by the user
    public delegate void NotificationOpened(OSNotificationOpenedResult result);
 
+   // InAppMessageClicked - Delegate is called when an IAM element is clicked
+   // action = The IAM click action containing some attributes useful to the user
+   public delegate void InAppMessageClicked(OSInAppMessageAction action);
+
    public delegate void IdsAvailableCallback(string playerID, string pushToken);
    public delegate void TagsReceived(Dictionary<string, object> tags);
 
