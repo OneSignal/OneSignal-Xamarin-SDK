@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Android.App;
+﻿using Android.App;
 using System;
 using Com.OneSignal.Abstractions;
+using System.Collections.Generic;
 
 namespace Com.OneSignal
 {
@@ -21,6 +21,7 @@ namespace Com.OneSignal
          }
 
          Android.OneSignal.SdkType = "xam";
+         Android.OneSignal.CurrentOrNewInitBuilder.SetInAppMessageClickHandler(new InAppMessageClickHandler());
          Android.OneSignal.Init(Application.Context, "", appid, new NotificationOpenedHandler(), new NotificationReceivedHandler());
          Android.OneSignal.SetInFocusDisplaying(option);
       }
@@ -157,6 +158,38 @@ namespace Com.OneSignal
       
       public override void RemoveExternalUserId() {
          Android.OneSignal.RemoveExternalUserId();
+      }
+
+      public override void AddTrigger(string key, object value)
+      {
+         Dictionary<string, object> trigger = new Dictionary<string, object>();
+         trigger.Add(key, value);
+         AddTriggers(trigger);
+      }
+
+      public override void AddTriggers(Dictionary<string, object> triggers)
+      {
+         Android.OneSignal.AddTriggersFromJsonString(Json.Serialize(triggers));
+      }
+
+      public override void RemoveTriggerForKey(string key)
+      {
+         Android.OneSignal.RemoveTriggerForKey(key);
+      }
+
+      public override void RemoveTriggersForKeys(List<string> keys)
+      {
+         Android.OneSignal.RemoveTriggersForKeys(keys);
+      }
+
+      public override object GetTriggerValueForKey(string key)
+      {
+         return Android.OneSignal.GetTriggerValueForKey(key);
+      }
+
+      public override void PauseInAppMessages(bool pause)
+      {
+         Android.OneSignal.PauseInAppMessages(pause);
       }
    }
 }

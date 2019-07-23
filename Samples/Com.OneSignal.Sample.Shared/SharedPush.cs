@@ -12,7 +12,7 @@ namespace Com.OneSignal.Sample.Shared
       // Called on iOS and Android to initialize OneSignal
       public static void Initialize()
       {
-         OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.WARN);
+         OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.NONE);
 
          //if you want to require user consent, change this to true
          SharedPush.SetRequiresConsent(false);
@@ -29,12 +29,47 @@ namespace Com.OneSignal.Sample.Shared
            {
               Debug.WriteLine("HandleNotificationReceived: {0}", notification.payload.body);
            })
+           .HandleInAppMessageClicked((action) =>
+           {
+              // Example IAM click handling for IAM elements
+              Debug.WriteLine("HandledInAppMessageClicked: {0}", action.clickName);
+           })
            .EndInit();
 
          OneSignal.Current.IdsAvailable((playerID, pushToken) =>
          {
             Debug.WriteLine("OneSignal.Current.IdsAvailable:D playerID: {0}, pushToken: {1}", playerID, pushToken);
          });
+
+         OneSignalInAppMessagingDemo();
+      }
+
+      private static void OneSignalInAppMessagingDemo()
+      {
+         // Add a trigger to show an IAM
+         OneSignal.Current.AddTrigger("trigger_1", "one");
+
+         // Get the trigger value for a trigger key
+         object value = OneSignal.Current.GetTriggerValueForKey("trigger_1");
+         Debug.WriteLine("trigger_1 value: " + value);
+
+         // Add multiple triggers at once
+         Dictionary<string, object> triggers = new Dictionary<string, object>();
+         triggers.Add("trigger_2", "two");
+         triggers.Add("trigger_3", "three");
+         OneSignal.Current.AddTriggers(triggers);
+
+         // Remove a trigger
+         OneSignal.Current.RemoveTriggerForKey("trigger_2");
+
+         // Remove several triggers at once
+         List<string> removeKeys = new List<string>();
+         removeKeys.Add("trigger_1");
+         removeKeys.Add("trigger_3");
+         OneSignal.Current.RemoveTriggersForKeys(removeKeys);
+
+         // Toggle showing of IAMs
+         OneSignal.Current.PauseInAppMessages(false);
       }
 
       // Just for iOS.

@@ -37,6 +37,13 @@ namespace Com.OneSignal.Abstractions
 
       void SetExternalUserId(string externalId);
       void RemoveExternalUserId();
+
+      void AddTrigger(string key, object value);
+      void AddTriggers(Dictionary<string, object> triggers);
+      void RemoveTriggerForKey(string key);
+      void RemoveTriggersForKeys(List<String> keys);
+      object GetTriggerValueForKey(string key);
+      void PauseInAppMessages(bool pause);
    }
 }
  

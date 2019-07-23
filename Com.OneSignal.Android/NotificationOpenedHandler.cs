@@ -8,7 +8,7 @@ namespace Com.OneSignal
     {
         public void NotificationOpened(Android.OSNotificationOpenResult result)
         {
-            (OneSignal.Current as OneSignalImplementation).onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+            (OneSignal.Current as OneSignalImplementation).OnPushNotificationOpened(OSNotificationOpenedResultToNative(result));
         }
 
         public static OSNotificationOpenedResult OSNotificationOpenedResultToNative(Android.OSNotificationOpenResult result)

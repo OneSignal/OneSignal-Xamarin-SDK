@@ -230,8 +230,6 @@ namespace Com.OneSignal
                 }
              });
       }
-      
-      
 
       public override void UserDidProvidePrivacyConsent(bool granted) {
          iOS.OneSignal.ConsentGranted(granted);
@@ -264,11 +262,11 @@ namespace Com.OneSignal
 
       public void NotificationOpenedHandler(iOS.OSNotificationOpenedResult result)
       {
-         onPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+         OnPushNotificationOpened(OSNotificationOpenedResultToNative(result));
       }
       public void NotificationReceivedHandler(iOS.OSNotification notification)
       {
-         onPushNotificationReceived(OSNotificationToNative(notification));
+         OnPushNotificationReceived(OSNotificationToNative(notification));
       }
 
       [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
@@ -295,5 +293,37 @@ namespace Com.OneSignal
       {
          iOS.OneSignal.ServiceExtensionTimeWillExpireRequest(request, replacementContent);
       }
+
+      public override void AddTrigger(string key, object value)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTrigger - Not yet implemented on iOS");
+      }
+
+      public override void AddTriggers(Dictionary<string, object> triggers)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTriggers - Not yet implemented on iOS");
+      }
+
+      public override void RemoveTriggerForKey(string key)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggerForKey - Not yet implemented on iOS");
+      }
+
+      public override void RemoveTriggersForKeys(List<string> keys)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggersForKeys - Not yet implemented on iOS");
+      }
+
+      public override object GetTriggerValueForKey(string key)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: GetTriggerValueForKey - Not yet implemented on iOS");
+         return null;
+      }
+
+      public override void PauseInAppMessages(bool pause)
+      {
+         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: PauseInAppMessages - Not yet implemented on iOS");
+      }
+
    }
 }

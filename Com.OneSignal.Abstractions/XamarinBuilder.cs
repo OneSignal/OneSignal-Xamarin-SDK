@@ -10,6 +10,7 @@ namespace Com.OneSignal.Abstractions
       public OSInFocusDisplayOption displayOption = OSInFocusDisplayOption.InAppAlert;
       public NotificationReceived _notificationReceivedDelegate;
       public NotificationOpened _notificationOpenedDelegate;
+      public InAppMessageClicked _inAppMessageClickedDelegate;
       OneSignalShared mOneSignalShared;
 
       internal XamarinBuilder(string appId, OneSignalShared oneSignalShared)
@@ -29,6 +30,12 @@ namespace Com.OneSignal.Abstractions
       public XamarinBuilder HandleNotificationOpened(NotificationOpened inNotificationOpenedDelegate)
       {
          _notificationOpenedDelegate = inNotificationOpenedDelegate;
+         return this;
+      }
+
+       public XamarinBuilder HandleInAppMessageClicked(InAppMessageClicked inAppMessageClickedDelegate)
+      {
+         _inAppMessageClickedDelegate = inAppMessageClickedDelegate;
          return this;
       }
 
