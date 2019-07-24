@@ -18,13 +18,11 @@
     <Optimize></Optimize>
     <DefineConstants></DefineConstants>
     <ConsolePause>true</ConsolePause>
-    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <NoWarn></NoWarn>
-    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
     <AllowUnsafeBlocks></AllowUnsafeBlocks>
     <CheckForOverflowUnderflow></CheckForOverflowUnderflow>
   </PropertyGroup>
