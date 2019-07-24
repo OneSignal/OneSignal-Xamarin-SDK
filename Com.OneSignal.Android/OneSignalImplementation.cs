@@ -104,6 +104,11 @@ namespace Com.OneSignal
          Android.OneSignal.PromptLocation();
       }
 
+      public override void UnsubscribeWhenNotificationsAreDisabled(bool set)
+      {
+         Android.OneSignal.CurrentOrNewInitBuilder.UnsubscribeWhenNotificationsAreDisabled(set);
+      }
+
 		public override void ClearAndroidOneSignalNotifications()
 		{
 			Android.OneSignal.ClearOneSignalNotifications();

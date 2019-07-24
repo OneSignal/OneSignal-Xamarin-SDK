@@ -21,6 +21,7 @@ namespace Com.OneSignal.Sample.Shared
             { IOSSettings.kOSSettingsKeyAutoPrompt, false },
             { IOSSettings.kOSSettingsKeyInAppLaunchURL, true } })
            .InFocusDisplaying(OSInFocusDisplayOption.Notification)
+           .UnsubscribeWhenNotificationsAreDisabled(true)
            .HandleNotificationOpened((result) =>
             {
                Debug.WriteLine("HandleNotificationOpened: {0}", result.notification.payload.body);

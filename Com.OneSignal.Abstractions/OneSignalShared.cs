@@ -25,6 +25,7 @@ namespace Com.OneSignal.Abstractions
       public abstract void DeleteTags(IList<string> keys);
       public abstract void SetSubscription(bool enable);
       public abstract void PromptLocation();
+      public abstract void UnsubscribeWhenNotificationsAreDisabled(bool set);
 
       public abstract void ClearAndroidOneSignalNotifications();
 
@@ -75,6 +76,7 @@ namespace Com.OneSignal.Abstractions
          }
       }
 
+      // Called from native SDK - Called when a IAM element is clicked by the user
       public void OnInAppMessageClicked(OSInAppMessageAction action)
       {
          if (builder._inAppMessageClickedDelegate != null)
