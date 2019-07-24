@@ -19,20 +19,21 @@ namespace Com.OneSignal.Abstractions
          mOneSignalShared = oneSignalShared;
       }
 
-      // inNotificationReceivedDelegate   = Calls this delegate when a notification is received.
+      // inNotificationReceivedDelegate   = Calls this delegate when a notification is received
       public XamarinBuilder HandleNotificationReceived(NotificationReceived inNotificationReceivedDelegate)
       {
          _notificationReceivedDelegate = inNotificationReceivedDelegate;
          return this;
       }
 
-      // inNotificationOpenedDelegate     = Calls this delegate when a push notification is opened.
+      // inNotificationOpenedDelegate     = Calls this delegate when a push notification is opened
       public XamarinBuilder HandleNotificationOpened(NotificationOpened inNotificationOpenedDelegate)
       {
          _notificationOpenedDelegate = inNotificationOpenedDelegate;
          return this;
       }
 
+      // inAppMessageClickedDelegate      = Calls this delegate when an IAM element click occurs
        public XamarinBuilder HandleInAppMessageClicked(InAppMessageClicked inAppMessageClickedDelegate)
       {
          _inAppMessageClickedDelegate = inAppMessageClickedDelegate;
@@ -42,6 +43,12 @@ namespace Com.OneSignal.Abstractions
       public XamarinBuilder InFocusDisplaying(OSInFocusDisplayOption display)
       {
          displayOption = display;
+         return this;
+      }
+
+      public XamarinBuilder UnsubscribeWhenNotificationsAreDisabled(bool set)
+      {
+         mOneSignalShared.UnsubscribeWhenNotificationsAreDisabled(set);
          return this;
       }
 
