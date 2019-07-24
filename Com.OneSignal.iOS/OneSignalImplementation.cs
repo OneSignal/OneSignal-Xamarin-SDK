@@ -152,6 +152,11 @@ namespace Com.OneSignal
 			Debug.WriteLine("ClearAndroidOneSignalNotifications() is an android-only function, and is not implemented in iOS.");
 		}
 
+      public override void UnsubscribeWhenNotificationsAreDisabled(bool set)
+      {
+         Debug.WriteLine("UnsubscribeWhenNotificationsAreDisabled() is an android-only function, and is not implemented in iOS.");
+      }
+
 		public override void IdsAvailable(IdsAvailableCallback idsAvailable)
 		{
 			if (idsAvailable == null)
@@ -324,6 +329,5 @@ namespace Com.OneSignal
       {
          iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: PauseInAppMessages - Not yet implemented on iOS");
       }
-
    }
 }
