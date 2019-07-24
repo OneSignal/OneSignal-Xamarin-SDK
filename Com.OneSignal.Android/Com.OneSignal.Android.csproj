@@ -52,6 +52,7 @@
     <Compile Include="NotificationOpenedHandler.cs" />
     <Compile Include="NotificationReceivedHandler.cs" />
     <Compile Include="EmailUpdateHandler.cs" />
+    <Compile Include="InAppMessageClickHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
