@@ -35,6 +35,6 @@ To make it easier to become familiar with our SDK, we have included a sample pro
 * Build and deploy applications to your devices and send a test notification via the OneSignal dashboard.
 
 #### Supports:
-* iOS 7 - 11.3
-* Android 4.0.3 (API Level 15) through 8.1 (API Level 27), and derivatives such as Amazon ADM
+* iOS 7 - 13
+* Android 4.0.3 (API Level 15) through 9 (API Level 28)
 * Xamarin Forms and Single View projects
