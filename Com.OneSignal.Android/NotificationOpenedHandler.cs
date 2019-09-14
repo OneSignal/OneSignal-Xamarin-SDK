@@ -37,7 +37,7 @@ namespace Com.OneSignal
             notification.shown = notif.Shown;
             notification.androidNotificationId = notif.AndroidNotificationId;
             notif.GroupedNotifications = notif.GroupedNotifications;
-            notif.IsAppInFocus = notif.IsAppInFocus;
+            notification.isAppInFocus = notif.IsAppInFocus;
 
             notification.payload = new OSNotificationPayload();
 
