@@ -301,33 +301,40 @@ namespace Com.OneSignal
 
       public override void AddTrigger(string key, object value)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTrigger - Not yet implemented on iOS");
+         iOS.OneSignal.AddTrigger(key, Foundation.NSObject.FromObject(value));
       }
 
       public override void AddTriggers(Dictionary<string, object> triggers)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTriggers - Not yet implemented on iOS");
+         Foundation.NSMutableDictionary<Foundation.NSString, Foundation.NSObject> triggersDictionary = new Foundation.NSMutableDictionary<Foundation.NSString, Foundation.NSObject>();
+         foreach (KeyValuePair<string, object> element in triggers)
+         {
+            triggersDictionary.Add(Foundation.NSString.FromData(element.Key, Foundation.NSStringEncoding.UTF8), Foundation.NSObject.FromObject(element.Value));
+         }
+         iOS.OneSignal.AddTriggers(Foundation.NSDictionary.FromDictionary(triggersDictionary));
       }
 
       public override void RemoveTriggerForKey(string key)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggerForKey - Not yet implemented on iOS");
+         iOS.OneSignal.RemoveTriggerForKey(key);
       }
 
       public override void RemoveTriggersForKeys(List<string> keys)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggersForKeys - Not yet implemented on iOS");
+         string[] auxiliarArray = new string[keys.Count];
+         keys.CopyTo(auxiliarArray);
+         Foundation.NSArray keysArray = Foundation.NSArray.FromObjects(auxiliarArray);
+         iOS.OneSignal.RemoveTriggersForKeys(keysArray);
       }
 
       public override object GetTriggerValueForKey(string key)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: GetTriggerValueForKey - Not yet implemented on iOS");
-         return null;
+         return iOS.OneSignal.GetTriggerValueForKey(key);
       }
 
       public override void PauseInAppMessages(bool pause)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: PauseInAppMessages - Not yet implemented on iOS");
+         iOS.OneSignal.PauseInAppMessages(pause);
       }
    }
 }

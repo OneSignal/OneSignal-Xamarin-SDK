@@ -5,8 +5,9 @@ using UserNotifications;
 
 namespace Com.OneSignal.iOS
 {
-	// @interface OSNotificationAction : NSObject
-	[BaseType (typeof(NSObject))]
+
+   // @interface OSNotificationAction : NSObject
+   [BaseType (typeof(NSObject))]
 	interface OSNotificationAction
 	{
 		// @property (readonly) OSNotificationActionType type;
@@ -364,9 +365,39 @@ namespace Com.OneSignal.iOS
       [Static]
       [Export("removeExternalUserId")]
       void RemoveExternalUserId();
-	}
 
-	partial interface Constants
+      //+ (void)addTrigger:(NSString *)key withValue:(id)value;
+      [Static]
+      [Export("addTrigger:withValue:")]
+      void AddTrigger(string key, NSObject value);
+
+      //+ addTriggers:(NSDictionary<NSString *, id> *)triggers;
+      [Static]
+      [Export("addTriggers:")]
+      void AddTriggers(NSDictionary triggers);
+
+      //+ (void)removeTriggerForKey:(NSString *)key;
+      [Static]
+      [Export("removeTriggerForKey:")]
+      void RemoveTriggerForKey(string key);
+
+      //+ (void) removeTriggersForKeys:(NSArray<NSString*>*) keys;
+      [Static]
+      [Export("removeTriggersForKeys:")]
+      void RemoveTriggersForKeys(NSArray keys);
+
+      //+ (id)getTriggerValueForKey:(NSString *)key
+      [Static]
+      [Export("getTriggerValueForKey:")]
+      NSObject GetTriggerValueForKey(string key);
+
+      //+ (void)pauseInAppMessages:(BOOL)pause
+      [Static]
+      [Export("pauseInAppMessages:")]
+      void PauseInAppMessages(bool pause);
+   }
+
+   partial interface Constants
 	{
 		// extern NSString *const ONESIGNAL_VERSION;
 		[Field ("ONESIGNAL_VERSION", "__Internal")]
