@@ -8,18 +8,19 @@ using OSNotificationPayload = Com.OneSignal.Abstractions.OSNotificationPayload;
 using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption;
 using System.Diagnostics;
 using UserNotifications;
+using Foundation;
 
 namespace Com.OneSignal
 {
    public class OneSignalImplementation : OneSignalShared, IOneSignal
    {
-      public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict)
+      public static Dictionary<string, object> NSDictToPureDict(NSDictionary nsDict)
       {
          if (nsDict == null)
             return null;
-         Foundation.NSError error;
-         Foundation.NSData jsonData = Foundation.NSJsonSerialization.Serialize(nsDict, 0, out error);
-         Foundation.NSString jsonNSString = Foundation.NSString.FromData(jsonData, Foundation.NSStringEncoding.UTF8);
+         NSError error;
+         NSData jsonData = NSJsonSerialization.Serialize(nsDict, 0, out error);
+         NSString jsonNSString = NSString.FromData(jsonData, NSStringEncoding.UTF8);
          string jsonString = jsonNSString.ToString();
          return Json.Deserialize(jsonString) as Dictionary<string, object>;
       }
@@ -52,7 +53,7 @@ namespace Com.OneSignal
          {
             for (int i = 0; i < (int)notif.Payload.ActionButtons.Count; ++i)
             {
-               Foundation.NSDictionary element = notif.Payload.ActionButtons.GetItem<Foundation.NSDictionary>((uint)i);
+               NSDictionary element = notif.Payload.ActionButtons.GetItem<NSDictionary>((uint)i);
                notification.payload.actionButtons.Add(NSDictToPureDict(element));
             }
          }
@@ -60,9 +61,9 @@ namespace Com.OneSignal
          notification.payload.additionalData = new Dictionary<string, object>();
          if (notif.Payload.AdditionalData != null)
          {
-            foreach (KeyValuePair<Foundation.NSObject, Foundation.NSObject> element in notif.Payload.AdditionalData)
+            foreach (KeyValuePair<NSObject, NSObject> element in notif.Payload.AdditionalData)
             {
-               notification.payload.additionalData.Add((Foundation.NSString)element.Key, element.Value);
+               notification.payload.additionalData.Add((NSString)element.Key, element.Value);
             }
          }
 
@@ -100,12 +101,12 @@ namespace Com.OneSignal
          var convertedVisualLevel = (iOS.OneSLogLevel)((int)visualLevel);
 
          iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
-         var dict = new Foundation.NSDictionary("kOSSettingsKeyInAppLaunchURL", new Foundation.NSNumber(inAppLaunchURLs),
-                                                "kOSSettingsKeyAutoPrompt", new Foundation.NSNumber(autoPrompt),
-                                                "kOSSettingsKeyInFocusDisplayOption", new Foundation.NSNumber((int)displayOption)
+         var dict = new NSDictionary("kOSSettingsKeyInAppLaunchURL", new NSNumber(inAppLaunchURLs),
+                                                "kOSSettingsKeyAutoPrompt", new NSNumber(autoPrompt),
+                                                "kOSSettingsKeyInFocusDisplayOption", new NSNumber((int)displayOption)
                                                );
          iOS.OneSignal.SetMSDKType("xam");
-         iOS.OneSignal.InitWithLaunchOptions(new Foundation.NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
+         iOS.OneSignal.InitWithLaunchOptions(new NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
 
       }
 
@@ -139,10 +140,10 @@ namespace Com.OneSignal
 
       public override void DeleteTags(IList<string> keys)
       {
-         Foundation.NSObject[] objs = new Foundation.NSObject[keys.Count];
+         NSObject[] objs = new NSObject[keys.Count];
          for (int i = 0; i < keys.Count; i++)
          {
-            objs[i] = (Foundation.NSString)keys[i];
+            objs[i] = (NSString)keys[i];
          }
          iOS.OneSignal.DeleteTags(objs);
       }
@@ -301,17 +302,19 @@ namespace Com.OneSignal
 
       public override void AddTrigger(string key, object value)
       {
-         iOS.OneSignal.AddTrigger(key, Foundation.NSObject.FromObject(value));
+         iOS.OneSignal.AddTrigger(key, NSObject.FromObject(value));
       }
 
       public override void AddTriggers(Dictionary<string, object> triggers)
       {
-         Foundation.NSMutableDictionary<Foundation.NSString, Foundation.NSObject> triggersDictionary = new Foundation.NSMutableDictionary<Foundation.NSString, Foundation.NSObject>();
-         foreach (KeyValuePair<string, object> element in triggers)
+         var triggersDictionary = new NSMutableDictionary<NSString, NSObject>();
+         foreach (var element in triggers)
          {
-            triggersDictionary.Add(Foundation.NSString.FromData(element.Key, Foundation.NSStringEncoding.UTF8), Foundation.NSObject.FromObject(element.Value));
+            triggersDictionary.Add(
+               NSString.FromData(element.Key, NSStringEncoding.UTF8),
+               NSObject.FromObject(element.Value));
          }
-         iOS.OneSignal.AddTriggers(Foundation.NSDictionary.FromDictionary(triggersDictionary));
+         iOS.OneSignal.AddTriggers(NSDictionary.FromDictionary(triggersDictionary));
       }
 
       public override void RemoveTriggerForKey(string key)
@@ -323,7 +326,7 @@ namespace Com.OneSignal
       {
          string[] auxiliarArray = new string[keys.Count];
          keys.CopyTo(auxiliarArray);
-         Foundation.NSArray keysArray = Foundation.NSArray.FromObjects(auxiliarArray);
+         NSArray keysArray = NSArray.FromObjects(auxiliarArray);
          iOS.OneSignal.RemoveTriggersForKeys(keysArray);
       }
 
