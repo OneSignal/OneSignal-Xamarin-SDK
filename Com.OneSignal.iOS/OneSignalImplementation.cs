@@ -87,7 +87,7 @@ namespace Com.OneSignal
          action.clickUrl = (nativeAction.ClickUrl != null) ? nativeAction.ClickUrl.AbsoluteString : "";
          action.firstClick = nativeAction.FirstClick;
          action.closesMessage = nativeAction.ClosesMessage;
-         
+
          return action;
       }
 
