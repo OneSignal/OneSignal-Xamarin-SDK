@@ -1,30 +1,32 @@
 ﻿using System;
+using Foundation;
+using UserNotifications;
+using System.Diagnostics;
 using System.Collections.Generic;
 using Com.OneSignal.Abstractions;
-using OSNotificationOpenedResult = Com.OneSignal.Abstractions.OSNotificationOpenedResult;
+using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption;
 using OSNotification = Com.OneSignal.Abstractions.OSNotification;
 using OSNotificationAction = Com.OneSignal.Abstractions.OSNotificationAction;
 using OSNotificationPayload = Com.OneSignal.Abstractions.OSNotificationPayload;
-using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption;
-using System.Diagnostics;
-using UserNotifications;
+using OSNotificationOpenedResult = Com.OneSignal.Abstractions.OSNotificationOpenedResult;
+using OSInAppMessageAction = Com.OneSignal.Abstractions.OSInAppMessageAction;
 
 namespace Com.OneSignal
 {
    public class OneSignalImplementation : OneSignalShared, IOneSignal
    {
-      public static Dictionary<string, object> NSDictToPureDict(Foundation.NSDictionary nsDict)
+      public static Dictionary<string, object> NSDictToPureDict(NSDictionary nsDict)
       {
          if (nsDict == null)
             return null;
-         Foundation.NSError error;
-         Foundation.NSData jsonData = Foundation.NSJsonSerialization.Serialize(nsDict, 0, out error);
-         Foundation.NSString jsonNSString = Foundation.NSString.FromData(jsonData, Foundation.NSStringEncoding.UTF8);
+         NSError error;
+         NSData jsonData = NSJsonSerialization.Serialize(nsDict, 0, out error);
+         NSString jsonNSString = NSString.FromData(jsonData, NSStringEncoding.UTF8);
          string jsonString = jsonNSString.ToString();
          return Json.Deserialize(jsonString) as Dictionary<string, object>;
       }
 
-      private OSNotificationOpenedResult OSNotificationOpenedResultToNative(iOS.OSNotificationOpenedResult result)
+      private OSNotificationOpenedResult OSNotificationOpenedResultToXam(iOS.OSNotificationOpenedResult result)
       {
          var openresult = new OSNotificationOpenedResult();
          openresult.action = new OSNotificationAction();
@@ -32,12 +34,12 @@ namespace Com.OneSignal
          openresult.action.actionID = action.ActionID;
          openresult.action.type = (OSNotificationAction.ActionType)(int)action.Type;
 
-         openresult.notification = OSNotificationToNative(result.Notification);
+         openresult.notification = OSNotificationToXam(result.Notification);
 
          return openresult;
       }
 
-    private OSNotification OSNotificationToNative(iOS.OSNotification notif)
+    private OSNotification OSNotificationToXam(iOS.OSNotification notif)
     {
       var notification = new OSNotification();
       notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
@@ -52,7 +54,7 @@ namespace Com.OneSignal
          {
             for (int i = 0; i < (int)notif.Payload.ActionButtons.Count; ++i)
             {
-               Foundation.NSDictionary element = notif.Payload.ActionButtons.GetItem<Foundation.NSDictionary>((uint)i);
+               NSDictionary element = notif.Payload.ActionButtons.GetItem<NSDictionary>((uint)i);
                notification.payload.actionButtons.Add(NSDictToPureDict(element));
             }
          }
@@ -60,9 +62,9 @@ namespace Com.OneSignal
          notification.payload.additionalData = new Dictionary<string, object>();
          if (notif.Payload.AdditionalData != null)
          {
-            foreach (KeyValuePair<Foundation.NSObject, Foundation.NSObject> element in notif.Payload.AdditionalData)
+            foreach (KeyValuePair<NSObject, NSObject> element in notif.Payload.AdditionalData)
             {
-               notification.payload.additionalData.Add((Foundation.NSString)element.Key, element.Value);
+               notification.payload.additionalData.Add((NSString)element.Key, element.Value);
             }
          }
 
@@ -76,6 +78,17 @@ namespace Com.OneSignal
          notification.payload.title = notif.Payload.Title;
 
          return notification;
+      }
+
+      private OSInAppMessageAction OSInAppMessageClickActionToXam(iOS.OSInAppMessageAction nativeAction)
+      {
+         var action = new OSInAppMessageAction();
+         action.clickName = nativeAction.ClickName;
+         action.clickUrl = (nativeAction.ClickUrl != null) ? nativeAction.ClickUrl.AbsoluteString : "";
+         action.firstClick = nativeAction.FirstClick;
+         action.closesMessage = nativeAction.ClosesMessage;
+         
+         return action;
       }
 
       // Init - Only required method you call to setup OneSignal to receive push notifications.
@@ -100,12 +113,13 @@ namespace Com.OneSignal
          var convertedVisualLevel = (iOS.OneSLogLevel)((int)visualLevel);
 
          iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
-         var dict = new Foundation.NSDictionary("kOSSettingsKeyInAppLaunchURL", new Foundation.NSNumber(inAppLaunchURLs),
-                                                "kOSSettingsKeyAutoPrompt", new Foundation.NSNumber(autoPrompt),
-                                                "kOSSettingsKeyInFocusDisplayOption", new Foundation.NSNumber((int)displayOption)
+         var dict = new NSDictionary("kOSSettingsKeyInAppLaunchURL", new NSNumber(inAppLaunchURLs),
+                                                "kOSSettingsKeyAutoPrompt", new NSNumber(autoPrompt),
+                                                "kOSSettingsKeyInFocusDisplayOption", new NSNumber((int)displayOption)
                                                );
          iOS.OneSignal.SetMSDKType("xam");
-         iOS.OneSignal.InitWithLaunchOptions(new Foundation.NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
+         iOS.OneSignal.SetInAppMessageClickHandler(InAppMessageClickActionHandler);
+         iOS.OneSignal.InitWithLaunchOptions(new NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
 
       }
 
@@ -139,10 +153,10 @@ namespace Com.OneSignal
 
       public override void DeleteTags(IList<string> keys)
       {
-         Foundation.NSObject[] objs = new Foundation.NSObject[keys.Count];
+         NSObject[] objs = new NSObject[keys.Count];
          for (int i = 0; i < keys.Count; i++)
          {
-            objs[i] = (Foundation.NSString)keys[i];
+            objs[i] = (NSString)keys[i];
          }
          iOS.OneSignal.DeleteTags(objs);
       }
@@ -267,11 +281,17 @@ namespace Com.OneSignal
 
       public void NotificationOpenedHandler(iOS.OSNotificationOpenedResult result)
       {
-         OnPushNotificationOpened(OSNotificationOpenedResultToNative(result));
+         OnPushNotificationOpened(OSNotificationOpenedResultToXam(result));
       }
+
       public void NotificationReceivedHandler(iOS.OSNotification notification)
       {
-         OnPushNotificationReceived(OSNotificationToNative(notification));
+         OnPushNotificationReceived(OSNotificationToXam(notification));
+      }
+
+      public void InAppMessageClickActionHandler(iOS.OSInAppMessageAction action)
+      {
+         OnInAppMessageClicked(OSInAppMessageClickActionToXam(action));
       }
 
       [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
@@ -301,33 +321,42 @@ namespace Com.OneSignal
 
       public override void AddTrigger(string key, object value)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTrigger - Not yet implemented on iOS");
+         iOS.OneSignal.AddTrigger(key, NSObject.FromObject(value));
       }
 
       public override void AddTriggers(Dictionary<string, object> triggers)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: AddTriggers - Not yet implemented on iOS");
+         var triggersDictionary = new NSMutableDictionary<NSString, NSObject>();
+         foreach (var element in triggers)
+         {
+            triggersDictionary.Add(
+               NSString.FromData(element.Key, NSStringEncoding.UTF8),
+               NSObject.FromObject(element.Value));
+         }
+         iOS.OneSignal.AddTriggers(NSDictionary.FromDictionary(triggersDictionary));
       }
 
       public override void RemoveTriggerForKey(string key)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggerForKey - Not yet implemented on iOS");
+         iOS.OneSignal.RemoveTriggerForKey(key);
       }
 
       public override void RemoveTriggersForKeys(List<string> keys)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: RemoveTriggersForKeys - Not yet implemented on iOS");
+         string[] auxiliarArray = new string[keys.Count];
+         keys.CopyTo(auxiliarArray);
+         NSArray keysArray = NSArray.FromObjects(auxiliarArray);
+         iOS.OneSignal.RemoveTriggersForKeys(keysArray);
       }
 
       public override object GetTriggerValueForKey(string key)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: GetTriggerValueForKey - Not yet implemented on iOS");
-         return null;
+         return iOS.OneSignal.GetTriggerValueForKey(key);
       }
 
       public override void PauseInAppMessages(bool pause)
       {
-         iOS.OneSignal.Onesignal_Log(iOS.OneSLogLevel.Warn, "OneSignal: PauseInAppMessages - Not yet implemented on iOS");
+         iOS.OneSignal.PauseInAppMessages(pause);
       }
    }
 }
