@@ -4,7 +4,7 @@
         <id>Com.OneSignal</id>
         <version>3.5.0</version>
         <title>OneSignal SDK for Xamarin</title>
-        <authors>OneSignal, Mart1ijn van Dijk</authors>
+        <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
         <licenseUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK</projectUrl>
