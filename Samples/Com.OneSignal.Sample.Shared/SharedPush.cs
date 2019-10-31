@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -43,6 +43,7 @@ namespace Com.OneSignal.Sample.Shared
          });
 
          OneSignalInAppMessagingDemo();
+         OneSignalOutcomeEventDemo();
       }
 
       private static void OneSignalInAppMessagingDemo()
@@ -71,6 +72,36 @@ namespace Com.OneSignal.Sample.Shared
 
          // Toggle showing of IAMs
          OneSignal.Current.PauseInAppMessages(false);
+      }
+
+      private static void OneSignalOutcomeEventDemo()
+      {
+         // Show a normal outcome with and without a callback
+         OneSignal.Current.SendOutcome("normal_1");
+         OneSignal.Current.SendOutcome("normal_2", (outcomeEvent) => {
+            printOutcomeEvent(outcomeEvent);
+         });
+
+         // Show a unique outcome with and without a callback
+         OneSignal.Current.SendUniqueOutcome("unique_1");
+         OneSignal.Current.SendUniqueOutcome("unique_2", (outcomeEvent) => {
+            printOutcomeEvent(outcomeEvent);
+         });
+
+         // Show an outcome with value with and without a callback
+         OneSignal.Current.SendOutcomeWithValue("value_1", 3.2f);
+         OneSignal.Current.SendOutcomeWithValue("value_2", 3.2f, (outcomeEvent) => {
+            printOutcomeEvent(outcomeEvent);
+         });
+      }
+
+      private static void printOutcomeEvent(OSOutcomeEvent outcomeEvent)
+      {
+         Debug.WriteLine(outcomeEvent.session.ToString() + "\n" +
+            string.Join(", ", outcomeEvent.notificationIds) + "\n" +
+            outcomeEvent.name + "\n" +
+            outcomeEvent.timestamp + "\n" +
+            outcomeEvent.weight);
       }
 
       // Just for iOS.

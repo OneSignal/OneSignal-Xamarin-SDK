@@ -39,14 +39,14 @@ namespace Com.OneSignal
          return openresult;
       }
 
-    private OSNotification OSNotificationToXam(iOS.OSNotification notif)
-    {
-      var notification = new OSNotification();
-      notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
-      notification.shown = notif.Shown;
-      notification.silentNotification = notif.SilentNotification;
-      notification.isAppInFocus = notif.IsAppInFocus;
-      notification.payload = new OSNotificationPayload();
+      private OSNotification OSNotificationToXam(iOS.OSNotification notif)
+      {
+         var notification = new OSNotification();
+         notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
+         notification.shown = notif.Shown;
+         notification.silentNotification = notif.SilentNotification;
+         notification.isAppInFocus = notif.IsAppInFocus;
+         notification.payload = new OSNotificationPayload();
 
 
          notification.payload.actionButtons = new List<Dictionary<string, object>>();
@@ -357,6 +357,36 @@ namespace Com.OneSignal
       public override void PauseInAppMessages(bool pause)
       {
          iOS.OneSignal.PauseInAppMessages(pause);
+      }
+
+      public override void SendOutcome(string name)
+      {
+         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+      }
+
+      public override void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+      }
+
+      public override void SendUniqueOutcome(string name)
+      {
+         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+      }
+
+      public override void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+      }
+
+      public override void SendOutcomeWithValue(string name, float value)
+      {
+         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
+      }
+
+      public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
       }
    }
 }

@@ -196,5 +196,35 @@ namespace Com.OneSignal
       {
          Android.OneSignal.PauseInAppMessages(pause);
       }
+
+      public override void SendOutcome(string name)
+      {
+         Android.OneSignal.SendOutcome(name);
+      }
+
+      public override void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Android.OneSignal.SendOutcome(name, new SendOutcomeEventSuccessHandler(sendOutcomeEventSuccess));
+      }
+
+      public override void SendUniqueOutcome(string name)
+      {
+         Android.OneSignal.SendUniqueOutcome(name);
+      }
+
+      public override void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Android.OneSignal.SendUniqueOutcome(name, new SendOutcomeEventSuccessHandler(sendOutcomeEventSuccess));
+      }
+
+      public override void SendOutcomeWithValue(string name, float value)
+      {
+         Android.OneSignal.SendOutcomeWithValue(name, value);
+      }
+
+      public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
+      {
+         Android.OneSignal.SendOutcomeWithValue(name, value, new SendOutcomeEventSuccessHandler(sendOutcomeEventSuccess));
+      }
    }
 }

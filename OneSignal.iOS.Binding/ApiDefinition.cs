@@ -154,28 +154,28 @@ namespace Com.OneSignal.iOS
 	}
 
 	// typedef void (^OSResultSuccessBlock)(NSDictionary *);
-	delegate void OSResultSuccessBlock (NSDictionary arg0);
+	delegate void OSResultSuccessBlock(NSDictionary arg0);
 
 	// typedef void (^OSFailureBlock)(NSError *);
-	delegate void OSFailureBlock (NSError arg0);
+	delegate void OSFailureBlock(NSError arg0);
 
-  // typedef void (^OSResultEmailSuccessBlock)();
-  delegate void OSEmailSuccessBlock();
+   // typedef void (^OSResultEmailSuccessBlock)();
+   delegate void OSEmailSuccessBlock();
 
-  // typedef void (^OSEmailFailureBlock)();
-  delegate void OSEmailFailureBlock(NSError arg0);
+   // typedef void (^OSEmailFailureBlock)();
+   delegate void OSEmailFailureBlock(NSError arg0);
 
 	// typedef void (^OSIdsAvailableBlock)(NSString *, NSString *);
-	delegate void OSIdsAvailableBlock (string arg0, string arg1);
+	delegate void OSIdsAvailableBlock(string arg0, string arg1);
 
 	// typedef void (^OSHandleNotificationReceivedBlock)(OSNotification *);
-	delegate void OSHandleNotificationReceivedBlock (OSNotification arg0);
+	delegate void OSHandleNotificationReceivedBlock(OSNotification arg0);
 
 	// typedef void (^OSHandleNotificationActionBlock)(OSNotificationOpenedResult *);
-	delegate void OSHandleNotificationActionBlock (OSNotificationOpenedResult arg0);
+	delegate void OSHandleNotificationActionBlock(OSNotificationOpenedResult arg0);
 
    // typedef void (^OSHandleInAppMessageActionClickBlock)(OSInAppMessageAction *);
-   delegate void OSHandleInAppMessageActionClickBlock (OSInAppMessageAction arg0);
+   delegate void OSHandleInAppMessageActionClickBlock(OSInAppMessageAction arg0);
 
 	partial interface Constants
 	{
@@ -200,172 +200,172 @@ namespace Com.OneSignal.iOS
 	[BaseType (typeof(NSObject))]
 	interface OneSignal
 	{
-		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId;
+		//+ (id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId;
 		[Static]
 		[Export ("initWithLaunchOptions:appId:")]
 		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId);
 
-		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback;
+		//+ (id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback;
 		[Static]
 		[Export ("initWithLaunchOptions:appId:handleNotificationAction:")]
 		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationActionBlock actionCallback);
 
-		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
+		//+ (id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
 		[Static]
 		[Export ("initWithLaunchOptions:appId:handleNotificationAction:settings:")]
 		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationActionBlock actionCallback, NSDictionary settings);
 
-		// +(id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationReceived:(OSHandleNotificationReceivedBlock)receivedCallback handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
+		//+ (id)initWithLaunchOptions:(NSDictionary *)launchOptions appId:(NSString *)appId handleNotificationReceived:(OSHandleNotificationReceivedBlock)receivedCallback handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary *)settings;
 		[Static]
 		[Export ("initWithLaunchOptions:appId:handleNotificationReceived:handleNotificationAction:settings:")]
 		NSObject InitWithLaunchOptions (NSDictionary launchOptions, string appId, OSHandleNotificationReceivedBlock receivedCallback, OSHandleNotificationActionBlock actionCallback, NSDictionary settings);
 
-		// +(NSString *)app_id;
+		//+ (NSString *)app_id;
 		[Static]
 		[Export ("app_id")]
 		string App_id { get; }
 
-		// +(void)registerForPushNotifications;
+		//+ (void)registerForPushNotifications;
 		[Static]
 		[Export ("registerForPushNotifications")]
 		void RegisterForPushNotifications ();
 
-		// +(void)setLogLevel:(ONE_S_LOG_LEVEL)logLevel visualLevel:(ONE_S_LOG_LEVEL)visualLogLevel;
+		//+ (void)setLogLevel:(ONE_S_LOG_LEVEL)logLevel visualLevel:(ONE_S_LOG_LEVEL)visualLogLevel;
 		[Static]
 		[Export ("setLogLevel:visualLevel:")]
 		void SetLogLevel (OneSLogLevel logLevel, OneSLogLevel visualLogLevel);
 
-		// +(void)onesignal_Log:(ONE_S_LOG_LEVEL)logLevel message:(NSString *)message;
+		//+ (void)onesignal_Log:(ONE_S_LOG_LEVEL)logLevel message:(NSString *)message;
 		[Static]
 		[Export ("onesignal_Log:message:")]
 		void Onesignal_Log (OneSLogLevel logLevel, string message);
 
-		// +(void)sendTag:(NSString *)key value:(NSString *)value onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)sendTag:(NSString *)key value:(NSString *)value onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("sendTag:value:onSuccess:onFailure:")]
 		void SendTag (string key, string value, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)sendTag:(NSString *)key value:(NSString *)value;
+		//+ (void)sendTag:(NSString *)key value:(NSString *)value;
 		[Static]
 		[Export ("sendTag:value:")]
 		void SendTag (string key, string value);
 
-		// +(void)sendTags:(NSDictionary *)keyValuePair onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)sendTags:(NSDictionary *)keyValuePair onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("sendTags:onSuccess:onFailure:")]
 		void SendTags (NSDictionary keyValuePair, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)sendTags:(NSDictionary *)keyValuePair;
+		//+ (void)sendTags:(NSDictionary *)keyValuePair;
 		[Static]
 		[Export ("sendTags:")]
 		void SendTags (NSDictionary keyValuePair);
 
-		// +(void)sendTagsWithJsonString:(NSString *)jsonString;
+		//+ (void)sendTagsWithJsonString:(NSString *)jsonString;
 		[Static]
 		[Export ("sendTagsWithJsonString:")]
 		void SendTagsWithJsonString (string jsonString);
 
-		// +(void)getTags:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)getTags:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("getTags:onFailure:")]
 		void GetTags (OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)getTags:(OSResultSuccessBlock)successBlock;
+		//+ (void)getTags:(OSResultSuccessBlock)successBlock;
 		[Static]
 		[Export ("getTags:")]
 		void GetTags (OSResultSuccessBlock successBlock);
 
-		// +(void)deleteTag:(NSString *)key onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)deleteTag:(NSString *)key onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("deleteTag:onSuccess:onFailure:")]
 		void DeleteTag (string key, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)deleteTag:(NSString *)key;
+		//+ (void)deleteTag:(NSString *)key;
 		[Static]
 		[Export ("deleteTag:")]
 		void DeleteTag (string key);
 
-		// +(void)deleteTags:(NSArray *)keys onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)deleteTags:(NSArray *)keys onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("deleteTags:onSuccess:onFailure:")]
 		void DeleteTags (NSObject[] keys, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)deleteTags:(NSArray *)keys;
+		//+ (void)deleteTags:(NSArray *)keys;
 		[Static]
 		[Export ("deleteTags:")]
 		void DeleteTags (NSObject[] keys);
 
-		// +(void)deleteTagsWithJsonString:(NSString *)jsonString;
+		//+ (void)deleteTagsWithJsonString:(NSString *)jsonString;
 		[Static]
 		[Export ("deleteTagsWithJsonString:")]
 		void DeleteTagsWithJsonString (string jsonString);
 
-		// +(void)IdsAvailable:(OSIdsAvailableBlock)idsAvailableBlock;
+		//+ (void)IdsAvailable:(OSIdsAvailableBlock)idsAvailableBlock;
 		[Static]
 		[Export ("IdsAvailable:")]
 		void IdsAvailable (OSIdsAvailableBlock idsAvailableBlock);
 
-		// +(void)setSubscription:(BOOL)enable;
+		//+ (void)setSubscription:(BOOL)enable;
 		[Static]
 		[Export ("setSubscription:")]
 		void SetSubscription (bool enable);
 
-		// +(void)postNotification:(NSDictionary *)jsonData;
+		//+ (void)postNotification:(NSDictionary *)jsonData;
 		[Static]
 		[Export ("postNotification:")]
 		void PostNotification (NSDictionary jsonData);
 
-		// +(void)postNotification:(NSDictionary *)jsonData onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)postNotification:(NSDictionary *)jsonData onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("postNotification:onSuccess:onFailure:")]
 		void PostNotification (NSDictionary jsonData, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(void)postNotificationWithJsonString:(NSString *)jsonData onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
+		//+ (void)postNotificationWithJsonString:(NSString *)jsonData onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 		[Static]
 		[Export ("postNotificationWithJsonString:onSuccess:onFailure:")]
 		void PostNotificationWithJsonString (string jsonData, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
 
-		// +(NSString *)parseNSErrorAsJsonString:(NSError *)error;
+		//+ (NSString *)parseNSErrorAsJsonString:(NSError *)error;
 		[Static]
 		[Export ("parseNSErrorAsJsonString:")]
 		string ParseNSErrorAsJsonString (NSError error);
 
-		// +(void)promptLocation;
+		//+ (void)promptLocation;
 		[Static]
 		[Export ("promptLocation")]
 		void PromptLocation ();
 
-		// +(void)setLocationShared:(BOOL)enable;
+		//+ (void)setLocationShared:(BOOL)enable;
 		[Static]
 		[Export ("setLocationShared:")]
 		void SetLocationShared (bool enable);
 
-		// +(void)syncHashedEmail:(NSString *)email;
+		//+ (void)syncHashedEmail:(NSString *)email;
 		[Static]
 		[Export ("syncHashedEmail:")]
 		void SyncHashedEmail (string email);
 
-      // + (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      //+ (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
       [Static]
       [Export("setEmail:withEmailAuthHashToken:withSuccess:withFailure:")]
       void SetEmail(string email, string emailAuthToken, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
       
-      // + (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      //+ (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
       [Static]
       [Export ("setEmail:withSuccess:withFailure:")]
       void SetEmail(string email, OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
       
-      // + (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+      //+ (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
       [Static]
       [Export("logoutEmailWithSuccess:withFailure:")]
       void LogoutEmail(OSEmailSuccessBlock successBlock, OSEmailFailureBlock failureBlock);
       
-      // +(void)setMSDKType:(NSString *)type;
+      //+ (void)setMSDKType:(NSString *)type;
       [Static]
       [Export("setMSDKType:")]
       void SetMSDKType(string type);
 
-      // +(void)setInAppMessageClickHandler:(OSHandleInAppMessageActionClickBlock)delegate;
+      //+ (void)setInAppMessageClickHandler:(OSHandleInAppMessageActionClickBlock)delegate;
 	   [Static]
 	   [Export ("setInAppMessageClickHandler:")]
 	   void SetInAppMessageClickHandler (OSHandleInAppMessageActionClickBlock @delegate);
