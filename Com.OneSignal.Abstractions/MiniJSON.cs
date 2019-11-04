@@ -57,9 +57,7 @@ namespace Com.OneSignal.Abstractions
         {
             // save the string for debug information
             if (json == null)
-            {
-                return null;
-            }
+               return null;
 
             return Parser.Parse(json);
         }

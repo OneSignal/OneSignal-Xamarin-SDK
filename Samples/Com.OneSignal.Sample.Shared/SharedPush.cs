@@ -78,19 +78,22 @@ namespace Com.OneSignal.Sample.Shared
       {
          // Show a normal outcome with and without a callback
          OneSignal.Current.SendOutcome("normal_1");
-         OneSignal.Current.SendOutcome("normal_2", (outcomeEvent) => {
+         OneSignal.Current.SendOutcome("normal_2", (outcomeEvent) =>
+         {
             printOutcomeEvent(outcomeEvent);
          });
 
          // Show a unique outcome with and without a callback
          OneSignal.Current.SendUniqueOutcome("unique_1");
-         OneSignal.Current.SendUniqueOutcome("unique_2", (outcomeEvent) => {
+         OneSignal.Current.SendUniqueOutcome("unique_2", (outcomeEvent) =>
+         {
             printOutcomeEvent(outcomeEvent);
          });
 
          // Show an outcome with value with and without a callback
          OneSignal.Current.SendOutcomeWithValue("value_1", 3.2f);
-         OneSignal.Current.SendOutcomeWithValue("value_2", 3.2f, (outcomeEvent) => {
+         OneSignal.Current.SendOutcomeWithValue("value_2", 3.2f, (outcomeEvent) =>
+         {
             printOutcomeEvent(outcomeEvent);
          });
       }
