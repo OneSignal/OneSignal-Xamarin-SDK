@@ -44,6 +44,13 @@ namespace Com.OneSignal.Abstractions
       void RemoveTriggersForKeys(List<String> keys);
       object GetTriggerValueForKey(string key);
       void PauseInAppMessages(bool pause);
+
+      void SendOutcome(string name);
+      void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess);
+      void SendUniqueOutcome(string name);
+      void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess);
+      void SendOutcomeWithValue(string name, float value);
+      void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess);
    }
 }
  

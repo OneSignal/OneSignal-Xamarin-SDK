@@ -18,8 +18,6 @@ namespace Com.OneSignal.iOS
 		Notification
 	}
 
-
-
 	[Native]
 	public enum OneSLogLevel : ulong
 	{

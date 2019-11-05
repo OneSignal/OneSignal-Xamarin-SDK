@@ -13,22 +13,21 @@ namespace Com.OneSignal
          get
          {
             if (Implementation.Value == null)
-            {
                throw NotImplementedInReferenceAssembly();
-            }
+
             return Implementation.Value;
          }
       }
 
       static IOneSignal CreateOneSignal()
       {
-#if PORTABLE
-         Debug.WriteLine("PORTABLE Reached");
-         return null;
-#else
-         Debug.WriteLine("Other reached");
-         return new OneSignalImplementation();
-#endif
+         #if PORTABLE
+            Debug.WriteLine("PORTABLE Reached");
+            return null;
+         #else
+            Debug.WriteLine("Other reached");
+            return new OneSignalImplementation();
+         #endif
       }
 
       internal static Exception NotImplementedInReferenceAssembly()

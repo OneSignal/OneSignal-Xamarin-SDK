@@ -32,8 +32,6 @@ namespace Com.OneSignal.Abstractions
       [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
       public abstract void SyncHashedEmail(string email);
 
-
-
       // logging
       public LOG_LEVEL logLevel = LOG_LEVEL.INFO, visualLogLevel = LOG_LEVEL.NONE;
 
@@ -116,5 +114,18 @@ namespace Com.OneSignal.Abstractions
       public abstract object GetTriggerValueForKey(string key);
 
       public abstract void PauseInAppMessages(bool pause);
-	}
+
+      public abstract void SendOutcome(string name);
+
+      public abstract void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess);
+
+      public abstract void SendUniqueOutcome(string name);
+
+      public abstract void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess);
+
+      public abstract void SendOutcomeWithValue(string name, float value);
+
+      public abstract void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess);
+
+   }
 }
