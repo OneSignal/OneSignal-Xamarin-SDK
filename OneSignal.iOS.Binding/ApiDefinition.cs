@@ -1,11 +1,37 @@
 using System;
 using Foundation;
 using OSNotificationDisplayType = Com.OneSignal.iOS.OSInFocusDisplayOption;
+using OSSession = Com.OneSignal.iOS.OSSession;
 using UserNotifications;
 using ObjCRuntime;
 
 namespace Com.OneSignal.iOS
 {
+
+   // @interface OSOutcomeEvent
+   [BaseType(typeof(NSObject))]
+   interface OSOutcomeEvent
+   {
+      // @property (nonatomic) Session session;
+      [Export("session")]
+      OSSession Session { get; }
+
+      // @property (strong, nonatomic, nullable) NSArray *notificationIds;
+      [Export("notificationIds")]
+      string[] NotificationIds { get; }
+
+      // @property (strong, nonatomic, nonnull) NSString *name;
+      [Export("name")]
+      string Name { get; }
+
+      // @property (strong, nonatomic, nonnull) NSNumber *timestamp;
+      [Export("timestamp")]
+      long Timestamp { get; }
+
+      // @property (strong, nonatomic, nonnull) NSDecimalNumber *weight;
+      [Export("weight")]
+      float Weight { get; }
+   }
 
    // @interface OSInAppMessageAction
    [BaseType (typeof(NSObject))]
@@ -177,7 +203,10 @@ namespace Com.OneSignal.iOS
    // typedef void (^OSHandleInAppMessageActionClickBlock)(OSInAppMessageAction *);
    delegate void OSHandleInAppMessageActionClickBlock(OSInAppMessageAction arg0);
 
-	partial interface Constants
+   // typedef void (^OSSendOutcomeSuccess)();
+   delegate void OSSendOutcomeSuccess(OSOutcomeEvent arg0);
+
+   partial interface Constants
 	{
 		// extern NSString *const kOSSettingsKeyAutoPrompt;
 		[Field ("kOSSettingsKeyAutoPrompt", "__Internal")]
@@ -434,6 +463,36 @@ namespace Com.OneSignal.iOS
       [Static]
       [Export("pauseInAppMessages:")]
       void PauseInAppMessages(bool pause);
+
+      //+  (void)sendOutcome:(NSString* _Nonnull) name;
+      [Static]
+      [Export("sendOutcome:")]
+      void SendOutcome(string name);
+
+      //+ (void) sendOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      [Static]
+      [Export("sendOutcome:onSuccess:")]
+      void SendOutcome(string name, OSSendOutcomeSuccess callback);
+
+      //+  (void)sendUniqueOutcome:(NSString* _Nonnull) name;
+      [Static]
+      [Export("sendUniqueOutcome:")]
+      void SendUniqueOutcome(string name);
+
+      //+ (void) sendUniqueOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      [Static]
+      [Export("sendOutcome:onSuccess:")]
+      void SendUniqueOutcome(string name, OSSendOutcomeSuccess callback);
+
+      //+ (void) sendOutcomeWithValue:(NSString* _Nonnull) name value:(NSNumber* _Nonnull) value;
+      [Static]
+      [Export("sendOutcomeWithValue:value:")]
+      void SendOutcomeWithValue(string key, double value);
+
+      //+ (void) sendUniqueOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      [Static]
+      [Export("sendOutcomeWithValue:value:onSuccess:")]
+      void SendOutcomeWithValue(string name, double value, OSSendOutcomeSuccess callback);
    }
 
    partial interface Constants

@@ -22,6 +22,15 @@ namespace Com.OneSignal.Abstractions
 
       public OSOutcomeEvent() {}
 
+      public OSOutcomeEvent(string session, List<string> notificationIds, string name, long timestamp, double weight)
+      {
+         this.session = SessionFromString(session);
+         this.notificationIds = notificationIds;
+         this.name = name;
+         this.timestamp = timestamp;
+         this.weight = weight;
+      }
+
       public OSOutcomeEvent(Dictionary<string, object> outcomeObject)
       {
          // session;

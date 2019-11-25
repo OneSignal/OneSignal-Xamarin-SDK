@@ -133,5 +133,17 @@ namespace Com.OneSignal.Sample.Shared
       public static void RemoveExternalUserId() {
          OneSignal.Current.RemoveExternalUserId();
       }
+
+      public static void SendOutcome(string outcomeName) {
+         OneSignal.Current.SendOutcome(outcomeName, printOutcomeEvent);
+      }
+
+      public static void SendUniqueOutcome(string outcomeName) {
+         OneSignal.Current.SendUniqueOutcome(outcomeName, printOutcomeEvent);
+      }
+
+      public static void SendOutcomeWithValue(string outcomeName, float value) {
+         OneSignal.Current.SendOutcomeWithValue(outcomeName, value, printOutcomeEvent);
+      }
    }
 }

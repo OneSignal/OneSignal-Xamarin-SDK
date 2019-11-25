@@ -1,5 +1,6 @@
 ﻿using System;
 using Com.OneSignal.Sample.Shared;
+using System.Globalization;
 using UIKit;
 
 namespace Com.OneSignal.Sample.iOS
@@ -62,5 +63,21 @@ namespace Com.OneSignal.Sample.iOS
       {
          SharedPush.RemoveExternalUserId();
       }
+
+      partial void SendOutcome(UIButton sender)
+      {
+         SharedPush.SendOutcome(OutcomeKey.Text);
+      }
+
+      partial void SendUniqueOutcome(UIButton sender)
+      {
+         SharedPush.SendUniqueOutcome(UniqueOutcomeKey.Text);
+      }
+
+      partial void SendOutcomeWithValue(UIButton sender)
+      {
+         SharedPush.SendOutcomeWithValue(OutcomeValueKey.Text, float.Parse(OutcomeValue.Text, CultureInfo.InvariantCulture.NumberFormat));
+      }
+
    }
 }

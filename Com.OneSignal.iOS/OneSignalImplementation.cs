@@ -361,32 +361,68 @@ namespace Com.OneSignal
 
       public override void SendOutcome(string name)
       {
-         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcome(name);
       }
 
       public override void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcome(name, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
       }
 
       public override void SendUniqueOutcome(string name)
       {
-         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendUniqueOutcome(name);
       }
 
       public override void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendUniqueOutcome(name, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
       }
 
       public override void SendOutcomeWithValue(string name, float value)
       {
-         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcomeWithValue(name, value);
       }
 
       public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcomeWithValue(name, value);
+         //iOS.OneSignal.SendOutcomeWithValue(name, value, (outcomeEvent) =>
+         //{
+         //   SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         //});
+      }
+
+      public void SendOutcomeEventSuccess(iOS.OSOutcomeEvent outcomeEvent, SendOutcomeEventSuccess sendOutcomeEventSuccess) {
+         if (outcomeEvent == null)
+         {
+            sendOutcomeEventSuccess(new OSOutcomeEvent());
+            return;
+         }
+
+         var notifications = outcomeEvent.NotificationIds != null ? new List<string>(outcomeEvent.NotificationIds) : new List<string>();
+         sendOutcomeEventSuccess(new OSOutcomeEvent(SessionEnumToString(outcomeEvent.Session), notifications, outcomeEvent.Name, outcomeEvent.Timestamp, outcomeEvent.Weight));
+      }
+
+      public String SessionEnumToString(iOS.OSSession session) {
+         switch (session) {
+            case iOS.OSSession.Direct:
+               return "DIRECT";
+            case iOS.OSSession.Indirect:
+               return "INDIRECT";
+            case iOS.OSSession.Unattributed:
+               return "UNATTRIBUTED";
+            case iOS.OSSession.Disabled:
+               return "DISABLED";
+         }
+
+         return "DISABLED";
       }
    }
 }
