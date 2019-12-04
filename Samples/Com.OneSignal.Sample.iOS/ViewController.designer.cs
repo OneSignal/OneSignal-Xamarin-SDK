@@ -16,29 +16,61 @@ namespace Com.OneSignal.Sample.iOS
         [Outlet]
         UIKit.UIButton Button { get; set; }
 
+
+        [Outlet]
+        UIKit.UITextField OutcomeKey { get; set; }
+
+
+        [Outlet]
+        UIKit.UITextField OutcomeValue { get; set; }
+
+
+        [Outlet]
+        UIKit.UITextField OutcomeValueKey { get; set; }
+
+
+        [Outlet]
+        UIKit.UITextField UniqueOutcomeKey { get; set; }
+
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISegmentedControl PrivacyConsentControl { get; set; }
 
+
+        [Action ("Button_TouchUpInside:")]
+        partial void Button_TouchUpInside (UIKit.UIButton sender);
+
+
         [Action ("ConsentChanged:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void ConsentChanged (UIKit.UISegmentedControl sender);
 
+
+        [Action ("ExternalIdChanged:")]
+        partial void ExternalIdChanged (UIKit.UITextField sender);
+
+
         [Action ("RemoveExternalUserId:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void RemoveExternalUserId (UIKit.UIButton sender);
 
+
         [Action ("SetExternalUserId:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void SetExternalUserId (UIKit.UIButton sender);
+
+
+        [Action ("SendOutcome:")]
+        partial void SendOutcome (UIKit.UIButton sender);
+
+
+        [Action ("SendOutcomeWithValue:")]
+        partial void SendOutcomeWithValue (UIKit.UIButton sender);
+
+
+        [Action ("SendUniqueOutcome:")]
+        partial void SendUniqueOutcome (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (Button != null) {
-                Button.Dispose ();
-                Button = null;
-            }
-
             if (PrivacyConsentControl != null) {
                 PrivacyConsentControl.Dispose ();
                 PrivacyConsentControl = null;

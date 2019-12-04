@@ -1,5 +1,6 @@
 ﻿using System;
 using Com.OneSignal.Sample.Shared;
+using System.Globalization;
 using UIKit;
 
 namespace Com.OneSignal.Sample.iOS
@@ -25,7 +26,6 @@ namespace Com.OneSignal.Sample.iOS
       public override void ViewDidLoad()
       {
          base.ViewDidLoad();
-
 
          // Perform any additional setup after loading the view, typically from a nib.
          Button.AccessibilityIdentifier = "myButton";
@@ -62,5 +62,25 @@ namespace Com.OneSignal.Sample.iOS
       {
          SharedPush.RemoveExternalUserId();
       }
+
+      partial void SendOutcome(UIButton sender)
+      {
+         string name = OutcomeKey.Text;
+         SharedPush.SendOutcome(name);
+      }
+
+      partial void SendUniqueOutcome(UIButton sender)
+      {
+         string name = UniqueOutcomeKey.Text;
+         SharedPush.SendUniqueOutcome(name);
+      }
+
+      partial void SendOutcomeWithValue(UIButton sender)
+      {
+         string name = OutcomeValueKey.Text;
+         float value = float.Parse(OutcomeValue.Text);
+         SharedPush.SendOutcomeWithValue(name, value);
+      }
+
    }
 }

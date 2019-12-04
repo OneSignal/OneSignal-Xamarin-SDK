@@ -3,7 +3,16 @@ using ObjCRuntime;
 
 namespace Com.OneSignal.iOS
 {
-	[Native]
+   [Native]
+   public enum OSSession : ulong
+   {
+      Direct,
+      Indirect,
+      Unattributed,
+      Disabled
+   }
+
+   [Native]
 	public enum OSNotificationActionType : ulong
 	{
 		Opened,

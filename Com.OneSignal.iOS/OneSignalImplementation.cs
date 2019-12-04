@@ -361,32 +361,67 @@ namespace Com.OneSignal
 
       public override void SendOutcome(string name)
       {
-         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcome(name);
       }
 
       public override void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcome(name, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
       }
 
       public override void SendUniqueOutcome(string name)
       {
-         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendUniqueOutcome(name);
       }
 
       public override void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendUniqueOutcome() has has not been implemented yet!");
+         iOS.OneSignal.SendUniqueOutcome(name, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
       }
 
       public override void SendOutcomeWithValue(string name, float value)
       {
-         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
+         iOS.OneSignal.SendOutcomeWithValue(name, value);
       }
 
       public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         Debug.WriteLine("Method SendOutcomeWithValue() has has not been implemented yet!");
+         NSNumber weight = NSNumber.FromFloat(value);
+         iOS.OneSignal.SendOutcomeWithValue(name, weight, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
+      }
+
+      public void SendOutcomeEventSuccess(iOS.OSOutcomeEvent outcomeEvent, SendOutcomeEventSuccess sendOutcomeEventSuccess) {
+         if (outcomeEvent == null)
+         {
+            sendOutcomeEventSuccess(new OSOutcomeEvent());
+            return;
+         }
+
+         sendOutcomeEventSuccess(new OSOutcomeEvent(NSDictToPureDict(outcomeEvent.JsonRepresentation())));
+      }
+
+      public String SessionEnumToString(iOS.OSSession session) {
+         switch (session) {
+            case iOS.OSSession.Direct:
+               return "DIRECT";
+            case iOS.OSSession.Indirect:
+               return "INDIRECT";
+            case iOS.OSSession.Unattributed:
+               return "UNATTRIBUTED";
+            case iOS.OSSession.Disabled:
+               return "DISABLED";
+         }
+
+         return "DISABLED";
       }
    }
 }
