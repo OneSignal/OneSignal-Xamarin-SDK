@@ -27,7 +27,6 @@ namespace Com.OneSignal.Sample.iOS
       {
          base.ViewDidLoad();
 
-
          // Perform any additional setup after loading the view, typically from a nib.
          Button.AccessibilityIdentifier = "myButton";
          Button.TouchUpInside += delegate
@@ -66,17 +65,21 @@ namespace Com.OneSignal.Sample.iOS
 
       partial void SendOutcome(UIButton sender)
       {
-         SharedPush.SendOutcome(OutcomeKey.Text);
+         string name = OutcomeKey.Text;
+         SharedPush.SendOutcome(name);
       }
 
       partial void SendUniqueOutcome(UIButton sender)
       {
-         SharedPush.SendUniqueOutcome(UniqueOutcomeKey.Text);
+         string name = UniqueOutcomeKey.Text;
+         SharedPush.SendUniqueOutcome(name);
       }
 
       partial void SendOutcomeWithValue(UIButton sender)
       {
-         SharedPush.SendOutcomeWithValue(OutcomeValueKey.Text, float.Parse(OutcomeValue.Text, CultureInfo.InvariantCulture.NumberFormat));
+         string name = OutcomeValueKey.Text;
+         float value = float.Parse(OutcomeValue.Text);
+         SharedPush.SendOutcomeWithValue(name, value);
       }
 
    }

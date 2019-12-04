@@ -22,47 +22,41 @@ namespace Com.OneSignal.Abstractions
 
       public OSOutcomeEvent() {}
 
-      public OSOutcomeEvent(string session, List<string> notificationIds, string name, long timestamp, double weight)
+      public OSOutcomeEvent(Dictionary<string, object> outcomeDict)
       {
-         this.session = SessionFromString(session);
-         this.notificationIds = notificationIds;
-         this.name = name;
-         this.timestamp = timestamp;
-         this.weight = weight;
-      }
-
-      public OSOutcomeEvent(Dictionary<string, object> outcomeObject)
-      {
-         // session;
-         if (outcomeObject.ContainsKey("session"))
-            this.session = SessionFromString(outcomeObject["session"] as string);
+         // session
+         if (outcomeDict.ContainsKey("session") && outcomeDict["session"] != null)
+            this.session = SessionFromString(outcomeDict["session"] as string);
 
          // notificationIds
-         if (outcomeObject.ContainsKey("notification_ids")) {
-            List<object> idObjects = outcomeObject["notification_ids"] as List<object>;
-            List<string> ids = new List<string>();
-            foreach (var id in idObjects)
-                  ids.Add(id.ToString());
+         if (outcomeDict.ContainsKey("notification_ids") && outcomeDict["notification_ids"] != null) {
+            List<string> notifications = new List<string>();
 
-            this.notificationIds = ids;
+            if (outcomeDict["notification_ids"].GetType().Equals(typeof(string))) {
+               // notificationIds come over as a string of comma seperated string ids
+               notifications = new List<string>{ Convert.ToString(outcomeDict["notification_ids"] as string) };
+            }
+            else {
+               // notificationIds come over as a List<object> and should be parsed and appended to the List<string>
+               List<object> idObjects = outcomeDict["notification_ids"] as List<object>;
+               foreach (var id in idObjects)
+                  notifications.Add(id.ToString());
+            }
+
+            this.notificationIds = notifications;
          }
 
          // id
-         if (outcomeObject.ContainsKey("id"))
-            this.name = outcomeObject["id"] as string;
+         if (outcomeDict.ContainsKey("id") && outcomeDict["id"] != null)
+            this.name = outcomeDict["id"] as string;
 
          // timestamp
-         if (outcomeObject.ContainsKey("timestamp"))
-            this.timestamp = (long) outcomeObject["timestamp"];
+         if (outcomeDict.ContainsKey("timestamp") && outcomeDict["timestamp"] != null)
+            this.timestamp = (long) outcomeDict["timestamp"];
 
          // weight
-         if (outcomeObject.ContainsKey("weight")) {
-            if (outcomeObject["weight"] is Int64)
-                  this.weight = (Int64) outcomeObject["weight"];
-            if (outcomeObject["weight"] is Double)
-                  this.weight = (Double) outcomeObject["weight"];
-         }
-
+         if (outcomeDict.ContainsKey("weight") && outcomeDict["weight"] != null)
+            this.weight = double.Parse(Convert.ToString(outcomeDict["weight"]));
       }
 
       public static OSSession SessionFromString(string session)

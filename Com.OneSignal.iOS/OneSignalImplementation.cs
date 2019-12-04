@@ -392,11 +392,11 @@ namespace Com.OneSignal
 
       public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
       {
-         iOS.OneSignal.SendOutcomeWithValue(name, value);
-         //iOS.OneSignal.SendOutcomeWithValue(name, value, (outcomeEvent) =>
-         //{
-         //   SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
-         //});
+         NSNumber weight = NSNumber.FromFloat(value);
+         iOS.OneSignal.SendOutcomeWithValue(name, weight, (outcomeEvent) =>
+         {
+            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
+         });
       }
 
       public void SendOutcomeEventSuccess(iOS.OSOutcomeEvent outcomeEvent, SendOutcomeEventSuccess sendOutcomeEventSuccess) {
@@ -406,8 +406,7 @@ namespace Com.OneSignal
             return;
          }
 
-         var notifications = outcomeEvent.NotificationIds != null ? new List<string>(outcomeEvent.NotificationIds) : new List<string>();
-         sendOutcomeEventSuccess(new OSOutcomeEvent(SessionEnumToString(outcomeEvent.Session), notifications, outcomeEvent.Name, outcomeEvent.Timestamp, outcomeEvent.Weight));
+         sendOutcomeEventSuccess(new OSOutcomeEvent(NSDictToPureDict(outcomeEvent.JsonRepresentation())));
       }
 
       public String SessionEnumToString(iOS.OSSession session) {

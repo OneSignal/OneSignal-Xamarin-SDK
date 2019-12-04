@@ -32,6 +32,7 @@ namespace Com.OneSignal.Sample.iOS
         [Outlet]
         UIKit.UITextField UniqueOutcomeKey { get; set; }
 
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISegmentedControl PrivacyConsentControl { get; set; }
@@ -53,6 +54,10 @@ namespace Com.OneSignal.Sample.iOS
         partial void RemoveExternalUserId (UIKit.UIButton sender);
 
 
+        [Action ("SetExternalUserId:")]
+        partial void SetExternalUserId (UIKit.UIButton sender);
+
+
         [Action ("SendOutcome:")]
         partial void SendOutcome (UIKit.UIButton sender);
 
@@ -63,10 +68,6 @@ namespace Com.OneSignal.Sample.iOS
 
         [Action ("SendUniqueOutcome:")]
         partial void SendUniqueOutcome (UIKit.UIButton sender);
-
-
-        [Action ("SetExternalUserId:")]
-        partial void SetExternalUserId (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

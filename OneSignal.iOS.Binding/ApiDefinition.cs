@@ -31,6 +31,10 @@ namespace Com.OneSignal.iOS
       // @property (strong, nonatomic, nonnull) NSDecimalNumber *weight;
       [Export("weight")]
       float Weight { get; }
+
+      //- (NSDictionary * _Nonnull)jsonRepresentation;
+      [Export("jsonRepresentation")]
+      NSDictionary JsonRepresentation();
    }
 
    // @interface OSInAppMessageAction
@@ -464,35 +468,35 @@ namespace Com.OneSignal.iOS
       [Export("pauseInAppMessages:")]
       void PauseInAppMessages(bool pause);
 
-      //+  (void)sendOutcome:(NSString* _Nonnull) name;
+      //+ (void)sendOutcome:(NSString* _Nonnull)name;
       [Static]
       [Export("sendOutcome:")]
       void SendOutcome(string name);
 
-      //+ (void) sendOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      //+ (void)sendOutcome:(NSString* _Nonnull)name onSuccess:(OSSendOutcomeSuccess _Nullable)success;
       [Static]
       [Export("sendOutcome:onSuccess:")]
       void SendOutcome(string name, OSSendOutcomeSuccess callback);
 
-      //+  (void)sendUniqueOutcome:(NSString* _Nonnull) name;
+      //+ (void)sendUniqueOutcome:(NSString* _Nonnull)name;
       [Static]
       [Export("sendUniqueOutcome:")]
       void SendUniqueOutcome(string name);
 
-      //+ (void) sendUniqueOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      //+ (void)sendUniqueOutcome:(NSString* _Nonnull)name onSuccess:(OSSendOutcomeSuccess _Nullable)success;
       [Static]
-      [Export("sendOutcome:onSuccess:")]
+      [Export("sendUniqueOutcome:onSuccess:")]
       void SendUniqueOutcome(string name, OSSendOutcomeSuccess callback);
 
-      //+ (void) sendOutcomeWithValue:(NSString* _Nonnull) name value:(NSNumber* _Nonnull) value;
+      //+ (void)sendOutcomeWithValue:(NSString* _Nonnull)name value:(NSNumber* _Nonnull)value;
       [Static]
       [Export("sendOutcomeWithValue:value:")]
-      void SendOutcomeWithValue(string key, double value);
+      void SendOutcomeWithValue(string name, NSNumber value);
 
-      //+ (void) sendUniqueOutcome:(NSString* _Nonnull) name onSuccess:(OSSendOutcomeSuccess _Nullable) success;
+      //+ (void)sendOutcomeWithValue:(NSString* _Nonnull)name value:(NSNumber* _Nonnull)value onSuccess:(OSSendOutcomeSuccess _Nullable)success;
       [Static]
       [Export("sendOutcomeWithValue:value:onSuccess:")]
-      void SendOutcomeWithValue(string name, double value, OSSendOutcomeSuccess callback);
+      void SendOutcomeWithValue(string name, NSNumber value, OSSendOutcomeSuccess callback);
    }
 
    partial interface Constants
