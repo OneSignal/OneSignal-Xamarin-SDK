@@ -6,5 +6,7 @@
 	<array>
 		<string>group.com.onesignal.example.onesignal</string>
 	</array>
+	<key>aps-environment</key>
+	<string>development</string>
 </dict>
 </plist>
