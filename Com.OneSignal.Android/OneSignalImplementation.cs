@@ -160,9 +160,18 @@ namespace Com.OneSignal
       {
          Android.OneSignal.SetExternalUserId(externalId);
       }
+
+      public override void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion) 
+      {
+         Android.OneSignal.SetExternalUserId(externalId, new OSExternalUserIdUpdateCompletionHandler(completion));
+      }
       
       public override void RemoveExternalUserId() {
          Android.OneSignal.RemoveExternalUserId();
+      }
+
+      public override void RemoveExternalUserId(OnExternalUserIdUpdate completion) {
+         Android.OneSignal.RemoveExternalUserId(new OSExternalUserIdUpdateCompletionHandler(completion));
       }
 
       public override void AddTrigger(string key, object value)

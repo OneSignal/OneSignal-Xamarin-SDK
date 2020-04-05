@@ -36,7 +36,9 @@ namespace Com.OneSignal.Abstractions
       void SetRequiresUserPrivacyConsent(bool required);
 
       void SetExternalUserId(string externalId);
+      void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion);
       void RemoveExternalUserId();
+      void RemoveExternalUserId(OnExternalUserIdUpdate completion);
 
       void AddTrigger(string key, object value);
       void AddTriggers(Dictionary<string, object> triggers);
