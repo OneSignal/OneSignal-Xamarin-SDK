@@ -205,6 +205,10 @@
       <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
       <Name>Com.OneSignal.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\OneSignal.Android.Binding\OneSignal.Android.Binding.csproj">
+      <Project>{9144F592-91B9-4ACA-BC3C-D771F8319996}</Project>
+      <Name>OneSignal.Android.Binding</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
