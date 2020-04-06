@@ -123,11 +123,6 @@
       <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
       <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj">
-      <IsAppExtension>true</IsAppExtension>
-      <Project>{2DD024D6-B178-4229-A4D1-3E1B1B1B7390}</Project>
-      <Name>OneSignalNotificationServiceExtension</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Com.OneSignal.iOS\Com.OneSignal.iOS.csproj">
       <Project>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</Project>
       <Name>Com.OneSignal.iOS</Name>
