@@ -86,12 +86,6 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="Com.OneSignal">
-      <HintPath>..\..\packages\Com.OneSignal.3.7.3\lib\Xamarin.iOS10\Com.OneSignal.dll</HintPath>
-    </Reference>
-    <Reference Include="OneSignal.iOS.Binding">
-      <HintPath>..\..\packages\Com.OneSignal.3.7.3\lib\Xamarin.iOS10\OneSignal.iOS.Binding.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -112,7 +106,6 @@
     <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
       <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
       <Name>Com.OneSignal.Abstractions</Name>
-      <HintPath>..\..\packages\Com.OneSignal.3.7.3\lib\Xamarin.iOS10\Com.OneSignal.Abstractions.dll</HintPath>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
