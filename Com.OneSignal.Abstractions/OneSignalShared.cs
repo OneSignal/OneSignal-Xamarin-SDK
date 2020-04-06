@@ -101,7 +101,11 @@ namespace Com.OneSignal.Abstractions
 
       public abstract void SetExternalUserId(string externalId);
 
+      public abstract void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion);
+
       public abstract void RemoveExternalUserId();
+
+      public abstract void RemoveExternalUserId(OnExternalUserIdUpdate completion);
 
       public abstract void AddTrigger(string key, object value);
 

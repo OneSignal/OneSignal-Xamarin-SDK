@@ -46,6 +46,11 @@ namespace Com.OneSignal.Sample.Shared
          OneSignalOutcomeEventDemo();
       }
 
+      private static void OneSignalSetExternalUSerId(Dictionary<string , object> results)
+      {
+         Debug.WriteLine("External user id updated with results: " + Json.Serialize(results));
+      }
+
       private static void OneSignalInAppMessagingDemo()
       {
          // Add a trigger to show an IAM
@@ -127,7 +132,7 @@ namespace Com.OneSignal.Sample.Shared
       }
       
       public static void SetExternalUserId(string externalId) {
-         OneSignal.Current.SetExternalUserId(externalId);
+         OneSignal.Current.SetExternalUserId(externalId, OneSignalSetExternalUSerId);
       }
       
       public static void RemoveExternalUserId() {

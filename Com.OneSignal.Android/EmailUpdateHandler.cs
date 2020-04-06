@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Com.OneSignal.Abstractions;
-using Org.Json;
 
 namespace Com.OneSignal
 {

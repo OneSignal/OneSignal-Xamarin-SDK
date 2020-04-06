@@ -195,6 +195,9 @@ namespace Com.OneSignal.iOS
    // typedef void (^OSEmailFailureBlock)();
    delegate void OSEmailFailureBlock(NSError arg0);
 
+   // typedef void (^OSUpdateExternalUserIdBlock)();
+   delegate void OSUpdateExternalUserIdBlock(NSDictionary arg0);
+
 	// typedef void (^OSIdsAvailableBlock)(NSString *, NSString *);
 	delegate void OSIdsAvailableBlock(string arg0, string arg1);
 
@@ -433,10 +436,20 @@ namespace Com.OneSignal.iOS
       [Export("setExternalUserId:")]
       void SetExternalUserId(string externalId);
 
+      //+ (void)setExternalUserId:(NSString * _Nonnull)externalId withCompletion:(OSUpdateExternalUserIdBlock _Nullable)completionBlock;
+      [Static]
+      [Export("setExternalUserId:withCompletion:")]
+      void SetExternalUserId(string externalId, OSUpdateExternalUserIdBlock completionCallback);
+
       //+ (void)removeExternalUserId;
       [Static]
       [Export("removeExternalUserId")]
       void RemoveExternalUserId();
+
+      //+ (void)removeExternalUserId:(OSUpdateExternalUserIdBlock _Nullable)completionBlock;
+      [Static]
+      [Export("removeExternalUserId:")]
+      void RemoveExternalUserId(OSUpdateExternalUserIdBlock completionBlock);
 
       //+ (void)addTrigger:(NSString *)key withValue:(id)value;
       [Static]

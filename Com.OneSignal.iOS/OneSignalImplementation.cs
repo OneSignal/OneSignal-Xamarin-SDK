@@ -265,9 +265,21 @@ namespace Com.OneSignal
       public override void SetExternalUserId(string externalId) {
          iOS.OneSignal.SetExternalUserId(externalId);
       }
+
+      public override void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion) {
+         iOS.OneSignal.SetExternalUserId(externalId, (results) => {
+            completion?.Invoke(NSDictToPureDict(results));
+         });
+      }
       
       public override void RemoveExternalUserId() {
          iOS.OneSignal.RemoveExternalUserId();
+      }
+
+      public override void RemoveExternalUserId(OnExternalUserIdUpdate completion) {
+         iOS.OneSignal.RemoveExternalUserId((results) => {
+            completion?.Invoke(NSDictToPureDict(results));
+         });
       }
 
       public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
