@@ -1,80 +1,86 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
 
 namespace Com.OneSignal.Sample.iOS
 {
-    [Register ("ViewController")]
-    partial class ViewController
-    {
-        [Outlet]
-        UIKit.UIButton Button { get; set; }
+	[Register ("ViewController")]
+	partial class ViewController
+	{
+		[Outlet]
+		UIKit.UITextField OutcomeKey { get; set; }
 
+		[Outlet]
+		UIKit.UITextField OutcomeValue { get; set; }
 
-        [Outlet]
-        UIKit.UITextField OutcomeKey { get; set; }
+		[Outlet]
+		UIKit.UITextField OutcomeValueKey { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIKit.UISegmentedControl PrivacyConsentControl { get; set; }
 
-        [Outlet]
-        UIKit.UITextField OutcomeValue { get; set; }
+		[Outlet]
+		UIKit.UITextField UniqueOutcomeKey { get; set; }
 
+		[Action ("Button_TouchUpInside:")]
+		partial void Button_TouchUpInside (UIKit.UIButton sender);
 
-        [Outlet]
-        UIKit.UITextField OutcomeValueKey { get; set; }
+		[Action ("ConsentChanged:")]
+		partial void ConsentChanged (UIKit.UISegmentedControl sender);
 
+		[Action ("ExternalIdChanged:")]
+		partial void ExternalIdChanged (UIKit.UITextField sender);
 
-        [Outlet]
-        UIKit.UITextField UniqueOutcomeKey { get; set; }
+		[Action ("RegisterForPush:")]
+		partial void RegisterForPush (UIKit.UIButton sender);
 
+		[Action ("RemoveExternalUserId:")]
+		partial void RemoveExternalUserId (UIKit.UIButton sender);
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UISegmentedControl PrivacyConsentControl { get; set; }
+		[Action ("SendOutcome:")]
+		partial void SendOutcome (UIKit.UIButton sender);
 
+		[Action ("SendOutcomeWithValue:")]
+		partial void SendOutcomeWithValue (UIKit.UIButton sender);
 
-        [Action ("Button_TouchUpInside:")]
-        partial void Button_TouchUpInside (UIKit.UIButton sender);
+		[Action ("SendUniqueOutcome:")]
+		partial void SendUniqueOutcome (UIKit.UIButton sender);
 
+		[Action ("SetExternalUserId:")]
+		partial void SetExternalUserId (UIKit.UIButton sender);
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (OutcomeKey != null) {
+				OutcomeKey.Dispose ();
+				OutcomeKey = null;
+			}
 
-        [Action ("ConsentChanged:")]
-        partial void ConsentChanged (UIKit.UISegmentedControl sender);
+			if (OutcomeValue != null) {
+				OutcomeValue.Dispose ();
+				OutcomeValue = null;
+			}
 
+			if (OutcomeValueKey != null) {
+				OutcomeValueKey.Dispose ();
+				OutcomeValueKey = null;
+			}
 
-        [Action ("ExternalIdChanged:")]
-        partial void ExternalIdChanged (UIKit.UITextField sender);
+			if (UniqueOutcomeKey != null) {
+				UniqueOutcomeKey.Dispose ();
+				UniqueOutcomeKey = null;
+			}
 
-
-        [Action ("RemoveExternalUserId:")]
-        partial void RemoveExternalUserId (UIKit.UIButton sender);
-
-
-        [Action ("SetExternalUserId:")]
-        partial void SetExternalUserId (UIKit.UIButton sender);
-
-
-        [Action ("SendOutcome:")]
-        partial void SendOutcome (UIKit.UIButton sender);
-
-
-        [Action ("SendOutcomeWithValue:")]
-        partial void SendOutcomeWithValue (UIKit.UIButton sender);
-
-
-        [Action ("SendUniqueOutcome:")]
-        partial void SendUniqueOutcome (UIKit.UIButton sender);
-
-        void ReleaseDesignerOutlets ()
-        {
-            if (PrivacyConsentControl != null) {
-                PrivacyConsentControl.Dispose ();
-                PrivacyConsentControl = null;
-            }
-        }
-    }
+			if (PrivacyConsentControl != null) {
+				PrivacyConsentControl.Dispose ();
+				PrivacyConsentControl = null;
+			}
+		}
+	}
 }

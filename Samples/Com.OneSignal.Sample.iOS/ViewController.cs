@@ -27,13 +27,6 @@ namespace Com.OneSignal.Sample.iOS
       {
          base.ViewDidLoad();
 
-         // Perform any additional setup after loading the view, typically from a nib.
-         Button.AccessibilityIdentifier = "myButton";
-         Button.TouchUpInside += delegate
-         {
-            SharedPush.RegisterIOS();
-         };
-
          PrivacyConsentControl.SelectedSegment = SharedPush.UserDidProvideConsent() ? 1 : 0;
 
          UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
@@ -45,6 +38,11 @@ namespace Com.OneSignal.Sample.iOS
       {
          base.DidReceiveMemoryWarning();
          // Release any cached data, images, etc that aren't in use.
+      }
+
+      partial void RegisterForPush(UIButton sender)
+      {
+         SharedPush.RegisterIOS();
       }
 
       partial void ConsentChanged(UISegmentedControl sender)
