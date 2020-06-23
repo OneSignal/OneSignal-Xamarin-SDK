@@ -12,10 +12,7 @@
     <AssemblyName>OneSignal.Android.Binding</AssemblyName>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidSdkBuildToolsVersion Condition="'$(AndroidSdkBuildToolsVersion)' == ''">28.0.3</AndroidSdkBuildToolsVersion>
-    <AndroidTlsProvider>
-    </AndroidTlsProvider>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <AndroidTlsProvider></AndroidTlsProvider>
     <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
