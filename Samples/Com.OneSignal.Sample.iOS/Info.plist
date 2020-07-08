@@ -42,5 +42,7 @@
 	<string>OneSignalXamarminExample</string>
 	<key>OneSignal_require_privacy_consent</key>
 	<true/>
+	<key>CFBundleDisplayName</key>
+	<string>OneSignalXamarminExample</string>
 </dict>
 </plist>

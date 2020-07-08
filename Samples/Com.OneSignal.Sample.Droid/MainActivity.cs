@@ -1,6 +1,8 @@
 ﻿using Android.App;
-using Android.Widget;
+using Android.Content;
 using Android.OS;
+using Android.Widget;
+using Com.Huawei.Agconnect.Config;
 using Com.OneSignal.Sample.Shared;
 using System;
 
@@ -10,6 +12,13 @@ namespace Com.OneSignal.Sample.Droid
    public class MainActivity : Activity
    {
       int count = 1;
+
+      protected override void AttachBaseContext(Context context)
+      {
+         base.AttachBaseContext(context);
+         AGConnectServicesConfig config = AGConnectServicesConfig.FromContext(context);
+         config.OverlayWith(new HmsLazyInputStream(context));
+      }
 
       protected override void OnCreate(Bundle savedInstanceState)
       {

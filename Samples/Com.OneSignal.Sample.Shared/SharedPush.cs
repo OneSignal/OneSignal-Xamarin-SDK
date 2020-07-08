@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 using Com.OneSignal;
 using Com.OneSignal.Abstractions;
+using Java.Lang;
 
 namespace Com.OneSignal.Sample.Shared
 {
@@ -17,7 +18,7 @@ namespace Com.OneSignal.Sample.Shared
          //if you want to require user consent, change this to true
          SharedPush.SetRequiresConsent(false);
 
-         OneSignal.Current.StartInit("b2f7f966-d8cc-11e4-bed1-df8f05be55ba").Settings(new Dictionary<string, bool>() {
+         OneSignal.Current.StartInit("77e32082-ea27-42e3-a898-c72e141824ef").Settings(new Dictionary<string, bool>() {
             { IOSSettings.kOSSettingsKeyAutoPrompt, false },
             { IOSSettings.kOSSettingsKeyInAppLaunchURL, true } })
            .InFocusDisplaying(OSInFocusDisplayOption.Notification)
@@ -114,8 +115,7 @@ namespace Com.OneSignal.Sample.Shared
 
       // Just for iOS.
       // No effect on Android, device auto registers without prompting.
-      public static void RegisterIOS()
-      {
+      public static void RegisterIOS() {
          OneSignal.Current.RegisterForPushNotifications();
       }
       
