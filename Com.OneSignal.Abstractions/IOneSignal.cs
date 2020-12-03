@@ -37,6 +37,7 @@ namespace Com.OneSignal.Abstractions
 
       void SetExternalUserId(string externalId);
       void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion);
+      void SetExternalUserId(string externalId, string authHashToken, OnExternalUserIdUpdate success, OnExternalUserIdUpdateFailure failure);
       void RemoveExternalUserId();
       void RemoveExternalUserId(OnExternalUserIdUpdate completion);
 

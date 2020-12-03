@@ -441,8 +441,13 @@ namespace Com.OneSignal.iOS
       [Export("setExternalUserId:withCompletion:")]
       void SetExternalUserId(string externalId, OSUpdateExternalUserIdBlock completionCallback);
 
-      //+ (void)removeExternalUserId;
-      [Static]
+		//+ (void)setExternalUserId:(NSString *)externalId withExternalIdAuthHashToken:(NSString *)hashToken withSuccess:(OSUpdateExternalUserIdSuccessBlock _Nullable)successBlock withFailure:(OSUpdateExternalUserIdFailureBlock _Nullable)failureBlock;
+		[Static]
+		[Export("setExternalUserId:withExternalIdAuthHashToken:withSuccess:withFailure:")]
+		void SetExternalUserId(string externalId, string hashToken, OSResultSuccessBlock successBlock, OSFailureBlock failureBlock);
+
+		//+ (void)removeExternalUserId;
+		[Static]
       [Export("removeExternalUserId")]
       void RemoveExternalUserId();
 

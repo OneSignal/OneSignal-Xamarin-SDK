@@ -165,7 +165,12 @@ namespace Com.OneSignal
       {
          Android.OneSignal.SetExternalUserId(externalId, new OSExternalUserIdUpdateCompletionHandler(completion));
       }
-      
+
+      public override void SetExternalUserId(string externalId, string authHashToken, OnExternalUserIdUpdate success, OnExternalUserIdUpdateFailure failure)
+      {
+         Android.OneSignal.SetExternalUserId(externalId, authHashToken, new OSExternalUserIdUpdateCompletionHandler(success));
+      }
+
       public override void RemoveExternalUserId() {
          Android.OneSignal.RemoveExternalUserId();
       }

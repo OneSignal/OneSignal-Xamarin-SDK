@@ -103,6 +103,8 @@ namespace Com.OneSignal.Abstractions
 
       public abstract void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion);
 
+      public abstract void SetExternalUserId(string externalId, string authHashToken, OnExternalUserIdUpdate success, OnExternalUserIdUpdateFailure failure);
+
       public abstract void RemoveExternalUserId();
 
       public abstract void RemoveExternalUserId(OnExternalUserIdUpdate completion);
@@ -130,6 +132,5 @@ namespace Com.OneSignal.Abstractions
       public abstract void SendOutcomeWithValue(string name, float value);
 
       public abstract void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess);
-
    }
 }
