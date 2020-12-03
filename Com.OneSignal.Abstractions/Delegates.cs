@@ -25,6 +25,7 @@ namespace Com.OneSignal.Abstractions
    public delegate void OnSetEmailFailure(Dictionary<string, object> response);
 
    public delegate void OnExternalUserIdUpdate(Dictionary<string, object> results);
+   public delegate void OnExternalUserIdUpdateFailure(Dictionary<string, object> response);
 
    // SendOutcomeEventSuccess - Delegate is called when a SendOutcome(...), SendUniqueOutcome(...), or SendOutcomeWithValue(...) is sent successfully
    // outcomeEvent = The OutcomeEvent created in native SDK and sent along with request using measure endpoint

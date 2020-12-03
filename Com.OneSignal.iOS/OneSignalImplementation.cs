@@ -271,7 +271,24 @@ namespace Com.OneSignal
             completion?.Invoke(NSDictToPureDict(results));
          });
       }
-      
+
+      public override void SetExternalUserId(string externalId, string authHashToken, OnExternalUserIdUpdate success, OnExternalUserIdUpdateFailure failure) {
+         iOS.OneSignal.SetExternalUserId(externalId, authHashToken, (results) => {
+            success?.Invoke(NSDictToPureDict(results));
+         }, error =>
+         {
+            if (failure != null)
+            {
+               Dictionary<string, object> dict;
+               if (error.UserInfo != null)
+                  dict = NSDictToPureDict(error.UserInfo);
+               else
+                  dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
+               failure(dict);
+            }
+         });
+      }
+
       public override void RemoveExternalUserId() {
          iOS.OneSignal.RemoveExternalUserId();
       }

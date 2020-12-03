@@ -133,8 +133,11 @@ namespace Com.OneSignal.Sample.Shared
       
       public static void SetExternalUserId(string externalId) {
          OneSignal.Current.SetExternalUserId(externalId, OneSignalSetExternalUSerId);
+
+         // Auth external id method
+         //OneSignal.Current.SetExternalUserId(externalId, "your_auth_hash_token", OneSignalSetExternalUSerId, OneSignalSetExternalUSerId);
       }
-      
+
       public static void RemoveExternalUserId() {
          OneSignal.Current.RemoveExternalUserId();
       }
