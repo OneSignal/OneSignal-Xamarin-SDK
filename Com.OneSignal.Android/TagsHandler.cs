@@ -5,7 +5,7 @@ using Org.Json;
 
 namespace Com.OneSignal
 {
-   public class TagsHandler : Java.Lang.Object, Android.OneSignal.IGetTagsHandler
+   public class TagsHandler : Java.Lang.Object
    {
 	   readonly TagsReceived _tagsReceived;
 

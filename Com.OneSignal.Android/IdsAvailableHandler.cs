@@ -5,7 +5,7 @@ using Com.OneSignal.Android;
 
 namespace Com.OneSignal
 {
-    public class IdsAvailableHandler : Java.Lang.Object, Android.OneSignal.IIdsAvailableHandler
+    public class IdsAvailableHandler : Java.Lang.Object
     {
 		readonly IdsAvailableCallback _idsAvailable;
 

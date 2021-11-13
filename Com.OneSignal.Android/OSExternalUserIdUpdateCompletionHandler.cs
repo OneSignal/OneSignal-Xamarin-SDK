@@ -4,7 +4,7 @@ using Org.Json;
 
 namespace Com.OneSignal
 {
-   public class OSExternalUserIdUpdateCompletionHandler : Java.Lang.Object, Android.OneSignal.IOSExternalUserIdUpdateCompletionHandler
+   public class OSExternalUserIdUpdateCompletionHandler : Java.Lang.Object
 	{
 		readonly OnExternalUserIdUpdate _completion;
 
