@@ -169,6 +169,24 @@
     <Reference Include="Xamarin.GooglePlayServices.Ads.Identifier">
       <HintPath>..\..\packages\Xamarin.GooglePlayServices.Ads.Identifier.71.1600.0\lib\monoandroid90\Xamarin.GooglePlayServices.Ads.Identifier.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Jetbrains.Annotations">
+      <HintPath>..\..\packages\Xamarin.Jetbrains.Annotations.22.0.0.2\lib\monoandroid90\Xamarin.Jetbrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="Xamarin.Kotlin.StdLib.Common">
+      <HintPath>..\..\packages\Xamarin.Kotlin.StdLib.Common.1.5.31.2\lib\monoandroid90\Xamarin.Kotlin.StdLib.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib">
+      <HintPath>..\..\packages\Xamarin.Kotlin.StdLib.1.5.31.2\lib\monoandroid90\Xamarin.Kotlin.StdLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Jdk7">
+      <HintPath>..\..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.5.31.2\lib\monoandroid90\Xamarin.Kotlin.StdLib.Jdk7.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Jdk8">
+      <HintPath>..\..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.5.31.2\lib\monoandroid90\Xamarin.Kotlin.StdLib.Jdk8.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -253,4 +271,9 @@
   <Import Project="..\..\packages\Xamarin.Firebase.Iid.71.1710.0\build\MonoAndroid90\Xamarin.Firebase.Iid.targets" Condition="Exists('..\..\packages\Xamarin.Firebase.Iid.71.1710.0\build\MonoAndroid90\Xamarin.Firebase.Iid.targets')" />
   <Import Project="..\..\packages\Xamarin.Firebase.Messaging.71.1740.0\build\MonoAndroid90\Xamarin.Firebase.Messaging.targets" Condition="Exists('..\..\packages\Xamarin.Firebase.Messaging.71.1740.0\build\MonoAndroid90\Xamarin.Firebase.Messaging.targets')" />
   <Import Project="..\..\packages\Xamarin.GooglePlayServices.Ads.Identifier.71.1600.0\build\MonoAndroid90\Xamarin.GooglePlayServices.Ads.Identifier.targets" Condition="Exists('..\..\packages\Xamarin.GooglePlayServices.Ads.Identifier.71.1600.0\build\MonoAndroid90\Xamarin.GooglePlayServices.Ads.Identifier.targets')" />
+  <Import Project="..\..\packages\Xamarin.Jetbrains.Annotations.22.0.0.2\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets" Condition="Exists('..\..\packages\Xamarin.Jetbrains.Annotations.22.0.0.2\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets')" />
+  <Import Project="..\..\packages\Xamarin.Kotlin.StdLib.Common.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Common.targets" Condition="Exists('..\..\packages\Xamarin.Kotlin.StdLib.Common.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Common.targets')" />
+  <Import Project="..\..\packages\Xamarin.Kotlin.StdLib.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.targets" Condition="Exists('..\..\packages\Xamarin.Kotlin.StdLib.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.targets')" />
+  <Import Project="..\..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Jdk7.targets" Condition="Exists('..\..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Jdk7.targets')" />
+  <Import Project="..\..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Jdk8.targets" Condition="Exists('..\..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.5.31.2\build\monoandroid90\Xamarin.Kotlin.StdLib.Jdk8.targets')" />
 </Project>
