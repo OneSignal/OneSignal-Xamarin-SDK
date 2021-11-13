@@ -42,7 +42,7 @@ namespace Com.OneSignal.Sample.Shared
             Debug.WriteLine("OneSignal.Current.IdsAvailable:D playerID: {0}, pushToken: {1}", playerID, pushToken);
          });
 
-         OneSignalInAppMessagingDemo();
+         //OneSignalInAppMessagingDemo();
          OneSignalOutcomeEventDemo();
       }
 
