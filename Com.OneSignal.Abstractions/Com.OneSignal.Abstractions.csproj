@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Com.OneSignal.Abstractions</AssemblyName>
     <PackageId>Com.OneSignal.Abstractions</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
@@ -15,6 +15,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <Optimize></Optimize>
     <DefineConstants></DefineConstants>
     <ConsolePause>true</ConsolePause>
@@ -27,7 +29,12 @@
     <CheckForOverflowUnderflow></CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="NETStandard.Library" />
+    <None Remove="Microsoft.NETCore.Portable.Compatibility" />
+  </ItemGroup>
 </Project>
