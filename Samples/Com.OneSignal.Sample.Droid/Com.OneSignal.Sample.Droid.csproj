@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Com.OneSignal.Sample.Droid</RootNamespace>
     <AssemblyName>Com.OneSignal.Sample.Droid</AssemblyName>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
