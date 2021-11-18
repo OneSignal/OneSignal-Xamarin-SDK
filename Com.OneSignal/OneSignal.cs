@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
-using Com.OneSignal.Abstractions;
+using Com.OneSignal.Core;
 
 namespace Com.OneSignal
 {
    public class OneSignal
    {
-      static readonly Lazy<IOneSignal> Implementation = new Lazy<IOneSignal>(CreateOneSignal);
+      static readonly Lazy<OneSignalSDK> Implementation = new Lazy<OneSignalSDK>(CreateOneSignal);
 
-      public static IOneSignal Current
+      public static OneSignalSDK Default
       {
          get
          {
@@ -19,7 +19,7 @@ namespace Com.OneSignal
          }
       }
 
-      static IOneSignal CreateOneSignal()
+      static OneSignalSDK CreateOneSignal()
       {
          #if PORTABLE
             Debug.WriteLine("PORTABLE Reached");
