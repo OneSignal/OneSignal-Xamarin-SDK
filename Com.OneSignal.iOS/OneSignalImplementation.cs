@@ -1,456 +1,306 @@
 ﻿using System;
-using Foundation;
-using UserNotifications;
-using System.Diagnostics;
 using System.Collections.Generic;
-using Com.OneSignal.Abstractions;
-using OSInFocusDisplayOption = Com.OneSignal.Abstractions.OSInFocusDisplayOption;
-using OSNotification = Com.OneSignal.Abstractions.OSNotification;
-using OSNotificationAction = Com.OneSignal.Abstractions.OSNotificationAction;
-using OSNotificationPayload = Com.OneSignal.Abstractions.OSNotificationPayload;
-using OSNotificationOpenedResult = Com.OneSignal.Abstractions.OSNotificationOpenedResult;
-using OSInAppMessageAction = Com.OneSignal.Abstractions.OSInAppMessageAction;
+using System.Threading.Tasks;
 
-namespace Com.OneSignal
-{
-   public class OneSignalImplementation : OneSignalShared, IOneSignal
-   {
-      public static Dictionary<string, object> NSDictToPureDict(NSDictionary nsDict)
-      {
-         if (nsDict == null)
-            return null;
-         NSError error;
-         NSData jsonData = NSJsonSerialization.Serialize(nsDict, 0, out error);
-         NSString jsonNSString = NSString.FromData(jsonData, NSStringEncoding.UTF8);
-         string jsonString = jsonNSString.ToString();
-         return Json.Deserialize(jsonString) as Dictionary<string, object>;
+using Com.OneSignal.Core;
+using Com.OneSignal.iOS;
+using Foundation;
+using OneSignalNative = Com.OneSignal.iOS.OneSignal;
+
+
+namespace Com.OneSignal {
+   public partial class OneSignalImplementation : OneSignalSDK {
+      public LogType currentLogLevel;
+      public LogType currentAlertLevel;
+
+      public override event NotificationLifecycleDelegate NotificationReceived;
+      public override event NotificationActionDelegate NotificationWasOpened;
+      public override event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
+      public override event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
+      public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
+      public override event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
+      public override event InAppMessageActionDelegate InAppMessageTriggeredAction;
+      public override event StateChangeDelegate<PermissionState> PermissionStateChanged;
+      public override event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
+      public override event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
+      public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
+
+      public override void Initialize(string appId) {
+         Console.WriteLine("App Initialization");
+         InitWithLaunchOptions();
+         OneSignalNative.AppId = appId;
       }
 
-      private OSNotificationOpenedResult OSNotificationOpenedResultToXam(iOS.OSNotificationOpenedResult result)
-      {
-         var openresult = new OSNotificationOpenedResult();
-         openresult.action = new OSNotificationAction();
-         iOS.OSNotificationAction action = result.Action;
-         openresult.action.actionID = action.ActionID;
-         openresult.action.type = (OSNotificationAction.ActionType)(int)action.Type;
-
-         openresult.notification = OSNotificationToXam(result.Notification);
-
-         return openresult;
+      public void InitWithLaunchOptions() {
+         OneSignalNative.InitWithLaunchOptions(null);
       }
 
-      private OSNotification OSNotificationToXam(iOS.OSNotification notif)
-      {
-         var notification = new OSNotification();
-         notification.displayType = (OSNotification.DisplayType)notif.DisplayType;
-         notification.shown = notif.Shown;
-         notification.silentNotification = notif.SilentNotification;
-         notification.isAppInFocus = notif.IsAppInFocus;
-         notification.payload = new OSNotificationPayload();
+      //public override void InitWithContext() {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override bool UserProvidedPrivacyConsent() {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void OneSignalLog(LogType logLevel, string message) {
+      //    OneSignalNative.OnesignalLog((OneSLogLevel)logLevel, message);
+      //}
+
+      //public override void ProvideUserConsent(bool consent) {
+      //    //OneSignal.ConsentGranted(consent);
+      //    throw new NotImplementedException();
+      //}
+
+      //public override bool RequiresUserPrivacyConsent() {
+      //    return OneSignal.RequiresUserPrivacyConsent();
+      //}
+
+      //TODO: ??
+      public override bool PrivacyConsent {
+         get => false;
+         set => OneSignalNative.ConsentGranted(value);
+      }
+
+      public override bool RequiresPrivacyConsent {
+         get => OneSignalNative.RequiresUserPrivacyConsent();
+         set => OneSignalNative.SetRequiresUserPrivacyConsent(value);
+      }
+
+      public override LogType LogLevel { //(LogType inLogCatLogLevel, LogType inVisualLogLevel) {
+         get => currentLogLevel;
+         set {
+            currentLogLevel = value;
+            OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
+         }
+      }
+
+      public override LogType AlertLevel {
+         get => currentAlertLevel;
+         set {
+            currentAlertLevel = value;
+            OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
+         }
+      }
+
+      //public override void SetRequiresUserPrivacyConsent(bool required) {
+      //    OneSignal.ConsentGranted(required);
+      //}
+
+      //public override void SetLogLevel(LogType inLogCatLogLevel, LogType inVisualLogLevel) {
+      //    OneSignalNative.SetLogLevel((OneSLogLevel)inLogCatLogLevel, (OneSLogLevel)inVisualLogLevel);
+      //}
+
+      public override async Task<bool> SetSMSNumber(string smsNumber, string authHash = null) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SetSMSNumber(smsNumber, authHash, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
 
 
-         notification.payload.actionButtons = new List<Dictionary<string, object>>();
-         if (notif.Payload.ActionButtons != null)
-         {
-            for (int i = 0; i < (int)notif.Payload.ActionButtons.Count; ++i)
-            {
-               NSDictionary element = notif.Payload.ActionButtons.GetItem<NSDictionary>((uint)i);
-               notification.payload.actionButtons.Add(NSDictToPureDict(element));
-            }
+      public override async Task<bool> SetEmail(string email, string authHash = null) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SetEmail(email, authHash,
+             delegate { proxy.OnResponse(true); }, delegate { proxy.OnResponse(false); });
+         return await proxy;
+      }
+
+      public override async Task<bool> Logout(LogoutOptions options = LogoutOptions.SMS | LogoutOptions.Email | LogoutOptions.ExternalUserId) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+
+         if (options.Equals(LogoutOptions.SMS))
+            OneSignalNative.LogoutSMSNumberWithSuccess(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         else if (options.Equals(LogoutOptions.Email))
+            OneSignalNative.LogoutEmailWithSuccess(delegate { proxy.OnResponse(true); }, delegate { proxy.OnResponse(false); });
+         else if (options.Equals(LogoutOptions.ExternalUserId))
+            OneSignalNative.RemoveExternalUserId(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+
+         return await proxy;
+      }
+
+      public override void SetLanguage(string language) {
+         OneSignalNative.SetLanguage(language);
+      }
+
+      public override async Task<bool> SetExternalUserId(string externalId, string authHash = null) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SetExternalUserId(externalId, authHash, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
+
+      public override void SendTag(string key, string value) {
+         OneSignalNative.SendTag(key, value);
+      }
+
+      public override void SendTags(string jsonString) {
+         Dictionary<string, object> dict = Json.Deserialize(jsonString) as Dictionary<string, object>;
+         OneSignalNative.SendTags(NativeConversion.DictToNSDict(dict));
+      }
+
+      public override async Task<bool> SendTags(Dictionary<string, object> tags) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendTags(NativeConversion.DictToNSDict(tags), response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
+
+      public override async Task<Dictionary<string, object>> GetTags() {
+         DictionaryCallbackProxy proxy = new DictionaryCallbackProxy();
+         OneSignalNative.GetTags(response => proxy.OnResponse(NativeConversion.NSDictToPureDict(response)));
+         return await proxy;
+      }
+
+      public override async Task<bool> DeleteTag(string key) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.DeleteTag(key, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
+
+      //public override async Task<bool> DeleteTags(ICollection<string> keys) {
+      //    BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+      //    OneSignalNative.DeleteTags(key, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+      //    return await proxy;
+      //}
+
+      //public override async Task<bool> DeleteTags(string jsonArrayString) {
+      //    BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+      //    OneSignalNative.DeleteTags(key, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+      //    return await proxy;
+      //}
+
+
+      public override async Task<bool> DeleteTags(IEnumerable<string> keys) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         int count = 0;
+
+         foreach (var key in keys) {
+            count++;
+         }
+         NSObject[] nsKeys = new NSObject[count];
+         count = 0;
+         foreach (var key in keys) {
+            nsKeys[count] = NSString.FromData(key, NSStringEncoding.UTF8);
          }
 
-         notification.payload.additionalData = new Dictionary<string, object>();
-         if (notif.Payload.AdditionalData != null)
-         {
-            foreach (KeyValuePair<NSObject, NSObject> element in notif.Payload.AdditionalData)
-            {
-               notification.payload.additionalData.Add((NSString)element.Key, element.Value);
-            }
-         }
-
-         notification.payload.badge = (int)notif.Payload.Badge;
-         notification.payload.body = notif.Payload.Body;
-         notification.payload.contentAvailable = notif.Payload.ContentAvailable;
-         notification.payload.launchURL = notif.Payload.LaunchURL;
-         notification.payload.notificationID = notif.Payload.NotificationID;
-         notification.payload.sound = notif.Payload.Sound;
-         notification.payload.subtitle = notif.Payload.Subtitle;
-         notification.payload.title = notif.Payload.Title;
-
-         return notification;
+         OneSignalNative.DeleteTags(nsKeys, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
       }
 
-      private OSInAppMessageAction OSInAppMessageClickActionToXam(iOS.OSInAppMessageAction nativeAction)
-      {
-         var action = new OSInAppMessageAction();
-         action.clickName = nativeAction.ClickName;
-         action.clickUrl = (nativeAction.ClickUrl != null) ? nativeAction.ClickUrl.AbsoluteString : "";
-         action.firstClick = nativeAction.FirstClick;
-         action.closesMessage = nativeAction.ClosesMessage;
+      //public override Task<Dictionary<string, object>> DeleteTags(JSONArray jsonArray) {
+      //    throw new NotImplementedException();
+      //}
 
-         return action;
+      public override async Task<bool> PostNotification(Dictionary<string, object> options) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.PostNotification(NativeConversion.DictToNSDict(options), response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
       }
 
-      // Init - Only required method you call to setup OneSignal to receive push notifications.
-      public override void InitPlatform()
-      {
-         //extract settings
-         bool autoPrompt = true, inAppLaunchURL = true;
+      //public override async Task<Dictionary<string, object>> PostNotification(JSONObject json) {
+      //    throw new NotImplementedException();
+      //}
 
-         if (builder.iOSSettings != null)
-         {
-            if (builder.iOSSettings.ContainsKey(IOSSettings.kOSSettingsKeyAutoPrompt))
-               autoPrompt = builder.iOSSettings[IOSSettings.kOSSettingsKeyAutoPrompt];
-            if (builder.iOSSettings.ContainsKey(IOSSettings.kOSSettingsKeyInAppLaunchURL))
-               inAppLaunchURL = builder.iOSSettings[IOSSettings.kOSSettingsKeyInAppLaunchURL];
-         }
-         Init(builder.mAppId, autoPrompt, inAppLaunchURL, builder.displayOption, logLevel, visualLogLevel);
+      //TODO: Check
+      public void DisablePush(bool disable) {
+         OneSignalNative.DisablePush(disable);
       }
 
-      public void Init(string appId, bool autoPrompt, bool inAppLaunchURLs, OSInFocusDisplayOption displayOption, LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
-      {
-         var convertedLogLevel = (iOS.OneSLogLevel)((int)logLevel);
-         var convertedVisualLevel = (iOS.OneSLogLevel)((int)visualLevel);
-
-         iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
-         var dict = new NSDictionary("kOSSettingsKeyInAppLaunchURL", new NSNumber(inAppLaunchURLs),
-                                                "kOSSettingsKeyAutoPrompt", new NSNumber(autoPrompt),
-                                                "kOSSettingsKeyInFocusDisplayOption", new NSNumber((int)displayOption)
-                                               );
-         iOS.OneSignal.SetMSDKType("xam");
-         iOS.OneSignal.SetInAppMessageClickHandler(InAppMessageClickActionHandler);
-         iOS.OneSignal.InitWithLaunchOptions(new NSDictionary(), appId, NotificationReceivedHandler, NotificationOpenedHandler, dict);
-
+      //TODO: Check
+      public void DisableGMSMissingPrompt(bool promptDisable) {
+         throw new NotImplementedException();
       }
 
-      public override void RegisterForPushNotifications()
-      {
-         iOS.OneSignal.RegisterForPushNotifications();
+      public override bool ShareLocation {
+         get => OneSignalNative.IsLocationShared();
+         set => OneSignalNative.SetLocationShared(value);
       }
 
-      public override void SendTag(string tagName, string tagValue)
-      {
-         iOS.OneSignal.SendTag(tagName, tagValue);
+      public override void PromptLocation() {
+         OneSignalNative.PromptLocation();
       }
 
-      public override void SendTags(IDictionary<string, string> tags)
-      {
-         string jsonString = Json.Serialize(tags);
-         iOS.OneSignal.SendTagsWithJsonString(jsonString);
+      public override void ClearOneSignalNotifications() {
+         throw new NotImplementedException();
       }
 
-      public override void GetTags(TagsReceived tagsReceived)
-      {
-         if (tagsReceived == null)
-            throw new ArgumentNullException(nameof(tagsReceived));
-         iOS.OneSignal.GetTags(tags => tagsReceived(NSDictToPureDict(tags)));
+      //public override void RemoveNotifications(int id) {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void RemoveGroupedNotifications(string group) {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void AddPermissionObserver() {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void AddSubscriptionObserver() {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void AddSMSSubscriptionObserver() {
+      //    throw new NotImplementedException();
+      //}
+
+      //public override void AddEmailSubscriptionObserver() {
+      //    throw new NotImplementedException();
+      //}
+
+      public override void SetTrigger(string key, object triggerObject) {
+         OneSignalNative.AddTrigger(key, (NSObject)triggerObject);
       }
 
-      public override void DeleteTag(string key)
-      {
-         iOS.OneSignal.DeleteTag(key);
-      }
-
-      public override void DeleteTags(IList<string> keys)
-      {
-         NSObject[] objs = new NSObject[keys.Count];
-         for (int i = 0; i < keys.Count; i++)
-         {
-            objs[i] = (NSString)keys[i];
-         }
-         iOS.OneSignal.DeleteTags(objs);
-      }
-
-		public override void ClearAndroidOneSignalNotifications()
-		{
-			Debug.WriteLine("ClearAndroidOneSignalNotifications() is an android-only function, and is not implemented in iOS.");
-		}
-
-      public override void UnsubscribeWhenNotificationsAreDisabled(bool set)
-      {
-         Debug.WriteLine("UnsubscribeWhenNotificationsAreDisabled() is an android-only function, and is not implemented in iOS.");
-      }
-
-		public override void IdsAvailable(IdsAvailableCallback idsAvailable)
-		{
-			if (idsAvailable == null)
-				throw new ArgumentNullException(nameof(idsAvailable));
-			iOS.OneSignal.IdsAvailable((playerId, pushToken) => idsAvailable(playerId, pushToken));
-		}
-
-		public override void SetSubscription(bool enable)
-      {
-         iOS.OneSignal.SetSubscription(enable);
-      }
-
-      public override void PostNotification(Dictionary<string, object> data, OnPostNotificationSuccess success, OnPostNotificationFailure failure)
-      {
-         string jsonString = Json.Serialize(data);
-         iOS.OneSignal.PostNotificationWithJsonString(jsonString,
-             result => success?.Invoke(NSDictToPureDict(result)),
-             error =>
-             {
-                if (failure != null)
-                {
-                   Dictionary<string, object> dict;
-                   if (error.UserInfo != null && error.UserInfo["returned"] != null)
-                      dict = NSDictToPureDict(error.UserInfo);
-                   else
-                      dict = new Dictionary<string, object> { { "error", "HTTP no response error" } };
-                   failure(dict);
-                }
-             });
-      }
-
-      public override void SetEmail(string email, string emailAuthCode, OnSetEmailSuccess success, OnSetEmailFailure failure)
-      {
-         iOS.OneSignal.SetEmail(email, emailAuthCode, () => success?.Invoke(), error =>
-             {
-                if (failure != null)
-                {
-                   Dictionary<string, object> dict;
-                   if (error.UserInfo != null)
-                      dict = NSDictToPureDict(error.UserInfo);
-                   else
-                      dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
-                   failure(dict);
-                }
-             });
-      }
-
-      public override void SetEmail(string email, OnSetEmailSuccess success, OnSetEmailFailure failure)
-      {
-         iOS.OneSignal.SetEmail(email, () => success?.Invoke(), error =>
-             {
-                if (failure != null)
-                {
-                   Dictionary<string, object> dict;
-                   if (error.UserInfo != null)
-                      dict = NSDictToPureDict(error.UserInfo);
-                   else
-                      dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
-                   failure(dict);
-                }
-             });
-      }
-
-      public override void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure)
-      {
-         iOS.OneSignal.LogoutEmail(() => success?.Invoke(), error =>
-             {
-                if (failure != null)
-                {
-                   Dictionary<string, object> dict;
-                   if (error.UserInfo != null)
-                      dict = NSDictToPureDict(error.UserInfo);
-                   else
-                      dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
-                   failure(dict);
-                }
-             });
-      }
-
-      public override void UserDidProvidePrivacyConsent(bool granted) {
-         iOS.OneSignal.ConsentGranted(granted);
-      }
-      
-      public override bool RequiresUserPrivacyConsent() {
-         return iOS.OneSignal.RequiresUserPrivacyConsent();
-      }
-      
-      public override void SetRequiresUserPrivacyConsent(bool required) {
-         iOS.OneSignal.SetRequiresUserPrivacyConsent(required);
-      }
-      
-      public override void SetExternalUserId(string externalId) {
-         iOS.OneSignal.SetExternalUserId(externalId);
-      }
-
-      public override void SetExternalUserId(string externalId, OnExternalUserIdUpdate completion) {
-         iOS.OneSignal.SetExternalUserId(externalId, (results) => {
-            completion?.Invoke(NSDictToPureDict(results));
-         });
-      }
-
-      public override void SetExternalUserId(string externalId, string authHashToken, OnExternalUserIdUpdate success, OnExternalUserIdUpdateFailure failure) {
-         iOS.OneSignal.SetExternalUserId(externalId, authHashToken, (results) => {
-            success?.Invoke(NSDictToPureDict(results));
-         }, error =>
-         {
-            if (failure != null)
-            {
-               Dictionary<string, object> dict;
-               if (error.UserInfo != null)
-                  dict = NSDictToPureDict(error.UserInfo);
-               else
-                  dict = new Dictionary<string, object> { { "error", "An unknown error occurred" } };
-               failure(dict);
-            }
-         });
-      }
-
-      public override void RemoveExternalUserId() {
-         iOS.OneSignal.RemoveExternalUserId();
-      }
-
-      public override void RemoveExternalUserId(OnExternalUserIdUpdate completion) {
-         iOS.OneSignal.RemoveExternalUserId((results) => {
-            completion?.Invoke(NSDictToPureDict(results));
-         });
-      }
-
-      public override void SetLogLevel(LOG_LEVEL logLevel, LOG_LEVEL visualLevel)
-      {
-         base.SetLogLevel(logLevel, visualLevel);
-
-         var convertedLogLevel = (iOS.OneSLogLevel)((ulong)((int)logLevel));
-         var convertedVisualLevel = (iOS.OneSLogLevel)((ulong)((int)visualLevel));
-         iOS.OneSignal.SetLogLevel(convertedLogLevel, convertedVisualLevel);
-      }
-
-      public void NotificationOpenedHandler(iOS.OSNotificationOpenedResult result)
-      {
-         OnPushNotificationOpened(OSNotificationOpenedResultToXam(result));
-      }
-
-      public void NotificationReceivedHandler(iOS.OSNotification notification)
-      {
-         OnPushNotificationReceived(OSNotificationToXam(notification));
-      }
-
-      public void InAppMessageClickActionHandler(iOS.OSInAppMessageAction action)
-      {
-         OnInAppMessageClicked(OSInAppMessageClickActionToXam(action));
-      }
-
-      [Obsolete("SyncHashedEmail has been deprecated. Please use SetEmail() instead.")]
-      public override void SyncHashedEmail(string email)
-      {
-         iOS.OneSignal.SyncHashedEmail(email);
-      }
-
-      public override void PromptLocation()
-      {
-         iOS.OneSignal.PromptLocation();
-      }
-      
-      public override void SetLocationShared(bool shared) {
-         iOS.OneSignal.SetLocationShared(shared);
-      }
-
-      public void DidReceiveNotificationExtensionRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent)
-      {
-         iOS.OneSignal.DidReceiveNotificationExtensionRequest(request, replacementContent);
-      }
-
-      public void ServiceExtensionTimeWillExpireRequest(UNNotificationRequest request, UNMutableNotificationContent replacementContent)
-      {
-         iOS.OneSignal.ServiceExtensionTimeWillExpireRequest(request, replacementContent);
-      }
-
-      public override void AddTrigger(string key, object value)
-      {
-         iOS.OneSignal.AddTrigger(key, NSObject.FromObject(value));
-      }
-
-      public override void AddTriggers(Dictionary<string, object> triggers)
-      {
-         var triggersDictionary = new NSMutableDictionary<NSString, NSObject>();
-         foreach (var element in triggers)
-         {
+      public override void SetTriggers(Dictionary<string, object> triggers) {
+         NSMutableDictionary<NSString, NSObject> triggersDictionary = new NSMutableDictionary<NSString, NSObject>();
+         foreach (var trigger in triggers) {
             triggersDictionary.Add(
-               NSString.FromData(element.Key, NSStringEncoding.UTF8),
-               NSObject.FromObject(element.Value));
+                NSString.FromData(trigger.Key, NSStringEncoding.UTF8),
+                NSObject.FromObject(trigger.Value));
          }
-         iOS.OneSignal.AddTriggers(NSDictionary.FromDictionary(triggersDictionary));
+         OneSignalNative.AddTriggers(NSDictionary.FromDictionary(triggersDictionary));
       }
 
-      public override void RemoveTriggerForKey(string key)
-      {
-         iOS.OneSignal.RemoveTriggerForKey(key);
+      public override void RemoveTrigger(string key) {
+         OneSignalNative.RemoveTriggerForKey(key);
       }
 
-      public override void RemoveTriggersForKeys(List<string> keys)
-      {
-         string[] auxiliarArray = new string[keys.Count];
-         keys.CopyTo(auxiliarArray);
-         NSArray keysArray = NSArray.FromObjects(auxiliarArray);
-         iOS.OneSignal.RemoveTriggersForKeys(keysArray);
+      public override void RemoveTriggers(ICollection<string> keys) {
+         string[] keysArray = new string[keys.Count];
+         keys.CopyTo(keysArray, 0);
+         OneSignalNative.RemoveTriggersForKeys(keysArray);
       }
 
-      public override object GetTriggerValueForKey(string key)
-      {
-         return iOS.OneSignal.GetTriggerValueForKey(key);
+      public override object GetTrigger(string key) {
+         return OneSignalNative.GetTriggerValueForKey(key);
       }
 
-      public override void PauseInAppMessages(bool pause)
-      {
-         iOS.OneSignal.PauseInAppMessages(pause);
+      public override Dictionary<string, object> GetTriggers() {
+         return NativeConversion.NSDictToPureDict(OneSignalNative.GetTriggers());
       }
 
-      public override void SendOutcome(string name)
-      {
-         iOS.OneSignal.SendOutcome(name);
+      public override bool InAppMessagesArePaused {
+         get => OneSignalNative.IsInAppMessagingPaused();
+         set => OneSignalNative.PauseInAppMessages(value);
       }
 
-      public override void SendOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
-      {
-         iOS.OneSignal.SendOutcome(name, (outcomeEvent) =>
-         {
-            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
-         });
+      public override async Task<bool> SendOutcome(string name) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendOutcome(name, response => proxy.OnResponse(true));
+         return await proxy;
       }
 
-      public override void SendUniqueOutcome(string name)
-      {
-         iOS.OneSignal.SendUniqueOutcome(name);
+      public override async Task<bool> SendUniqueOutcome(string name) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendUniqueOutcome(name, response => proxy.OnResponse(true));
+         return await proxy;
       }
 
-      public override void SendUniqueOutcome(string name, SendOutcomeEventSuccess sendOutcomeEventSuccess)
-      {
-         iOS.OneSignal.SendUniqueOutcome(name, (outcomeEvent) =>
-         {
-            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
-         });
+      public override async Task<bool> SendOutcomeWithValue(string name, float value) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendOutcomeWithValue(name, value, response => proxy.OnResponse(true));
+         return await proxy;
       }
 
-      public override void SendOutcomeWithValue(string name, float value)
-      {
-         iOS.OneSignal.SendOutcomeWithValue(name, value);
-      }
 
-      public override void SendOutcomeWithValue(string name, float value, SendOutcomeEventSuccess sendOutcomeEventSuccess)
-      {
-         NSNumber weight = NSNumber.FromFloat(value);
-         iOS.OneSignal.SendOutcomeWithValue(name, weight, (outcomeEvent) =>
-         {
-            SendOutcomeEventSuccess(outcomeEvent, sendOutcomeEventSuccess);
-         });
-      }
-
-      public void SendOutcomeEventSuccess(iOS.OSOutcomeEvent outcomeEvent, SendOutcomeEventSuccess sendOutcomeEventSuccess) {
-         if (outcomeEvent == null)
-         {
-            sendOutcomeEventSuccess(new OSOutcomeEvent());
-            return;
-         }
-
-         sendOutcomeEventSuccess(new OSOutcomeEvent(NSDictToPureDict(outcomeEvent.JsonRepresentation())));
-      }
-
-      public String SessionEnumToString(iOS.OSSession session) {
-         switch (session) {
-            case iOS.OSSession.Direct:
-               return "DIRECT";
-            case iOS.OSSession.Indirect:
-               return "INDIRECT";
-            case iOS.OSSession.Unattributed:
-               return "UNATTRIBUTED";
-            case iOS.OSSession.Disabled:
-               return "DISABLED";
-         }
-
-         return "DISABLED";
-      }
    }
 }
