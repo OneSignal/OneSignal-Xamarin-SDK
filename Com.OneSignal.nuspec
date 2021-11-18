@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Com.OneSignal</id>
@@ -15,25 +15,27 @@
         <tags>xamarin, monodroid, C#, OneSignal, push</tags>
         <dependencies>
             <group targetFramework="MonoAndroid">
-                <dependency id="Xamarin.Android.Support.v4" version="28.0.0.3" />
-                <dependency id="Xamarin.Android.Support.v7.CardView" version="28.0.0.3" />
-                <dependency id="Xamarin.Android.Support.CustomTabs" version="28.0.0.3" />
-                <!-- This does the same thing as Google's Jetifier -->
-                <dependency id="Xamarin.AndroidX.Migration" version="1.0.8" />
-                <dependency id="Xamarin.GooglePlayServices.Ads.Identifier" version="71.1600.0" />
-                <dependency id="Xamarin.Firebase.Messaging" version="71.1740.0" />
+                <dependency id="Xamarin.Kotlin.StdLib.Jdk8" version="1.5.31.2" />
+
+                <dependency id="Xamarin.AndroidX.CardView" version="1.0.0.11" />
+                <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0.10" />
+                <dependency id="Xamarin.AndroidX.Browser" version="1.3.0.8" />
+                <dependency id="Xamarin.AndroidX.AppCompat" version="1.3.1.3" />
+                <dependency id="Xamarin.AndroidX.Work.Runtime" version="2.7.0" />
+
+                <dependency id="Xamarin.Firebase.Messaging" version="122.0.0.2" />
             </group>
-            <group targetFramework="netstandard1.0">
-                <dependency id="NETStandard.Library" version="1.6.1" />
+            <group targetFramework="netstandard2.0">
+                <dependency id="NETStandard.Library" version="2.0" />
             </group>
         </dependencies>
     </metadata>
     <files>
         <!--Core-->
-        <file src="Com.OneSignal\bin\Release\netstandard1.0\Com.OneSignal.pdb" target="lib\netstandard1.0" />
-        <file src="Com.OneSignal\bin\Release\netstandard1.0\Com.OneSignal.dll" target="lib\netstandard1.0" />
-        <file src="Com.OneSignal.Abstractions\bin\Release\netstandard1.0\Com.OneSignal.Abstractions.pdb" target="lib\netstandard1.0" />
-        <file src="Com.OneSignal.Abstractions\bin\Release\netstandard1.0\Com.OneSignal.Abstractions.dll" target="lib\netstandard1.0" />
+        <file src="Com.OneSignal\bin\Release\netstandard2.0\Com.OneSignal.pdb" target="lib\netstandard2.0" />
+        <file src="Com.OneSignal\bin\Release\netstandard2.0\Com.OneSignal.dll" target="lib\netstandard2.0" />
+        <file src="Com.OneSignal.Abstractions\bin\Release\netstandard2.0\Com.OneSignal.Abstractions.pdb" target="lib\netstandard2.0" />
+        <file src="Com.OneSignal.Abstractions\bin\Release\netstandard2.0\Com.OneSignal.Abstractions.dll" target="lib\netstandard2.0" />
 
         <!--Xamarin.Android-->
         <file src="Com.OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
