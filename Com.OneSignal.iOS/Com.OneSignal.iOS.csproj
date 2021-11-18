@@ -45,11 +45,12 @@
     <Compile Include="..\Com.OneSignal\OneSignal.cs">
       <Link>OneSignal.cs</Link>
     </Compile>
+    <Compile Include="Utilities\NativeConversion.cs" />
+    <Compile Include="OneSignalCallbacks.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
-      <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
-      <Name>Com.OneSignal.Abstractions</Name>
+    <ProjectReference Include="..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
+      <Name>Com.OneSignal.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
       <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
