@@ -24,6 +24,9 @@
                 <dependency id="Xamarin.AndroidX.Work.Runtime" version="2.7.0" />
 
                 <dependency id="Xamarin.Firebase.Messaging" version="122.0.0.2" />
+                <!-- Dagger is required for FCM, should be a "transitive dependency" but is not due to this bug:
+                     https://github.com/xamarin/XamarinComponents/issues/1069 -->
+                <dependency id="Xamarin.Google.Dagger" version="2.39.1" />
             </group>
             <group targetFramework="netstandard2.0">
                 <dependency id="NETStandard.Library" version="2.0" />
