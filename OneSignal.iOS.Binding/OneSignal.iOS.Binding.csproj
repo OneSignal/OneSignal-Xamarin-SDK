@@ -44,9 +44,6 @@
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
     <NativeReference Include="OneSignal.xcframework">
@@ -55,5 +52,8 @@
       <ForceLoad>True</ForceLoad>
       <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit</Frameworks>
     </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
 </Project>
