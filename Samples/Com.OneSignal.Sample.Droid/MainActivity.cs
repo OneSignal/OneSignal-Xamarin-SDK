@@ -33,11 +33,12 @@ namespace Com.OneSignal.Sample.Droid
          Switch consentButton = FindViewById<Switch>(Resource.Id.consentSwitch);
          consentButton.CheckedChange += (o, e) =>
          {
-            SharedPush.ConsentStatusChanged(consentButton.Checked);
+            //SharedPush.ConsentStatusChanged(consentButton.Checked);
+
             System.Diagnostics.Debug.WriteLine("Changing consent state");
          };
 
-         consentButton.Checked = SharedPush.UserDidProvideConsent();
+         consentButton.Checked = OneSignal.Default.PrivacyConsent;
 
          Button setExternalIdButton = FindViewById<Button>(Resource.Id.setExternalIdButton);
 
@@ -45,14 +46,14 @@ namespace Com.OneSignal.Sample.Droid
          
          setExternalIdButton.Click += delegate
          {
-            SharedPush.SetExternalUserId(externalIdField.Text);
+            OneSignal.Default.SetExternalUserId(externalIdField.Text);
          };
 
          Button removeExternalIdButton = FindViewById<Button>(Resource.Id.removeExternalIdButton);
 
          removeExternalIdButton.Click += delegate
          {
-            SharedPush.RemoveExternalUserId();
+            OneSignal.Default.Logout(Core.LogoutOptions.ExternalUserId);
          };
       }
 

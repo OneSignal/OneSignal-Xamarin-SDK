@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Java.Interop" />
     <Reference Include="Xamarin.Jetbrains.Annotations">
       <HintPath>..\..\packages\Xamarin.Jetbrains.Annotations.22.0.0.2\lib\monoandroid90\Xamarin.Jetbrains.Annotations.dll</HintPath>
     </Reference>
@@ -297,13 +296,13 @@
       <Project>{FB0C2961-BAFE-4346-B279-3B3941614DCD}</Project>
       <Name>Com.OneSignal.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
-      <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
-      <Name>Com.OneSignal.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\OneSignal.Android.Binding\OneSignal.Android.Binding.csproj">
       <Project>{9144F592-91B9-4ACA-BC3C-D771F8319996}</Project>
       <Name>OneSignal.Android.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
+      <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
+      <Name>Com.OneSignal.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

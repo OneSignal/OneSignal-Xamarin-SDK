@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj" />
     <ProjectReference Include="..\..\Com.OneSignal\Com.OneSignal.csproj" />
+    <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="NETStandard.Library" />
