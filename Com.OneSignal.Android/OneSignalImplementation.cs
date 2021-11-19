@@ -37,6 +37,10 @@ namespace Com.OneSignal {
          set => OneSignalNative.SetRequiresUserPrivacyConsent(value);
       }
 
+      public override void RegisterForPushNotification() {
+         throw new NotImplementedException();
+      }
+
       public override void Initialize(string appId) {
          InitWithContext();
          OneSignalNative.SetAppId(appId);

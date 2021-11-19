@@ -83,6 +83,9 @@ namespace Com.OneSignal {
          }
       }
 
+      public override void RegisterForPushNotification() {
+         OneSignalNative.RegisterForPushNotifications();
+      }
       //public override void SetRequiresUserPrivacyConsent(bool required) {
       //    OneSignal.ConsentGranted(required);
       //}

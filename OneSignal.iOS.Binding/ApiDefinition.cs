@@ -670,6 +670,11 @@ namespace Com.OneSignal.iOS {
 		[Export("registerForProvisionalAuthorization:")]
 		void RegisterForProvisionalAuthorization(OSUserResponseBlock block);
 
+		//+ (void)registerForPushNotifications;
+		[Static]
+		[Export("registerForPushNotifications")]
+		void RegisterForPushNotifications();
+
 		// +(OSDeviceState *)getDeviceState;
 		[Static]
 		[Export("getDeviceState")]
