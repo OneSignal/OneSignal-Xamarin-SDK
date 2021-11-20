@@ -27,7 +27,7 @@ namespace Com.OneSignal.Sample.iOS
       {
          base.ViewDidLoad();
 
-         PrivacyConsentControl.SelectedSegment = SharedPush.UserDidProvideConsent() ? 1 : 0;
+         PrivacyConsentControl.SelectedSegment = OneSignal.Default.PrivacyConsent ? 1 : 0;
 
          UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
 
@@ -53,12 +53,12 @@ namespace Com.OneSignal.Sample.iOS
       partial void SetExternalUserId(UIButton sender)
       {
          UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
-         SharedPush.SetExternalUserId(externalIdField.Text);
+         OneSignal.Default.SetExternalUserId(externalIdField.Text);
       }
 
       partial void RemoveExternalUserId(UIButton sender)
       {
-         SharedPush.RemoveExternalUserId();
+         OneSignal.Default.Logout(Core.LogoutOptions.ExternalUserId);
       }
 
       partial void SendOutcome(UIButton sender)

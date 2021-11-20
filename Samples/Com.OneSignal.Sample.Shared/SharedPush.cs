@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 using Com.OneSignal;
 using Com.OneSignal.Core;
@@ -44,13 +45,12 @@ namespace Com.OneSignal.Sample.Shared
          //  })
          //  .EndInit();
 
-         //OneSignal.Default.IdsAvailable((playerID, pushToken) =>
-         //{
+         //OneSignal.Default.IdsAvailable((playerID, pushToken) => {
          //   Debug.WriteLine("OneSignal.Default.IdsAvailable:D playerID: {0}, pushToken: {1}", playerID, pushToken);
          //});
 
-         //OneSignalInAppMessagingDemo();
-         //OneSignalOutcomeEventDemo();
+         OneSignalInAppMessagingDemo();
+         OneSignalOutcomeEventDemo();
       }
 
       private static void OneSignalSetExternalUSerId(Dictionary<string , object> results)
@@ -86,79 +86,61 @@ namespace Com.OneSignal.Sample.Shared
          OneSignal.Default.InAppMessagesArePaused = false;
       }
 
-      //private static void OneSignalOutcomeEventDemo()
-      //{
-      //   // Show a normal outcome with and without a callback
-      //   OneSignal.Default.SendOutcome("normal_1");
-      //   OneSignal.Default.SendOutcome("normal_2", (outcomeEvent) =>
-      //   {
-      //      printOutcomeEvent(outcomeEvent);
-      //   });
+      private static void OneSignalOutcomeEventDemo()
+      {
+         // Show a normal outcome with and without a callback
+         OneSignal.Default.SendOutcome("normal_1");
 
-      //   // Show a unique outcome with and without a callback
-      //   OneSignal.Default.SendUniqueOutcome("unique_1");
-      //   OneSignal.Default.SendUniqueOutcome("unique_2", (outcomeEvent) =>
-      //   {
-      //      printOutcomeEvent(outcomeEvent);
-      //   });
+         //result.
+         // Show a unique outcome with and without a callback
+         OneSignal.Default.SendUniqueOutcome("unique_1");
 
-      //   // Show an outcome with value with and without a callback
-      //   OneSignal.Default.SendOutcomeWithValue("value_1", 3.2f);
-      //   OneSignal.Default.SendOutcomeWithValue("value_2", 3.2f, (outcomeEvent) =>
-      //   {
-      //      printOutcomeEvent(outcomeEvent);
-      //   });
-      //}
 
-      //private static void printOutcomeEvent(OSOutcomeEvent outcomeEvent)
-      //{
-      //   Debug.WriteLine(outcomeEvent.session.ToString() + "\n" +
-      //      string.Join(", ", outcomeEvent.notificationIds) + "\n" +
-      //      outcomeEvent.name + "\n" +
-      //      outcomeEvent.timestamp + "\n" +
-      //      outcomeEvent.weight);
-      //}
+         // Show an outcome with value with and without a callback
+         OneSignal.Default.SendOutcomeWithValue("value_1", 3.2f);
+      }
 
-      //// Just for iOS.
-      //// No effect on Android, device auto registers without prompting.
-      //public static void RegisterIOS()
-      //{
-      //   OneSignal.Default.RegisterForPushNotifications();
-      //}
-      
-      //public static void ConsentStatusChanged(bool consent) {
-      //   OneSignal.Default.UserDidProvidePrivacyConsent(consent);
-      //}
-      
-      //public static bool UserDidProvideConsent() {
-      //   return !OneSignal.Default.RequiresUserPrivacyConsent();
-      //}
-      
-      //public static void SetRequiresConsent(bool required) {
-      //   OneSignal.Default.SetRequiresUserPrivacyConsent(required);
-      //}
-      
-      //public static void SetExternalUserId(string externalId) {
-      //   OneSignal.Default.SetExternalUserId(externalId, OneSignalSetExternalUSerId);
+      // Just for iOS.
+      // No effect on Android, device auto registers without prompting.
+      public static void RegisterIOS() {
+         OneSignal.Default.RegisterForPushNotification();
+      }
 
-      //   // Auth external id method
-      //   //OneSignal.Default.SetExternalUserId(externalId, "your_auth_hash_token", OneSignalSetExternalUSerId, OneSignalSetExternalUSerId);
-      //}
+      public static void ConsentStatusChanged(bool consent) {
+         OneSignal.Default.PrivacyConsent = consent;
+      }
 
-      //public static void RemoveExternalUserId() {
-      //   OneSignal.Default.RemoveExternalUserId();
-      //}
+      public static bool UserDidProvideConsent() {
+         return !OneSignal.Default.RequiresPrivacyConsent;
+      }
 
-      //public static void SendOutcome(string outcomeName) {
-      //   OneSignal.Default.SendOutcome(outcomeName, printOutcomeEvent);
-      //}
+      public static void SetRequiresConsent(bool required) {
+         OneSignal.Default.RequiresPrivacyConsent = required;
+      }
 
-      //public static void SendUniqueOutcome(string outcomeName) {
-      //   OneSignal.Default.SendUniqueOutcome(outcomeName, printOutcomeEvent);
-      //}
+      public static void SetExternalUserId(string externalId) {
+         //OneSignal.Default.SetExternalUserId(externalId, OneSignalSetExternalUSerId);
+         OneSignal.Default.SetExternalUserId(externalId);
 
-      //public static void SendOutcomeWithValue(string outcomeName, float value) {
-      //   OneSignal.Default.SendOutcomeWithValue(outcomeName, value, printOutcomeEvent);
-      //}
+         // Auth external id method
+         //OneSignal.Default.SetExternalUserId(externalId, "your_auth_hash_token", OneSignalSetExternalUSerId, OneSignalSetExternalUSerId);
+         OneSignal.Default.SetExternalUserId(externalId, "your_auth_hash_token");
+      }
+
+      public static void RemoveExternalUserId() {
+         OneSignal.Default.Logout(LogoutOptions.ExternalUserId);
+      }
+
+      public static void SendOutcome(string outcomeName) {
+         OneSignal.Default.SendOutcome(outcomeName);
+      }
+
+      public static void SendUniqueOutcome(string outcomeName) {
+         OneSignal.Default.SendUniqueOutcome(outcomeName);
+      }
+
+      public static void SendOutcomeWithValue(string outcomeName, float value) {
+         OneSignal.Default.SendOutcomeWithValue(outcomeName, value);
+      }
    }
 }
