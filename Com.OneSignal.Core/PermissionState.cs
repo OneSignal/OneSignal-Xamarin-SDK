@@ -2,51 +2,30 @@
 using System.Collections.Generic;
 
 namespace Com.OneSignal.Core {
-    public class PermissionState {
-        readonly bool hasPrompted = false;
-        readonly bool provisional = false;
-        NotificationPermission status;
+   /// <summary>
+   /// Status of ability to send push notification as determined by the current user
+   /// </summary>
+   public enum NotificationPermission {
+      /// <summary>The user has not yet made a choice regarding whether your app can show notifications.</summary>
+      NotDetermined,
 
-        //public PermissionState(Dictionary<string, dynamic> json) {
-        //    //if (json.ContainsKey("status")) {
-        //    //    status = json["status"];
+      /// <summary>The application is not authorized to post user notifications.</summary>
+      Denied,
 
-        //    //}
-        //    //else if (json.ContainsKey("enabled")) {
-        //    //    bool enabled = json["enabled"];
-        //    //    status = enabled
-        //    //       ? NotificationPermission.AUTHORIZED
-        //    //       : NotificationPermission.DENIED;
-        //    //}
+      /// <summary>The application is authorized to post user notifications.</summary>
+      Authorized,
 
-        //    //    if (json.ContainsKey("provisional")) {
-        //    //        provisional = json["provisional"];
-        //    //    }
-        //    //    else {
-        //    //        provisional = false;
-        //    //    }
+      /// <summary>The application is only authorized to post Provisional notifications (direct to history)</summary>
+      Provisional,
 
-        //    //    if (json.ContainsKey("hasPrompted")) {
-        //    //        hasPrompted = json["hasPrompted"];
-        //    //    }
-        //    //    else {
-        //    //        hasPrompted = false;
-        //    //    }
-        //    //}
+      /// <summary>The application is authorized to send notifications for 8 hours. Only used by App Clips.</summary>
+      Ephemeral
+   }
 
-        //    //public PermissionState(bool areNotificationsEnabled) {
-        //    //    if (areNotificationsEnabled) {
-        //    //        status = NotificationPermission.AUTHORIZED;
-        //    //    }
-        //    //    else {
-        //    //        status = NotificationPermission.DENIED;
-        //    //    }
-        //}
-
-        //string jsonRepresentation() {
-        //    return "";
-        //}        
-    }
-
-    public enum NotificationPermission { NOTDETERMINED, DENIED, AUTHORIZED, PROVISIONAL };
+   [Serializable]
+   public sealed class PermissionState {
+      public bool hasPrompted;
+      public NotificationPermission status;
+      public bool provisional;
+   }
 }
