@@ -27,35 +27,35 @@ namespace Com.OneSignal.Core {
 
       #region Delegate Definitions
       /// <summary>
-      /// When a push notification is received while the application is currently
+      /// When a push notification has been received and is about to be displayed
       /// </summary>
-      /// <param name="notification">todo</param>
-      public delegate void NotificationLifecycleDelegate(Notification notification);
+      /// <param name="notification">Details of the notification to be shown</param>
+      /// <returns>The notification object or null if the notification should not be displayed</returns>
+      public delegate Notification NotificationWillShowDelegate(Notification notification);
 
       /// <summary>
       /// When a push notification was acted on by the user.
       /// </summary>
-      /// <param name="result">The Notification open result describing: 1. The notification opened 2. The action taken by the user. </param>
+      /// <param name="result">The Notification open result describing:
+      ///     1. The notification opened
+      ///     2. The action taken by the user.
+      /// </param>
       public delegate void NotificationActionDelegate(NotificationOpenedResult result);
 
       /// <summary>
-      /// todo
+      /// When any client side event in an In-App Message's occurs there will be a corresponding event with this
+      /// delegate signature.
       /// </summary>
-      /// <param name="message">todo</param>
       public delegate void InAppMessageLifecycleDelegate(InAppMessage message);
 
       /// <summary>
       /// Sets a In App Message opened handler. The instance will be called when an In App Message action is tapped on.
       /// </summary>
-      /// <param name="action">todo</param>
       public delegate void InAppMessageActionDelegate(InAppMessageAction action);
 
       /// <summary>
-      /// todo - desc
+      /// Several states associated with the SDK can be changed can be changed in and outside of the application.
       /// </summary>
-      /// <typeparam name="TState"></typeparam>
-      /// <param name="current"></param>
-      /// <param name="previous"></param>
       public delegate void StateChangeDelegate<in TState>(TState current, TState previous);
       #endregion
 
@@ -63,7 +63,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When an push notification has been received
       /// </summary>
-      public abstract event NotificationLifecycleDelegate NotificationReceived;
+      public abstract event NotificationWillShowDelegate NotificationWillShow;
 
       /// <summary>
       /// When a push notification has been opened by the user
@@ -71,53 +71,63 @@ namespace Com.OneSignal.Core {
       public abstract event NotificationActionDelegate NotificationWasOpened;
 
       /// <summary>
-      /// todo
+      /// When a user has chosen to dismiss an In-App Message
       /// </summary>
       public abstract event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
 
       /// <summary>
-      /// todo
+      /// When an In-App Message is has been displayed to the screen
       /// </summary>
       public abstract event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
 
       /// <summary>
-      /// todo
+      /// When a user has chosen to dismiss an In-App Message
       /// </summary>
       public abstract event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
 
       /// <summary>
-      /// todo
+      /// When an In-App Message has finished being dismissed
       /// </summary>
       public abstract event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
 
       /// <summary>
-      /// todo
+      /// When a user has triggered an action attached to an In-App Message
       /// </summary>
       public abstract event InAppMessageActionDelegate InAppMessageTriggeredAction;
+      #endregion
 
+      #region States
       /// <summary>
-      /// todo
+      /// When this device's permissions for authorization of push notifications have changed.
       /// </summary>
       public abstract event StateChangeDelegate<PermissionState> PermissionStateChanged;
 
       /// <summary>
-      /// todo
+      /// When this device's subscription to push notifications has changed
       /// </summary>
       public abstract event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
 
       /// <summary>
-      /// todo
+      /// When this device's subscription to email has changed
       /// </summary>
       public abstract event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
 
       /// <summary>
-      /// todo
+      /// When this device's subscription to sms has changed
       /// </summary>
       public abstract event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
       #endregion
 
+      #region SDK Setup
+
+      /// <summary>
+      /// The minimum level of logs which will be logged to the console
+      /// </summary>
       public abstract LogType LogLevel { get; set; }
 
+      /// <summary>
+      /// The minimum level of log events which will be converted into foreground alerts
+      /// </summary>
       public abstract LogType AlertLevel { get; set; }
 
       /// <summary>
@@ -132,30 +142,26 @@ namespace Com.OneSignal.Core {
       public abstract bool RequiresPrivacyConsent { get; set; }
 
       /// <summary>
-      /// todo
+      /// Starts the OneSignal SDK
       /// </summary>
-      /// <param name="appId"></param>
+      /// <param name="appId">Your application id from the OneSignal dashboard</param>
       public abstract void Initialize(string appId);
 
+
+      ///<summary>
+      ///
+      ///</summary>
       public abstract void RegisterForPushNotification();
+      #endregion
 
-
-      //public abstract void InitWithContext();
-
-      //public abstract bool UserProvidedPrivacyConsent();
-
-
-      //public abstract void OneSignalLog(LOG_LEVEL logLevel, string message);
-
-      //public abstract void ProvideUserConsent(bool consent);
-
-      //public abstract bool RequiresUserPrivacyConsent();
-
-      //public abstract void SetRequiresUserPrivacyConsent(bool required);
-
-      //public abstract void SetLogLevel(LOG_LEVEL inLogCatLogLevel, LOG_LEVEL inVisualLogLevel);
-
-      //public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse();
+      #region Push Notifications
+      /// <summary>
+      /// Prompt the user for notification permissions.
+      /// </summary>
+      /// <returns>Awaitable NotificationPermission which provides the user's consent status</returns>
+      /// <remarks>Recommended: Do not use and instead follow
+      /// <a href="https://documentation.onesignal.com/docs/ios-push-opt-in-prompt">Push Opt-In Prompt</a></remarks>
+      public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse();
 
       /// <summary>
       /// Allows you to send notifications from user to user or schedule ones in the future to be delivered to the
@@ -174,7 +180,9 @@ namespace Com.OneSignal.Core {
       /// Removes all OneSignal app notifications from the Notification Shade
       /// </summary>
       public abstract void ClearOneSignalNotifications();
+      #endregion
 
+      #region In App Messages
       /// <summary>
       /// Add a local trigger. May show an In-App Message if its triggers conditions were met.
       /// </summary>
@@ -198,7 +206,7 @@ namespace Com.OneSignal.Core {
       /// Removes a list of local triggers based on a collection of keys.
       /// </summary>
       /// <param name="keys">Removes a collection of triggers from their keys.</param>
-      public abstract void RemoveTriggers(ICollection<string> keys);
+      public abstract void RemoveTriggers(params string[] keys);
 
       /// <summary>
       /// Gets a local trigger value for a provided trigger key.
@@ -217,21 +225,14 @@ namespace Com.OneSignal.Core {
       /// an activity that you don't want a message to interrupt (such as watching a video).
       /// </summary>
       public abstract bool InAppMessagesArePaused { get; set; }
+      #endregion
 
       #region Tags
       /// <summary>
       /// Tag player with a key value pair to later create segments on them at onesignal.com
       /// </summary>
-      /// <param name="key"></param>
-      /// <param name="value"></param>
-      //TODO: Possibly remove
+      /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract void SendTag(string key, string value);
-
-
-      //TODO: Possibly remove
-      public abstract void SendTags(string jsonString);
-
-      //public abstract Task<bool> SendTag(string key, object value);
 
       /// <summary>
       /// Tag player with a key value pairs to later create segments on them at onesignal.com
@@ -249,22 +250,14 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// Delete a Tag from current device record
       /// </summary>
-      /// <param name="key">todo</param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> DeleteTag(string key);
 
       /// <summary>
       /// Delete multiple Tags from current device record
       /// </summary>
-      /// <param name="keys">todo</param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
-      public abstract Task<bool> DeleteTags(IEnumerable<string> keys);
-
-      ////TODO: Possibly remove
-      //public abstract Task<bool> DeleteTags(ICollection<string> keys);
-
-      ////TODO: Possibly remove
-      //public abstract Task<bool> DeleteTags(string jsonArrayString);
+      public abstract Task<bool> DeleteTags(params string[] keys);
       #endregion
 
 
@@ -273,7 +266,7 @@ namespace Com.OneSignal.Core {
       /// Allows you to use your own application's user id to send OneSignal messages to your user. To tie the user
       /// to a given user id, you can use this method.
       /// </summary>
-      /// <param name="externalId">todo</param>
+      /// <param name="externalId">A unique id associated with the current user</param>
       /// <param name="authHash">If you have a backend server, we strongly recommend using
       /// <a href="https://documentation.onesignal.com/docs/identity-verification">Identity Verification</a> with
       /// your users. Your backend can generate an email authentication token and send it to your app.</param>
@@ -301,15 +294,41 @@ namespace Com.OneSignal.Core {
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SetSMSNumber(string smsNumber, string authHash = null);
 
+      ///// <summary>
+      ///// If your app implements logout functionality, you can call Logout to dissociate the email, sms, and/or
+      ///// external user id from the device
+      ///// </summary>
+      //public abstract Task<bool> Logout(
+      //    LogoutOptions options = LogoutOptions.Email | LogoutOptions.SMS | LogoutOptions.ExternalUserId
+      //);
+
+      ///<summary>
+      ///If this user logs out of your app and/or you would like to disassociate their external user id with
+      ///the device
+      ///</summary>
+      public abstract Task<bool> RemoveExternalUserId();
+
       /// <summary>
-      /// If your app implements logout functionality, you can call Logout to dissociate the email, sms, and/or
-      /// external user id from the device
+      /// If this user logs out of your app and/or you would like to disassociate their email with the current
+      /// OneSignal user
       /// </summary>
-      public abstract Task<bool> Logout(
-          LogoutOptions options = LogoutOptions.Email | LogoutOptions.SMS | LogoutOptions.ExternalUserId
-      );
+      /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
+      public abstract Task<bool> LogoutEmail();
+
+      /// <summary>
+      /// If this user logs out of your app and/or you would like to disassociate their phone number with the
+      /// current OneSignal user
+      /// </summary>
+      /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
+      public abstract Task<bool> LogoutSMS();
       #endregion
 
+      /// <summary>
+      /// Language is detected and set automatically through the OneSignal SDK based on the device settings.
+      /// This method allows you to change that language by passing in the 2-character, lowercase 
+      /// <a href="https://documentation.onesignal.com/docs/language-localization#what-languages-are-supported">ISO 639-1</a> language codes.
+      /// </summary>
+      /// <param name="language"></param>
       public abstract void SetLanguage(string language);
 
       #region Location
@@ -328,24 +347,20 @@ namespace Com.OneSignal.Core {
 
       #region Outcomes
       /// <summary>
-      /// todo - desc
+      /// Send a trackable custom event which is tied to push notification campaigns
       /// </summary>
-      /// <param name="name"></param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SendOutcome(string name);
 
       /// <summary>
-      /// todo - desc
+      /// Send a trackable custom event which can only happen once and is tied to push notification campaigns
       /// </summary>
-      /// <param name="name"></param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SendUniqueOutcome(string name);
 
       /// <summary>
-      /// todo - desc
+      /// Send a trackable custom event with an attached value which is tied to push notification campaigns
       /// </summary>
-      /// <param name="name"></param>
-      /// <param name="value"></param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SendOutcomeWithValue(string name, float value);
 
