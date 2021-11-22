@@ -7,9 +7,6 @@ namespace Com.OneSignal.iOS {
 	// @interface OSNotificationAction : NSObject
 	[BaseType(typeof(NSObject))]
 	interface OSNotificationAction {
-		// @property (readonly) OSNotificationActionType type;
-		[Export("type")]
-		OSNotificationActionType Type { get; }
 
 		// @property (readonly) NSString * _Nullable actionId;
 		[NullAllowed, Export("actionId")]
@@ -266,10 +263,6 @@ namespace Com.OneSignal.iOS {
 	// @interface OSOutcomeEvent : NSObject
 	[BaseType(typeof(NSObject))]
 	interface OSOutcomeEvent {
-		// @property (nonatomic) OSInfluenceType session;
-		[Export("session", ArgumentSemantic.Assign)]
-		OSInfluenceType Session { get; set; }
-
 		// @property (nonatomic, strong) NSArray * _Nullable notificationIds;
 		[NullAllowed, Export("notificationIds", ArgumentSemantic.Strong)]
 		//[Verify (StronglyTypedNSArray)]
@@ -307,10 +300,6 @@ namespace Com.OneSignal.iOS {
 		// @property (readonly, nonatomic) BOOL providesAppNotificationSettings;
 		[Export("providesAppNotificationSettings")]
 		bool ProvidesAppNotificationSettings { get; }
-
-		// @property (readonly, nonatomic) OSNotificationPermission status;
-		[Export("status")]
-		OSNotificationPermission Status { get; }
 
 		// -(NSDictionary * _Nonnull)toDictionary;
 		[Export("toDictionary")]
@@ -544,10 +533,6 @@ namespace Com.OneSignal.iOS {
 		[Export("isSubscribed")]
 		bool IsSubscribed { get; }
 
-		// @property (readonly) OSNotificationPermission notificationPermissionStatus;
-		[Export("notificationPermissionStatus")]
-		OSNotificationPermission NotificationPermissionStatus { get; }
-
 		// @property (readonly) NSString * _Nullable userId;
 		[NullAllowed, Export("userId")]
 		string UserId { get; }
@@ -644,16 +629,6 @@ namespace Com.OneSignal.iOS {
 		[Static]
 		[Export("setProvidesNotificationSettingsView:")]
 		void SetProvidesNotificationSettingsView(bool providesView);
-
-		// +(void)setLogLevel:(ONE_S_LOG_LEVEL)logLevel visualLevel:(ONE_S_LOG_LEVEL)visualLogLevel;
-		[Static]
-		[Export("setLogLevel:visualLevel:")]
-		void SetLogLevel(OneSLogLevel logLevel, OneSLogLevel visualLogLevel);
-
-		// +(void)onesignalLog:(ONE_S_LOG_LEVEL)logLevel message:(NSString * _Nonnull)message;
-		[Static]
-		[Export("onesignalLog:message:")]
-		void OnesignalLog(OneSLogLevel logLevel, string message);
 
 		// +(void)promptForPushNotificationsWithUserResponse:(OSUserResponseBlock)block;
 		[Static]
