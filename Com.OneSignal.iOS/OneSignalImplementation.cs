@@ -71,7 +71,7 @@ namespace Com.OneSignal {
          get => currentLogLevel;
          set {
             currentLogLevel = value;
-            OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
+            //OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
          }
       }
 
@@ -79,7 +79,7 @@ namespace Com.OneSignal {
          get => currentAlertLevel;
          set {
             currentAlertLevel = value;
-            OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
+            //OneSignalNative.SetLogLevel((OneSLogLevel)currentLogLevel, (OneSLogLevel)currentAlertLevel);
          }
       }
 
@@ -250,7 +250,7 @@ namespace Com.OneSignal {
       //}
 
       public override void SetTrigger(string key, object triggerObject) {
-         OneSignalNative.AddTrigger(key, (NSObject)triggerObject);
+         // OneSignalNative.AddTrigger(key, (NSObject)triggerObject);
       }
 
       public override void SetTriggers(Dictionary<string, object> triggers) {
