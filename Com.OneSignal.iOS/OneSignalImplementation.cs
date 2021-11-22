@@ -13,7 +13,7 @@ namespace Com.OneSignal {
       public LogType currentLogLevel;
       public LogType currentAlertLevel;
 
-      public override event NotificationLifecycleDelegate NotificationReceived;
+      public override event NotificationWillShowDelegate NotificationWillShow;
       public override event NotificationActionDelegate NotificationWasOpened;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
@@ -31,32 +31,14 @@ namespace Com.OneSignal {
          OneSignalNative.AppId = appId;
       }
 
-      public void InitWithLaunchOptions() {
+      private void InitWithLaunchOptions() {
          OneSignalNative.InitWithLaunchOptions(null);
       }
 
-      //public override void InitWithContext() {
-      //    throw new NotImplementedException();
-      //}
+      public override void RegisterForPushNotification() {
+         OneSignalNative.RegisterForPushNotifications();
+      }
 
-      //public override bool UserProvidedPrivacyConsent() {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void OneSignalLog(LogType logLevel, string message) {
-      //    OneSignalNative.OnesignalLog((OneSLogLevel)logLevel, message);
-      //}
-
-      //public override void ProvideUserConsent(bool consent) {
-      //    //OneSignal.ConsentGranted(consent);
-      //    throw new NotImplementedException();
-      //}
-
-      //public override bool RequiresUserPrivacyConsent() {
-      //    return OneSignal.RequiresUserPrivacyConsent();
-      //}
-
-      //TODO: ??
       public override bool PrivacyConsent {
          get => false;
          set => OneSignalNative.ConsentGranted(value);
@@ -67,7 +49,13 @@ namespace Com.OneSignal {
          set => OneSignalNative.SetRequiresUserPrivacyConsent(value);
       }
 
-      public override LogType LogLevel { //(LogType inLogCatLogLevel, LogType inVisualLogLevel) {
+      public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.PromptForPushNotificationsWithUserResponse(response => proxy.OnResponse(true));
+         return await proxy ? NotificationPermission.Authorized : NotificationPermission.Denied;
+      }
+
+      public override LogType LogLevel {
          get => currentLogLevel;
          set {
             currentLogLevel = value;
@@ -83,17 +71,6 @@ namespace Com.OneSignal {
          }
       }
 
-      public override void RegisterForPushNotification() {
-         OneSignalNative.RegisterForPushNotifications();
-      }
-      //public override void SetRequiresUserPrivacyConsent(bool required) {
-      //    OneSignal.ConsentGranted(required);
-      //}
-
-      //public override void SetLogLevel(LogType inLogCatLogLevel, LogType inVisualLogLevel) {
-      //    OneSignalNative.SetLogLevel((OneSLogLevel)inLogCatLogLevel, (OneSLogLevel)inVisualLogLevel);
-      //}
-
       public override async Task<bool> SetSMSNumber(string smsNumber, string authHash = null) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.SetSMSNumber(smsNumber, authHash, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
@@ -104,20 +81,25 @@ namespace Com.OneSignal {
       public override async Task<bool> SetEmail(string email, string authHash = null) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.SetEmail(email, authHash,
-             delegate { proxy.OnResponse(true); }, delegate { proxy.OnResponse(false); });
+             delegate { proxy.OnResponse(true); }, response => proxy.OnResponse(false));
          return await proxy;
       }
 
-      public override async Task<bool> Logout(LogoutOptions options = LogoutOptions.SMS | LogoutOptions.Email | LogoutOptions.ExternalUserId) {
+      public override async Task<bool> RemoveExternalUserId() {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.RemoveExternalUserId(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
 
-         if (options.Equals(LogoutOptions.SMS))
-            OneSignalNative.LogoutSMSNumberWithSuccess(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
-         else if (options.Equals(LogoutOptions.Email))
-            OneSignalNative.LogoutEmailWithSuccess(delegate { proxy.OnResponse(true); }, delegate { proxy.OnResponse(false); });
-         else if (options.Equals(LogoutOptions.ExternalUserId))
-            OneSignalNative.RemoveExternalUserId(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+      public override async Task<bool> LogoutEmail() {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.LogoutEmailWithSuccess(delegate { proxy.OnResponse(true); }, delegate { proxy.OnResponse(false); });
+         return await proxy;
+      }
 
+      public override async Task<bool> LogoutSMS() {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.LogoutSMSNumberWithSuccess(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
          return await proxy;
       }
 
@@ -133,11 +115,6 @@ namespace Com.OneSignal {
 
       public override void SendTag(string key, string value) {
          OneSignalNative.SendTag(key, value);
-      }
-
-      public override void SendTags(string jsonString) {
-         Dictionary<string, object> dict = Json.Deserialize(jsonString) as Dictionary<string, object>;
-         OneSignalNative.SendTags(NativeConversion.DictToNSDict(dict));
       }
 
       public override async Task<bool> SendTags(Dictionary<string, object> tags) {
@@ -158,20 +135,7 @@ namespace Com.OneSignal {
          return await proxy;
       }
 
-      //public override async Task<bool> DeleteTags(ICollection<string> keys) {
-      //    BooleanCallbackProxy proxy = new BooleanCallbackProxy();
-      //    OneSignalNative.DeleteTags(key, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
-      //    return await proxy;
-      //}
-
-      //public override async Task<bool> DeleteTags(string jsonArrayString) {
-      //    BooleanCallbackProxy proxy = new BooleanCallbackProxy();
-      //    OneSignalNative.DeleteTags(key, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
-      //    return await proxy;
-      //}
-
-
-      public override async Task<bool> DeleteTags(IEnumerable<string> keys) {
+      public override async Task<bool> DeleteTags(params string[] keys) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          int count = 0;
 
@@ -188,28 +152,10 @@ namespace Com.OneSignal {
          return await proxy;
       }
 
-      //public override Task<Dictionary<string, object>> DeleteTags(JSONArray jsonArray) {
-      //    throw new NotImplementedException();
-      //}
-
       public override async Task<bool> PostNotification(Dictionary<string, object> options) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.PostNotification(NativeConversion.DictToNSDict(options), response => proxy.OnResponse(true), response => proxy.OnResponse(false));
          return await proxy;
-      }
-
-      //public override async Task<Dictionary<string, object>> PostNotification(JSONObject json) {
-      //    throw new NotImplementedException();
-      //}
-
-      //TODO: Check
-      public void DisablePush(bool disable) {
-         OneSignalNative.DisablePush(disable);
-      }
-
-      //TODO: Check
-      public void DisableGMSMissingPrompt(bool promptDisable) {
-         throw new NotImplementedException();
       }
 
       public override bool ShareLocation {
@@ -224,30 +170,6 @@ namespace Com.OneSignal {
       public override void ClearOneSignalNotifications() {
          throw new NotImplementedException();
       }
-
-      //public override void RemoveNotifications(int id) {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void RemoveGroupedNotifications(string group) {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void AddPermissionObserver() {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void AddSubscriptionObserver() {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void AddSMSSubscriptionObserver() {
-      //    throw new NotImplementedException();
-      //}
-
-      //public override void AddEmailSubscriptionObserver() {
-      //    throw new NotImplementedException();
-      //}
 
       public override void SetTrigger(string key, object triggerObject) {
          OneSignalNative.AddTrigger(key, (NSObject)triggerObject);
@@ -267,8 +189,8 @@ namespace Com.OneSignal {
          OneSignalNative.RemoveTriggerForKey(key);
       }
 
-      public override void RemoveTriggers(ICollection<string> keys) {
-         string[] keysArray = new string[keys.Count];
+      public override void RemoveTriggers(params string[] keys) {
+         string[] keysArray = new string[keys.Length];
          keys.CopyTo(keysArray, 0);
          OneSignalNative.RemoveTriggersForKeys(keysArray);
       }

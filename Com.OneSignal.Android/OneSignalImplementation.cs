@@ -15,7 +15,7 @@ namespace Com.OneSignal {
       public LogType currentLogLevel;
       public LogType currentAlertLevel;
 
-      public override event NotificationLifecycleDelegate NotificationReceived;
+      public override event NotificationWillShowDelegate NotificationWillShow;
       public override event NotificationActionDelegate NotificationWasOpened;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
@@ -37,21 +37,21 @@ namespace Com.OneSignal {
          set => OneSignalNative.SetRequiresUserPrivacyConsent(value);
       }
 
-      public override void RegisterForPushNotification() {
-         throw new NotImplementedException();
-      }
-
       public override void Initialize(string appId) {
-         InitWithContext();
+         Context context = Application.Context;
+         OneSignalNative.InitWithContext(context);
          OneSignalNative.SetAppId(appId);
       }
 
-      public void InitWithContext() {
-         Context context = Application.Context;
-         OneSignalNative.InitWithContext(context);
+      public override Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
+         return Task.FromResult(NotificationPermission.NotDetermined);
       }
 
-      public override LogType LogLevel { //(LogType inLogCatLogLevel, LogType inVisualLogLevel) {
+      public override void RegisterForPushNotification() {
+         throw new NotImplementedException("This feature is available for iOS devices only");
+      }
+
+      public override LogType LogLevel {
          get => currentLogLevel;
          set {
             currentLogLevel = value;
@@ -79,44 +79,36 @@ namespace Com.OneSignal {
          return await handler;
       }
 
-      public override async Task<bool> Logout(LogoutOptions options = LogoutOptions.Email | LogoutOptions.SMS | LogoutOptions.ExternalUserId
-      ) {
-
-         if (options.Equals(LogoutOptions.Email)) {
-            OSEmailUpdateHandler handler = new OSEmailUpdateHandler();
-            OneSignalNative.LogoutEmail(handler);
-            return await handler;
-         }
-         else if (options.Equals(LogoutOptions.SMS)) {
-            OSSMSUpdateHandler handler = new OSSMSUpdateHandler();
-            OneSignalNative.LogoutSMSNumber(handler);
-            return await handler;
-         }
-         else if (options.Equals(LogoutOptions.ExternalUserId)) {
-            OSExternalUserIDUpdateHandler handler = new OSExternalUserIDUpdateHandler();
-            OneSignalNative.RemoveExternalUserId(handler);
-            return await handler;
-         }
-
-         return false;
-      }
-
-      public override void SetLanguage(string language) {
-         OneSignalNative.SetLanguage(language);
-      }
-
       public override async Task<bool> SetExternalUserId(string externalId, string authHash = null) {
          OSExternalUserIDUpdateHandler handler = new OSExternalUserIDUpdateHandler();
          OneSignalNative.SetExternalUserId(externalId, authHash, handler);
          return await handler;
       }
 
-      public override void SendTag(string key, string value) {
-         OneSignalNative.SendTag(key, value);
+      public override async Task<bool> RemoveExternalUserId() {
+         OSExternalUserIDUpdateHandler handler = new OSExternalUserIDUpdateHandler();
+         OneSignalNative.RemoveExternalUserId(handler);
+         return await handler;
       }
 
-      public override void SendTags(string jsonString) {
-         OneSignalNative.SendTags(jsonString);
+      public override async Task<bool> LogoutEmail() {
+         OSEmailUpdateHandler handler = new OSEmailUpdateHandler();
+         OneSignalNative.LogoutEmail(handler);
+         return await handler;
+      }
+
+      public override async Task<bool> LogoutSMS() {
+         OSSMSUpdateHandler handler = new OSSMSUpdateHandler();
+         OneSignalNative.LogoutSMSNumber(handler);
+         return await handler;
+      }
+
+      public override void SetLanguage(string language) {
+         OneSignalNative.SetLanguage(language);
+      }
+
+      public override void SendTag(string key, string value) {
+         OneSignalNative.SendTag(key, value);
       }
 
       public override async Task<bool> SendTags(Dictionary<string, object> tags) {
@@ -137,54 +129,16 @@ namespace Com.OneSignal {
          return await handler;
       }
 
-      public override async Task<bool> DeleteTags(IEnumerable<string> keys) {
+      public override async Task<bool> DeleteTags(params string[] keys) {
          OSChangeTagsUpdateHandler handler = new OSChangeTagsUpdateHandler();
          OneSignalNative.DeleteTags(Json.Serialize(keys), handler);
          return await handler;
       }
 
-      //public override async Task<bool> DeleteTags(ICollection<string> keys) {
-      //    OSChangeTagsUpdateHandler handler = new OSChangeTagsUpdateHandler();
-      //    OneSignalNative.DeleteTags(keys, handler);
-      //    return await handler;
-      //}
-
-      //public override async Task<bool> DeleteTags(string jsonArrayString) {
-      //    OSChangeTagsUpdateHandler handler = new OSChangeTagsUpdateHandler();
-      //    OneSignalNative.DeleteTags(jsonArrayString, handler);
-      //    return await handler;
-      //}
-
-      public async Task<bool> DeleteTags(JSONArray jsonArray) {
-         OSChangeTagsUpdateHandler handler = new OSChangeTagsUpdateHandler();
-         OneSignalNative.DeleteTags(jsonArray, handler);
-         return await handler;
-      }
-
-      //public override async Task<bool> PostNotification(string json) {
-      //    OSPostNotificationResponseHandler handler = new OSPostNotificationResponseHandler();
-      //    OneSignalNative.PostNotification(json, handler);
-      //    return await handler;
-      //}
-
-      //public async Task<bool> PostNotification(JSONObject json) {
-      //    OSPostNotificationResponseHandler handler = new OSPostNotificationResponseHandler();
-      //    OneSignalNative.PostNotification(json, handler);
-      //    return await handler;
-      //}
-
       public override async Task<bool> PostNotification(Dictionary<string, object> options) {
          OSPostNotificationResponseHandler handler = new OSPostNotificationResponseHandler();
          OneSignalNative.PostNotification(Json.Serialize(options), handler);
          return await handler;
-      }
-
-      public void DisablePush(bool disable) {
-         OneSignalNative.DisablePush(disable);
-      }
-
-      public void DisableGMSMissingPrompt(bool promptDisable) {
-         OneSignalNative.DisableGMSMissingPrompt(promptDisable);
       }
 
       public override bool ShareLocation {
@@ -200,34 +154,6 @@ namespace Com.OneSignal {
          OneSignalNative.ClearOneSignalNotifications();
       }
 
-      public void RemoveNotifications(int id) {
-         OneSignalNative.RemoveNotification(id);
-      }
-
-      public void RemoveGroupedNotifications(string group) {
-         OneSignalNative.RemoveGroupedNotifications(group);
-      }
-
-      //public void AddPermissionObserver() {
-      //    PermissionObserver permission = new PermissionObserver();
-      //    OneSignalNative.AddPermissionObserver(permission);
-      //}
-
-      //public void AddSubscriptionObserver() {
-      //    SubscriptionObserver subscription = new SubscriptionObserver();
-      //    OneSignalNative.AddSubscriptionObserver(subscription);
-      //}
-
-      //public void AddEmailSubscriptionObserver() {
-      //    EmailSubscriptionObserver emailSubscription = new EmailSubscriptionObserver();
-      //    OneSignalNative.AddEmailSubscriptionObserver(emailSubscription);
-      //}
-
-      //public void AddSMSSubscriptionObserver() {
-      //    SMSSubscriptionObserver smsSubscription = new SMSSubscriptionObserver();
-      //    OneSignalNative.AddSMSSubscriptionObserver(smsSubscription);
-      //}
-
       public override void SetTriggers(Dictionary<string, object> triggers) {
          IDictionary<string, Java.Lang.Object> jTriggers = new Dictionary<string, Java.Lang.Object>();
          foreach (var trigger in triggers) {
@@ -241,7 +167,7 @@ namespace Com.OneSignal {
          OneSignalNative.AddTrigger(key, (Java.Lang.Object)triggerObject);
       }
 
-      public override void RemoveTriggers(ICollection<string> keys) {
+      public override void RemoveTriggers(params string[] keys) {
          OneSignalNative.RemoveTriggersForKeys(keys);
       }
 
