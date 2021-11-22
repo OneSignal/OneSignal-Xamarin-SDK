@@ -3,7 +3,7 @@ using Foundation;
 using UIKit;
 using UserNotifications;
 using Com.OneSignal;
-using Com.OneSignal.Abstractions;
+using Com.OneSignal.Core;
 
 namespace OneSignalNotificationServiceExtension
 {
