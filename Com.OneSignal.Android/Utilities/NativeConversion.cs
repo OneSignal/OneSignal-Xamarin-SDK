@@ -47,92 +47,73 @@ namespace Com.OneSignal {
       }
 
       public static InAppMessageAction OSInAppMessageClickedActionToNative(Android.OSInAppMessageAction action) {
-         InAppMessageAction inAppMessageAction = new InAppMessageAction();
-         inAppMessageAction.click_name = action.ClickName;
-         inAppMessageAction.click_url = action.ClickUrl;
-         inAppMessageAction.first_click = action.IsFirstClick;
-         inAppMessageAction.closes_message = action.DoesCloseMessage();
+         InAppMessageAction inAppMessageAction = new InAppMessageAction {
+            click_name = action.ClickName,
+            click_url = action.ClickUrl,
+            first_click = action.IsFirstClick,
+            closes_message = action.DoesCloseMessage()
+         };
 
          IList<InAppMessageOutcome> outcomes = new List<InAppMessageOutcome>();
          foreach (var outcome in action.Outcomes)
             outcomes.Add(InAppMessageOutcomeToNative(outcome));
 
-         IList<InAppMessagePrompt> prompts = new List<InAppMessagePrompt>();
-         foreach (var prompt in action.Prompts)
-            prompts.Add(InAppMessagePromptToNative(prompt));
-
          return inAppMessageAction;
       }
 
       public static NotificationOpenedResult NotificationOpenedResultToNative(Android.OSNotificationOpenedResult result) {
-         NotificationOpenedResult notificationOpenedResult = new NotificationOpenedResult();
-         notificationOpenedResult.notification = NotificationToNative(result.Notification);
-         notificationOpenedResult.action = NotificationActionToNative(result.Action);
+         return new NotificationOpenedResult {
+            notification = NotificationToNative(result.Notification),
+            action = NotificationActionToNative(result.Action)
+         };
 
-         return notificationOpenedResult;
       }
 
       public static NotificationAction NotificationActionToNative(Android.OSNotificationAction notificationAction) {
-         NotificationAction action = new NotificationAction();
-         action.actionID = notificationAction.ActionId;
-         action.type = (NotificationActionType)notificationAction.Type.Ordinal();
-         return action;
+         return new NotificationAction {
+            actionID = notificationAction.ActionId,
+            type = (NotificationActionType)notificationAction.Type.Ordinal()
+         };
       }
 
       public static InAppMessageOutcome InAppMessageOutcomeToNative(Android.OSInAppMessageOutcome outcome) {
-         InAppMessageOutcome inAppMessageOutcome = new InAppMessageOutcome {
+         return new InAppMessageOutcome {
             name = outcome.Name,
             weight = outcome.Weight,
             unique = outcome.Unique
          };
-         return inAppMessageOutcome;
-      }
-
-      public static InAppMessagePrompt InAppMessagePromptToNative(Android.OSInAppMessagePrompt prompt) {
-         InAppMessagePrompt inAppMessagePrompt = new InAppMessagePrompt {
-            //prompted = prompt.HasPrompted
-         };
-         return inAppMessagePrompt;
       }
 
       public static PermissionState PermissionStateToNative(Android.OSPermissionState androidPermissionState) {
-         PermissionState permissionState = new PermissionState();
-         permissionState.status = androidPermissionState.AreNotificationsEnabled()? NotificationPermission.Authorized : NotificationPermission.Denied;
-         return permissionState;
+         return new PermissionState {
+            status = androidPermissionState.AreNotificationsEnabled() ? NotificationPermission.Authorized : NotificationPermission.Denied
+         };
       }
 
       public static PushSubscriptionState PushSubscriptionStateToNative(Android.OSSubscriptionState androidSubscriptionState) {
-         PushSubscriptionState subscriptionState = new PushSubscriptionState();
-         subscriptionState.isPushDisabled = androidSubscriptionState.IsPushDisabled;
-         subscriptionState.pushToken = androidSubscriptionState.PushToken;
-         subscriptionState.isSubscribed = androidSubscriptionState.IsSubscribed;
-         subscriptionState.userId = androidSubscriptionState.UserId;
-         return subscriptionState;
+         return new PushSubscriptionState {
+            isPushDisabled = androidSubscriptionState.IsPushDisabled,
+            pushToken = androidSubscriptionState.PushToken,
+            isSubscribed = androidSubscriptionState.IsSubscribed,
+            userId = androidSubscriptionState.UserId
+         };
       }
 
       public static EmailSubscriptionState EmailSubscriptionStateToNative(Android.OSEmailSubscriptionState androidEmailSubscriptionState) {
-         EmailSubscriptionState emailSubscriptionState = new EmailSubscriptionState();
-         emailSubscriptionState.emailAddress = androidEmailSubscriptionState.EmailAddress;
-         emailSubscriptionState.emailUserId = androidEmailSubscriptionState.EmailUserId;
-         emailSubscriptionState.isSubscribed = androidEmailSubscriptionState.IsSubscribed;
-         return emailSubscriptionState;
+         return new EmailSubscriptionState {
+            emailAddress = androidEmailSubscriptionState.EmailAddress,
+            emailUserId = androidEmailSubscriptionState.EmailUserId,
+            isSubscribed = androidEmailSubscriptionState.IsSubscribed
+         };
       }
 
       public static SMSSubscriptionState SMSSubscriptionStateToNative(Android.OSSMSSubscriptionState androidSMSSubscriptionState) {
-         SMSSubscriptionState smsSubscriptionState = new SMSSubscriptionState();
-         smsSubscriptionState.smsNumber = androidSMSSubscriptionState.SMSNumber;
-         smsSubscriptionState.smsUserId = androidSMSSubscriptionState.SMSNumber;
-         smsSubscriptionState.isSubscribed = androidSMSSubscriptionState.IsSubscribed;
-         return smsSubscriptionState;
+         return new SMSSubscriptionState {
+            smsNumber = androidSMSSubscriptionState.SMSNumber,
+            smsUserId = androidSMSSubscriptionState.SMSNumber,
+            isSubscribed = androidSMSSubscriptionState.IsSubscribed
+         };
       }
-
-      //public static InAppMessageTag InAppMessageTagToNative(Android.OSInAppMessageTag tag) {
-      //   InAppMessageTag inAppMessageTag = new InAppMessageTag {
-      //      // tagsToAdd = tag.TagsToAdd,
-      //      //tagsToRemove = tag.TagsToRemove
-      //   };
-      //   return inAppMessageTag;
-      //}
 
       public static OneSignalNative.LOG_LEVEL LogConversion(LogType logLevel) {
          switch (logLevel) {

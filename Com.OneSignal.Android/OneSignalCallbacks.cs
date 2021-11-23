@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace Com.OneSignal {
       private static OneSignalImplementation _instance;
 
       public OneSignalImplementation() {
+         if(_instance == null) {
+            Debug.WriteLine("Additional instance of OneSignalAndroid created.");
+         }
+
          OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
          OneSignalNative.AddSubscriptionObserver(new OSPushSubscriptionObserver());
          OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
@@ -36,6 +41,7 @@ namespace Com.OneSignal {
          OneSignalNative.SetNotificationWillShowInForegroundHandler(new OSNotificationWillShowInForegroundHandler());
          OneSignalNative.SetNotificationOpenedHandler(new OSNotificationOpenedHandler());
          OneSignalNative.SetInAppMessageClickHandler(new OSInAppMessageClickHandler());
+         //TODO
          //OneSignalNative.SetInAppMessageLifecycleHandler();
          _instance = this;
       }
@@ -106,7 +112,8 @@ namespace Com.OneSignal {
          }
       }
 
-      //TODO OSInAppMessageLifecycleHandler
+      //private sealed class OSInAppMessageLifeCycleHandler : Android.OSInAppMessageLifecycleHandler {
+      //}
 
       private sealed class OSSMSUpdateHandler : JavaLaterProxy<bool>, OneSignalNative.IOSSMSUpdateHandler {
          public void OnSuccess(JSONObject jsonResults) {
@@ -156,7 +163,7 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSOutcomeCallback : JavaLaterProxy<bool>, OneSignalNative.IOutcomeCallback {
-         public void OnSuccess(Com.OneSignal.Android.OSOutcomeEvent outcome) {
+         public void OnSuccess(Android.OSOutcomeEvent outcome) {
             _later.Complete(true);
          }
 
