@@ -46,7 +46,13 @@ namespace Com.OneSignal {
          return nativeNotification;
       }
 
-      public static InAppMessageAction OSInAppMessageClickedActionToNative(Android.OSInAppMessageAction action) {
+      public static InAppMessage InAppMessageToXam(Android.OSInAppMessage inAppMessage) {
+         return new InAppMessage {
+            messageId = inAppMessage.MessageId
+         };
+      }
+
+      public static InAppMessageAction InAppMessageClickedActionToXam(Android.OSInAppMessageAction action) {
          InAppMessageAction inAppMessageAction = new InAppMessageAction {
             click_name = action.ClickName,
             click_url = action.ClickUrl,

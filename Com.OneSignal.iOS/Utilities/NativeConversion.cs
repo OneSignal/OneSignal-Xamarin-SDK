@@ -108,5 +108,11 @@ namespace Com.OneSignal {
             first_click = inAppMessageAction.FirstClick
          };
       }
+
+      public static InAppMessage InAppMessageToXam(iOS.OSInAppMessage inAppMessage) {
+         return new InAppMessage {
+            messageId = inAppMessage.MessageId
+         };
+      }
    }
 }

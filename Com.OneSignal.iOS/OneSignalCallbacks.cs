@@ -111,7 +111,25 @@ namespace Com.OneSignal {
 
       private sealed class OSInAppMessageClickHandler {
          public void InAppMessageClicked(iOS.OSInAppMessageAction inAppMessageAction) {
-            _instance.InAppMessageTriggeredAction?.Invoke(NativeConversion.InAppMessageActionToNative(inAppMessageAction));
+            _instance.InAppMessageTriggeredAction?.Invoke(NativeConversion.InAppMessageActionToXam(inAppMessageAction));
+         }
+      }
+
+      private sealed class OSInAppMessageLifeCycleHandler : iOS.OSInAppMessageLifecycleHandler {
+         public override void OnWillDisplayInAppMessage(iOS.OSInAppMessage message) {
+            _instance.InAppMessageWillDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnDidDisplayInAppMessage(iOS.OSInAppMessage message) {
+            _instance.InAppMessageDidDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnWillDismissInAppMessage(iOS.OSInAppMessage message) {
+            _instance.InAppMessageWillDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnDidDismissInAppMessage(iOS.OSInAppMessage message) {
+            _instance.InAppMessageDidDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
          }
       }
    }

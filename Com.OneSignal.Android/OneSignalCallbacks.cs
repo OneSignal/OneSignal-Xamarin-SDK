@@ -115,9 +115,27 @@ namespace Com.OneSignal {
          }
       }
 
-      //private sealed class OSInAppMessageLifeCycleHandler : Android.OSInAppMessageLifecycleHandler {
-      //}
+      private sealed class OSInAppMessageLifeCycleHandler : Android.OSInAppMessageLifecycleHandler {
 
+         public override void OnWillDisplayInAppMessage(Android.OSInAppMessage message) {
+            _instance.InAppMessageWillDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnDidDisplayInAppMessage(Android.OSInAppMessage message) {
+            _instance.InAppMessageDidDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnWillDismissInAppMessage(Android.OSInAppMessage message) {
+            _instance.InAppMessageWillDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+
+         public override void OnDidDismissInAppMessage(Android.OSInAppMessage message) {
+            _instance.InAppMessageDidDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
+         }
+      }
+      #endregion
+
+      #region Update Handlers
       private sealed class OSSMSUpdateHandler : JavaLaterProxy<bool>, OneSignalNative.IOSSMSUpdateHandler {
          public void OnSuccess(JSONObject jsonResults) {
             _later.Complete(true);
