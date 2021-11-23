@@ -168,7 +168,7 @@ namespace Com.OneSignal {
       }
 
       public override void SetTrigger(string key, object triggerObject) {
-         OneSignalNative.AddTrigger(key, (NSObject)triggerObject);
+         OneSignalNative.AddTrigger(key, NSObject.FromObject(triggerObject));
       }
 
       public override void SetTriggers(Dictionary<string, object> triggers) {
