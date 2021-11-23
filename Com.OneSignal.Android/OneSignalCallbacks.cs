@@ -56,7 +56,7 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSPushSubscriptionObserver : Java.Lang.Object, Android.IOSSubscriptionObserver {
-         /// <param name="stateChanges">OSPermissionStateChanges</param>
+         /// <param name="stateChanges">OnOSSubscriptionChanges</param>
          public void OnOSSubscriptionChanged(Android.OSSubscriptionStateChanges stateChanges) {
             PushSubscriptionState prev = NativeConversion.PushSubscriptionStateToNative(stateChanges.From);
             PushSubscriptionState curr = NativeConversion.PushSubscriptionStateToNative(stateChanges.To);
@@ -65,7 +65,7 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSEmailSubscriptionObserver : Java.Lang.Object, Android.IOSEmailSubscriptionObserver {
-         /// <param name="stateChanges">OSPermissionStateChanges</param>
+         /// <param name="stateChanges">OnOSEmailSubscriptionChanges</param>
          public void OnOSEmailSubscriptionChanged(Android.OSEmailSubscriptionStateChanges stateChanges) {
             EmailSubscriptionState prev = NativeConversion.EmailSubscriptionStateToNative(stateChanges.From);
             EmailSubscriptionState curr = NativeConversion.EmailSubscriptionStateToNative(stateChanges.To);
@@ -74,7 +74,7 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSSMSSubscriptionObserver : Java.Lang.Object, Android.IOSSMSSubscriptionObserver {
-         /// <param name="stateChanges">OSPermissionStateChanges</param>
+         /// <param name="stateChanges">OnSMSSubscriptionChanges</param>
          public void OnSMSSubscriptionChanged(Android.OSSMSSubscriptionStateChanges stateChanges) {
             SMSSubscriptionState prev = NativeConversion.SMSSubscriptionStateToNative(stateChanges.From);
             SMSSubscriptionState curr = NativeConversion.SMSSubscriptionStateToNative(stateChanges.To);
