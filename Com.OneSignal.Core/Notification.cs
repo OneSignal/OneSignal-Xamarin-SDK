@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-//using Org.Json;
-
 
 namespace Com.OneSignal.Core {
    public class Notification {
@@ -13,7 +11,7 @@ namespace Com.OneSignal.Core {
       public string templateId;
       public string title;
       public string body;
-      //public JSONObject additionalData;
+      public Dictionary<string, object> additionalData;
       public string smallIcon;
       public string largeIcon;
       public string bigPicture;
