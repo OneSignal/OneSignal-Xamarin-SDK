@@ -1,31 +1,93 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 using Laters;
 
+using OneSignalNative = Com.OneSignal.iOS.OneSignal;
+using Com.OneSignal.Core;
+
 namespace Com.OneSignal {
-    public partial class OneSignalImplementation {
-        private delegate void BooleanResponseDelegate(bool response);
-        private delegate void StringResponseDelegate(string response);
-        private delegate void DictionaryResponseDelegate(string response);
+   public partial class OneSignalImplementation {
+      private delegate void BooleanResponseDelegate(bool response);
+      private delegate void StringResponseDelegate(string response);
+      private delegate void DictionaryResponseDelegate(string response);
 
-        private interface ICallbackProxy<in TReturn> {
-            void OnResponse(TReturn response);
-        }
+      private interface ICallbackProxy<in TReturn> {
+         void OnResponse(TReturn response);
+      }
 
-        private abstract class CallbackProxy<TReturn> : BaseLater<TReturn>, ICallbackProxy<TReturn> {
-            public abstract void OnResponse(TReturn response);
-        }
+      private abstract class CallbackProxy<TReturn> : BaseLater<TReturn>, ICallbackProxy<TReturn> {
+         public abstract void OnResponse(TReturn response);
+      }
 
-        private sealed class BooleanCallbackProxy : CallbackProxy<bool> {
-            public override void OnResponse(bool response) => _complete(response);
-        }
+      private sealed class BooleanCallbackProxy : CallbackProxy<bool> {
+         public override void OnResponse(bool response) => _complete(response);
+      }
 
-        private sealed class StringCallbackProxy : CallbackProxy<string> {
-            public override void OnResponse(string response) => _complete(response);
-        }
+      private sealed class StringCallbackProxy : CallbackProxy<string> {
+         public override void OnResponse(string response) => _complete(response);
+      }
 
-        private sealed class DictionaryCallbackProxy : CallbackProxy<Dictionary<string, object>> {
-            public override void OnResponse(Dictionary<string, object> response) => _complete(response);
-        }
-    }
+      private sealed class DictionaryCallbackProxy : CallbackProxy<Dictionary<string, object>> {
+         public override void OnResponse(Dictionary<string, object> response) => _complete(response);
+      }
+
+      private static OneSignalImplementation _instance;
+
+      public OneSignalImplementation() {
+         if (_instance != null) {
+            Debug.WriteLine("Additional instance of OneSignalIOS created.");
+         }
+
+         OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
+         OneSignalNative.AddSubscriptionObserver(new OSSubscriptionObserver());
+         OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
+         OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
+
+         //TODO
+         //OneSignalNative.SetNotificationWillShowInForegroundHandler();
+         //OneSignalNative.SetNotificationOpenedHandler();
+         //OneSignalNative.SetInAppMessageClickHandler();
+         //OneSignalNative.SetInAppMessageLifecycleHandler();
+
+         _instance = this;
+      }
+
+      private sealed class OSPermissionObserver : iOS.OSPermissionObserver {
+
+         public override void OnOSPermissionChanged(iOS.OSPermissionStateChanges permissionStateChanges) {
+            PermissionState from = NativeConversion.PermissionStateToNative(permissionStateChanges.From);
+            PermissionState to = NativeConversion.PermissionStateToNative(permissionStateChanges.To);
+
+            _instance.PermissionStateChanged?.Invoke(to, from);
+         }
+      }
+
+      private sealed class OSSubscriptionObserver : iOS.OSSubscriptionObserver {
+         public override void OnOSSubscriptionChanged(iOS.OSSubscriptionStateChanges stateChanges) {
+            PushSubscriptionState from = NativeConversion.SubscriptionStateToNative(stateChanges.From);
+            PushSubscriptionState to = NativeConversion.SubscriptionStateToNative(stateChanges.To);
+
+            _instance.PushSubscriptionStateChanged?.Invoke(to, from);
+         }
+      }
+
+      private sealed class OSEmailSubscriptionObserver : iOS.OSEmailSubscriptionObserver {
+         public override void OnOSEmailSubscriptionChanged(iOS.OSEmailSubscriptionStateChanges stateChanges) {
+            EmailSubscriptionState from = NativeConversion.EmailSubscriptionStateToNative(stateChanges.From);
+            EmailSubscriptionState to = NativeConversion.EmailSubscriptionStateToNative(stateChanges.To);
+
+            _instance.EmailSubscriptionStateChanged?.Invoke(to, from);
+         }
+      }
+
+      private sealed class OSSMSSubscriptionObserver : iOS.OSSMSSubscriptionObserver {
+         public override void OnOSSMSSubscriptionChanged(iOS.OSSMSSubscriptionStateChanges stateChanges) {
+            SMSSubscriptionState from = NativeConversion.SMSSubscriptionStateToNative(stateChanges.From);
+            SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToNative(stateChanges.To);
+
+            _instance.SMSSubscriptionStateChanged?.Invoke(to, from);
+         }
+      }
+   }
 }

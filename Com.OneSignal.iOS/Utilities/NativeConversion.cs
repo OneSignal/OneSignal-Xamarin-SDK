@@ -36,5 +36,54 @@ namespace Com.OneSignal {
 
             return nsDict;
         }
-    }
+
+      public static Notification NotificationToNative(iOS.OSNotification notification) {
+         return new Notification {
+            androidNotificationId = int.Parse(notification.NotificationId),
+            groupedNotifications = new List<Notification>(),
+            notificationId = notification.NotificationId,
+            templateName = notification.TemplateName,
+            templateId = notification.TemplateId,
+            title = notification.Title,
+            body = notification.Body,
+            additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>,
+            launchUrl = notification.LaunchURL,
+            sound = notification.Sound,
+            relevanceScore = (float) notification.RelevanceScore,
+            rawPayload = notification.RawPayload.ToString(),
+         };
+      }
+
+      public static PermissionState PermissionStateToNative(iOS.OSPermissionState permissionState) {
+         return new PermissionState {
+            hasPrompted = permissionState.HasPrompted,
+            status = (NotificationPermission)permissionState.Status
+         };
+      }
+
+      public static PushSubscriptionState SubscriptionStateToNative(iOS.OSSubscriptionState subscriptionState) {
+         return new PushSubscriptionState {
+            isPushDisabled = subscriptionState.IsPushDisabled,
+            isSubscribed = subscriptionState.IsSubscribed,
+            pushToken = subscriptionState.PushToken,
+            userId = subscriptionState.UserId
+         };
+      }
+
+      public static EmailSubscriptionState EmailSubscriptionStateToNative(iOS.OSEmailSubscriptionState emailSubscriptionState) {
+         return new EmailSubscriptionState {
+            isSubscribed = emailSubscriptionState.IsSubscribed,
+            emailAddress = emailSubscriptionState.EmailAddress,
+            emailUserId = emailSubscriptionState.EmailUserId
+         };
+      }
+
+      public static SMSSubscriptionState SMSSubscriptionStateToNative(iOS.OSSMSSubscriptionState smsSubscriptionState) {
+         return new SMSSubscriptionState {
+            isSubscribed = smsSubscriptionState.IsSubscribed,
+            smsNumber = smsSubscriptionState.SmsNumber,
+            smsUserId = smsSubscriptionState.SmsUserId
+         };
+      }
+   }
 }
