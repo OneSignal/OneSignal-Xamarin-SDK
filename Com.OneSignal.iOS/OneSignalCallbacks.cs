@@ -44,16 +44,17 @@ namespace Com.OneSignal {
          OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
          OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
 
-         //TODO
          OneSignalNative.SetNotificationWillShowInForegroundHandler(new iOS.OSNotificationWillShowInForegroundBlock(
             (iOS.OSNotification arg0, iOS.OSNotificationDisplayResponse arg1) =>
             new NotificationWillShowInForegroundHandler().NotificationWillShowInForeground(arg0, arg1)));
+
          OneSignalNative.SetNotificationOpenedHandler(new iOS.OSNotificationOpenedBlock(
             result => new OSNotificationOpenedHandler().NotificationOpened(result)));
 
          OneSignalNative.SetInAppMessageClickHandler(new iOS.OSInAppMessageClickBlock((iOS.OSInAppMessageAction arg0) =>
          new OSInAppMessageClickHandler().InAppMessageClicked(arg0)));
-         //OneSignalNative.SetInAppMessageLifecycleHandler();
+
+         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
 
          _instance = this;
       }
@@ -61,8 +62,8 @@ namespace Com.OneSignal {
       private sealed class OSPermissionObserver : iOS.OSPermissionObserver {
 
          public override void OnOSPermissionChanged(iOS.OSPermissionStateChanges permissionStateChanges) {
-            PermissionState from = NativeConversion.PermissionStateToNative(permissionStateChanges.From);
-            PermissionState to = NativeConversion.PermissionStateToNative(permissionStateChanges.To);
+            PermissionState from = NativeConversion.PermissionStateToXam(permissionStateChanges.From);
+            PermissionState to = NativeConversion.PermissionStateToXam(permissionStateChanges.To);
 
             _instance.PermissionStateChanged?.Invoke(to, from);
          }
@@ -70,8 +71,8 @@ namespace Com.OneSignal {
 
       private sealed class OSSubscriptionObserver : iOS.OSSubscriptionObserver {
          public override void OnOSSubscriptionChanged(iOS.OSSubscriptionStateChanges stateChanges) {
-            PushSubscriptionState from = NativeConversion.SubscriptionStateToNative(stateChanges.From);
-            PushSubscriptionState to = NativeConversion.SubscriptionStateToNative(stateChanges.To);
+            PushSubscriptionState from = NativeConversion.SubscriptionStateToXam(stateChanges.From);
+            PushSubscriptionState to = NativeConversion.SubscriptionStateToXam(stateChanges.To);
 
             _instance.PushSubscriptionStateChanged?.Invoke(to, from);
          }
@@ -79,8 +80,8 @@ namespace Com.OneSignal {
 
       private sealed class OSEmailSubscriptionObserver : iOS.OSEmailSubscriptionObserver {
          public override void OnOSEmailSubscriptionChanged(iOS.OSEmailSubscriptionStateChanges stateChanges) {
-            EmailSubscriptionState from = NativeConversion.EmailSubscriptionStateToNative(stateChanges.From);
-            EmailSubscriptionState to = NativeConversion.EmailSubscriptionStateToNative(stateChanges.To);
+            EmailSubscriptionState from = NativeConversion.EmailSubscriptionStateToXam(stateChanges.From);
+            EmailSubscriptionState to = NativeConversion.EmailSubscriptionStateToXam(stateChanges.To);
 
             _instance.EmailSubscriptionStateChanged?.Invoke(to, from);
          }
@@ -88,8 +89,8 @@ namespace Com.OneSignal {
 
       private sealed class OSSMSSubscriptionObserver : iOS.OSSMSSubscriptionObserver {
          public override void OnOSSMSSubscriptionChanged(iOS.OSSMSSubscriptionStateChanges stateChanges) {
-            SMSSubscriptionState from = NativeConversion.SMSSubscriptionStateToNative(stateChanges.From);
-            SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToNative(stateChanges.To);
+            SMSSubscriptionState from = NativeConversion.SMSSubscriptionStateToXam(stateChanges.From);
+            SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToXam(stateChanges.To);
 
             _instance.SMSSubscriptionStateChanged?.Invoke(to, from);
          }
@@ -98,13 +99,13 @@ namespace Com.OneSignal {
       private sealed class NotificationWillShowInForegroundHandler {
          public void NotificationWillShowInForeground(iOS.OSNotification notification,
             iOS.OSNotificationDisplayResponse notificationDisplayResponse) {
-            _instance.NotificationWillShow?.Invoke(NativeConversion.NotificationToNative(notification));
+            _instance.NotificationWillShow?.Invoke(NativeConversion.NotificationToXam(notification));
          }
       }
 
       private sealed class OSNotificationOpenedHandler {
          public void NotificationOpened(iOS.OSNotificationOpenedResult notificationOpenedResult) {
-            _instance.NotificationWasOpened?.Invoke(NativeConversion.NotificationOpenedResultToNative(notificationOpenedResult));
+            _instance.NotificationWasOpened?.Invoke(NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult));
          }
       }
 

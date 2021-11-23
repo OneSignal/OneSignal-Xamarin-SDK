@@ -29,7 +29,7 @@ namespace Com.OneSignal {
       private static OneSignalImplementation _instance;
 
       public OneSignalImplementation() {
-         if(_instance == null) {
+         if (_instance != null) {
             Debug.WriteLine("Additional instance of OneSignalAndroid created.");
          }
 
@@ -41,16 +41,17 @@ namespace Com.OneSignal {
          OneSignalNative.SetNotificationWillShowInForegroundHandler(new OSNotificationWillShowInForegroundHandler());
          OneSignalNative.SetNotificationOpenedHandler(new OSNotificationOpenedHandler());
          OneSignalNative.SetInAppMessageClickHandler(new OSInAppMessageClickHandler());
-         //TODO
-         //OneSignalNative.SetInAppMessageLifecycleHandler();
+         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
+
          _instance = this;
       }
 
+      #region Observers
       private sealed class OSPermissionObserver : Java.Lang.Object, Android.IOSPermissionObserver {
          /// <param name="stateChanges">OSPermissionStateChanges</param>
          public void OnOSPermissionChanged(Android.OSPermissionStateChanges stateChanges) {
-            PermissionState prev = NativeConversion.PermissionStateToNative(stateChanges.From);
-            PermissionState curr = NativeConversion.PermissionStateToNative(stateChanges.To);
+            PermissionState prev = NativeConversion.PermissionStateToXam(stateChanges.From);
+            PermissionState curr = NativeConversion.PermissionStateToXam(stateChanges.To);
             _instance.PermissionStateChanged?.Invoke(curr, prev);
          }
       }
@@ -58,8 +59,8 @@ namespace Com.OneSignal {
       private sealed class OSPushSubscriptionObserver : Java.Lang.Object, Android.IOSSubscriptionObserver {
          /// <param name="stateChanges">OnOSSubscriptionChanges</param>
          public void OnOSSubscriptionChanged(Android.OSSubscriptionStateChanges stateChanges) {
-            PushSubscriptionState prev = NativeConversion.PushSubscriptionStateToNative(stateChanges.From);
-            PushSubscriptionState curr = NativeConversion.PushSubscriptionStateToNative(stateChanges.To);
+            PushSubscriptionState prev = NativeConversion.PushSubscriptionStateToXam(stateChanges.From);
+            PushSubscriptionState curr = NativeConversion.PushSubscriptionStateToXam(stateChanges.To);
             _instance.PushSubscriptionStateChanged?.Invoke(curr, prev);
          }
       }
@@ -67,8 +68,8 @@ namespace Com.OneSignal {
       private sealed class OSEmailSubscriptionObserver : Java.Lang.Object, Android.IOSEmailSubscriptionObserver {
          /// <param name="stateChanges">OnOSEmailSubscriptionChanges</param>
          public void OnOSEmailSubscriptionChanged(Android.OSEmailSubscriptionStateChanges stateChanges) {
-            EmailSubscriptionState prev = NativeConversion.EmailSubscriptionStateToNative(stateChanges.From);
-            EmailSubscriptionState curr = NativeConversion.EmailSubscriptionStateToNative(stateChanges.To);
+            EmailSubscriptionState prev = NativeConversion.EmailSubscriptionStateToXam(stateChanges.From);
+            EmailSubscriptionState curr = NativeConversion.EmailSubscriptionStateToXam(stateChanges.To);
             _instance.EmailSubscriptionStateChanged?.Invoke(curr, prev);
          }
       }
@@ -76,22 +77,24 @@ namespace Com.OneSignal {
       private sealed class OSSMSSubscriptionObserver : Java.Lang.Object, Android.IOSSMSSubscriptionObserver {
          /// <param name="stateChanges">OnSMSSubscriptionChanges</param>
          public void OnSMSSubscriptionChanged(Android.OSSMSSubscriptionStateChanges stateChanges) {
-            SMSSubscriptionState prev = NativeConversion.SMSSubscriptionStateToNative(stateChanges.From);
-            SMSSubscriptionState curr = NativeConversion.SMSSubscriptionStateToNative(stateChanges.To);
+            SMSSubscriptionState prev = NativeConversion.SMSSubscriptionStateToXam(stateChanges.From);
+            SMSSubscriptionState curr = NativeConversion.SMSSubscriptionStateToXam(stateChanges.To);
             _instance.SMSSubscriptionStateChanged?.Invoke(curr, prev);
          }
       }
+      #endregion
 
+      #region Open and Click Handlers
       private sealed class OSNotificationWillShowInForegroundHandler : Java.Lang.Object, OneSignalNative.IOSNotificationWillShowInForegroundHandler {
          public void NotificationWillShowInForeground(Android.OSNotificationReceivedEvent notificationReceivedEvent) {
             var notifJO = notificationReceivedEvent.Notification;
 
-            if(_instance.NotificationWillShow == null) {
+            if (_instance.NotificationWillShow == null) {
                notificationReceivedEvent.Complete(notifJO);
                return;
             }
 
-            Notification notification = NativeConversion.NotificationToNative(notificationReceivedEvent.Notification);
+            Notification notification = NativeConversion.NotificationToXam(notificationReceivedEvent.Notification);
             Notification resultNotif = _instance.NotificationWillShow(notification);
 
             notificationReceivedEvent.Complete(resultNotif != null ? notifJO : null);
@@ -100,14 +103,14 @@ namespace Com.OneSignal {
 
       private sealed class OSNotificationOpenedHandler : Java.Lang.Object, OneSignalNative.IOSNotificationOpenedHandler {
          public void NotificationOpened(Android.OSNotificationOpenedResult notificationOpenedResult) {
-            NotificationOpenedResult result = NativeConversion.NotificationOpenedResultToNative(notificationOpenedResult);
+            NotificationOpenedResult result = NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult);
             _instance.NotificationWasOpened?.Invoke(result);
          }
       }
 
       private sealed class OSInAppMessageClickHandler : Java.Lang.Object, OneSignalNative.IOSInAppMessageClickHandler {
          public void InAppMessageClicked(Android.OSInAppMessageAction inAppMessageAction) {
-            InAppMessageAction action = NativeConversion.OSInAppMessageClickedActionToNative(inAppMessageAction);
+            InAppMessageAction action = NativeConversion.InAppMessageClickedActionToXam(inAppMessageAction);
             _instance.InAppMessageTriggeredAction?.Invoke(action);
          }
       }
@@ -172,7 +175,6 @@ namespace Com.OneSignal {
          }
       }
 
-
       private sealed class OSPostNotificationResponseHandler : JavaLaterProxy<bool>, OneSignalNative.IPostNotificationResponseHandler {
          public void OnSuccess(JSONObject jsonResults) {
             _later.Complete(true);
@@ -182,5 +184,6 @@ namespace Com.OneSignal {
             _later.Complete(false);
          }
       }
+      #endregion
    }
 }

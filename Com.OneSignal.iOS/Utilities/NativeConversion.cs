@@ -37,7 +37,7 @@ namespace Com.OneSignal {
             return nsDict;
         }
 
-      public static Notification NotificationToNative(iOS.OSNotification notification) {
+      public static Notification NotificationToXam(iOS.OSNotification notification) {
          return new Notification {
             androidNotificationId = int.Parse(notification.NotificationId),
             groupedNotifications = new List<Notification>(),
@@ -54,14 +54,14 @@ namespace Com.OneSignal {
          };
       }
 
-      public static PermissionState PermissionStateToNative(iOS.OSPermissionState permissionState) {
+      public static PermissionState PermissionStateToXam(iOS.OSPermissionState permissionState) {
          return new PermissionState {
             hasPrompted = permissionState.HasPrompted,
             status = (NotificationPermission)permissionState.Status
          };
       }
 
-      public static PushSubscriptionState SubscriptionStateToNative(iOS.OSSubscriptionState subscriptionState) {
+      public static PushSubscriptionState SubscriptionStateToXam(iOS.OSSubscriptionState subscriptionState) {
          return new PushSubscriptionState {
             isPushDisabled = subscriptionState.IsPushDisabled,
             isSubscribed = subscriptionState.IsSubscribed,
@@ -70,7 +70,7 @@ namespace Com.OneSignal {
          };
       }
 
-      public static EmailSubscriptionState EmailSubscriptionStateToNative(iOS.OSEmailSubscriptionState emailSubscriptionState) {
+      public static EmailSubscriptionState EmailSubscriptionStateToXam(iOS.OSEmailSubscriptionState emailSubscriptionState) {
          return new EmailSubscriptionState {
             isSubscribed = emailSubscriptionState.IsSubscribed,
             emailAddress = emailSubscriptionState.EmailAddress,
@@ -78,7 +78,7 @@ namespace Com.OneSignal {
          };
       }
 
-      public static SMSSubscriptionState SMSSubscriptionStateToNative(iOS.OSSMSSubscriptionState smsSubscriptionState) {
+      public static SMSSubscriptionState SMSSubscriptionStateToXam(iOS.OSSMSSubscriptionState smsSubscriptionState) {
          return new SMSSubscriptionState {
             isSubscribed = smsSubscriptionState.IsSubscribed,
             smsNumber = smsSubscriptionState.SmsNumber,
@@ -86,21 +86,21 @@ namespace Com.OneSignal {
          };
       }
 
-      public static NotificationAction NotificationActionToNative(iOS.OSNotificationAction notificationAction) {
+      public static NotificationAction NotificationActionToXam(iOS.OSNotificationAction notificationAction) {
          return new NotificationAction {
             actionID = notificationAction.ActionId,
             type = (NotificationActionType)notificationAction.Type
          };
       }
 
-      public static NotificationOpenedResult NotificationOpenedResultToNative(iOS.OSNotificationOpenedResult notificationOpenedResult) {
+      public static NotificationOpenedResult NotificationOpenedResultToXam(iOS.OSNotificationOpenedResult notificationOpenedResult) {
          return new NotificationOpenedResult {
-            action = NotificationActionToNative(notificationOpenedResult.Action),
-            notification = NotificationToNative(notificationOpenedResult.Notification)
+            action = NotificationActionToXam(notificationOpenedResult.Action),
+            notification = NotificationToXam(notificationOpenedResult.Notification)
          };
       }
 
-      public static InAppMessageAction InAppMessageActionToNative(iOS.OSInAppMessageAction inAppMessageAction) {
+      public static InAppMessageAction InAppMessageActionToXam(iOS.OSInAppMessageAction inAppMessageAction) {
          return new InAppMessageAction {
             click_name = inAppMessageAction.ClickName,
             click_url = inAppMessageAction.ClickUrl.AbsoluteString,

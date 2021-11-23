@@ -7,7 +7,7 @@ using OneSignalNative = Com.OneSignal.Android.OneSignal;
 namespace Com.OneSignal {
    public static class NativeConversion {
 
-      public static Notification NotificationToNative(Android.OSNotification notification) {
+      public static Notification NotificationToXam(Android.OSNotification notification) {
          Notification nativeNotification = new Notification {
             androidNotificationId = notification.AndroidNotificationId,
             groupedNotifications = new List<Notification>(),
@@ -33,7 +33,7 @@ namespace Com.OneSignal {
             rawPayload = notification.RawPayload,
          };
          foreach (var individualNotification in notification.GroupedNotifications)
-            nativeNotification.groupedNotifications.Add(NotificationToNative(individualNotification));
+            nativeNotification.groupedNotifications.Add(NotificationToXam(individualNotification));
 
          nativeNotification.actionButtons = new List<ActionButton>();
          foreach (var actionButton in notification.ActionButtons)
@@ -56,27 +56,27 @@ namespace Com.OneSignal {
 
          IList<InAppMessageOutcome> outcomes = new List<InAppMessageOutcome>();
          foreach (var outcome in action.Outcomes)
-            outcomes.Add(InAppMessageOutcomeToNative(outcome));
+            outcomes.Add(InAppMessageOutcomeToXam(outcome));
 
          return inAppMessageAction;
       }
 
-      public static NotificationOpenedResult NotificationOpenedResultToNative(Android.OSNotificationOpenedResult result) {
+      public static NotificationOpenedResult NotificationOpenedResultToXam(Android.OSNotificationOpenedResult result) {
          return new NotificationOpenedResult {
-            notification = NotificationToNative(result.Notification),
-            action = NotificationActionToNative(result.Action)
+            notification = NotificationToXam(result.Notification),
+            action = NotificationActionToXam(result.Action)
          };
 
       }
 
-      public static NotificationAction NotificationActionToNative(Android.OSNotificationAction notificationAction) {
+      public static NotificationAction NotificationActionToXam(Android.OSNotificationAction notificationAction) {
          return new NotificationAction {
             actionID = notificationAction.ActionId,
             type = (NotificationActionType)notificationAction.Type.Ordinal()
          };
       }
 
-      public static InAppMessageOutcome InAppMessageOutcomeToNative(Android.OSInAppMessageOutcome outcome) {
+      public static InAppMessageOutcome InAppMessageOutcomeToXam(Android.OSInAppMessageOutcome outcome) {
          return new InAppMessageOutcome {
             name = outcome.Name,
             weight = outcome.Weight,
@@ -84,13 +84,13 @@ namespace Com.OneSignal {
          };
       }
 
-      public static PermissionState PermissionStateToNative(Android.OSPermissionState androidPermissionState) {
+      public static PermissionState PermissionStateToXam(Android.OSPermissionState androidPermissionState) {
          return new PermissionState {
             status = androidPermissionState.AreNotificationsEnabled() ? NotificationPermission.Authorized : NotificationPermission.Denied
          };
       }
 
-      public static PushSubscriptionState PushSubscriptionStateToNative(Android.OSSubscriptionState androidSubscriptionState) {
+      public static PushSubscriptionState PushSubscriptionStateToXam(Android.OSSubscriptionState androidSubscriptionState) {
          return new PushSubscriptionState {
             isPushDisabled = androidSubscriptionState.IsPushDisabled,
             pushToken = androidSubscriptionState.PushToken,
@@ -99,7 +99,7 @@ namespace Com.OneSignal {
          };
       }
 
-      public static EmailSubscriptionState EmailSubscriptionStateToNative(Android.OSEmailSubscriptionState androidEmailSubscriptionState) {
+      public static EmailSubscriptionState EmailSubscriptionStateToXam(Android.OSEmailSubscriptionState androidEmailSubscriptionState) {
          return new EmailSubscriptionState {
             emailAddress = androidEmailSubscriptionState.EmailAddress,
             emailUserId = androidEmailSubscriptionState.EmailUserId,
@@ -107,7 +107,7 @@ namespace Com.OneSignal {
          };
       }
 
-      public static SMSSubscriptionState SMSSubscriptionStateToNative(Android.OSSMSSubscriptionState androidSMSSubscriptionState) {
+      public static SMSSubscriptionState SMSSubscriptionStateToXam(Android.OSSMSSubscriptionState androidSMSSubscriptionState) {
          return new SMSSubscriptionState {
             smsNumber = androidSMSSubscriptionState.SMSNumber,
             smsUserId = androidSMSSubscriptionState.SMSNumber,
