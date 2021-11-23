@@ -35,10 +35,6 @@ namespace Com.OneSignal {
          OneSignalNative.InitWithLaunchOptions(null);
       }
 
-      public override void RegisterForPushNotification() {
-         OneSignalNative.RegisterForPushNotifications();
-      }
-
       public override bool PrivacyConsent {
          get => false;
          set => OneSignalNative.ConsentGranted(value);

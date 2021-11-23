@@ -47,10 +47,6 @@ namespace Com.OneSignal {
          return Task.FromResult(NotificationPermission.NotDetermined);
       }
 
-      public override void RegisterForPushNotification() {
-         throw new NotImplementedException("This feature is available for iOS devices only");
-      }
-
       public override LogType LogLevel {
          get => currentLogLevel;
          set {

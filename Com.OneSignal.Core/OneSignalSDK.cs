@@ -12,16 +12,6 @@ namespace Com.OneSignal.Core {
          if (_default != null)
             return _default;
 
-         //// only 1 sdk should be available for any given supported platform
-         //var availableSDKs = ReflectionHelpers.FindAllAssignableTypes<OneSignal>("OneSignal");
-         //if (Activator.CreateInstance(availableSDKs.First()) is OneSignal sdk) {
-         //    _default = sdk;
-         //    SDKDebug.Log($"OneSignal.Default set to platform SDK {sdk.GetType()}. Current version is {Version}");
-         //}
-         //else {
-         //    SDKDebug.Error("Could not find an implementation of OneSignal SDK to use!");
-         //}
-
          return _default;
       }
 
@@ -146,12 +136,6 @@ namespace Com.OneSignal.Core {
       /// </summary>
       /// <param name="appId">Your application id from the OneSignal dashboard</param>
       public abstract void Initialize(string appId);
-
-
-      ///<summary>
-      ///
-      ///</summary>
-      public abstract void RegisterForPushNotification();
       #endregion
 
       #region Push Notifications
