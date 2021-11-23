@@ -45,9 +45,14 @@ namespace Com.OneSignal {
          OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
 
          //TODO
-         //OneSignalNative.SetNotificationWillShowInForegroundHandler();
-         //OneSignalNative.SetNotificationOpenedHandler();
-         //OneSignalNative.SetInAppMessageClickHandler();
+         OneSignalNative.SetNotificationWillShowInForegroundHandler(new iOS.OSNotificationWillShowInForegroundBlock(
+            (iOS.OSNotification arg0, iOS.OSNotificationDisplayResponse arg1) =>
+            new NotificationWillShowInForegroundHandler().NotificationWillShowInForeground(arg0, arg1)));
+         OneSignalNative.SetNotificationOpenedHandler(new iOS.OSNotificationOpenedBlock(
+            result => new OSNotificationOpenedHandler().NotificationOpened(result)));
+
+         OneSignalNative.SetInAppMessageClickHandler(new iOS.OSInAppMessageClickBlock((iOS.OSInAppMessageAction arg0) =>
+         new OSInAppMessageClickHandler().InAppMessageClicked(arg0)));
          //OneSignalNative.SetInAppMessageLifecycleHandler();
 
          _instance = this;
@@ -87,6 +92,25 @@ namespace Com.OneSignal {
             SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToNative(stateChanges.To);
 
             _instance.SMSSubscriptionStateChanged?.Invoke(to, from);
+         }
+      }
+
+      private sealed class NotificationWillShowInForegroundHandler {
+         public void NotificationWillShowInForeground(iOS.OSNotification notification,
+            iOS.OSNotificationDisplayResponse notificationDisplayResponse) {
+            _instance.NotificationWillShow?.Invoke(NativeConversion.NotificationToNative(notification));
+         }
+      }
+
+      private sealed class OSNotificationOpenedHandler {
+         public void NotificationOpened(iOS.OSNotificationOpenedResult notificationOpenedResult) {
+            _instance.NotificationWasOpened?.Invoke(NativeConversion.NotificationOpenedResultToNative(notificationOpenedResult));
+         }
+      }
+
+      private sealed class OSInAppMessageClickHandler {
+         public void InAppMessageClicked(iOS.OSInAppMessageAction inAppMessageAction) {
+            _instance.InAppMessageTriggeredAction?.Invoke(NativeConversion.InAppMessageActionToNative(inAppMessageAction));
          }
       }
    }

@@ -85,5 +85,28 @@ namespace Com.OneSignal {
             smsUserId = smsSubscriptionState.SmsUserId
          };
       }
+
+      public static NotificationAction NotificationActionToNative(iOS.OSNotificationAction notificationAction) {
+         return new NotificationAction {
+            actionID = notificationAction.ActionId,
+            type = (NotificationActionType)notificationAction.Type
+         };
+      }
+
+      public static NotificationOpenedResult NotificationOpenedResultToNative(iOS.OSNotificationOpenedResult notificationOpenedResult) {
+         return new NotificationOpenedResult {
+            action = NotificationActionToNative(notificationOpenedResult.Action),
+            notification = NotificationToNative(notificationOpenedResult.Notification)
+         };
+      }
+
+      public static InAppMessageAction InAppMessageActionToNative(iOS.OSInAppMessageAction inAppMessageAction) {
+         return new InAppMessageAction {
+            click_name = inAppMessageAction.ClickName,
+            click_url = inAppMessageAction.ClickUrl.AbsoluteString,
+            closes_message = inAppMessageAction.ClosesMessage,
+            first_click = inAppMessageAction.FirstClick
+         };
+      }
    }
 }
