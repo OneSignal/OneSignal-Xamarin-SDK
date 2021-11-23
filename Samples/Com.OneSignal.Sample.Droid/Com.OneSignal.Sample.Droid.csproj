@@ -263,6 +263,13 @@
     <Reference Include="Xamarin.AndroidX.Work.Runtime">
       <HintPath>..\..\packages\Xamarin.AndroidX.Work.Runtime.2.7.0\lib\monoandroid90\Xamarin.AndroidX.Work.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.JavaX.Inject">
+      <HintPath>..\..\packages\Xamarin.JavaX.Inject.1.0.0\lib\monoandroid90\Xamarin.JavaX.Inject.dll</HintPath>
+    </Reference>
+    <Reference Include="Java.Interop" />
+    <Reference Include="Xamarin.Google.Dagger">
+      <HintPath>..\..\packages\Xamarin.Google.Dagger.2.39.1\lib\monoandroid90\Xamarin.Google.Dagger.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
