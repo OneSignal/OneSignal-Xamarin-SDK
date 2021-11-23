@@ -28,6 +28,7 @@ namespace Com.OneSignal.Core {
       public string CollapseId;
       public int priority;
       public string rawPayload;
+      public float relevanceScore;
    }
 
    public class ActionButton {
