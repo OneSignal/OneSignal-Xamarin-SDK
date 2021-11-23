@@ -80,7 +80,7 @@ namespace Com.OneSignal.Sample.Shared
          List<string> removeKeys = new List<string>();
          removeKeys.Add("trigger_1");
          removeKeys.Add("trigger_3");
-         OneSignal.Default.RemoveTriggers(removeKeys);
+         OneSignal.Default.RemoveTriggers(removeKeys.ToArray());
 
          // Toggle showing of IAMs
          OneSignal.Default.InAppMessagesArePaused = false;
@@ -102,9 +102,9 @@ namespace Com.OneSignal.Sample.Shared
 
       // Just for iOS.
       // No effect on Android, device auto registers without prompting.
-      public static void RegisterIOS() {
-         OneSignal.Default.RegisterForPushNotification();
-      }
+      //public static void RegisterIOS() {
+      //   OneSignal.Default.RegisterForPushNotification();
+      //}
 
       public static void ConsentStatusChanged(bool consent) {
          OneSignal.Default.PrivacyConsent = consent;
@@ -128,7 +128,7 @@ namespace Com.OneSignal.Sample.Shared
       }
 
       public static void RemoveExternalUserId() {
-         OneSignal.Default.Logout(LogoutOptions.ExternalUserId);
+         OneSignal.Default.RemoveExternalUserId();
       }
 
       public static void SendOutcome(string outcomeName) {

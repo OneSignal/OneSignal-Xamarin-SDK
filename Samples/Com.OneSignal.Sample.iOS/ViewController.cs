@@ -40,10 +40,10 @@ namespace Com.OneSignal.Sample.iOS
          // Release any cached data, images, etc that aren't in use.
       }
 
-      partial void RegisterForPush(UIButton sender)
-      {
-         SharedPush.RegisterIOS();
-      }
+      //partial void RegisterForPush(UIButton sender)
+      //{
+      //   SharedPush.RegisterIOS();
+      //}
 
       partial void ConsentChanged(UISegmentedControl sender)
       {
@@ -58,7 +58,7 @@ namespace Com.OneSignal.Sample.iOS
 
       partial void RemoveExternalUserId(UIButton sender)
       {
-         OneSignal.Default.Logout(Core.LogoutOptions.ExternalUserId);
+         OneSignal.Default.RemoveExternalUserId();
       }
 
       partial void SendOutcome(UIButton sender)

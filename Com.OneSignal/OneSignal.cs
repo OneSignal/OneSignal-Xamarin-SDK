@@ -25,7 +25,6 @@ namespace Com.OneSignal
             Debug.WriteLine("PORTABLE Reached");
             return null;
          #else
-            Debug.WriteLine("Other reached");
             return new OneSignalImplementation();
          #endif
       }

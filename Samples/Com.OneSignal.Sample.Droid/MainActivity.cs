@@ -53,7 +53,7 @@ namespace Com.OneSignal.Sample.Droid
 
          removeExternalIdButton.Click += delegate
          {
-            OneSignal.Default.Logout(Core.LogoutOptions.ExternalUserId);
+            OneSignal.Default.RemoveExternalUserId();
          };
       }
 
