@@ -153,14 +153,14 @@ namespace Com.OneSignal {
       public override void SetTriggers(Dictionary<string, object> triggers) {
          IDictionary<string, Java.Lang.Object> jTriggers = new Dictionary<string, Java.Lang.Object>();
          foreach (var trigger in triggers) {
-            jTriggers[trigger.Key] = (Java.Lang.Object)trigger.Value;
+            jTriggers[trigger.Key] = NativeConversion.ToJavaObject(trigger.Value);
          }
 
          OneSignalNative.AddTriggers(jTriggers);
       }
 
       public override void SetTrigger(string key, object triggerObject) {
-         OneSignalNative.AddTrigger(key, (Java.Lang.Object)triggerObject);
+         OneSignalNative.AddTrigger(key, NativeConversion.ToJavaObject(triggerObject));
       }
 
       public override void RemoveTriggers(params string[] keys) {

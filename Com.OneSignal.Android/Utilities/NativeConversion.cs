@@ -140,7 +140,23 @@ namespace Com.OneSignal {
             default:
                return OneSignalNative.LOG_LEVEL.None;
          }
+      }
 
+      public static Java.Lang.Object ToJavaObject<TObject>(this TObject value) {
+         if (Equals(value, default(TObject)) && !typeof(TObject).IsValueType)
+            return null;
+
+         var holder = new JavaHolder(value);
+
+         return holder;
+      }
+
+      public class JavaHolder : Java.Lang.Object {
+         public readonly object Instance;
+
+         public JavaHolder(object instance) {
+            Instance = instance;
+         }
       }
    }
 }
