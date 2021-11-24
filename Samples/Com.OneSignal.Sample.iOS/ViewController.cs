@@ -40,10 +40,9 @@ namespace Com.OneSignal.Sample.iOS
          // Release any cached data, images, etc that aren't in use.
       }
 
-      //partial void RegisterForPush(UIButton sender)
-      //{
-      //   SharedPush.RegisterIOS();
-      //}
+      partial void RegisterForPush(UIButton sender) {
+         SharedPush.RegisterIOS();
+      }
 
       partial void ConsentChanged(UISegmentedControl sender)
       {

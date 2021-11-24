@@ -26,7 +26,6 @@ namespace Com.OneSignal {
       public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
 
       public override void Initialize(string appId) {
-         Console.WriteLine("App Initialization");
          InitWithLaunchOptions();
          OneSignalNative.AppId = appId;
       }

@@ -60,7 +60,6 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSPermissionObserver : iOS.OSPermissionObserver {
-
          public override void OnOSPermissionChanged(iOS.OSPermissionStateChanges permissionStateChanges) {
             PermissionState from = NativeConversion.PermissionStateToXam(permissionStateChanges.From);
             PermissionState to = NativeConversion.PermissionStateToXam(permissionStateChanges.To);

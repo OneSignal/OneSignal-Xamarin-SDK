@@ -13,41 +13,13 @@ namespace Com.OneSignal.Sample.Shared
       // Called on iOS and Android to initialize OneSignal
       public static void Initialize()
       {
-         //OneSignal.Default.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.NONE);
-
          OneSignal.Default.LogLevel = LogType.VERBOSE;
          OneSignal.Default.AlertLevel = LogType.NONE;
-
-         //if you want to require user consent, change this to true
-         //SharedPush.SetRequiresConsent(false);
 
          OneSignal.Default.RequiresPrivacyConsent = true;
          OneSignal.Default.PrivacyConsent = true;
 
          OneSignal.Default.Initialize("77e32082-ea27-42e3-a898-c72e141824ef");
-         //OneSignal.Default.StartInit("b2f7f966-d8cc-11e4-bed1-df8f05be55ba").Settings(new Dictionary<string, bool>() {
-         //   { IOSSettings.kOSSettingsKeyAutoPrompt, false },
-         //   { IOSSettings.kOSSettingsKeyInAppLaunchURL, true } })
-         //  .InFocusDisplaying(OSInFocusDisplayOption.Notification)
-         //  .UnsubscribeWhenNotificationsAreDisabled(true)
-         //  .HandleNotificationOpened((result) =>
-         //   {
-         //      Debug.WriteLine("HandleNotificationOpened: {0}", result.notification.payload.body);
-         //   })
-         //  .HandleNotificationReceived((notification) =>
-         //  {
-         //     Debug.WriteLine("HandleNotificationReceived: {0}", notification.payload.body);
-         //  })
-         //  .HandleInAppMessageClicked((action) =>
-         //  {
-         //     // Example IAM click handling for IAM elements
-         //     Debug.WriteLine("HandledInAppMessageClicked: {0}", action.clickName);
-         //  })
-         //  .EndInit();
-
-         //OneSignal.Default.IdsAvailable((playerID, pushToken) => {
-         //   Debug.WriteLine("OneSignal.Default.IdsAvailable:D playerID: {0}, pushToken: {1}", playerID, pushToken);
-         //});
 
          OneSignalInAppMessagingDemo();
          OneSignalOutcomeEventDemo();
@@ -102,9 +74,9 @@ namespace Com.OneSignal.Sample.Shared
 
       // Just for iOS.
       // No effect on Android, device auto registers without prompting.
-      //public static void RegisterIOS() {
-      //   OneSignal.Default.RegisterForPushNotification();
-      //}
+      public static void RegisterIOS() {
+         OneSignal.Default.PromptForPushNotificationsWithUserResponse();
+      }
 
       public static void ConsentStatusChanged(bool consent) {
          OneSignal.Default.PrivacyConsent = consent;
@@ -119,11 +91,8 @@ namespace Com.OneSignal.Sample.Shared
       }
 
       public static void SetExternalUserId(string externalId) {
-         //OneSignal.Default.SetExternalUserId(externalId, OneSignalSetExternalUSerId);
          OneSignal.Default.SetExternalUserId(externalId);
 
-         // Auth external id method
-         //OneSignal.Default.SetExternalUserId(externalId, "your_auth_hash_token", OneSignalSetExternalUSerId, OneSignalSetExternalUSerId);
          OneSignal.Default.SetExternalUserId(externalId, "your_auth_hash_token");
       }
 
