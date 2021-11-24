@@ -241,6 +241,7 @@ namespace Com.OneSignal.iOS {
 	  be used.
 	*/
 	[Protocol]
+	[Model]
 	[BaseType(typeof(NSObject))]
 	interface OSInAppMessageLifecycleHandler {
 		// @optional -(void)onWillDisplayInAppMessage:(OSInAppMessage *)message;
@@ -464,6 +465,7 @@ namespace Com.OneSignal.iOS {
 	  be used.
 	*/
 	[Protocol]
+	[Model]
 	[BaseType(typeof(NSObject))]
 	interface OSPermissionObserver {
 		// @required -(void)onOSPermissionChanged:(OSPermissionStateChanges * _Nonnull)stateChanges;
@@ -483,6 +485,7 @@ namespace Com.OneSignal.iOS {
 	  be used.
 	*/
 	[Protocol]
+	[Model]
 	[BaseType(typeof(NSObject))]
 	interface OSSubscriptionObserver {
 		// @required -(void)onOSSubscriptionChanged:(OSSubscriptionStateChanges * _Nonnull)stateChanges;
@@ -502,6 +505,7 @@ namespace Com.OneSignal.iOS {
 	  be used.
 	*/
 	[Protocol]
+	[Model]
 	[BaseType(typeof(NSObject))]
 	interface OSEmailSubscriptionObserver {
 		// @required -(void)onOSEmailSubscriptionChanged:(OSEmailSubscriptionStateChanges * _Nonnull)stateChanges;
@@ -521,6 +525,7 @@ namespace Com.OneSignal.iOS {
 	  be used.
 	*/
 	[Protocol]
+	[Model]
 	[BaseType(typeof(NSObject))]
 	interface OSSMSSubscriptionObserver {
 		// @required -(void)onOSSMSSubscriptionChanged:(OSSMSSubscriptionStateChanges * _Nonnull)stateChanges;
