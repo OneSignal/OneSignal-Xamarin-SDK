@@ -46,7 +46,7 @@ namespace Com.OneSignal {
 
       public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
-         OneSignalNative.PromptForPushNotificationsWithUserResponse(response => proxy.OnResponse(true));
+         OneSignalNative.PromptForPushNotificationsWithUserResponse(response => proxy.OnResponse(response));
          return await proxy ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
 
