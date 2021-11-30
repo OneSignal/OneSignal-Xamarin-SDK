@@ -33,7 +33,7 @@ namespace Com.OneSignal.Sample.Droid
          Switch consentButton = FindViewById<Switch>(Resource.Id.consentSwitch);
          consentButton.CheckedChange += (o, e) =>
          {
-            //SharedPush.ConsentStatusChanged(consentButton.Checked);
+            SharedPush.ConsentStatusChanged(consentButton.Checked);
 
             System.Diagnostics.Debug.WriteLine("Changing consent state");
          };

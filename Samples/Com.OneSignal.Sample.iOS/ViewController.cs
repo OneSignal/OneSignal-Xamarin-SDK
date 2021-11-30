@@ -52,6 +52,8 @@ namespace Com.OneSignal.Sample.iOS
       partial void SetExternalUserId(UIButton sender)
       {
          UITextField externalIdField = (UITextField)this.View.ViewWithTag(3);
+         if (string.IsNullOrWhiteSpace(externalIdField.Text))
+            return;
          OneSignal.Default.SetExternalUserId(externalIdField.Text);
       }
 
@@ -62,18 +64,24 @@ namespace Com.OneSignal.Sample.iOS
 
       partial void SendOutcome(UIButton sender)
       {
+         if (string.IsNullOrWhiteSpace(OutcomeKey.Text))
+            return;
          string name = OutcomeKey.Text;
          SharedPush.SendOutcome(name);
       }
 
       partial void SendUniqueOutcome(UIButton sender)
       {
+         if (string.IsNullOrWhiteSpace(UniqueOutcomeKey.Text))
+            return;
          string name = UniqueOutcomeKey.Text;
          SharedPush.SendUniqueOutcome(name);
       }
 
       partial void SendOutcomeWithValue(UIButton sender)
       {
+         if (string.IsNullOrWhiteSpace(OutcomeValueKey.Text) || string.IsNullOrWhiteSpace(OutcomeValue.Text))
+            return;
          string name = OutcomeValueKey.Text;
          float value = float.Parse(OutcomeValue.Text);
          SharedPush.SendOutcomeWithValue(name, value);
