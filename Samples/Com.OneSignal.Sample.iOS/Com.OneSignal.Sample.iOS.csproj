@@ -126,6 +126,10 @@
       <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
       <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Name>OneSignalNotificationServiceExtension</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
