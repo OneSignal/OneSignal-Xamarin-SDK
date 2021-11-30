@@ -760,7 +760,7 @@ namespace Com.OneSignal.iOS {
 		// +(UNMutableNotificationContent *)didReceiveNotificationExtensionRequest:(UNNotificationRequest * _Nonnull)request withMutableNotificationContent:(UNMutableNotificationContent * _Nullable)replacementContent withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler;
 		[Static]
 		[Export("didReceiveNotificationExtensionRequest:withMutableNotificationContent:withContentHandler:")]
-		UNMutableNotificationContent DidReceiveNotificationExtensionRequest(UNNotificationRequest request, [NullAllowed] UNMutableNotificationContent replacementContent, Action<UNNotificationContent> contentHandler);
+		UNMutableNotificationContent DidReceiveNotificationExtensionRequest(UNNotificationRequest request, [NullAllowed] UNMutableNotificationContent replacementContent, IosContentHandlerBlock contentHandler);
 
 		// +(UNMutableNotificationContent *)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest * _Nonnull)request withMutableNotificationContent:(UNMutableNotificationContent * _Nullable)replacementContent;
 		[Static]
@@ -1079,4 +1079,6 @@ namespace Com.OneSignal.iOS {
 	// typedef void (^OSUpdateExternalUserIdSuccessBlock)(NSDictionary *);
 	delegate void OSUpdateExternalUserIdSuccessBlock(NSDictionary arg0);
 
+	// typedef (void (^)(UNNotificationContent *_Nonnull))contentHandler
+	delegate void IosContentHandlerBlock(UNNotificationContent arg0);
 }
