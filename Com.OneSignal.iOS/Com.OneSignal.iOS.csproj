@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="Utilities\NativeConversion.cs" />
     <Compile Include="OneSignalCallbacks.cs" />
+    <Compile Include="NotificationServiceExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">

@@ -103,7 +103,7 @@
       <Project>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</Project>
       <Name>Com.OneSignal.iOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
+    <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
       <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
       <Name>Com.OneSignal.Core</Name>
     </ProjectReference>
