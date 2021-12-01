@@ -261,9 +261,6 @@ namespace Com.OneSignal.iOS {
 		void OnDidDismissInAppMessage(OSInAppMessage message);
 	}
 
-	// typedef void (^OSNotificationDisplayResponse)(OSNotification * _Nullable);
-	delegate void OSNotificationDisplayResponse([NullAllowed] OSNotification arg0);
-
 	// @interface OSOutcomeEvent : NSObject
 	[BaseType(typeof(NSObject))]
 	interface OSOutcomeEvent {
@@ -1046,8 +1043,11 @@ namespace Com.OneSignal.iOS {
 	// typedef void (^OSUserResponseBlock)(BOOL);
 	delegate void OSUserResponseBlock(bool arg0);
 
+	// typedef void (^OSNotificationDisplayResponse)(OSNotification * _Nullable);
+	delegate void OSNotificationDisplayResponse([NullAllowed] OSNotification arg0);
+
 	// typedef void (^OSNotificationWillShowInForegroundBlock)(OSNotification * _Nonnull, OSNotificationDisplayResponse _Nonnull);
-	delegate void OSNotificationWillShowInForegroundBlock(OSNotification arg0, OSNotificationDisplayResponse arg1);
+	delegate void OSNotificationWillShowInForegroundBlock(OSNotification arg0, [BlockCallback] OSNotificationDisplayResponse arg1);
 
 	// typedef void (^OSNotificationOpenedBlock)(OSNotificationOpenedResult * _Nonnull);
 	delegate void OSNotificationOpenedBlock(OSNotificationOpenedResult arg0);

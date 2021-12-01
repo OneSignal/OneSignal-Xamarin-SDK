@@ -44,9 +44,20 @@ namespace Com.OneSignal {
          OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
          OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
 
-         OneSignalNative.SetNotificationWillShowInForegroundHandler(new iOS.OSNotificationWillShowInForegroundBlock(
-            (iOS.OSNotification arg0, iOS.OSNotificationDisplayResponse arg1) =>
-            new NotificationWillShowInForegroundHandler().NotificationWillShowInForeground(arg0, arg1)));
+         OneSignalNative.SetNotificationWillShowInForegroundHandler(
+            delegate(iOS.OSNotification nativeNotification, iOS.OSNotificationDisplayResponse response) {
+               if (_instance.NotificationWillShow == null) {
+                  response.Invoke(nativeNotification);
+                  return;
+               }
+
+               Notification notification = NativeConversion.NotificationToXam(nativeNotification);
+               Notification resultNotif = _instance.NotificationWillShow(notification);
+               // OneSignal-iOS-SDK doesn't support modifications to notifications,
+               //   null is used to prevent showing.
+               response.Invoke(resultNotif != null ? nativeNotification : null);
+            }
+         );
 
          OneSignalNative.SetNotificationOpenedHandler(new iOS.OSNotificationOpenedBlock(
             result => new OSNotificationOpenedHandler().NotificationOpened(result)));
@@ -92,13 +103,6 @@ namespace Com.OneSignal {
             SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToXam(stateChanges.To);
 
             _instance.SMSSubscriptionStateChanged?.Invoke(to, from);
-         }
-      }
-
-      private sealed class NotificationWillShowInForegroundHandler {
-         public void NotificationWillShowInForeground(iOS.OSNotification notification,
-            iOS.OSNotificationDisplayResponse notificationDisplayResponse) {
-            _instance.NotificationWillShow?.Invoke(NativeConversion.NotificationToXam(notification));
          }
       }
 
