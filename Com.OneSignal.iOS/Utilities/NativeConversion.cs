@@ -39,8 +39,6 @@ namespace Com.OneSignal {
 
       public static Notification NotificationToXam(iOS.OSNotification notification) {
          return new Notification {
-            androidNotificationId = int.Parse(notification.NotificationId),
-            groupedNotifications = new List<Notification>(),
             notificationId = notification.NotificationId,
             templateName = notification.TemplateName,
             templateId = notification.TemplateId,
