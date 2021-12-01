@@ -21,7 +21,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
     <IOSDebuggerPort>42254</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
@@ -70,7 +69,6 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <IOSDebuggerPort>27322</IOSDebuggerPort>
@@ -106,6 +104,9 @@
     <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
       <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
       <Name>Com.OneSignal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
