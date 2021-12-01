@@ -107,6 +107,9 @@
       <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
       <Name>Com.OneSignal.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Name>OneSignal.iOS.Binding</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
 </Project>
