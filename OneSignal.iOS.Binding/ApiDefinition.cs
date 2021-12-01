@@ -1047,7 +1047,7 @@ namespace Com.OneSignal.iOS {
 	delegate void OSUserResponseBlock(bool arg0);
 
 	// typedef void (^OSNotificationWillShowInForegroundBlock)(OSNotification * _Nonnull, OSNotificationDisplayResponse _Nonnull);
-	delegate void OSNotificationWillShowInForegroundBlock(OSNotification arg0, OSNotificationDisplayResponse arg1);
+	delegate void OSNotificationWillShowInForegroundBlock(OSNotification arg0, [BlockCallback] OSNotificationDisplayResponse arg1);
 
 	// typedef void (^OSNotificationOpenedBlock)(OSNotificationOpenedResult * _Nonnull);
 	delegate void OSNotificationOpenedBlock(OSNotificationOpenedResult arg0);
