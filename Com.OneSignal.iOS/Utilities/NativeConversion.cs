@@ -37,19 +37,29 @@ namespace Com.OneSignal {
             return nsDict;
         }
 
-      public static Notification NotificationToXam(iOS.OSNotification notification) {
-         return new Notification {
-            notificationId = notification.NotificationId,
-            templateName = notification.TemplateName,
-            templateId = notification.TemplateId,
-            title = notification.Title,
-            body = notification.Body,
-            additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>,
-            launchUrl = notification.LaunchURL,
-            sound = notification.Sound,
-            relevanceScore = (float) notification.RelevanceScore,
-            rawPayload = notification.RawPayload.ToString(),
+      public static Notification NotificationToXam(iOS.OSNotification iosNotification) {
+         var notification = new Notification {
+            notificationId = iosNotification.NotificationId,
+            templateName = iosNotification.TemplateName,
+            templateId = iosNotification.TemplateId,
+            title = iosNotification.Title,
+            body = iosNotification.Body,
+            launchUrl = iosNotification.LaunchURL,
+            sound = iosNotification.Sound,
+            rawPayload = iosNotification.RawPayload?.ToString(),
          };
+
+         if (iosNotification.AdditionalData != null)
+         {
+            notification.additionalData = Json.Deserialize(iosNotification.AdditionalData.ToString()) as Dictionary<string, object>;
+         }
+
+         if (iosNotification.RelevanceScore != null)
+         {
+            notification.relevanceScore = (float)iosNotification.RelevanceScore;
+         }
+
+         return notification;
       }
 
       public static PermissionState PermissionStateToXam(iOS.OSPermissionState permissionState) {
@@ -101,7 +111,7 @@ namespace Com.OneSignal {
       public static InAppMessageAction InAppMessageActionToXam(iOS.OSInAppMessageAction inAppMessageAction) {
          return new InAppMessageAction {
             click_name = inAppMessageAction.ClickName,
-            click_url = inAppMessageAction.ClickUrl.AbsoluteString,
+            click_url = inAppMessageAction.ClickUrl?.AbsoluteString,
             closes_message = inAppMessageAction.ClosesMessage,
             first_click = inAppMessageAction.FirstClick
          };

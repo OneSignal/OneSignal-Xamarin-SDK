@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Com.OneSignal.Core;
 using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
-namespace Com.OneSignal {
-   public static class NativeConversion {
+namespace Com.OneSignal
+{
+   public static class NativeConversion
+   {
 
-      public static Notification NotificationToXam(Android.OSNotification notification) {
-         Notification nativeNotification = new Notification {
+      public static Notification NotificationToXam(Android.OSNotification notification)
+      {
+         Notification nativeNotification = new Notification
+         {
             androidNotificationId = notification.AndroidNotificationId,
             groupedNotifications = new List<Notification>(),
             notificationId = notification.NotificationId,
@@ -16,7 +20,6 @@ namespace Com.OneSignal {
             templateId = notification.TemplateId,
             title = notification.Title,
             body = notification.Body,
-            additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>,
             smallIcon = notification.SmallIcon,
             largeIcon = notification.LargeIcon,
             bigPicture = notification.BigPicture,
@@ -32,17 +35,32 @@ namespace Com.OneSignal {
             priority = notification.Priority,
             rawPayload = notification.RawPayload,
          };
-         foreach (var individualNotification in notification.GroupedNotifications)
-            nativeNotification.groupedNotifications.Add(NotificationToXam(individualNotification));
+
+         if (notification.AdditionalData != null)
+         {
+            nativeNotification.additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>;
+         }
+
+         if (notification.GroupedNotifications != null)
+         {
+            foreach (var individualNotification in notification.GroupedNotifications)
+               nativeNotification.groupedNotifications.Add(NotificationToXam(individualNotification));
+         }
 
          nativeNotification.actionButtons = new List<ActionButton>();
-         foreach (var actionButton in notification.ActionButtons)
-            nativeNotification.actionButtons.Add(new ActionButton(actionButton.Id, actionButton.Text, actionButton.Icon));
+         if (notification.ActionButtons != null)
+         {
+            foreach (var actionButton in notification.ActionButtons)
+               nativeNotification.actionButtons.Add(new ActionButton(actionButton.Id, actionButton.Text, actionButton.Icon));
+         }
 
-         nativeNotification.backgroundImageLayout = new BackgroundImageLayout(notification.GetBackgroundImageLayout().Image,
-            notification.GetBackgroundImageLayout().TitleTextColor,
-            notification.GetBackgroundImageLayout().BodyTextColor);
-
+         var layout = notification.GetBackgroundImageLayout();
+         if (layout != null)
+         {
+            nativeNotification.backgroundImageLayout = new BackgroundImageLayout(layout.Image,
+               layout.TitleTextColor,
+               layout.BodyTextColor);
+         }
          return nativeNotification;
       }
 
