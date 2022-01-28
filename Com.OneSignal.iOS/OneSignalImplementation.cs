@@ -20,7 +20,7 @@ namespace Com.OneSignal {
       public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
       public override event InAppMessageActionDelegate InAppMessageTriggeredAction;
-      public override event StateChangeDelegate<PermissionState> PermissionStateChanged;
+      public override event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
       public override event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
       public override event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
       public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
@@ -96,6 +96,45 @@ namespace Com.OneSignal {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.LogoutSMSNumberWithSuccess(response => proxy.OnResponse(true), response => proxy.OnResponse(false));
          return await proxy;
+      }
+
+      public override DeviceState DeviceState => NativeConversion.DeviceStateToXam(OneSignalNative.DeviceState());
+
+      public override NotificationPermission NotificationPermission {
+         get {
+            return DeviceState.notificationPermission;
+         }
+      }
+
+      public override PushSubscriptionState PushSubscriptionState {
+         get {
+            return new PushSubscriptionState {
+               userId = DeviceState.userId,
+               pushToken = DeviceState.pushToken,
+               isSubscribed = DeviceState.isSubscribed,
+               isPushDisabled = DeviceState.isPushDisabled
+            };
+         }
+      }
+
+      public override EmailSubscriptionState EmailSubscriptionState {
+         get {
+            return new EmailSubscriptionState {
+               emailUserId = DeviceState.emailUserId,
+               emailAddress = DeviceState.emailAddress,
+               isSubscribed = DeviceState.isEmailSubscribed
+            };
+         }
+      }
+
+      public override SMSSubscriptionState SMSSubscriptionState {
+         get {
+            return new SMSSubscriptionState {
+               smsUserId = DeviceState.smsUserId,
+               smsNumber = DeviceState.smsNumber,
+               isSubscribed = DeviceState.isSMSSubscribed
+            }
+         }
       }
 
       public override void SetLanguage(string language) {

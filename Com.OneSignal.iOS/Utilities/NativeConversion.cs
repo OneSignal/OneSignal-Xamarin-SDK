@@ -52,11 +52,25 @@ namespace Com.OneSignal {
          };
       }
 
-      public static PermissionState PermissionStateToXam(iOS.OSPermissionState permissionState) {
-         return new PermissionState {
-            hasPrompted = permissionState.HasPrompted,
-            status = (NotificationPermission)permissionState.Status
+      public static DeviceState DeviceStateToXam(iOS.OSDeviceState deviceState) {
+         return new DeviceState {
+            notificationPermission = (NotificationPermission)deviceState.NotificationPermissionStatus,
+            areNotificationsEnabled = deviceState.HasNotificationPermission,
+            isSubscribed = deviceState.IsSubscribed,
+            userId = deviceState.UserId,
+            pushToken = deviceState.PushToken,
+            isPushDisabled = deviceState.IsPushDisabled,
+            isEmailSubscribed = deviceState.IsEmailSubscribed,
+            emailUserId = deviceState.EmailUserId,
+            emailAddress = deviceState.EmailAddress,
+            isSMSSubscribed = deviceState.IsSMSSubscribed,
+            smsNumber = deviceState.SmsNumber,
+            smsUserId = deviceState.SmsUserId
          };
+      }
+
+      public static NotificationPermission PermissionStateToXam(iOS.OSPermissionState permissionState) {
+         return (NotificationPermission)permissionState.Status;
       }
 
       public static PushSubscriptionState SubscriptionStateToXam(iOS.OSSubscriptionState subscriptionState) {
