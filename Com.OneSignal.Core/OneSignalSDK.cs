@@ -60,6 +60,10 @@ namespace Com.OneSignal.Core {
       /// </summary>
       public abstract event NotificationActionDelegate NotificationWasOpened;
 
+      /*
+       * In App Messages 
+       */
+
       /// <summary>
       /// When a user has chosen to dismiss an In-App Message
       /// </summary>
@@ -148,6 +152,11 @@ namespace Com.OneSignal.Core {
       public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse();
 
       /// <summary>
+      /// Removes all OneSignal app notifications from the Notification Shade
+      /// </summary>
+      public abstract void ClearOneSignalNotifications();
+
+      /// <summary>
       /// Allows you to send notifications from user to user or schedule ones in the future to be delivered to the
       /// current device.
       /// </summary>
@@ -159,11 +168,6 @@ namespace Com.OneSignal.Core {
       /// {@code tags} and {@code included_segments} require your OneSignal App REST API key which can only be used
       /// from your server.</remarks>
       public abstract Task<bool> PostNotification(Dictionary<string, object> options);
-
-      /// <summary>
-      /// Removes all OneSignal app notifications from the Notification Shade
-      /// </summary>
-      public abstract void ClearOneSignalNotifications();
       #endregion
 
       #region In App Messages
@@ -277,14 +281,6 @@ namespace Com.OneSignal.Core {
       /// your users. Your backend can generate an email authentication token and send it to your app.</param>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SetSMSNumber(string smsNumber, string authHash = null);
-
-      ///// <summary>
-      ///// If your app implements logout functionality, you can call Logout to dissociate the email, sms, and/or
-      ///// external user id from the device
-      ///// </summary>
-      //public abstract Task<bool> Logout(
-      //    LogoutOptions options = LogoutOptions.Email | LogoutOptions.SMS | LogoutOptions.ExternalUserId
-      //);
 
       ///<summary>
       ///If this user logs out of your app and/or you would like to disassociate their external user id with
