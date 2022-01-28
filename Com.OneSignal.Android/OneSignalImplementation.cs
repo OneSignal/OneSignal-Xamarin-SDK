@@ -7,6 +7,7 @@ using Com.OneSignal.Core;
 
 using Android.App;
 using Android.Content;
+
 using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
 namespace Com.OneSignal {
@@ -39,8 +40,18 @@ namespace Com.OneSignal {
 
       public override void Initialize(string appId) {
          Context context = Application.Context;
-         OneSignalNative.InitWithContext(context);
          OneSignalNative.SetAppId(appId);
+         OneSignalNative.InitWithContext(context);
+
+         OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
+         OneSignalNative.AddSubscriptionObserver(new OSPushSubscriptionObserver());
+         OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
+         OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
+
+         OneSignalNative.SetNotificationWillShowInForegroundHandler(new OSNotificationWillShowInForegroundHandler());
+         OneSignalNative.SetNotificationOpenedHandler(new OSNotificationOpenedHandler());
+         OneSignalNative.SetInAppMessageClickHandler(new OSInAppMessageClickHandler());
+         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
       }
 
       public override Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
