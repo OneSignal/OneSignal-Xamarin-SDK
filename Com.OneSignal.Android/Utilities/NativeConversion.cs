@@ -90,10 +90,25 @@ namespace Com.OneSignal {
          };
       }
 
-      public static PermissionState PermissionStateToXam(Android.OSPermissionState androidPermissionState) {
-         return new PermissionState {
-            status = androidPermissionState.AreNotificationsEnabled() ? NotificationPermission.Authorized : NotificationPermission.Denied
+      public static DeviceState DeviceStateToXam(Android.OSDeviceState deviceState) {
+         return new DeviceState {
+            notificationPermission = PermissionStateToXam(deviceState.AreNotificationsEnabled()),
+            areNotificationsEnabled = deviceState.AreNotificationsEnabled(),
+            isSubscribed = deviceState.IsSubscribed,
+            userId = deviceState.UserId,
+            pushToken = deviceState.PushToken,
+            isPushDisabled = deviceState.IsPushDisabled,
+            isEmailSubscribed = deviceState.IsEmailSubscribed,
+            emailUserId = deviceState.EmailUserId,
+            emailAddress = deviceState.EmailAddress,
+            isSMSSubscribed = deviceState.IsSMSSubscribed,
+            smsNumber = deviceState.SMSNumber,
+            smsUserId = deviceState.SMSUserId
          };
+      }
+
+      public static NotificationPermission PermissionStateToXam(bool areNotificationsEnabled) {
+         return areNotificationsEnabled ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
 
       public static PushSubscriptionState PushSubscriptionStateToXam(Android.OSSubscriptionState androidSubscriptionState) {
