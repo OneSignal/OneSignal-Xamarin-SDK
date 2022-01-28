@@ -90,7 +90,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When this device's permissions for authorization of push notifications have changed.
       /// </summary>
-      public abstract event StateChangeDelegate<PermissionState> PermissionStateChanged;
+      public abstract event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
 
       /// <summary>
       /// When this device's subscription to push notifications has changed
@@ -245,7 +245,7 @@ namespace Com.OneSignal.Core {
       #endregion
 
 
-      #region User Identification
+      #region User & Device Properties
       /// <summary>
       /// Allows you to use your own application's user id to send OneSignal messages to your user. To tie the user
       /// to a given user id, you can use this method.
@@ -305,6 +305,30 @@ namespace Com.OneSignal.Core {
       /// </summary>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> LogoutSMS();
+
+      ///<summary>
+      ///</summary>
+      public abstract DeviceState DeviceState { get; }
+
+      /// <summary>
+      /// Current status of permissions granted by this device for push notifications
+      /// </summary>
+      public abstract NotificationPermission NotificationPermission { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to push notifications
+      /// </summary>
+      public abstract PushSubscriptionState PushSubscriptionState { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to email
+      /// </summary>
+      public abstract EmailSubscriptionState EmailSubscriptionState { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to sms
+      /// </summary>
+      public abstract SMSSubscriptionState SMSSubscriptionState { get; }
       #endregion
 
       /// <summary>
