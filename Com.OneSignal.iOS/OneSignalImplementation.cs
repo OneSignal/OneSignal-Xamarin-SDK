@@ -133,7 +133,7 @@ namespace Com.OneSignal {
                smsUserId = DeviceState.smsUserId,
                smsNumber = DeviceState.smsNumber,
                isSubscribed = DeviceState.isSMSSubscribed
-            }
+            };
          }
       }
 
