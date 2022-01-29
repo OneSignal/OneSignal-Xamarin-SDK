@@ -7,6 +7,7 @@ using Com.OneSignal.Core;
 
 using Android.App;
 using Android.Content;
+
 using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
 namespace Com.OneSignal {
@@ -22,7 +23,7 @@ namespace Com.OneSignal {
       public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
       public override event InAppMessageActionDelegate InAppMessageTriggeredAction;
-      public override event StateChangeDelegate<PermissionState> PermissionStateChanged;
+      public override event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
       public override event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
       public override event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
       public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
@@ -39,8 +40,18 @@ namespace Com.OneSignal {
 
       public override void Initialize(string appId) {
          Context context = Application.Context;
-         OneSignalNative.InitWithContext(context);
          OneSignalNative.SetAppId(appId);
+         OneSignalNative.InitWithContext(context);
+
+         OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
+         OneSignalNative.AddSubscriptionObserver(new OSPushSubscriptionObserver());
+         OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
+         OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
+
+         OneSignalNative.SetNotificationWillShowInForegroundHandler(new OSNotificationWillShowInForegroundHandler());
+         OneSignalNative.SetNotificationOpenedHandler(new OSNotificationOpenedHandler());
+         OneSignalNative.SetInAppMessageClickHandler(new OSInAppMessageClickHandler());
+         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
       }
 
       public override Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
@@ -97,6 +108,45 @@ namespace Com.OneSignal {
          OSSMSUpdateHandler handler = new OSSMSUpdateHandler();
          OneSignalNative.LogoutSMSNumber(handler);
          return await handler;
+      }
+
+      public override DeviceState DeviceState => NativeConversion.DeviceStateToXam(OneSignalNative.DeviceState);
+
+      public override NotificationPermission NotificationPermission {
+         get {
+            return DeviceState.notificationPermission;
+         }
+      }
+
+      public override PushSubscriptionState PushSubscriptionState {
+         get {
+            return new PushSubscriptionState {
+               userId = DeviceState.userId,
+               pushToken = DeviceState.pushToken,
+               isSubscribed = DeviceState.isSubscribed,
+               isPushDisabled = DeviceState.isPushDisabled
+            };
+         }
+      }
+
+      public override EmailSubscriptionState EmailSubscriptionState {
+         get {
+            return new EmailSubscriptionState {
+               emailUserId = DeviceState.emailUserId,
+               emailAddress = DeviceState.emailAddress,
+               isSubscribed = DeviceState.isEmailSubscribed
+            };
+         }
+      }
+
+      public override SMSSubscriptionState SMSSubscriptionState {
+         get {
+            return new SMSSubscriptionState {
+               smsUserId = DeviceState.smsUserId,
+               smsNumber = DeviceState.smsNumber,
+               isSubscribed = DeviceState.isSMSSubscribed
+            };
+         }
       }
 
       public override void SetLanguage(string language) {

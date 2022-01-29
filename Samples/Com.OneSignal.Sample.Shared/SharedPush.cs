@@ -17,9 +17,10 @@ namespace Com.OneSignal.Sample.Shared
          OneSignal.Default.AlertLevel = LogType.NONE;
 
          OneSignal.Default.RequiresPrivacyConsent = true;
-         OneSignal.Default.PrivacyConsent = true;
 
          OneSignal.Default.Initialize("77e32082-ea27-42e3-a898-c72e141824ef");
+
+         OneSignal.Default.PrivacyConsent = true;
 
          OneSignalInAppMessagingDemo();
          OneSignalOutcomeEventDemo();

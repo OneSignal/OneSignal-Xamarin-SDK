@@ -21,11 +21,4 @@ namespace Com.OneSignal.Core {
       /// <summary>The application is authorized to send notifications for 8 hours. Only used by App Clips.</summary>
       Ephemeral
    }
-
-   [Serializable]
-   public sealed class PermissionState {
-      public bool hasPrompted;
-      public NotificationPermission status;
-      public bool provisional;
-   }
 }

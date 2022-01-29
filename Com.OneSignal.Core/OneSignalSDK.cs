@@ -60,6 +60,10 @@ namespace Com.OneSignal.Core {
       /// </summary>
       public abstract event NotificationActionDelegate NotificationWasOpened;
 
+      /*
+       * In App Messages 
+       */
+
       /// <summary>
       /// When a user has chosen to dismiss an In-App Message
       /// </summary>
@@ -90,7 +94,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When this device's permissions for authorization of push notifications have changed.
       /// </summary>
-      public abstract event StateChangeDelegate<PermissionState> PermissionStateChanged;
+      public abstract event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
 
       /// <summary>
       /// When this device's subscription to push notifications has changed
@@ -148,6 +152,11 @@ namespace Com.OneSignal.Core {
       public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse();
 
       /// <summary>
+      /// Removes all OneSignal app notifications from the Notification Shade
+      /// </summary>
+      public abstract void ClearOneSignalNotifications();
+
+      /// <summary>
       /// Allows you to send notifications from user to user or schedule ones in the future to be delivered to the
       /// current device.
       /// </summary>
@@ -159,11 +168,6 @@ namespace Com.OneSignal.Core {
       /// {@code tags} and {@code included_segments} require your OneSignal App REST API key which can only be used
       /// from your server.</remarks>
       public abstract Task<bool> PostNotification(Dictionary<string, object> options);
-
-      /// <summary>
-      /// Removes all OneSignal app notifications from the Notification Shade
-      /// </summary>
-      public abstract void ClearOneSignalNotifications();
       #endregion
 
       #region In App Messages
@@ -245,7 +249,7 @@ namespace Com.OneSignal.Core {
       #endregion
 
 
-      #region User Identification
+      #region User & Device Properties
       /// <summary>
       /// Allows you to use your own application's user id to send OneSignal messages to your user. To tie the user
       /// to a given user id, you can use this method.
@@ -278,14 +282,6 @@ namespace Com.OneSignal.Core {
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> SetSMSNumber(string smsNumber, string authHash = null);
 
-      ///// <summary>
-      ///// If your app implements logout functionality, you can call Logout to dissociate the email, sms, and/or
-      ///// external user id from the device
-      ///// </summary>
-      //public abstract Task<bool> Logout(
-      //    LogoutOptions options = LogoutOptions.Email | LogoutOptions.SMS | LogoutOptions.ExternalUserId
-      //);
-
       ///<summary>
       ///If this user logs out of your app and/or you would like to disassociate their external user id with
       ///the device
@@ -305,6 +301,30 @@ namespace Com.OneSignal.Core {
       /// </summary>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
       public abstract Task<bool> LogoutSMS();
+
+      ///<summary>
+      ///</summary>
+      public abstract DeviceState DeviceState { get; }
+
+      /// <summary>
+      /// Current status of permissions granted by this device for push notifications
+      /// </summary>
+      public abstract NotificationPermission NotificationPermission { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to push notifications
+      /// </summary>
+      public abstract PushSubscriptionState PushSubscriptionState { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to email
+      /// </summary>
+      public abstract EmailSubscriptionState EmailSubscriptionState { get; }
+
+      /// <summary>
+      /// Current status of this device's subscription to sms
+      /// </summary>
+      public abstract SMSSubscriptionState SMSSubscriptionState { get; }
       #endregion
 
       /// <summary>

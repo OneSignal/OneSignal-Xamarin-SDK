@@ -33,16 +33,6 @@ namespace Com.OneSignal {
             Debug.WriteLine("Additional instance of OneSignalAndroid created.");
          }
 
-         OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
-         OneSignalNative.AddSubscriptionObserver(new OSPushSubscriptionObserver());
-         OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
-         OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
-
-         OneSignalNative.SetNotificationWillShowInForegroundHandler(new OSNotificationWillShowInForegroundHandler());
-         OneSignalNative.SetNotificationOpenedHandler(new OSNotificationOpenedHandler());
-         OneSignalNative.SetInAppMessageClickHandler(new OSInAppMessageClickHandler());
-         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
-
          _instance = this;
       }
 
@@ -50,8 +40,8 @@ namespace Com.OneSignal {
       private sealed class OSPermissionObserver : Java.Lang.Object, Android.IOSPermissionObserver {
          /// <param name="stateChanges">OSPermissionStateChanges</param>
          public void OnOSPermissionChanged(Android.OSPermissionStateChanges stateChanges) {
-            PermissionState prev = NativeConversion.PermissionStateToXam(stateChanges.From);
-            PermissionState curr = NativeConversion.PermissionStateToXam(stateChanges.To);
+            NotificationPermission prev = NativeConversion.PermissionStateToXam(stateChanges.From.AreNotificationsEnabled());
+            NotificationPermission curr = NativeConversion.PermissionStateToXam(stateChanges.To.AreNotificationsEnabled());
             _instance.PermissionStateChanged?.Invoke(curr, prev);
          }
       }
