@@ -115,7 +115,7 @@ namespace Com.OneSignal {
       public static InAppMessageAction InAppMessageActionToXam(iOS.OSInAppMessageAction inAppMessageAction) {
          return new InAppMessageAction {
             click_name = inAppMessageAction.ClickName,
-            click_url = inAppMessageAction.ClickUrl.AbsoluteString,
+            click_url = inAppMessageAction.ClickUrl?.AbsoluteString,
             closes_message = inAppMessageAction.ClosesMessage,
             first_click = inAppMessageAction.FirstClick
          };
