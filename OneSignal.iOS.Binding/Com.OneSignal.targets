@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="BeforeCompile">
         <ItemGroup>
-            <BindingResources Include="$(MSBuildThisFileDirectory)../content/Com.OneSignal.iOS.resources/**/*.*" />
+            <BindingResources Include="$(MSBuildThisFileDirectory)../../content/Com.OneSignal.iOS.resources/**/*.*" />
         </ItemGroup>
         <Copy SourceFiles="@(BindingResources)" DestinationFolder="$(TargetDir)/Com.OneSignal.iOS.resources/%(RecursiveDir)" ContinueOnError="false" />
         <ItemGroup>
