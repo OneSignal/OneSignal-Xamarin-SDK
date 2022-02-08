@@ -9,7 +9,7 @@
     <RootNamespace>Com.OneSignal.Sample.iOS</RootNamespace>
     <AssemblyName>Com.OneSignal.Sample.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <ReleaseVersion>4.0.0-beta2</ReleaseVersion>
+    <ReleaseVersion>4.0.0-beta3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
