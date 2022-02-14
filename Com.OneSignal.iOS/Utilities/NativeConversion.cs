@@ -38,16 +38,23 @@ namespace Com.OneSignal {
         }
 
       public static Notification NotificationToXam(iOS.OSNotification notification) {
+         Dictionary<string, object> additionalDataXam = new Dictionary<string, object>();
+         if (notification.AdditionalData != null) {
+            foreach (KeyValuePair<NSObject, NSObject> element in notification.AdditionalData) {
+               additionalDataXam.Add((NSString)element.Key, element.Value);
+            }
+         }
+
          return new Notification {
             notificationId = notification.NotificationId,
             templateName = notification.TemplateName,
             templateId = notification.TemplateId,
             title = notification.Title,
             body = notification.Body,
-            additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>,
+            additionalData = additionalDataXam,
             launchUrl = notification.LaunchURL,
             sound = notification.Sound,
-            relevanceScore = (float) notification.RelevanceScore,
+            relevanceScore = notification.RelevanceScore != null ? (float)notification.RelevanceScore : 0,
             rawPayload = notification.RawPayload.ToString(),
          };
       }
