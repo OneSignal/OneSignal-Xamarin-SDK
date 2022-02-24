@@ -45,6 +45,17 @@ namespace Com.OneSignal {
             }
          }
 
+         List<ActionButton> actionButtonsXam = new List<ActionButton>();
+         if(notification.ActionButtons != null) {
+            foreach (NSObject actionButton in notification.ActionButtons) {
+               actionButtonsXam.Add(new ActionButton(
+                  actionButton.ValueForKey((NSString) "id" ).ToString(),
+                  actionButton.ValueForKey((NSString) "text").ToString(),
+                  actionButton.ValueForKey((NSString) "icon").ToString()
+               ));
+            }
+         }
+
          return new Notification {
             notificationId = notification.NotificationId,
             templateName = notification.TemplateName,
@@ -56,6 +67,15 @@ namespace Com.OneSignal {
             sound = notification.Sound,
             relevanceScore = notification.RelevanceScore != null ? (float)notification.RelevanceScore : 0,
             rawPayload = notification.RawPayload.ToString(),
+            badge = notification.Badge.ToString(),
+            badgeIncrement = notification.BadgeIncrement.ToString(),
+            actionButtons = actionButtonsXam,
+            category = notification.Category,
+            threadId = notification.ThreadId,
+            subtitle = notification.Subtitle,
+            mutableContent = notification.MutableContent,
+            contentAvailable = notification.ContentAvailable,
+            interruptionLevel = notification.InterruptionLevel
          };
       }
 
