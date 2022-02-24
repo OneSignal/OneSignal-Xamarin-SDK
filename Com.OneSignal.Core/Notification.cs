@@ -4,31 +4,43 @@ using System.Collections.Generic;
 
 namespace Com.OneSignal.Core {
    public class Notification {
-      public int androidNotificationId;
-      public List<Notification> groupedNotifications;
-      public string notificationId;
-      public string templateName;
-      public string templateId;
       public string title;
       public string body;
+      public string sound;
+      public string launchUrl;
+      public string rawPayload;
+      public List<ActionButton> actionButtons;
       public Dictionary<string, object> additionalData;
+      public string notificationId;
+      public List<Notification> groupedNotifications;
+      public BackgroundImageLayout backgroundImageLayout;
+
+      // android only
+      public string groupKey;
+      public string groupMessage;
+      public string ledColor;
+      public int priority;
       public string smallIcon;
       public string largeIcon;
       public string bigPicture;
-      public string smallIconAccentColor;
-      public string launchUrl;
-      public string sound;
-      public string ledColor;
-      public int lockScreenVisibility;
-      public string groupKey;
-      public string groupMessage;
-      public List<ActionButton> actionButtons;
-      public string fromProjectNumber;
-      public BackgroundImageLayout backgroundImageLayout;
       public string CollapseId;
-      public int priority;
-      public string rawPayload;
+      public string fromProjectNumber;
+      public string smallIconAccentColor;
+      public int lockScreenVisibility;
+      public int androidNotificationId;
+
+      //ios only
+      public string badge;
+      public string badgeIncrement;
+      public string category;
+      public string threadId;
+      public string subtitle;
+      public string templateId;
+      public string templateName;
       public float relevanceScore;
+      public bool mutableContent;
+      public bool contentAvailable;
+      public string interruptionLevel;
    }
 
    public class ActionButton {
