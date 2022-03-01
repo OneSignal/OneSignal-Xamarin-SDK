@@ -15,6 +15,16 @@ namespace Com.OneSignal {
             return Json.Deserialize(jsonString) as Dictionary<string, object>;
         }
 
+        public static Dictionary<string, string> NSObjectToPureDict(NSObject nSObject) {
+            if (nSObject == null)
+               return null;
+            NSError error;
+            NSData jsonData = NSJsonSerialization.Serialize(nSObject, 0, out error);
+            NSString jsonNSString = NSString.FromData(jsonData, NSStringEncoding.UTF8);
+            string jsonString = jsonNSString.ToString();
+            return Json.Deserialize(jsonString) as Dictionary<string, string>;
+        }
+
         public static string NSDictToString(NSDictionary nsDict) {
             if (nsDict == null)
                 return null;
@@ -38,17 +48,44 @@ namespace Com.OneSignal {
         }
 
       public static Notification NotificationToXam(iOS.OSNotification notification) {
+         Dictionary<string, object> additionalDataXam = new Dictionary<string, object>();
+         if (notification.AdditionalData != null) {
+            additionalDataXam = NSDictToPureDict(notification.AdditionalData);
+         }
+
+         List<ActionButton> actionButtonsXam = new List<ActionButton>();
+         if(notification.ActionButtons != null) {
+            foreach (NSObject actionButton in notification.ActionButtons) {
+               Dictionary<string, string> actionButtonXam = NSObjectToPureDict(actionButton);
+
+               actionButtonsXam.Add(new ActionButton(
+                  actionButtonXam.GetValueOrDefault("id"),
+                  actionButtonXam.GetValueOrDefault("text"),
+                  actionButtonXam.GetValueOrDefault("icon")
+               ));
+            }
+         }
+
          return new Notification {
             notificationId = notification.NotificationId,
             templateName = notification.TemplateName,
             templateId = notification.TemplateId,
             title = notification.Title,
             body = notification.Body,
-            additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>,
+            additionalData = additionalDataXam,
             launchUrl = notification.LaunchURL,
             sound = notification.Sound,
-            relevanceScore = (float) notification.RelevanceScore,
+            relevanceScore = notification.RelevanceScore != null ? (float)notification.RelevanceScore : 0,
             rawPayload = notification.RawPayload.ToString(),
+            badge = notification.Badge.ToString(),
+            badgeIncrement = notification.BadgeIncrement.ToString(),
+            actionButtons = actionButtonsXam,
+            category = notification.Category,
+            threadId = notification.ThreadId,
+            subtitle = notification.Subtitle,
+            mutableContent = notification.MutableContent,
+            contentAvailable = notification.ContentAvailable,
+            interruptionLevel = notification.InterruptionLevel
          };
       }
 
