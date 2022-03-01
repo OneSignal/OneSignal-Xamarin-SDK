@@ -46,10 +46,16 @@ namespace Com.OneSignal {
          List<ActionButton> actionButtonsXam = new List<ActionButton>();
          if(notification.ActionButtons != null) {
             foreach (NSObject actionButton in notification.ActionButtons) {
+               NSError error;
+               NSData jsonData = NSJsonSerialization.Serialize(actionButton, 0, out error);
+               NSString jsonNSString = NSString.FromData(jsonData, NSStringEncoding.UTF8);
+               string jsonString = jsonNSString.ToString();
+               Dictionary<string, string> actionButtonXam = Json.Deserialize(jsonString) as Dictionary<string, string>;
+
                actionButtonsXam.Add(new ActionButton(
-                  actionButton.ValueForKey((NSString) "id" ).ToString(),
-                  actionButton.ValueForKey((NSString) "text").ToString(),
-                  actionButton.ValueForKey((NSString) "icon").ToString()
+                  actionButtonXam.GetValueOrDefault("id"),
+                  actionButtonXam.GetValueOrDefault("text"),
+                  actionButtonXam.GetValueOrDefault("icon")
                ));
             }
          }
