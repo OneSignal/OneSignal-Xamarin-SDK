@@ -40,9 +40,7 @@ namespace Com.OneSignal {
       public static Notification NotificationToXam(iOS.OSNotification notification) {
          Dictionary<string, object> additionalDataXam = new Dictionary<string, object>();
          if (notification.AdditionalData != null) {
-            foreach (KeyValuePair<NSObject, NSObject> element in notification.AdditionalData) {
-               additionalDataXam.Add((NSString)element.Key, element.Value);
-            }
+            additionalDataXam = NSDictToPureDict(notification.AdditionalData);
          }
 
          List<ActionButton> actionButtonsXam = new List<ActionButton>();
