@@ -9,7 +9,7 @@
     <RootNamespace>OneSignalNotificationServiceExtension</RootNamespace>
     <AssemblyName>OneSignalNotificationServiceExtension</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <ReleaseVersion>4.0.0-beta3</ReleaseVersion>
+    <ReleaseVersion>4.0.0-beta4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
