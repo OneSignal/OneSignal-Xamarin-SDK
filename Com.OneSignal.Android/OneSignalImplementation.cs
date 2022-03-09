@@ -23,7 +23,7 @@ namespace Com.OneSignal {
       public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
       public override event InAppMessageActionDelegate InAppMessageTriggeredAction;
-      public override event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
+      public override event StateChangeDelegate<NotificationPermission> NotificationPermissionChanged;
       public override event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
       public override event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
       public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;

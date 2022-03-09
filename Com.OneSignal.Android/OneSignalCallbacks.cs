@@ -42,7 +42,7 @@ namespace Com.OneSignal {
          public void OnOSPermissionChanged(Android.OSPermissionStateChanges stateChanges) {
             NotificationPermission prev = NativeConversion.PermissionStateToXam(stateChanges.From.AreNotificationsEnabled());
             NotificationPermission curr = NativeConversion.PermissionStateToXam(stateChanges.To.AreNotificationsEnabled());
-            _instance.PermissionStateChanged?.Invoke(curr, prev);
+            _instance.NotificationPermissionChanged?.Invoke(curr, prev);
          }
       }
 

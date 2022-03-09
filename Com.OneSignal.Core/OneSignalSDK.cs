@@ -94,7 +94,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When this device's permissions for authorization of push notifications have changed.
       /// </summary>
-      public abstract event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
+      public abstract event StateChangeDelegate<NotificationPermission> NotificationPermissionChanged;
 
       /// <summary>
       /// When this device's subscription to push notifications has changed

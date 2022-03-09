@@ -75,7 +75,7 @@ namespace Com.OneSignal {
             NotificationPermission from = NativeConversion.PermissionStateToXam(permissionStateChanges.From);
             NotificationPermission to = NativeConversion.PermissionStateToXam(permissionStateChanges.To);
 
-            _instance.PermissionStateChanged?.Invoke(to, from);
+            _instance.NotificationPermissionChanged?.Invoke(to, from);
          }
       }
 
