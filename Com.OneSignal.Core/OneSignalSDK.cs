@@ -263,7 +263,7 @@ namespace Com.OneSignal.Core {
 
       /// <summary>
       /// Allows you to set the user's email address with the OneSignal SDK. If the user changes their email, you
-      /// need to call LogOut(LogOutOptions.Email) and then SetEmail to update it.
+      /// need to call LogoutEmail() and then SetEmail to update it.
       /// </summary>
       /// <param name="email">The email that you want subscribe and associate with the device</param>
       /// <param name="authHash">If you have a backend server, we strongly recommend using
@@ -274,6 +274,7 @@ namespace Com.OneSignal.Core {
 
       /// <summary>
       /// Set an sms number for the device to later send sms to this number
+      /// need to call LogoutSMS() and then SetSMSNumber to update it.
       /// </summary>
       /// <param name="smsNumber">The sms number that you want subscribe and associate with the device</param>
       /// <param name="authHash">If you have a backend server, we strongly recommend using
@@ -333,7 +334,7 @@ namespace Com.OneSignal.Core {
       /// <a href="https://documentation.onesignal.com/docs/language-localization#what-languages-are-supported">ISO 639-1</a> language codes.
       /// </summary>
       /// <param name="language"></param>
-      public abstract void SetLanguage(string language);
+      public abstract void SetLanguage(string languageCode);
 
       #region Location
       /// <summary>
