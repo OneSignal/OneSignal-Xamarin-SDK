@@ -10,8 +10,8 @@ using OneSignalNative = Com.OneSignal.iOS.OneSignal;
 
 namespace Com.OneSignal {
    public partial class OneSignalImplementation : OneSignalSDK {
-      public LogType currentLogLevel;
-      public LogType currentAlertLevel;
+      public LogLevel currentLogLevel;
+      public LogLevel currentAlertLevel;
 
       public override event NotificationWillShowDelegate NotificationWillShow;
       public override event NotificationActionDelegate NotificationWasOpened;
@@ -50,7 +50,7 @@ namespace Com.OneSignal {
          return await proxy ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
 
-      public override LogType LogLevel {
+      public override LogLevel LogLevel {
          get => currentLogLevel;
          set {
             currentLogLevel = value;
@@ -58,7 +58,7 @@ namespace Com.OneSignal {
          }
       }
 
-      public override LogType AlertLevel {
+      public override LogLevel AlertLevel {
          get => currentAlertLevel;
          set {
             currentAlertLevel = value;

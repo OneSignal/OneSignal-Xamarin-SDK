@@ -13,8 +13,8 @@ namespace Com.OneSignal.Sample.Shared
       // Called on iOS and Android to initialize OneSignal
       public static void Initialize()
       {
-         OneSignal.Default.LogLevel = LogType.VERBOSE;
-         OneSignal.Default.AlertLevel = LogType.NONE;
+         OneSignal.Default.LogLevel = LogLevel.VERBOSE;
+         OneSignal.Default.AlertLevel = LogLevel.NONE;
 
          OneSignal.Default.RequiresPrivacyConsent = true;
 

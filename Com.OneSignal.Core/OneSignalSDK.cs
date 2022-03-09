@@ -117,12 +117,12 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// The minimum level of logs which will be logged to the console
       /// </summary>
-      public abstract LogType LogLevel { get; set; }
+      public abstract LogLevel LogLevel { get; set; }
 
       /// <summary>
       /// The minimum level of log events which will be converted into foreground alerts
       /// </summary>
-      public abstract LogType AlertLevel { get; set; }
+      public abstract LogLevel AlertLevel { get; set; }
 
       /// <summary>
       /// Provides privacy consent. OneSignal Xamarin SDK will not initialize until this is true.
