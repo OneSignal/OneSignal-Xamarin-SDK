@@ -14,7 +14,7 @@ namespace Com.OneSignal {
       public LogLevel currentAlertLevel;
 
       public override event NotificationWillShowDelegate NotificationWillShow;
-      public override event NotificationActionDelegate NotificationWasOpened;
+      public override event NotificationActionDelegate NotificationOpened;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
