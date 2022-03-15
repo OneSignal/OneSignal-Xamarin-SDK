@@ -94,7 +94,7 @@ namespace Com.OneSignal {
       private sealed class OSNotificationOpenedHandler : Java.Lang.Object, OneSignalNative.IOSNotificationOpenedHandler {
          public void NotificationOpened(Android.OSNotificationOpenedResult notificationOpenedResult) {
             NotificationOpenedResult result = NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult);
-            _instance.NotificationWasOpened?.Invoke(result);
+            _instance.NotificationOpened?.Invoke(result);
          }
       }
 
