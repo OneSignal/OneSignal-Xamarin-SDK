@@ -220,7 +220,7 @@ namespace Com.OneSignal.Core {
       /// Tag player with a key value pair to later create segments on them at onesignal.com
       /// </summary>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
-      public abstract void SendTag(string key, string value);
+      public abstract Task<bool> SendTag(string key, string value);
 
       /// <summary>
       /// Tag player with a key value pairs to later create segments on them at onesignal.com

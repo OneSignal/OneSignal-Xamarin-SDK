@@ -153,8 +153,9 @@ namespace Com.OneSignal {
          OneSignalNative.SetLanguage(language);
       }
 
-      public override void SendTag(string key, string value) {
+      public override async Task<bool> SendTag(string key, string value) {
          OneSignalNative.SendTag(key, value);
+         return true;
       }
 
       public override async Task<bool> SendTags(Dictionary<string, object> tags) {

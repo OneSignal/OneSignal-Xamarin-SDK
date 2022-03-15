@@ -147,8 +147,10 @@ namespace Com.OneSignal {
          return await proxy;
       }
 
-      public override void SendTag(string key, string value) {
-         OneSignalNative.SendTag(key, value);
+      public override async Task<bool> SendTag(string key, string value) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendTag(key, value, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
       }
 
       public override async Task<bool> SendTags(Dictionary<string, object> tags) {
