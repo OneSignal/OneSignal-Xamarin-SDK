@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>OneSignal</id>
+        <version>4.0.0-beta4</version>
+        <title>OneSignal SDK for Xamarin</title>
+        <authors>OneSignal, Martijn van Dijk</authors>
+        <owners>OneSignal</owners>
+        <licenseUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK</projectUrl>
+        <iconUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK/blob/master/nuget_icon.png?raw=true</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>OneSignal for Xamarin</description>
+        <summary>OneSignal is a free push notification service for mobile apps. This plugin makes it easy to integrate your Xamarin app with OneSignal</summary>
+        <tags>xamarin, monodroid, C#, OneSignal, push</tags>
+        <dependencies>
+            <group targetFramework="MonoAndroid">
+                <dependency id="Xamarin.Kotlin.StdLib.Jdk8" version="1.5.31.2" />
+
+                <dependency id="Xamarin.AndroidX.CardView" version="1.0.0.11" />
+                <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0.10" />
+                <dependency id="Xamarin.AndroidX.Browser" version="1.3.0.8" />
+                <dependency id="Xamarin.AndroidX.AppCompat" version="1.3.1.3" />
+                <dependency id="Xamarin.AndroidX.Work.Runtime" version="2.7.0" />
+
+                <dependency id="Xamarin.Firebase.Messaging" version="122.0.0.2" />
+                <!-- Dagger is required for FCM, should be a "transitive dependency" but is not due to this bug:
+                     https://github.com/xamarin/XamarinComponents/issues/1069 -->
+                <dependency id="Xamarin.Google.Dagger" version="2.39.1" />
+            </group>
+            <group targetFramework="netstandard2.0">
+                <dependency id="NETStandard.Library" version="2.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <!--Core-->
+        <file src="OneSignal\bin\Release\netstandard2.0\OneSignal.pdb" target="lib\netstandard2.0" />
+        <file src="OneSignal\bin\Release\netstandard2.0\OneSignal.dll" target="lib\netstandard2.0" />
+        <file src="OneSignal.Core\bin\Release\netstandard2.0\OneSignal.Core.pdb" target="lib\netstandard2.0" />
+        <file src="OneSignal.Core\bin\Release\netstandard2.0\OneSignal.Core.dll" target="lib\netstandard2.0" />
+
+        <!--Xamarin.Android-->
+        <file src="OneSignal.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
+
+        <!--Xamarin.iOS Unified-->
+        <file src="OneSignal.iOS\bin\Release\*OneSignal.*" target="lib\Xamarin.iOS10" />
+
+        <!-- Workaround to support .XCFramework for iOS  -->
+        <!-- Resources includes the full OneSignal.XCFramework.
+             iOS.Binding project has NoBindingEmbedding = true so it isn't also bundled in the .dll -->
+        <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="content\OneSignal.iOS.resources" />
+        <!-- This is a .target files that gets used by project that consumes the NuGet package.
+             This copies out the OneSignal.xcframework from the resources folder and adds a NativeReference to it in the app project. -->
+        <file src="OneSignal.iOS.Binding\OneSignal.targets" target="build\Xamarin.iOS10\" />
+    </files>
+</package>
