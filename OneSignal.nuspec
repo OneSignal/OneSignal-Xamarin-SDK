@@ -52,6 +52,6 @@
         <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="content\OneSignal.iOS.resources" />
         <!-- This is a .target files that gets used by project that consumes the NuGet package.
              This copies out the OneSignal.xcframework from the resources folder and adds a NativeReference to it in the app project. -->
-        <file src="OneSignal.iOS.Binding\OneSignal.targets" target="build\Xamarin.iOS10\" />
+        <file src="OneSignal.iOS.Binding\Com.OneSignal.targets" target="build\Xamarin.iOS10\" />
     </files>
 </package>
