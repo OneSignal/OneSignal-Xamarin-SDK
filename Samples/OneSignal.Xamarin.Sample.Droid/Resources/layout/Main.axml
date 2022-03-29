@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="39.5dp"
+        android:id="@+id/consentSwitch"
+        android:text="Consent Status" />
+    
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/externalIdField"
+        android:hint="External ID" />
+    
+    <Button
+        android:text="Set External ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/setExternalIdButton" />
+    
+    <Button
+        android:text="Remove External ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/removeExternalIdButton" />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/altText"/>
+    
+</LinearLayout>
