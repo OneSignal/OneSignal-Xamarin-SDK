@@ -6,7 +6,6 @@
 [Bb]in/
 packages/
 TestResults/
-*.nupkg
 
 # globs
 Makefile.in
