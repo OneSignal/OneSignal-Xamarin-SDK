@@ -1,11 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="BeforeCompile">
         <ItemGroup>
-            <BindingResources Include="$(MSBuildThisFileDirectory)../../content/OneSignal.iOS.resources/**/*.*" />
+            <BindingResources Include="$(MSBuildThisFileDirectory)../../content/OneSignalSDK.Xamarin.iOS.resources/**/*.*" />
         </ItemGroup>
-        <Copy SourceFiles="@(BindingResources)" DestinationFolder="$(TargetDir)/OneSignal.iOS.resources/%(RecursiveDir)" ContinueOnError="false" />
+        <Copy SourceFiles="@(BindingResources)" DestinationFolder="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources/%(RecursiveDir)" ContinueOnError="false" />
         <ItemGroup>
-            <NativeReference Include="$(TargetDir)/OneSignal.iOS.resources\OneSignal.xcframework">
+            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignal.xcframework">
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>

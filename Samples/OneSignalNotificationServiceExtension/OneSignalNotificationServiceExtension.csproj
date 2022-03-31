@@ -98,11 +98,11 @@
     <Compile Include="NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OneSignal.iOS\OneSignal.iOS.csproj">
-      <Name>OneSignal.iOS</Name>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.iOS\OneSignalSDK.Xamarin.iOS.csproj">
+      <Name>OneSignalSDK.Xamarin.iOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\OneSignal.Core\OneSignal.Core.csproj">
-      <Name>OneSignal.Core</Name>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
+      <Name>OneSignalSDK.Xamarin.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
       <Name>OneSignal.iOS.Binding</Name>
