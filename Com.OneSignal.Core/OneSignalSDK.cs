@@ -58,7 +58,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When a push notification has been opened by the user
       /// </summary>
-      public abstract event NotificationActionDelegate NotificationWasOpened;
+      public abstract event NotificationActionDelegate NotificationOpened;
 
       /*
        * In App Messages 
@@ -94,7 +94,7 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// When this device's permissions for authorization of push notifications have changed.
       /// </summary>
-      public abstract event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
+      public abstract event StateChangeDelegate<NotificationPermission> NotificationPermissionChanged;
 
       /// <summary>
       /// When this device's subscription to push notifications has changed
@@ -117,12 +117,12 @@ namespace Com.OneSignal.Core {
       /// <summary>
       /// The minimum level of logs which will be logged to the console
       /// </summary>
-      public abstract LogType LogLevel { get; set; }
+      public abstract LogLevel LogLevel { get; set; }
 
       /// <summary>
       /// The minimum level of log events which will be converted into foreground alerts
       /// </summary>
-      public abstract LogType AlertLevel { get; set; }
+      public abstract LogLevel AlertLevel { get; set; }
 
       /// <summary>
       /// Provides privacy consent. OneSignal Xamarin SDK will not initialize until this is true.
@@ -220,7 +220,7 @@ namespace Com.OneSignal.Core {
       /// Tag player with a key value pair to later create segments on them at onesignal.com
       /// </summary>
       /// <returns>Awaitable boolean of whether the operation succeeded or failed</returns>
-      public abstract void SendTag(string key, string value);
+      public abstract Task<bool> SendTag(string key, string value);
 
       /// <summary>
       /// Tag player with a key value pairs to later create segments on them at onesignal.com
@@ -263,7 +263,7 @@ namespace Com.OneSignal.Core {
 
       /// <summary>
       /// Allows you to set the user's email address with the OneSignal SDK. If the user changes their email, you
-      /// need to call LogOut(LogOutOptions.Email) and then SetEmail to update it.
+      /// need to call LogoutEmail() and then SetEmail to update it.
       /// </summary>
       /// <param name="email">The email that you want subscribe and associate with the device</param>
       /// <param name="authHash">If you have a backend server, we strongly recommend using
@@ -274,6 +274,7 @@ namespace Com.OneSignal.Core {
 
       /// <summary>
       /// Set an sms number for the device to later send sms to this number
+      /// need to call LogoutSMS() and then SetSMSNumber to update it.
       /// </summary>
       /// <param name="smsNumber">The sms number that you want subscribe and associate with the device</param>
       /// <param name="authHash">If you have a backend server, we strongly recommend using
@@ -333,7 +334,7 @@ namespace Com.OneSignal.Core {
       /// <a href="https://documentation.onesignal.com/docs/language-localization#what-languages-are-supported">ISO 639-1</a> language codes.
       /// </summary>
       /// <param name="language"></param>
-      public abstract void SetLanguage(string language);
+      public abstract void SetLanguage(string languageCode);
 
       #region Location
       /// <summary>

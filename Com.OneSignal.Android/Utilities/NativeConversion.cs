@@ -142,21 +142,21 @@ namespace Com.OneSignal {
          };
       }
 
-      public static OneSignalNative.LOG_LEVEL LogConversion(LogType logLevel) {
+      public static OneSignalNative.LOG_LEVEL LogConversion(LogLevel logLevel) {
          switch (logLevel) {
-            case LogType.NONE:
+            case LogLevel.NONE:
                return OneSignalNative.LOG_LEVEL.None;
-            case LogType.FATAL:
+            case LogLevel.FATAL:
                return OneSignalNative.LOG_LEVEL.Fatal;
-            case LogType.ERROR:
+            case LogLevel.ERROR:
                return OneSignalNative.LOG_LEVEL.Error;
-            case LogType.WARN:
+            case LogLevel.WARN:
                return OneSignalNative.LOG_LEVEL.Warn;
-            case LogType.INFO:
+            case LogLevel.INFO:
                return OneSignalNative.LOG_LEVEL.Info;
-            case LogType.DEBUG:
+            case LogLevel.DEBUG:
                return OneSignalNative.LOG_LEVEL.Debug;
-            case LogType.VERBOSE:
+            case LogLevel.VERBOSE:
                return OneSignalNative.LOG_LEVEL.Debug;
             default:
                return OneSignalNative.LOG_LEVEL.None;

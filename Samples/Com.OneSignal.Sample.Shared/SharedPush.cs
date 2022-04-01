@@ -13,17 +13,45 @@ namespace Com.OneSignal.Sample.Shared
       // Called on iOS and Android to initialize OneSignal
       public static void Initialize()
       {
-         OneSignal.Default.LogLevel = LogType.VERBOSE;
-         OneSignal.Default.AlertLevel = LogType.NONE;
+         OneSignal.Default.LogLevel = LogLevel.VERBOSE;
+         OneSignal.Default.AlertLevel = LogLevel.NONE;
 
          OneSignal.Default.RequiresPrivacyConsent = true;
 
          OneSignal.Default.Initialize("77e32082-ea27-42e3-a898-c72e141824ef");
+         OneSignal.Default.PromptForPushNotificationsWithUserResponse();
 
          OneSignal.Default.PrivacyConsent = true;
 
          OneSignalInAppMessagingDemo();
          OneSignalOutcomeEventDemo();
+
+         OneSignal.Default.InAppMessageWillDisplay += _inAppMessageWillDisplay;
+         OneSignal.Default.InAppMessageDidDisplay += _inAppMessageDidDisplay;
+         OneSignal.Default.InAppMessageWillDismiss += _inAppMessageWillDismiss;
+         OneSignal.Default.InAppMessageDidDismiss += _inAppMessageDidDismiss;
+
+         OneSignal.Default.InAppMessageTriggeredAction += _inAppMessageTriggeredAction;
+      }
+
+      private static void _inAppMessageTriggeredAction(InAppMessageAction action) {
+         Console.WriteLine("In-App message Triggered Action: " + action.click_name);
+      }
+
+      private static void _inAppMessageWillDisplay(InAppMessage message) {
+         Console.WriteLine("In-App message will display: " + message.messageId);
+      }
+
+      private static void _inAppMessageDidDisplay(InAppMessage message) {
+         Console.WriteLine("In-App message did display: " + message.messageId);
+      }
+
+      private static void _inAppMessageWillDismiss(InAppMessage message) {
+         Console.WriteLine("In-App message will dismiss: " + message.messageId);
+      }
+
+      private static void _inAppMessageDidDismiss(InAppMessage message) {
+         Console.WriteLine("In-App message did dismiss: " + message.messageId);
       }
 
       private static void OneSignalSetExternalUSerId(Dictionary<string , object> results)

@@ -42,7 +42,7 @@ namespace Com.OneSignal {
          public void OnOSPermissionChanged(Android.OSPermissionStateChanges stateChanges) {
             NotificationPermission prev = NativeConversion.PermissionStateToXam(stateChanges.From.AreNotificationsEnabled());
             NotificationPermission curr = NativeConversion.PermissionStateToXam(stateChanges.To.AreNotificationsEnabled());
-            _instance.PermissionStateChanged?.Invoke(curr, prev);
+            _instance.NotificationPermissionChanged?.Invoke(curr, prev);
          }
       }
 
@@ -94,7 +94,7 @@ namespace Com.OneSignal {
       private sealed class OSNotificationOpenedHandler : Java.Lang.Object, OneSignalNative.IOSNotificationOpenedHandler {
          public void NotificationOpened(Android.OSNotificationOpenedResult notificationOpenedResult) {
             NotificationOpenedResult result = NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult);
-            _instance.NotificationWasOpened?.Invoke(result);
+            _instance.NotificationOpened?.Invoke(result);
          }
       }
 

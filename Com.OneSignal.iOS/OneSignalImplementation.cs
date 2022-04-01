@@ -10,17 +10,17 @@ using OneSignalNative = Com.OneSignal.iOS.OneSignal;
 
 namespace Com.OneSignal {
    public partial class OneSignalImplementation : OneSignalSDK {
-      public LogType currentLogLevel;
-      public LogType currentAlertLevel;
+      public LogLevel currentLogLevel;
+      public LogLevel currentAlertLevel;
 
       public override event NotificationWillShowDelegate NotificationWillShow;
-      public override event NotificationActionDelegate NotificationWasOpened;
+      public override event NotificationActionDelegate NotificationOpened;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDisplay;
       public override event InAppMessageLifecycleDelegate InAppMessageWillDismiss;
       public override event InAppMessageLifecycleDelegate InAppMessageDidDismiss;
       public override event InAppMessageActionDelegate InAppMessageTriggeredAction;
-      public override event StateChangeDelegate<NotificationPermission> PermissionStateChanged;
+      public override event StateChangeDelegate<NotificationPermission> NotificationPermissionChanged;
       public override event StateChangeDelegate<PushSubscriptionState> PushSubscriptionStateChanged;
       public override event StateChangeDelegate<EmailSubscriptionState> EmailSubscriptionStateChanged;
       public override event StateChangeDelegate<SMSSubscriptionState> SMSSubscriptionStateChanged;
@@ -50,7 +50,7 @@ namespace Com.OneSignal {
          return await proxy ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
 
-      public override LogType LogLevel {
+      public override LogLevel LogLevel {
          get => currentLogLevel;
          set {
             currentLogLevel = value;
@@ -58,7 +58,7 @@ namespace Com.OneSignal {
          }
       }
 
-      public override LogType AlertLevel {
+      public override LogLevel AlertLevel {
          get => currentAlertLevel;
          set {
             currentAlertLevel = value;
@@ -147,8 +147,10 @@ namespace Com.OneSignal {
          return await proxy;
       }
 
-      public override void SendTag(string key, string value) {
-         OneSignalNative.SendTag(key, value);
+      public override async Task<bool> SendTag(string key, string value) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SendTag(key, value, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
       }
 
       public override async Task<bool> SendTags(Dictionary<string, object> tags) {
