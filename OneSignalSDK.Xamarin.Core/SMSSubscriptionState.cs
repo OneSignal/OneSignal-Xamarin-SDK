@@ -1,12 +1,12 @@
 ﻿using System;
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    [Serializable]
-   public sealed class EmailSubscriptionState {
+   public sealed class SMSSubscriptionState {
       /// <summary>
       /// Unique id of this subscription
       /// </summary>
       /// <remarks>See https://documentation.onesignal.com/docs/users#player-id for more information</remarks>
-      public string emailUserId;
+      public string smsUserId;
 
       /// <summary>
       /// Whether this subscription is currently active
@@ -14,8 +14,8 @@ namespace Com.OneSignal.Core {
       public bool isSubscribed;
 
       /// <summary>
-      /// Email address of the user which this subscription was created for
+      /// Phone number of the user which this subscription was created for
       /// </summary>
-      public string emailAddress;
+      public string smsNumber;
    }
 }

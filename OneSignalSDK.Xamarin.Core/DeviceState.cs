@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    [Serializable]
    public sealed class DeviceState {
 

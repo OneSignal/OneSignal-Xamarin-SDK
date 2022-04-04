@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    [Serializable]
    public sealed class InAppMessageAction {
       public string click_name;

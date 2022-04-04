@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    public enum NotificationActionType {
       /// <summary>Notification was tapped on.</summary>
       Opened,

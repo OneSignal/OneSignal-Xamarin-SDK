@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    /// <summary>
    /// Status of ability to send push notification as determined by the current user
    /// </summary>

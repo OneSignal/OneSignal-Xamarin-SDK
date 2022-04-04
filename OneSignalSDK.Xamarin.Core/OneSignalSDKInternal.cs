@@ -2,13 +2,13 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Com.OneSignal;
+using OneSignalSDK.Xamarin;
 
-namespace Com.OneSignal.Core {
-   public abstract partial class OneSignalSDK {
-      public static OneSignalSDK _default;
+namespace OneSignalSDK.Xamarin.Core {
+   public abstract partial class OneSignalSDKInternal {
+      public static OneSignalSDKInternal _default;
 
-      public static OneSignalSDK _getDefaultInstance() {
+      public static OneSignalSDKInternal _getDefaultInstance() {
          if (_default != null)
             return _default;
 

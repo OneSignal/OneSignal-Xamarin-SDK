@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    public class OutcomeEvent {
       public enum OSSession {
          DIRECT,

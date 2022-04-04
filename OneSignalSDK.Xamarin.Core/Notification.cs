@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    public class Notification {
       public string title;
       public string body;

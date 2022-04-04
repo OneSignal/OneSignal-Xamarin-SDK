@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    public static class Json
    {
       /// <summary>

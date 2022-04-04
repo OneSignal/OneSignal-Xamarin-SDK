@@ -1,5 +1,5 @@
 ﻿using System;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
     public enum LogLevel { NONE, FATAL, ERROR, WARN, INFO, DEBUG, VERBOSE }
 }

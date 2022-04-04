@@ -1,12 +1,12 @@
 ﻿using System;
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
    [Serializable]
-   public sealed class SMSSubscriptionState {
+   public sealed class PushSubscriptionState {
       /// <summary>
       /// Unique id of this subscription
       /// </summary>
       /// <remarks>See https://documentation.onesignal.com/docs/users#player-id for more information</remarks>
-      public string smsUserId;
+      public string userId;
 
       /// <summary>
       /// Whether this subscription is currently active
@@ -14,8 +14,10 @@ namespace Com.OneSignal.Core {
       public bool isSubscribed;
 
       /// <summary>
-      /// Phone number of the user which this subscription was created for
+      /// The unique token provided by the device's operating system used to send push notifications
       /// </summary>
-      public string smsNumber;
+      public string pushToken;
+
+      public bool isPushDisabled;
    }
 }

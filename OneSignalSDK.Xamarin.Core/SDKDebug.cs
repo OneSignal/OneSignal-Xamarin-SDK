@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.OneSignal.Core {
+namespace OneSignalSDK.Xamarin.Core {
 
     //TODO: Finish Log
     public class SDKDebug {
