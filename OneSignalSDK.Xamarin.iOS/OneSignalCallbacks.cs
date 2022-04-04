@@ -3,10 +3,11 @@ using System.Diagnostics;
 
 using Laters;
 
+using OneSignaliOS = Com.OneSignal.iOS;
 using OneSignalNative = Com.OneSignal.iOS.OneSignal;
-using Com.OneSignal.Core;
+using OneSignalSDK.Xamarin.Core;
 
-namespace Com.OneSignal {
+namespace OneSignalSDK.Xamarin {
    public partial class OneSignalImplementation {
       private delegate void BooleanResponseDelegate(bool response);
       private delegate void StringResponseDelegate(string response);
@@ -45,7 +46,7 @@ namespace Com.OneSignal {
          OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
 
          OneSignalNative.SetNotificationWillShowInForegroundHandler(
-            delegate(iOS.OSNotification nativeNotification, iOS.OSNotificationDisplayResponse response) {
+            delegate(OneSignaliOS.OSNotification nativeNotification, OneSignaliOS.OSNotificationDisplayResponse response) {
                if (_instance.NotificationWillShow == null) {
                   response.Invoke(nativeNotification);
                   return;
@@ -59,10 +60,10 @@ namespace Com.OneSignal {
             }
          );
 
-         OneSignalNative.SetNotificationOpenedHandler(new iOS.OSNotificationOpenedBlock(
+         OneSignalNative.SetNotificationOpenedHandler(new OneSignaliOS.OSNotificationOpenedBlock(
             result => new OSNotificationOpenedHandler().NotificationOpened(result)));
 
-         OneSignalNative.SetInAppMessageClickHandler(new iOS.OSInAppMessageClickBlock((iOS.OSInAppMessageAction arg0) =>
+         OneSignalNative.SetInAppMessageClickHandler(new OneSignaliOS.OSInAppMessageClickBlock((OneSignaliOS.OSInAppMessageAction arg0) =>
          new OSInAppMessageClickHandler().InAppMessageClicked(arg0)));
 
          OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
@@ -70,8 +71,8 @@ namespace Com.OneSignal {
          _instance = this;
       }
 
-      private sealed class OSPermissionObserver : iOS.OSPermissionObserver {
-         public override void OnOSPermissionChanged(iOS.OSPermissionStateChanges permissionStateChanges) {
+      private sealed class OSPermissionObserver : OneSignaliOS.OSPermissionObserver {
+         public override void OnOSPermissionChanged(OneSignaliOS.OSPermissionStateChanges permissionStateChanges) {
             NotificationPermission from = NativeConversion.PermissionStateToXam(permissionStateChanges.From);
             NotificationPermission to = NativeConversion.PermissionStateToXam(permissionStateChanges.To);
 
@@ -79,8 +80,8 @@ namespace Com.OneSignal {
          }
       }
 
-      private sealed class OSSubscriptionObserver : iOS.OSSubscriptionObserver {
-         public override void OnOSSubscriptionChanged(iOS.OSSubscriptionStateChanges stateChanges) {
+      private sealed class OSSubscriptionObserver : OneSignaliOS.OSSubscriptionObserver {
+         public override void OnOSSubscriptionChanged(OneSignaliOS.OSSubscriptionStateChanges stateChanges) {
             PushSubscriptionState from = NativeConversion.SubscriptionStateToXam(stateChanges.From);
             PushSubscriptionState to = NativeConversion.SubscriptionStateToXam(stateChanges.To);
 
@@ -88,8 +89,8 @@ namespace Com.OneSignal {
          }
       }
 
-      private sealed class OSEmailSubscriptionObserver : iOS.OSEmailSubscriptionObserver {
-         public override void OnOSEmailSubscriptionChanged(iOS.OSEmailSubscriptionStateChanges stateChanges) {
+      private sealed class OSEmailSubscriptionObserver : OneSignaliOS.OSEmailSubscriptionObserver {
+         public override void OnOSEmailSubscriptionChanged(OneSignaliOS.OSEmailSubscriptionStateChanges stateChanges) {
             EmailSubscriptionState from = NativeConversion.EmailSubscriptionStateToXam(stateChanges.From);
             EmailSubscriptionState to = NativeConversion.EmailSubscriptionStateToXam(stateChanges.To);
 
@@ -97,8 +98,8 @@ namespace Com.OneSignal {
          }
       }
 
-      private sealed class OSSMSSubscriptionObserver : iOS.OSSMSSubscriptionObserver {
-         public override void OnOSSMSSubscriptionChanged(iOS.OSSMSSubscriptionStateChanges stateChanges) {
+      private sealed class OSSMSSubscriptionObserver : OneSignaliOS.OSSMSSubscriptionObserver {
+         public override void OnOSSMSSubscriptionChanged(OneSignaliOS.OSSMSSubscriptionStateChanges stateChanges) {
             SMSSubscriptionState from = NativeConversion.SMSSubscriptionStateToXam(stateChanges.From);
             SMSSubscriptionState to = NativeConversion.SMSSubscriptionStateToXam(stateChanges.To);
 
@@ -107,31 +108,31 @@ namespace Com.OneSignal {
       }
 
       private sealed class OSNotificationOpenedHandler {
-         public void NotificationOpened(iOS.OSNotificationOpenedResult notificationOpenedResult) {
-            _instance.NotificationWasOpened?.Invoke(NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult));
+         public void NotificationOpened(OneSignaliOS.OSNotificationOpenedResult notificationOpenedResult) {
+            _instance.NotificationOpened?.Invoke(NativeConversion.NotificationOpenedResultToXam(notificationOpenedResult));
          }
       }
 
       private sealed class OSInAppMessageClickHandler {
-         public void InAppMessageClicked(iOS.OSInAppMessageAction inAppMessageAction) {
+         public void InAppMessageClicked(OneSignaliOS.OSInAppMessageAction inAppMessageAction) {
             _instance.InAppMessageTriggeredAction?.Invoke(NativeConversion.InAppMessageActionToXam(inAppMessageAction));
          }
       }
 
-      private sealed class OSInAppMessageLifeCycleHandler : iOS.OSInAppMessageLifecycleHandler {
-         public override void OnWillDisplayInAppMessage(iOS.OSInAppMessage message) {
+      private sealed class OSInAppMessageLifeCycleHandler : OneSignaliOS.OSInAppMessageLifecycleHandler {
+         public override void OnWillDisplayInAppMessage(OneSignaliOS.OSInAppMessage message) {
             _instance.InAppMessageWillDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
          }
 
-         public override void OnDidDisplayInAppMessage(iOS.OSInAppMessage message) {
+         public override void OnDidDisplayInAppMessage(OneSignaliOS.OSInAppMessage message) {
             _instance.InAppMessageDidDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
          }
 
-         public override void OnWillDismissInAppMessage(iOS.OSInAppMessage message) {
+         public override void OnWillDismissInAppMessage(OneSignaliOS.OSInAppMessage message) {
             _instance.InAppMessageWillDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
          }
 
-         public override void OnDidDismissInAppMessage(iOS.OSInAppMessage message) {
+         public override void OnDidDismissInAppMessage(OneSignaliOS.OSInAppMessage message) {
             _instance.InAppMessageDidDismiss?.Invoke(NativeConversion.InAppMessageToXam(message));
          }
       }

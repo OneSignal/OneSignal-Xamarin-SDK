@@ -1,7 +1,9 @@
 ﻿using System;
 using UserNotifications;
 
-namespace Com.OneSignal
+using OneSignaliOS = Com.OneSignal.iOS;
+
+namespace OneSignalSDK.Xamarin
 {
    /// <summary>
    /// Public SDK API to be consumed by the App's iOS NotificationServiceExtension target
@@ -13,7 +15,7 @@ namespace Com.OneSignal
          UNMutableNotificationContent replacementContent,
          Action<UNNotificationContent> contentHandler)
       {
-         return iOS.OneSignal.DidReceiveNotificationExtensionRequest(
+         return OneSignaliOS.OneSignal.DidReceiveNotificationExtensionRequest(
             request,
             replacementContent,
             delegate (UNNotificationContent notificationContent)
@@ -27,7 +29,7 @@ namespace Com.OneSignal
          UNNotificationRequest request,
          UNMutableNotificationContent replacementContent)
       {
-         iOS.OneSignal.ServiceExtensionTimeWillExpireRequest(request, replacementContent);
+         OneSignaliOS.OneSignal.ServiceExtensionTimeWillExpireRequest(request, replacementContent);
       }
    }
 }

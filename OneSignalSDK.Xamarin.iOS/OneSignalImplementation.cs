@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Com.OneSignal.Core;
+using OneSignalSDK.Xamarin.Core;
 using Com.OneSignal.iOS;
 using Foundation;
 using OneSignalNative = Com.OneSignal.iOS.OneSignal;
 
 
-namespace Com.OneSignal {
-   public partial class OneSignalImplementation : OneSignalSDK {
+namespace OneSignalSDK.Xamarin {
+   public partial class OneSignalImplementation : OneSignalSDKInternal {
       public LogLevel currentLogLevel;
       public LogLevel currentAlertLevel;
 
