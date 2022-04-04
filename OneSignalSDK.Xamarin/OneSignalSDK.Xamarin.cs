@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
-using Com.OneSignal.Core;
+using OneSignalSDK.Xamarin.Core;
 
-namespace Com.OneSignal
+namespace OneSignalSDK.Xamarin
 {
    public class OneSignal
    {
-      static readonly Lazy<OneSignalSDK> Implementation = new Lazy<OneSignalSDK>(CreateOneSignal);
+      static readonly Lazy<OneSignalSDKInternal> Implementation = new Lazy<OneSignalSDKInternal>(CreateOneSignal);
 
-      public static OneSignalSDK Default
+      public static OneSignalSDKInternal Default
       {
          get
          {
@@ -19,7 +19,7 @@ namespace Com.OneSignal
          }
       }
 
-      static OneSignalSDK CreateOneSignal()
+      static OneSignalSDKInternal CreateOneSignal()
       {
          #if PORTABLE
             Debug.WriteLine("PORTABLE Reached");
