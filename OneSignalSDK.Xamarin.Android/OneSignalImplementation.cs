@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Org.Json;
 
-using Com.OneSignal.Core;
+using OneSignalSDK.Xamarin.Core;
 
 using Android.App;
 using Android.Content;
 
 using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
-namespace Com.OneSignal {
-   public partial class OneSignalImplementation : OneSignalSDK {
+namespace OneSignalSDK.Xamarin {
+   public partial class OneSignalImplementation : OneSignalSDKInternal {
 
       public LogLevel currentLogLevel;
       public LogLevel currentAlertLevel;
