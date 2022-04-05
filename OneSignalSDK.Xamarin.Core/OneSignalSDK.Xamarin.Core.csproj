@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Com.OneSignal.Core</AssemblyName>
-    <PackageId>Com.OneSignal.Core</PackageId>
+    <AssemblyName>OneSignalSDK.Xamarin.Core</AssemblyName>
+    <PackageId>OneSignalSDK.Xamarin.Core</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>

@@ -6,8 +6,8 @@
     <ProjectGuid>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Com.OneSignal</RootNamespace>
-    <AssemblyName>Com.OneSignal</AssemblyName>
+    <RootNamespace>OneSignalSDK.Xamarin</RootNamespace>
+    <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <ReleaseVersion>4.0.0-beta4</ReleaseVersion>
   </PropertyGroup>
@@ -42,19 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OneSignalImplementation.cs" />
-    <Compile Include="..\Com.OneSignal\OneSignal.cs">
-      <Link>OneSignal.cs</Link>
+    <Compile Include="..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.cs">
+      <Link>OneSignalSDK.Xamarin.cs</Link>
     </Compile>
     <Compile Include="Utilities\NativeConversion.cs" />
     <Compile Include="OneSignalCallbacks.cs" />
     <Compile Include="NotificationServiceExtension.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
-      <Name>Com.OneSignal.Core</Name>
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
+      <Name>OneSignalSDK.Xamarin.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
-      <Project>{967EAABD-4A79-4762-9848-0D5530AA1FA5}</Project>
       <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
   </ItemGroup>

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Com.OneSignal</AssemblyName>
-    <PackageId>Com.OneSignal</PackageId>
+    <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
+    <PackageId>OneSignalSDK.Xamarin</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Com.OneSignal.Core\Com.OneSignal.Core.csproj" />
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="NETStandard.Library" />
