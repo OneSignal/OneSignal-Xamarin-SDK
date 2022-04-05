@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Com.OneSignal.Sample.Shared</AssemblyName>
-    <PackageId>Com.OneSignal.Sample.Shared</PackageId>
+    <AssemblyName>OneSignalApp.Sample.Shared</AssemblyName>
+    <PackageId>OneSignalApp.Sample.Shared</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Com.OneSignal\Com.OneSignal.csproj" />
-    <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj" />
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.csproj" />
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="NETStandard.Library" />

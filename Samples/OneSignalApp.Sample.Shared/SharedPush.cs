@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-using Com.OneSignal;
-using Com.OneSignal.Core;
+using OneSignalSDK.Xamarin;
+using OneSignalSDK.Xamarin.Core;
 
-namespace Com.OneSignal.Sample.Shared
+namespace OneSignalApp.Sample.Shared
 {
    public static class SharedPush
    {
