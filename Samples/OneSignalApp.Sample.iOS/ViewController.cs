@@ -1,9 +1,9 @@
 ﻿using System;
-using Com.OneSignal.Sample.Shared;
-using System.Globalization;
+using OneSignalApp.Sample.Shared;
+using OneSignalSDK.Xamarin;
 using UIKit;
 
-namespace Com.OneSignal.Sample.iOS
+namespace OneSignalApp.Sample.iOS
 {
    public class ExternalIdTextViewDelegate : UITextFieldDelegate
    {

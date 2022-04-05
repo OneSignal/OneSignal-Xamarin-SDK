@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Com.OneSignal.Sample.iOS
+namespace OneSignalApp.Sample.iOS
 {
     public class Application
     {

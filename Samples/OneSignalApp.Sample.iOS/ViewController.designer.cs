@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Com.OneSignal.Sample.iOS
+namespace OneSignalApp.Sample.iOS
 {
 	[Register ("ViewController")]
 	partial class ViewController
