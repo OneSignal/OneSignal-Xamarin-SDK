@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Com.OneSignal.Sample.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("OneSignalApp.Sample.Droid.Resource", IsApplication=true)]
 
-namespace Com.OneSignal.Sample.Droid
+namespace OneSignalApp.Sample.Droid
 {
 	
 	

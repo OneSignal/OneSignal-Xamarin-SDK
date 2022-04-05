@@ -8,8 +8,8 @@
     <ProjectGuid>{20DF0789-7E6E-4A87-AE94-79FDC166B4AE}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Com.OneSignal.Sample.Droid</RootNamespace>
-    <AssemblyName>Com.OneSignal.Sample.Droid</AssemblyName>
+    <RootNamespace>OneSignalApp.Sample.Droid</RootNamespace>
+    <AssemblyName>OneSignalApp.Sample.Droid</AssemblyName>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -302,21 +302,21 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.OneSignal.Sample.Shared\Com.OneSignal.Sample.Shared.csproj">
+    <ProjectReference Include="..\OneSignalApp.Sample.Shared\OneSignalApp.Sample.Shared.csproj">
       <Project>{0CB5DFF3-C26E-4B92-87AC-7E6875F76448}</Project>
-      <Name>Com.OneSignal.Sample.Shared</Name>
+      <Name>OneSignalApp.Sample.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Com.OneSignal.Android\Com.OneSignal.Android.csproj">
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Android\OneSignalSDK.Xamarin.Android.csproj">
       <Project>{FB0C2961-BAFE-4346-B279-3B3941614DCD}</Project>
-      <Name>Com.OneSignal.Android</Name>
+      <Name>OneSignalSDK.Xamarin.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\OneSignal.Android.Binding\OneSignal.Android.Binding.csproj">
       <Project>{9144F592-91B9-4ACA-BC3C-D771F8319996}</Project>
       <Name>OneSignal.Android.Binding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Com.OneSignal.Core\Com.OneSignal.Core.csproj">
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
       <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
-      <Name>Com.OneSignal.Core</Name>
+      <Name>OneSignalSDK.Xamarin.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

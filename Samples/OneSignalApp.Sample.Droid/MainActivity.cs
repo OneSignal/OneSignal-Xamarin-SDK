@@ -1,12 +1,13 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Com.OneSignal.Sample.Shared;
+using OneSignalApp.Sample.Shared;
+using OneSignalSDK.Xamarin;
 using System;
 
-namespace Com.OneSignal.Sample.Droid
+namespace OneSignalApp.Sample.Droid
 {
-   [Activity(Label = "Com.OneSignal.Sample.Droid", MainLauncher = true, Icon = "@mipmap/icon")]
+   [Activity(Label = "OneSignalApp.Sample.Droid", MainLauncher = true, Icon = "@mipmap/icon")]
    public class MainActivity : Activity
    {
       int count = 1;
