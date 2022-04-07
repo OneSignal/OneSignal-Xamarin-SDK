@@ -11,8 +11,8 @@ namespace Com.OneSignal.iOS {
 		[Export("type")]
 		OSNotificationActionType Type { get; }
 
-		// @property (readonly) NSString * _Nullable actionId;
-		[NullAllowed, Export("actionId")]
+// @property (readonly) NSString * _Nullable actionId;
+[NullAllowed, Export("actionId")]
 		string ActionId { get; }
 	}
 
@@ -1030,14 +1030,6 @@ namespace Com.OneSignal.iOS {
 		[Static]
 		[Export("sendOutcomeWithValue:value:onSuccess:")]
 		void SendOutcomeWithValue(string name, NSNumber value, [NullAllowed] OSSendOutcomeSuccess success);
-	}
-
-	[Static]
-	//[Verify (ConstantsInterfaceAssociation)]
-	partial interface Constants {
-		// extern NSString *const ONESIGNAL_VERSION;
-		[Field("ONESIGNAL_VERSION", "__Internal")]
-		NSString ONESIGNAL_VERSION { get; }
 	}
 
 	// typedef void (^OSUserResponseBlock)(BOOL);
