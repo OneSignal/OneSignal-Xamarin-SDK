@@ -329,6 +329,13 @@ namespace OneSignalSDK.Xamarin.Core {
       #endregion
 
       /// <summary>
+      /// Set to true to launch all notifications with a URL in the app instead of the default web browser.
+      /// iOS only method
+      /// </summary>
+      /// <param name="language"></param>
+      public abstract void SetLaunchURLsInApp(bool launchInApp);
+
+      /// <summary>
       /// Language is detected and set automatically through the OneSignal SDK based on the device settings.
       /// This method allows you to change that language by passing in the 2-character, lowercase 
       /// <a href="https://documentation.onesignal.com/docs/language-localization#what-languages-are-supported">ISO 639-1</a> language codes.
