@@ -205,6 +205,10 @@ namespace OneSignalSDK.Xamarin {
 
       public override void ClearOneSignalNotifications() {
          throw new NotImplementedException();
+
+      public override bool PushEnabled {
+         get => !DeviceState.isPushDisabled;
+         set => OneSignalNative.DisablePush(!value);
       }
 
       public override void SetTrigger(string key, object triggerObject) {
