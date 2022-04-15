@@ -61,10 +61,10 @@ namespace OneSignalSDK.Xamarin {
 
       public static InAppMessageAction InAppMessageClickedActionToXam(OneSignalAndroid.OSInAppMessageAction action) {
          InAppMessageAction inAppMessageAction = new InAppMessageAction {
-            click_name = action.ClickName,
-            click_url = action.ClickUrl,
-            first_click = action.IsFirstClick,
-            closes_message = action.DoesCloseMessage()
+            clickName = action.ClickName,
+            clickUrl = action.ClickUrl,
+            firstClick = action.IsFirstClick,
+            closesMessage = action.DoesCloseMessage()
          };
 
          IList<InAppMessageOutcome> outcomes = new List<InAppMessageOutcome>();
