@@ -149,6 +149,10 @@ namespace OneSignalSDK.Xamarin {
          }
       }
 
+      public override void SetLaunchURLsInApp(bool launchInApp) {
+         Console.WriteLine("OneSignal: SetLaunchURLsInApp is available on iOS only");
+      }
+
       public override void SetLanguage(string language) {
          OneSignalNative.SetLanguage(language);
       }

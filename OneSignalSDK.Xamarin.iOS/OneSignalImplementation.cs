@@ -137,6 +137,10 @@ namespace OneSignalSDK.Xamarin {
          }
       }
 
+      public override void SetLaunchURLsInApp(bool launchInApp) {
+         OneSignalNative.SetLaunchURLsInApp(launchInApp);
+      }
+
       public override void SetLanguage(string language) {
          OneSignalNative.SetLanguage(language);
       }
