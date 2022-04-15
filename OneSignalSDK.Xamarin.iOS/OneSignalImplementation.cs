@@ -208,7 +208,12 @@ namespace OneSignalSDK.Xamarin {
       }
 
       public override void ClearOneSignalNotifications() {
-         throw new NotImplementedException();
+         Console.WriteLine("OneSignal: ClearOneSignalNotifications is available on Android only");
+      }
+
+      public override bool PushEnabled {
+         get => !DeviceState.isPushDisabled;
+         set => OneSignalNative.DisablePush(!value);
       }
 
       public override void SetTrigger(string key, object triggerObject) {

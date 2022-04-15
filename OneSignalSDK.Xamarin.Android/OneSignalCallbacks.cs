@@ -106,7 +106,6 @@ namespace OneSignalSDK.Xamarin {
       }
 
       private sealed class OSInAppMessageLifeCycleHandler : OneSignalAndroid.OSInAppMessageLifecycleHandler {
-
          public override void OnWillDisplayInAppMessage(OneSignalAndroid.OSInAppMessage message) {
             _instance.InAppMessageWillDisplay?.Invoke(NativeConversion.InAppMessageToXam(message));
          }

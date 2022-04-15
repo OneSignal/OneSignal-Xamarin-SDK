@@ -263,7 +263,6 @@
     <Reference Include="Xamarin.Kotlin.StdLib">
       <HintPath>..\packages\Xamarin.Kotlin.StdLib.1.5.31.2\lib\monoandroid90\Xamarin.Kotlin.StdLib.dll</HintPath>
     </Reference>
-    <Reference Include="Java.Interop" />
     <Reference Include="Xamarin.Firebase.Encoders">
       <HintPath>..\packages\Xamarin.Firebase.Encoders.117.0.0.3\lib\monoandroid90\Xamarin.Firebase.Encoders.dll</HintPath>
     </Reference>

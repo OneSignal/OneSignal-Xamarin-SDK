@@ -152,10 +152,10 @@ namespace OneSignalSDK.Xamarin {
 
       public static InAppMessageAction InAppMessageActionToXam(OneSignaliOS.OSInAppMessageAction inAppMessageAction) {
          return new InAppMessageAction {
-            click_name = inAppMessageAction.ClickName,
-            click_url = inAppMessageAction.ClickUrl?.AbsoluteString,
-            closes_message = inAppMessageAction.ClosesMessage,
-            first_click = inAppMessageAction.FirstClick
+            clickName = inAppMessageAction.ClickName,
+            clickUrl = inAppMessageAction.ClickUrl?.AbsoluteString,
+            closesMessage = inAppMessageAction.ClosesMessage,
+            firstClick = inAppMessageAction.FirstClick
          };
       }
 
