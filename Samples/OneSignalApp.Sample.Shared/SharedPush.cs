@@ -35,7 +35,7 @@ namespace OneSignalApp.Sample.Shared
       }
 
       private static void _inAppMessageTriggeredAction(InAppMessageAction action) {
-         Console.WriteLine("In-App message Triggered Action: " + action.click_name);
+         Console.WriteLine("In-App message Triggered Action: " + action.clickName);
       }
 
       private static void _inAppMessageWillDisplay(InAppMessage message) {
