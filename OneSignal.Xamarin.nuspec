@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <version>4.0.0</version>
-        <id>OneSignal.Xamarin</id>
+        <id>OneSignalSDK.Xamarin</id>
         <title>OneSignal SDK for Xamarin</title>
         <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
