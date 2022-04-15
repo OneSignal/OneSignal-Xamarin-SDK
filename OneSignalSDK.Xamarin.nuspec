@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <version>4.0.0</version>
-        <id>OneSignal.Xamarin</id>
+        <id>OneSignalSDK.Xamarin</id>
         <title>OneSignal SDK for Xamarin</title>
         <authors>OneSignal, Martijn van Dijk</authors>
         <owners>OneSignal</owners>
@@ -41,17 +41,17 @@
         <file src="OneSignalSDK.Xamarin.Core\bin\Release\netstandard2.0\OneSignalSDK.Xamarin.Core.dll" target="lib\netstandard2.0" />
 
         <!--Xamarin.Android-->
-        <file src="OneSignalSDK.Xamarin.Android\bin\Release\*OneSignal.*" target="lib\MonoAndroid10" />
+        <file src="OneSignalSDK.Xamarin.Android\bin\Release\*OneSignal*" target="lib\MonoAndroid10" />
 
         <!--Xamarin.iOS Unified-->
-        <file src="OneSignalSDK.Xamarin.iOS\bin\Release\*OneSignal.*" target="lib\Xamarin.iOS10" />
+        <file src="OneSignalSDK.Xamarin.iOS\bin\Release\*OneSignal*" target="lib\Xamarin.iOS10" />
 
         <!-- Workaround to support .XCFramework for iOS  -->
         <!-- Resources includes the full OneSignal.XCFramework.
              iOS.Binding project has NoBindingEmbedding = true so it isn't also bundled in the .dll -->
-        <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="content\Com.OneSignal.iOS.resources" />
+        <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="content\OneSignalSDK.Xamarin.iOS.resources" />
         <!-- This is a .target files that gets used by project that consumes the NuGet package.
              This copies out the OneSignal.xcframework from the resources folder and adds a NativeReference to it in the app project. -->
-        <file src="OneSignal.iOS.Binding\Com.OneSignal.targets" target="build\Xamarin.iOS10\" />
+        <file src="OneSignal.iOS.Binding\OneSignalSDK.Xamarin.targets" target="build\Xamarin.iOS10\" />
     </files>
 </package>
