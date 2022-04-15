@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="OneSignalAddOneSignalXCFramework" BeforeTargets="BeforeCompile">
+        <ItemGroup>
+            <BindingResources Include="$(MSBuildThisFileDirectory)../../content/OneSignalSDK.Xamarin.iOS.resources/**/*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(BindingResources)" DestinationFolder="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources/%(RecursiveDir)" ContinueOnError="false" />
+        <ItemGroup>
+            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignal.xcframework">
+                <Kind>Framework</Kind>
+                <SmartLink>False</SmartLink>
+                <ForceLoad>True</ForceLoad>
+                <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit</Frameworks>
+            </NativeReference>
+        </ItemGroup>
+    </Target>
+</Project>
