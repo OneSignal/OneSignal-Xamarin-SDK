@@ -58,12 +58,13 @@ namespace OneSignalSDK.Xamarin {
          if(notification.ActionButtons != null) {
             foreach (NSObject actionButton in notification.ActionButtons) {
                Dictionary<string, string> actionButtonXam = NSObjectToPureDict(actionButton);
-
-               actionButtonsXam.Add(new ActionButton(
-                  actionButtonXam.GetValueOrDefault("id"),
-                  actionButtonXam.GetValueOrDefault("text"),
-                  actionButtonXam.GetValueOrDefault("icon")
-               ));
+               if (actionButtonXam != null) {
+                  actionButtonsXam.Add(new ActionButton(
+                     actionButtonXam.GetValueOrDefault("id"),
+                     actionButtonXam.GetValueOrDefault("text"),
+                     actionButtonXam.GetValueOrDefault("icon")
+                  ));
+               }
             }
          }
 
