@@ -141,8 +141,10 @@ namespace OneSignalSDK.Xamarin {
          OneSignalNative.SetLaunchURLsInApp(launchInApp);
       }
 
-      public override void SetLanguage(string language) {
+      public override async Task<bool> SetLanguage(string language) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.SetLanguage(language);
+         return await proxy;
       }
 
       public override async Task<bool> SetExternalUserId(string externalId, string authHash = null) {
