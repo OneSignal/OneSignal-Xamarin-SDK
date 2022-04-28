@@ -347,7 +347,7 @@ namespace OneSignalSDK.Xamarin.Core {
       /// <a href="https://documentation.onesignal.com/docs/language-localization#what-languages-are-supported">ISO 639-1</a> language codes.
       /// </summary>
       /// <param name="language"></param>
-      public abstract void SetLanguage(string languageCode);
+      public abstract Task<bool> SetLanguage(string languageCode);
 
       #region Location
       /// <summary>
