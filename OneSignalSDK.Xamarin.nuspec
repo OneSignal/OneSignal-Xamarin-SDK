@@ -4,11 +4,11 @@
         <version>4.0.0</version>
         <id>OneSignalSDK.Xamarin</id>
         <title>OneSignal SDK for Xamarin</title>
-        <authors>OneSignal, Martijn van Dijk</authors>
+        <authors>OneSignal</authors>
         <owners>OneSignal</owners>
         <licenseUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK</projectUrl>
-        <iconUrl>https://github.com/OneSignal/OneSignal-Xamarin-SDK/blob/master/nuget_icon.png?raw=true</iconUrl>
+        <icon>nuget_icon.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>OneSignal for Xamarin</description>
         <summary>OneSignal is a free push notification service for mobile apps. This plugin makes it easy to integrate your Xamarin app with OneSignal</summary>
@@ -59,5 +59,6 @@
         <!-- This is a .target files that gets used by project that consumes the NuGet package.
              This copies out the OneSignal.xcframework from the resources folder and adds a NativeReference to it in the app project. -->
         <file src="OneSignal.iOS.Binding\OneSignalSDK.Xamarin.targets" target="build\Xamarin.iOS\" />
+        <file src="nuget_icon.png" />
     </files>
 </package>
