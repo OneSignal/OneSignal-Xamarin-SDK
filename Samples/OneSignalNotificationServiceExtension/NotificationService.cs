@@ -1,9 +1,7 @@
 ﻿using System;
 using Foundation;
-using UIKit;
 using UserNotifications;
-using Com.OneSignal;
-using Com.OneSignal.Abstractions;
+using OneSignalSDK.Xamarin;
 
 namespace OneSignalNotificationServiceExtension
 {
@@ -25,9 +23,7 @@ namespace OneSignalNotificationServiceExtension
       ContentHandler = contentHandler;
       BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
 
-      (OneSignal.Current as OneSignalImplementation).DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
-
-      ContentHandler(BestAttemptContent);
+      (OneSignal.Default as OneSignalImplementation).DidReceiveNotificationExtensionRequest(request, BestAttemptContent, contentHandler);
     }
 
     public override void TimeWillExpire()
@@ -35,7 +31,7 @@ namespace OneSignalNotificationServiceExtension
       // Called just before the extension will be terminated by the system.
       // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
 
-      (OneSignal.Current as OneSignalImplementation).ServiceExtensionTimeWillExpireRequest(ReceivedRequest, BestAttemptContent);
+      (OneSignal.Default as OneSignalImplementation).ServiceExtensionTimeWillExpireRequest(ReceivedRequest, BestAttemptContent);
 
       ContentHandler(BestAttemptContent);
     }

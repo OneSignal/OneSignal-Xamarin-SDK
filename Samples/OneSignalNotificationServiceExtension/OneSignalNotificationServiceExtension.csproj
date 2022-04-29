@@ -9,6 +9,7 @@
     <RootNamespace>OneSignalNotificationServiceExtension</RootNamespace>
     <AssemblyName>OneSignalNotificationServiceExtension</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <ReleaseVersion>4.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
     <IOSDebuggerPort>42254</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
@@ -70,7 +70,6 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <IOSDebuggerPort>27322</IOSDebuggerPort>
@@ -99,14 +98,18 @@
     <Compile Include="NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Com.OneSignal.iOS\Com.OneSignal.iOS.csproj">
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.iOS\OneSignalSDK.Xamarin.iOS.csproj">
       <Project>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</Project>
-      <Name>Com.OneSignal.iOS</Name>
+      <Name>OneSignalSDK.Xamarin.iOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Com.OneSignal.Abstractions\Com.OneSignal.Abstractions.csproj">
-      <Project>{4AAD1A77-175C-46BF-9C64-B3042A20CCFA}</Project>
-      <Name>Com.OneSignal.Abstractions</Name>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
+      <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
+      <Name>OneSignalSDK.Xamarin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Name>OneSignal.iOS.Binding</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
+  <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

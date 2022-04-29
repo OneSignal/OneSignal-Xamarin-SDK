@@ -3,7 +3,7 @@
 </p>
 
 ### OneSignal Xamarin SDK
-[![NuGet](https://img.shields.io/nuget/v/Com.OneSignal.svg?label=NuGet)](https://www.nuget.org/packages/Com.OneSignal)
+[![NuGet](https://img.shields.io/nuget/v/OneSignalSDK.Xamarin.svg?label=NuGet)](https://www.nuget.org/packages/OneSignal.Xamarin)
 
 ---
 

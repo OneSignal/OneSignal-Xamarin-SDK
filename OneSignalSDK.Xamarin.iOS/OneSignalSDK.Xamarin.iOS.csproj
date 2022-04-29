@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OneSignalSDK.Xamarin</RootNamespace>
+    <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <ReleaseVersion>4.0.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <IOSDebuggerPort>59137</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OneSignalImplementation.cs" />
+    <Compile Include="..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.cs">
+      <Link>OneSignalSDK.Xamarin.cs</Link>
+    </Compile>
+    <Compile Include="Utilities\NativeConversion.cs" />
+    <Compile Include="OneSignalCallbacks.cs" />
+    <Compile Include="NotificationServiceExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
+      <Name>OneSignalSDK.Xamarin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
+      <Name>OneSignal.iOS.Binding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
