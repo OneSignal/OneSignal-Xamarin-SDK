@@ -143,7 +143,7 @@ namespace OneSignalSDK.Xamarin {
 
       public override async Task<bool> SetLanguage(string language) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
-         OneSignalNative.SetLanguage(language);
+         OneSignalNative.SetLanguage(language, delegate { proxy.OnResponse(true); }, response => proxy.OnResponse(false));
          return await proxy;
       }
 
