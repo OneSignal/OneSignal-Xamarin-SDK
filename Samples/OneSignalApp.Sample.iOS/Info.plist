@@ -39,7 +39,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>OneSignalXamarminExample</string>
+	<string>OneSignalXamarinExample</string>
 	<key>OneSignal_require_privacy_consent</key>
 	<true/>
 </dict>
