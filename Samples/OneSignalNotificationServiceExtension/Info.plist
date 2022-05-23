@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>OneSignalNotificationServiceExtensionXamarin</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.onesignal.example.OneSignalNotificationServiceExtensionXamarin</string>
+	<string>com.onesignal.example.OneSignalNotificationServiceExtensionA</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
