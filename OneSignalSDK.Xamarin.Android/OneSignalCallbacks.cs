@@ -162,6 +162,16 @@ namespace OneSignalSDK.Xamarin {
          }
       }
 
+      private sealed class OSLanguageUpdateHandler : JavaLaterProxy<bool>, OneSignalNative.IOSSetLanguageCompletionHandler {
+         public void OnSuccess(string results) {
+            _later.Complete(true);
+         }
+
+         public void OnFailure(OneSignalNative.OSLanguageError error) {
+            _later.Complete(false);
+         }
+      }
+
       private sealed class OSChangeTagsUpdateHandler : JavaLaterProxy<bool>, OneSignalNative.IChangeTagsUpdateHandler {
          public void OnSuccess(JSONObject jsonResults) {
             _later.Complete(true);
