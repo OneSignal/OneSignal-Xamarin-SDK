@@ -1032,13 +1032,13 @@ namespace Com.OneSignal.iOS {
 		void SendOutcomeWithValue(string name, NSNumber value, [NullAllowed] OSSendOutcomeSuccess success);
 	}
 
-	[Static]
-	//[Verify (ConstantsInterfaceAssociation)]
-	partial interface Constants {
-		// extern NSString *const ONESIGNAL_VERSION;
-		[Field("ONESIGNAL_VERSION", "__Internal")]
-		NSString ONESIGNAL_VERSION { get; }
-	}
+	//[Static]
+	////[Verify (ConstantsInterfaceAssociation)]
+	//partial interface Constants {
+	//	// extern NSString *const ONESIGNAL_VERSION;
+	//	[Field("ONESIGNAL_VERSION", "__Internal")]
+	//	NSString ONESIGNAL_VERSION { get; }
+	//}
 
 	// typedef void (^OSUserResponseBlock)(BOOL);
 	delegate void OSUserResponseBlock(bool arg0);

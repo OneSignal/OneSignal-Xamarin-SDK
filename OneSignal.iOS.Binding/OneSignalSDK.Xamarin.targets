@@ -9,7 +9,24 @@
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>
-                <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit</Frameworks>
+                <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit OneSignalOutcomes OneSignalCore OneSignalExtension</Frameworks>
+            </NativeReference>
+            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalExtension.xcframework">
+                <Kind>Framework</Kind>
+                <SmartLink>False</SmartLink>
+                <ForceLoad>True</ForceLoad>
+                <Frameworks>UserNotifications OneSignalCore OneSignalOutcomes</Frameworks>
+            </NativeReference>
+            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalOutcomes.xcframework">
+                <Kind>Framework</Kind>
+                <SmartLink>False</SmartLink>
+                <ForceLoad>True</ForceLoad>
+                <Frameworks>OneSignalCore</Frameworks>
+            </NativeReference>
+            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalCore.xcframework">
+                <Kind>Framework</Kind>
+                <SmartLink>False</SmartLink>
+                <ForceLoad>True</ForceLoad>
             </NativeReference>
         </ItemGroup>
     </Target>
