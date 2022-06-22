@@ -55,14 +55,17 @@
     <NativeReference Include="OneSignalCore.xcframework">
       <Kind>Static</Kind>
       <SmartLink>False</SmartLink>
+      <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit OneSignalOutcomes OneSignalCore OneSignalExtension</Frameworks>
     </NativeReference>
     <NativeReference Include="OneSignalExtension.xcframework">
       <Kind>Static</Kind>
       <SmartLink>False</SmartLink>
+      <Frameworks>UserNotifications OneSignalCore OneSignalOutcomes</Frameworks>
     </NativeReference>
     <NativeReference Include="OneSignalOutcomes.xcframework">
       <Kind>Static</Kind>
       <SmartLink>False</SmartLink>
+      <Frameworks>OneSignalCore</Frameworks>
     </NativeReference>
   </ItemGroup>
 </Project>
