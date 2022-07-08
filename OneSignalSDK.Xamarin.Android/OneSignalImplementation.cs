@@ -86,6 +86,13 @@ namespace OneSignalSDK.Xamarin {
          return await handler;
       }
 
+      //Required as a quick fix for iOS setExternalUser non-nullable hashToken. Need removed as soon as OneSignal iOS updates hashToken to nullable
+      public override async Task<bool> SetExternalUserId(string externalId) {
+         OSExternalUserIDUpdateHandler handler = new OSExternalUserIDUpdateHandler();
+         OneSignalNative.SetExternalUserId(externalId, handler);
+         return await handler;
+      }
+
       public override async Task<bool> SetExternalUserId(string externalId, string authHash = null) {
          OSExternalUserIDUpdateHandler handler = new OSExternalUserIDUpdateHandler();
          OneSignalNative.SetExternalUserId(externalId, authHash, handler);

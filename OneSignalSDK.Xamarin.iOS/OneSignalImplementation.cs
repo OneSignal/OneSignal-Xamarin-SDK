@@ -147,6 +147,13 @@ namespace OneSignalSDK.Xamarin {
          return await proxy;
       }
 
+      //Required as a quick fix for iOS setExternalUser non-nullable hashToken. Need removed as soon as OneSignal iOS updates hashToken to nullable
+      public override async Task<bool> SetExternalUserId(string externalId) {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.SetExternalUserId(externalId, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
+
       public override async Task<bool> SetExternalUserId(string externalId, string authHash = null) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
          OneSignalNative.SetExternalUserId(externalId, authHash, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
