@@ -256,6 +256,9 @@ namespace OneSignalSDK.Xamarin.Core {
 
 
       #region User & Device Properties
+      //Required as a quick fix for iOS setExternalUser non-nullable hashToken. Need removed as soon as OneSignal iOS updates hashToken to nullable
+      public abstract Task<bool> SetExternalUserId(string externalId);
+
       /// <summary>
       /// Allows you to use your own application's user id to send OneSignal messages to your user. To tie the user
       /// to a given user id, you can use this method.
