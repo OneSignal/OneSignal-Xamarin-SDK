@@ -1,29 +1,28 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="OneSignalAddOneSignalXCFramework" BeforeTargets="BeforeCompile">
+         <PropertyGroup>
+            <BindingResources>$(MSBuildThisFileDirectory)../../res/iOS</BindingResources>
+        </PropertyGroup>
         <ItemGroup>
-            <BindingResources Include="$(MSBuildThisFileDirectory)../../content/OneSignalSDK.Xamarin.iOS.resources/**/*.*" />
-        </ItemGroup>
-        <Copy SourceFiles="@(BindingResources)" DestinationFolder="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources/%(RecursiveDir)" ContinueOnError="false" />
-        <ItemGroup>
-            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignal.xcframework">
+            <NativeReference Include="$(BindingResources)/OneSignal.xcframework">
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>
                 <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit OneSignalOutcomes OneSignalCore OneSignalExtension</Frameworks>
             </NativeReference>
-            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalExtension.xcframework">
+            <NativeReference Include="$(BindingResources)/OneSignalExtension.xcframework">
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>
                 <Frameworks>UserNotifications OneSignalCore OneSignalOutcomes</Frameworks>
             </NativeReference>
-            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalOutcomes.xcframework">
+            <NativeReference Include="$(BindingResources)/OneSignalOutcomes.xcframework">
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>
                 <Frameworks>OneSignalCore</Frameworks>
             </NativeReference>
-            <NativeReference Include="$(TargetDir)/OneSignalSDK.Xamarin.iOS.resources\OneSignalCore.xcframework">
+            <NativeReference Include="$(BindingResources)/OneSignalCore.xcframework">
                 <Kind>Framework</Kind>
                 <SmartLink>False</SmartLink>
                 <ForceLoad>True</ForceLoad>
