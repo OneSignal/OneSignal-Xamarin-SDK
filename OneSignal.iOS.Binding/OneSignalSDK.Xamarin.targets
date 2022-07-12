@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="OneSignalAddOneSignalXCFramework" BeforeTargets="BeforeCompile">
          <PropertyGroup>
-            <BindingResources>$(MSBuildThisFileDirectory)../../content/OneSignalSDK.Xamarin.iOS.resources</BindingResources>
+            <BindingResources>$(MSBuildThisFileDirectory)../../res/iOS</BindingResources>
         </PropertyGroup>
         <ItemGroup>
             <NativeReference Include="$(BindingResources)/OneSignal.xcframework">

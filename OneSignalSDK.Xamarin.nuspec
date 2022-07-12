@@ -55,7 +55,7 @@
         <!-- Workaround to support .XCFramework for iOS  -->
         <!-- Resources includes the full OneSignal.XCFramework.
              iOS.Binding project has NoBindingEmbedding = true so it isn't also bundled in the .dll -->
-        <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="content\OneSignalSDK.Xamarin.iOS.resources" />
+        <file src="OneSignal.iOS.Binding\bin\Release\OneSignal.iOS.Binding.resources\**" target="res\iOS" />
         <!-- This is a .target files that gets used by project that consumes the NuGet package.
              This copies out the OneSignal.xcframework from the resources folder and adds a NativeReference to it in the app project. -->
         <file src="OneSignal.iOS.Binding\OneSignalSDK.Xamarin.targets" target="build\Xamarin.iOS\" />
