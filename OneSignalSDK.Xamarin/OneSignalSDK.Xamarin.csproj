@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+	  <ImplicitUsings>enable</ImplicitUsings>
+   <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
     <PackageId>OneSignalSDK.Xamarin</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -17,12 +19,13 @@
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
-    <DefineConstants>TRACE;PORTABLE;DEBUG;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
+    <DefineConstants>TRACE;PORTABLE;NETSTANDARD;NETSTANDARD2_0;DEBUG;NET;NET6_0;NETCOREAPP</DefineConstants>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <DefineConstants>TRACE;PORTABLE;RELEASE;NETSTANDARD1_0</DefineConstants>
+    <DefineConstants>TRACE;PORTABLE;RELEASE;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
@@ -31,8 +34,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="NETStandard.Library" />
   </ItemGroup>
 </Project>
