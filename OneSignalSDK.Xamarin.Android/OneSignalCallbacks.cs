@@ -10,6 +10,7 @@ using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
 using Org.Json;
 using Laters;
+using Notification = OneSignalSDK.Xamarin.Core.Notification;
 
 namespace OneSignalSDK.Xamarin {
    public partial class OneSignalImplementation {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using OneSignalSDK.Xamarin.Core;
+using Notification = OneSignalSDK.Xamarin.Core.Notification;
 using OneSignalAndroid = Com.OneSignal.Android;
 using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
