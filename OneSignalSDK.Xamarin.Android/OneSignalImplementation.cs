@@ -55,10 +55,15 @@ namespace OneSignalSDK.Xamarin {
       }
 
       public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
+         return await PromptForPushNotificationsWithUserResponse(false);
+      }
+
+      public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse(bool fallbackToSettings) {
          var handler = new OSPromptForPushNotificationPermissionResponseHandler();
-         OneSignalNative.PromptForPushNotifications(false, handler);
+         OneSignalNative.PromptForPushNotifications(fallbackToSettings, handler);
          return await handler ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
+
 
       public override LogLevel LogLevel {
          get => currentLogLevel;

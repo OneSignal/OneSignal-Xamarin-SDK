@@ -37,7 +37,7 @@ namespace OneSignalApp.Sample.Shared
 
       private static async Task promptForNotificationsAsync()
       {
-         var accepted = await OneSignal.Default.PromptForPushNotificationsWithUserResponse();
+         var accepted = await OneSignal.Default.PromptForPushNotificationsWithUserResponse(true);
          Console.WriteLine("PromptForPushResponse: " + accepted);
       }
 
