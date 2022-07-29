@@ -19,7 +19,6 @@ namespace OneSignalApp.Sample.Shared
          OneSignal.Default.RequiresPrivacyConsent = true;
 
          OneSignal.Default.Initialize("77e32082-ea27-42e3-a898-c72e141824ef");
-         OneSignal.Default.PromptForPushNotificationsWithUserResponse();
 
          OneSignal.Default.PrivacyConsent = true;
 
@@ -32,6 +31,14 @@ namespace OneSignalApp.Sample.Shared
          OneSignal.Default.InAppMessageDidDismiss += _inAppMessageDidDismiss;
 
          OneSignal.Default.InAppMessageTriggeredAction += _inAppMessageTriggeredAction;
+
+         _ = promptForNotificationsAsync();
+      }
+
+      private static async Task promptForNotificationsAsync()
+      {
+         var accepted = await OneSignal.Default.PromptForPushNotificationsWithUserResponse();
+         Console.WriteLine("PromptForPushResponse: " + accepted);
       }
 
       private static void _inAppMessageTriggeredAction(InAppMessageAction action) {
