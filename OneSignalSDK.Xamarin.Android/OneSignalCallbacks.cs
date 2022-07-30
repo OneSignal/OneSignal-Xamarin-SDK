@@ -172,6 +172,12 @@ namespace OneSignalSDK.Xamarin {
          }
       }
 
+      private sealed class OSPromptForPushNotificationPermissionResponseHandler : JavaLaterProxy<bool>, OneSignalNative.IPromptForPushNotificationPermissionResponseHandler {
+         public void Response(bool accepted) {
+            _later.Complete(accepted);
+         }
+      }
+
       private sealed class OSChangeTagsUpdateHandler : JavaLaterProxy<bool>, OneSignalNative.IChangeTagsUpdateHandler {
          public void OnSuccess(JSONObject jsonResults) {
             _later.Complete(true);

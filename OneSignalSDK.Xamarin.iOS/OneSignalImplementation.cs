@@ -45,8 +45,12 @@ namespace OneSignalSDK.Xamarin {
       }
 
       public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse() {
+         return await PromptForPushNotificationsWithUserResponse(false);
+      }
+
+      public override async Task<NotificationPermission> PromptForPushNotificationsWithUserResponse(bool fallbackToSettings) {
          BooleanCallbackProxy proxy = new BooleanCallbackProxy();
-         OneSignalNative.PromptForPushNotificationsWithUserResponse(response => proxy.OnResponse(response));
+         OneSignalNative.PromptForPushNotificationsWithUserResponse(response => proxy.OnResponse(response), fallbackToSettings);
          return await proxy ? NotificationPermission.Authorized : NotificationPermission.Denied;
       }
 

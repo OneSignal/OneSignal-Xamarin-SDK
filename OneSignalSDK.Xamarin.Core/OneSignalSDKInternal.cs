@@ -152,6 +152,14 @@ namespace OneSignalSDK.Xamarin.Core {
       public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse();
 
       /// <summary>
+      /// Prompt the user for notification permissions.
+      /// </summary>
+      /// <returns>Awaitable NotificationPermission which provides the user's consent status</returns>
+      /// <remarks>Recommended: Do not use and instead follow
+      /// <a href="https://documentation.onesignal.com/docs/ios-push-opt-in-prompt">Push Opt-In Prompt</a></remarks>
+      public abstract Task<NotificationPermission> PromptForPushNotificationsWithUserResponse(bool fallbackToSettings);
+
+      /// <summary>
       /// Removes all OneSignal app notifications from the Notification Shade
       /// </summary>
       public abstract void ClearOneSignalNotifications();
