@@ -18,7 +18,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidTlsProvider>
     </AndroidTlsProvider>
-    <ReleaseVersion>4.1.3</ReleaseVersion>
+    <ReleaseVersion>4.2.0-beta1-maui-only</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,9 +90,6 @@
     <Reference Include="Xamarin.AndroidX.Lifecycle.ViewModelSavedState">
       <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.3.1.3\lib\monoandroid90\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.AndroidX.Tracing.Tracing">
-      <HintPath>..\packages\Xamarin.AndroidX.Tracing.Tracing.1.0.0.3\lib\monoandroid90\Xamarin.AndroidX.Tracing.Tracing.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.AndroidX.VersionedParcelable">
       <HintPath>..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.10\lib\monoandroid90\Xamarin.AndroidX.VersionedParcelable.dll</HintPath>
     </Reference>
@@ -131,9 +128,6 @@
     </Reference>
     <Reference Include="Xamarin.Google.Guava.ListenableFuture">
       <HintPath>..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.5\lib\monoandroid90\Xamarin.Google.Guava.ListenableFuture.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.AndroidX.Concurrent.Futures">
-      <HintPath>..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.5\lib\monoandroid90\Xamarin.AndroidX.Concurrent.Futures.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.AndroidX.Browser">
       <HintPath>..\packages\Xamarin.AndroidX.Browser.1.3.0.8\lib\monoandroid90\Xamarin.AndroidX.Browser.dll</HintPath>
@@ -278,6 +272,12 @@
       <HintPath>..\packages\Xamarin.Essentials.1.7.3\lib\monoandroid10.0\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Java.Interop" />
+    <Reference Include="Xamarin.AndroidX.Concurrent.Futures">
+      <HintPath>..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.5\lib\monoandroid90\Xamarin.AndroidX.Concurrent.Futures.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Tracing.Tracing">
+      <HintPath>..\packages\Xamarin.AndroidX.Tracing.Tracing.1.0.0.3\lib\monoandroid90\Xamarin.AndroidX.Tracing.Tracing.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.cs">
@@ -289,6 +289,10 @@
     </ProjectReference>
     <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Xamarin.AndroidX.Concurrent.Futures" />
+    <None Remove="Xamarin.AndroidX.Tracing.Tracing" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
