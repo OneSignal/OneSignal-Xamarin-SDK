@@ -4,16 +4,16 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{9A19103F-16F7-4668-BE54-9A1E7A4F7556}</ProjectTypeGuids>
-    <TargetFramework>net6.0-ios</TargetFramework>
+    <TargetFrameworks>net6.0-ios;Xamarin.iOS10</TargetFrameworks>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
 		<Nullable>enable</Nullable>
-		<ImplicitUsings>true</ImplicitUsings>
-		<IsBindingProject>true</IsBindingProject>
-		<IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
-    <RootNamespace>OneSignal.iOS.Binding</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+	  <OutputType>Library</OutputType>
+	  <ImplicitUsings>enable</ImplicitUsings>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>OneSignal.iOS.Binding</AssemblyName>
-    <NoBindingEmbedding>true</NoBindingEmbedding>
+    <RootNamespace>OneSignalSDK.Xamarin</RootNamespace>
+    <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <ReleaseVersion>4.1.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

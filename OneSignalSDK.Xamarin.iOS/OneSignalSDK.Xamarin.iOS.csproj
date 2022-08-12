@@ -4,11 +4,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</ProjectGuid>
-    <TargetFramework>net6.0-ios</TargetFramework>
+    <TargetFrameworks>net6.0-ios;Xamarin.iOS10</TargetFrameworks>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
 		<Nullable>enable</Nullable>
-		<ImplicitUsings>true</ImplicitUsings>
-		<IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	  <OutputType>Library</OutputType>
+	  <ImplicitUsings>enable</ImplicitUsings>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <RootNamespace>OneSignalSDK.Xamarin</RootNamespace>
     <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
