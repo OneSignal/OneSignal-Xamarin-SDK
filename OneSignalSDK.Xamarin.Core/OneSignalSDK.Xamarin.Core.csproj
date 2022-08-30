@@ -37,10 +37,15 @@
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="NETStandard.Library" />
     <None Remove="Microsoft.NETCore.Portable.Compatibility" />
+    <None Remove="StyleCop.Analyzers" />
   </ItemGroup>
 </Project>
