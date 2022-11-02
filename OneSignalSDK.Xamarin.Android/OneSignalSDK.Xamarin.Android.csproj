@@ -293,9 +293,16 @@
   <ItemGroup>
     <None Remove="Xamarin.AndroidX.Concurrent.Futures" />
     <None Remove="Xamarin.AndroidX.Tracing.Tracing" />
+    <None Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
   <Import Project="..\packages\Xamarin.AndroidX.Browser.1.3.0.8\build\monoandroid90\Xamarin.AndroidX.Browser.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Browser.1.3.0.8\build\monoandroid90\Xamarin.AndroidX.Browser.targets')" />
