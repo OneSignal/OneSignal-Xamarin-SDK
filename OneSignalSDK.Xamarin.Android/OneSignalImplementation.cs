@@ -284,5 +284,17 @@ namespace OneSignalSDK.Xamarin {
          OneSignalNative.SendOutcomeWithValue(name, value, handler);
          return await handler;
       }
+
+      public override Task<bool> EnterLiveActivity(string activityId, string token)
+      {
+         Console.WriteLine("OneSignal: EnterLiveActivity is available on iOS only");
+         return Task.FromResult(false);
+      }
+
+      public override Task<bool> ExitLiveActivity(string activityId)
+      {
+         Console.WriteLine("OneSignal: ExitLiveActivity is available on iOS only");
+         return Task.FromResult(false);
+      }
    }
 }
