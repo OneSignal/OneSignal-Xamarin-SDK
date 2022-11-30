@@ -284,6 +284,18 @@ namespace OneSignalSDK.Xamarin {
          return await proxy;
       }
 
+      public override async Task<bool> EnterLiveActivity(string activityId, string token)
+      {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.EnterLiveActivity(activityId, token, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
 
+      public override async Task<bool> ExitLiveActivity(string activityId)
+      {
+         BooleanCallbackProxy proxy = new BooleanCallbackProxy();
+         OneSignalNative.ExitLiveActivity(activityId, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
+         return await proxy;
+      }
    }
 }
