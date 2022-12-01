@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -63,7 +63,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -131,6 +131,17 @@
       <IsAppExtension>true</IsAppExtension>
       <Name>OneSignalNotificationServiceExtension</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OneSignalLiveActivity.Binding\OneSignalLiveActivity.Binding.csproj">
+      <Project>{F284A8CB-805D-4D84-B547-68EFBB50E9DA}</Project>
+      <Name>OneSignalLiveActivity.Binding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="$(DefineConstants.Contains(LIVE_ACTIVITIES))">
+    <AdditionalAppExtensions Include="$(MSBuildProjectDirectory)/../native/example/">
+      <Name>OneSignalWidgetExtension</Name>
+      <BuildOutput Condition="'$(Platform)' == 'iPhone'">DerivedData/example/Build/Products/Debug-iphoneos</BuildOutput>
+      <BuildOutput Condition="'$(Platform)' == 'iPhoneSimulator'">DerivedData/example/Build/Products/Debug-iphonesimulator</BuildOutput>
+    </AdditionalAppExtensions>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

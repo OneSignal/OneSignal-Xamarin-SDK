@@ -28,7 +28,10 @@ namespace OneSignalApp.Sample.iOS
 		[Outlet]
 		UIKit.UITextField UniqueOutcomeKey { get; set; }
 
-		[Action ("Button_TouchUpInside:")]
+      [Outlet]
+      UIKit.UITextField ActivityID { get; set; }
+
+      [Action ("Button_TouchUpInside:")]
 		partial void Button_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("ConsentChanged:")]
@@ -54,8 +57,14 @@ namespace OneSignalApp.Sample.iOS
 
 		[Action ("SetExternalUserId:")]
 		partial void SetExternalUserId (UIKit.UIButton sender);
-		
-		void ReleaseDesignerOutlets ()
+
+      [Action("EnterLiveActivity:")]
+      partial void EnterLiveActivity(UIKit.UIButton sender);
+
+      [Action("ExitLiveActivity:")]
+      partial void ExitLiveActivity(UIKit.UIButton sender);
+
+      void ReleaseDesignerOutlets ()
 		{
 			if (OutcomeKey != null) {
 				OutcomeKey.Dispose ();
