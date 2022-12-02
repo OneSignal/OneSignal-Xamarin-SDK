@@ -35,7 +35,6 @@ public class OneSignalLiveActivity : NSObject {
                     attributes: attributes,
                     contentState: contentState,
                     pushType: .token)
-                print(activity.id)
                 Task {
                     for await token in activity.pushTokenUpdates {
                         let myToken = token.map {String(format: "%02x", $0)}.joined()
