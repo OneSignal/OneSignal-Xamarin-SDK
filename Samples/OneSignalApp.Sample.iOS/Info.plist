@@ -42,5 +42,7 @@
 	<string>OneSignalXamarinExample</string>
 	<key>OneSignal_require_privacy_consent</key>
 	<true/>
+	<key>NSSupportsLiveActivities</key>
+	<string>Yes</string>
 </dict>
 </plist>

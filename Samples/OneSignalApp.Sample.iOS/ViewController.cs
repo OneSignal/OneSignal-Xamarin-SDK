@@ -1,5 +1,6 @@
 ﻿using System;
 using OneSignalApp.Sample.Shared;
+using OneSignalLiveActivity.Binding;
 using OneSignalSDK.Xamarin;
 using UIKit;
 
@@ -87,5 +88,40 @@ namespace OneSignalApp.Sample.iOS
          SharedPush.SendOutcomeWithValue(name, value);
       }
 
+      partial void EnterLiveActivity(UIKit.UIButton sender)
+      {
+         var activityId = ActivityID.Text;
+
+         if (string.IsNullOrWhiteSpace(activityId))
+            return;
+
+#if LIVE_ACTIVITIES
+         var onesignalLiveActivity = new OneSignalLiveActivity.Binding.OneSignalLiveActivity();
+         onesignalLiveActivity.StartLiveActivityWithRecievedToken((str) =>
+         {
+            OneSignalSDK.Xamarin.OneSignal.Default.EnterLiveActivity(activityId, str);
+         });
+#else
+         var okAlertController = UIAlertController.Create("NOT SUPPORTED", "Live Activities disabled in sample app by default, follow steps in Samples/LIVE_ACTIVITES.md to try it out!", UIAlertControllerStyle.Alert);
+         okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+         PresentViewController(okAlertController, true, null);
+#endif
+      }
+
+      partial void ExitLiveActivity(UIKit.UIButton sender)
+      {
+         var activityId = ActivityID.Text;
+
+         if (string.IsNullOrWhiteSpace(activityId))
+            return;
+
+#if LIVE_ACTIVITIES
+         OneSignalSDK.Xamarin.OneSignal.Default.ExitLiveActivity(activityId);
+#else
+         var okAlertController = UIAlertController.Create("NOT SUPPORTED", "Live Activities disabled in sample app by default, follow steps in Samples/LIVE_ACTIVITES.md to try it out!", UIAlertControllerStyle.Alert);
+         okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+         PresentViewController(okAlertController, true, null);
+#endif
+      }
    }
 }
