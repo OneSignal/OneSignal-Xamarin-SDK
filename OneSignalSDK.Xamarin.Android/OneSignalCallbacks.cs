@@ -147,8 +147,15 @@ namespace OneSignalSDK.Xamarin {
 
       private sealed class OSGetTagsHandler : JavaLaterProxy<Dictionary<string, object>>, OneSignalNative.IOSGetTagsHandler {
          public void TagsAvailable(JSONObject tags) {
-            var result = Json.Deserialize(tags.ToString()) as Dictionary<string, object>;
-            _later.Complete(result);
+            if (tags == null)
+            {
+               _later.Complete(null);
+            }
+            else
+            {
+               var result = Json.Deserialize(tags.ToString()) as Dictionary<string, object>;
+               _later.Complete(result);
+            }
          }
       }
 
