@@ -34,6 +34,7 @@ namespace OneSignalSDK.Xamarin {
             nativeNotification.additionalData = Json.Deserialize(notification.AdditionalData.ToString()) as Dictionary<string, object>;
 
          if (notification.GroupedNotifications != null) {
+            nativeNotification.groupedNotifications = new List<Notification>();
             foreach (var individualNotification in notification.GroupedNotifications)
                nativeNotification.groupedNotifications.Add(NotificationToXam(individualNotification));
          }
