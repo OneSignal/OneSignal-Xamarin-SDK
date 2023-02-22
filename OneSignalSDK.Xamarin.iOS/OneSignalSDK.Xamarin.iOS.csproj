@@ -45,6 +45,17 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="iOSOneSignal.cs" />
+    <Compile Include="iOSDebugManager.cs" />
+    <Compile Include="iOSInAppMessagesManager.cs" />
+    <Compile Include="iOSLocationManager.cs" />
+    <Compile Include="iOSNotificationsManager.cs" />
+    <Compile Include="iOSSessionManager.cs" />
+    <Compile Include="iOSUserManager.cs" />
+    <Compile Include="NotificationServiceExtension.cs" />
+    <Compile Include="Utilities\CallbackProxy.cs" />
+    <Compile Include="Utilities\FromNativeConversion.cs" />
+    <Compile Include="Utilities\ToNativeConversion.cs" />
+    <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneSignalSDK.Xamarin.iOS.Binding\OneSignalSDK.Xamarin.iOS.Binding.csproj">

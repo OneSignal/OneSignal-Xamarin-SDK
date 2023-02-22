@@ -6,70 +6,70 @@ using OneSignalSDK.Xamarin.Core.Notifications;
 using OneSignalSDK.Xamarin.Core.Session;
 using OneSignalSDK.Xamarin.Core.User;
 using OneSignalSDK.Xamarin.Core.Internal.Utilities;
+
+using OneSignalNative = Com.OneSignal.iOS.OneSignal;
 using Foundation;
 using System;
-
-//using OneSignalNative = Com.OneSignal.Android.OneSignal;
 
 namespace OneSignalSDK.Xamarin.iOS;
 
 public class iOSOneSignal : IOneSignal
 {
-   public IUserManager User { get; }// = new iOSUserManager();
+    public IUserManager User { get; } = new iOSUserManager();
 
-   public ISessionManager Session { get; }// = new iOSSessionManager();
+    public ISessionManager Session { get; } = new iOSSessionManager();
 
-   public INotificationsManager Notifications { get; }// = new iOSNotificationsManager();
+    public INotificationsManager Notifications { get; } = new iOSNotificationsManager();
 
-   public ILocationManager Location { get; }// = new iOSLocationManager();
+    public ILocationManager Location { get; } = new iOSLocationManager();
 
-   public IInAppMessagesManager InAppMessages { get; }// = new iOSInAppMessagesManager();
+    public IInAppMessagesManager InAppMessages { get; } = new iOSInAppMessagesManager();
 
-   public IDebugManager Debug { get; }// = new iOSDebugManager();
+    public IDebugManager Debug { get; } = new iOSDebugManager();
 
-   public bool RequiresPrivacyConsent
-   {
-      get; // => OneSignalNative.RequiresPrivacyConsent;
-      set; // => OneSignalNative.RequiresPrivacyConsent = value;
-   }
+    public bool RequiresPrivacyConsent
+    {
+        get => OneSignalNative.RequiresPrivacyConsent;
+        set => OneSignalNative.RequiresPrivacyConsent = value;
+    }
 
-   public bool PrivacyConsent
-   {
-      get; // => OneSignalNative.PrivacyConsent;
-      set; // => OneSignalNative.SetPrivacyConsent(value);
-   }
+    public bool PrivacyConsent
+    {
+        get => OneSignalNative.PrivacyConsent;
+        set => OneSignalNative.SetPrivacyConsent(value);
+    }
 
-   public void Initialize(string appId)
-   {
-      //Com.OneSignal.iOS.OneSignalWrapper.SdkType = WrapperSDK.Type;
+    public void Initialize(string appId)
+    {
+        Com.OneSignal.iOS.OneSignalWrapper.SdkType = WrapperSDK.Type;
 
-      var version = WrapperSDK.Version;
-      if (version != null)
-      {
-         //Com.OneSignal.iOS.OneSignalWrapper.SdkVersion = version;
-      }
+        var version = WrapperSDK.Version;
+        if (version != null)
+        {
+            Com.OneSignal.iOS.OneSignalWrapper.SdkVersion = version;
+        }
 
-      //OneSignalNative.Initialize(appId, new NSDictionary());
+        OneSignalNative.Initialize(appId, new NSDictionary());
 
-      //((iOSUserManager)User).Initialize();
-      //((iOSNotificationsManager)Notifications).Initialize();
-      //((iOSInAppMessagesManager)InAppMessages).Initialize();
-   }
+        ((iOSUserManager)User).Initialize();
+        ((iOSNotificationsManager)Notifications).Initialize();
+        ((iOSInAppMessagesManager)InAppMessages).Initialize();
+    }
 
-   public void Login(string externalId, string? jwtBearerToken = null)
-   {
-      if (String.IsNullOrWhiteSpace(jwtBearerToken))
-      {
-         //OneSignalNative.Login(externalId);
-      }
-      else
-      {
-         //OneSignalNative.Login(externalId, jwtBearerToken);
-      }
-   }
+    public void Login(string externalId, string? jwtBearerToken = null)
+    {
+        if (String.IsNullOrWhiteSpace(jwtBearerToken))
+        {
+            OneSignalNative.Login(externalId);
+        }
+        else
+        {
+            OneSignalNative.Login(externalId, jwtBearerToken);
+        }
+    }
 
-   public void Logout()
-   {
-      //OneSignalNative.Logout();
-   }
+    public void Logout()
+    {
+        OneSignalNative.Logout();
+    }
 }

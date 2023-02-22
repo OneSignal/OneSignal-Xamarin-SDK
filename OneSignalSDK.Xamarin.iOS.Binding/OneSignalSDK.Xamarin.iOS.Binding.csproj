@@ -7,9 +7,10 @@
     <ProjectGuid>{04A479D8-BE46-4FBF-8143-DAE749F49E8D}</ProjectGuid>
     <TemplateGuid>{b6f3ff35-79b2-4f25-a2fc-60a7cf61013b}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>NativeLibrary</RootNamespace>
+    <RootNamespace>OneSignalSDK.Xamarin.iOS.Binding</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>NativeLibrary</AssemblyName>
+    <AssemblyName>OneSignalSDK.Xamarin.iOS.Binding</AssemblyName>
+    <NoBindingEmbedding>true</NoBindingEmbedding>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <ReleaseVersion>4.3.2</ReleaseVersion>
   </PropertyGroup>
@@ -42,10 +43,54 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="Structs.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="OneSignalFramework.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>SystemConfiguration UserNotifications WebKit CoreGraphics UIKit OneSignalOutcomes OneSignalCore OneSignalExtension OneSignalNotifications OneSignalOSCore OneSignalUser</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalCore.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>UIKit SystemConfiguration</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalExtension.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>UserNotifications OneSignalCore OneSignalOutcomes</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalNotifications.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>OneSignalCore OneSignalExtension OneSignalOutcomes UIKit UserNotifications WebKit</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalOSCore.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>OneSignalCore</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalOutcomes.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>OneSignalCore</Frameworks>
+    </NativeReference>
+    <NativeReference Include="OneSignalUser.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>OneSignalCore OneSignalNotifications OneSignalOSCore</Frameworks>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

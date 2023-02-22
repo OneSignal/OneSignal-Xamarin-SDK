@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</ProjectGuid>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <RootNamespace>OneSignalSDK.DotNet.iOS</RootNamespace>
+    <AssemblyName>OneSignalSDK.DotNet.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <IOSDebuggerPort>59137</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OneSignalSDK.DotNet.Core\OneSignalSDK.DotNet.Core.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalSDK.DotNet.iOS.Binding\OneSignalSDK.DotNet.iOS.Binding.csproj">
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+</Project>
