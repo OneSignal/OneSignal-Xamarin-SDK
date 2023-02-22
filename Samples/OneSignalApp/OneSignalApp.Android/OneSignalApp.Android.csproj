@@ -22,6 +22,7 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ReleaseVersion>4.3.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -86,6 +89,22 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.Binding\OneSignalSDK.Xamarin.Android.Binding.csproj">
+      <Project>{B8B96DE4-3CF6-42B8-829D-B159EB8B1343}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android\OneSignalSDK.Xamarin.Android.csproj">
+      <Project>{6E226C47-E47E-421A-96C2-70BD64746DD2}</Project>
+      <Name>OneSignalSDK.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
+      <Project>{696E809F-5373-470D-A0A9-C12DEAEE265A}</Project>
+      <Name>OneSignalSDK.Xamarin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.csproj">
+      <Project>{FBBE5003-806F-49AD-A079-9FCABA641B5F}</Project>
+      <Name>OneSignalSDK.Xamarin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OneSignalApp\OneSignalApp.csproj">
       <Project>{307837B9-857B-4717-B854-EC618BE8300C}</Project>
       <Name>OneSignalApp</Name>

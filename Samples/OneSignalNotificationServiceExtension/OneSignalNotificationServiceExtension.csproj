@@ -9,6 +9,7 @@
     <RootNamespace>OneSignalNotificationServiceExtension</RootNamespace>
     <AssemblyName>OneSignalNotificationServiceExtension</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <ReleaseVersion>4.3.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <_BundlerDebug>false</_BundlerDebug>
     <MtouchVerbosity></MtouchVerbosity>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +48,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchVerbosity></MtouchVerbosity>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -61,6 +64,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchVerbosity></MtouchVerbosity>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,6 +87,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <_BundlerDebug>false</_BundlerDebug>
     <MtouchVerbosity></MtouchVerbosity>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -101,16 +106,21 @@
     <Compile Include="NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.iOS\OneSignalSDK.Xamarin.iOS.csproj">
-      <Project>{5FF66A21-BA7B-48FD-8A7D-6A1092066306}</Project>
-      <Name>OneSignalSDK.Xamarin.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
-      <Project>{4A02EC63-E524-402B-8FD3-484FEFB172A1}</Project>
+      <Project>{696E809F-5373-470D-A0A9-C12DEAEE265A}</Project>
       <Name>OneSignalSDK.Xamarin.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\OneSignal.iOS.Binding\OneSignal.iOS.Binding.csproj">
-      <Name>OneSignal.iOS.Binding</Name>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.iOS.Binding\OneSignalSDK.Xamarin.iOS.Binding.csproj">
+      <Project>{04A479D8-BE46-4FBF-8143-DAE749F49E8D}</Project>
+      <Name>OneSignalSDK.Xamarin.iOS.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin.iOS\OneSignalSDK.Xamarin.iOS.csproj">
+      <Project>{E09AC8F6-3772-4BDA-A7D7-0A25E7A32615}</Project>
+      <Name>OneSignalSDK.Xamarin.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.csproj">
+      <Project>{FBBE5003-806F-49AD-A079-9FCABA641B5F}</Project>
+      <Name>OneSignalSDK.Xamarin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
