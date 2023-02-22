@@ -1,0 +1,6 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.onesignal.notifications']" name="managedName">Com.OneSignal.Android.Notifications</attr>
+
+  <remove-node path="/api/package[starts-with(@name, 'com.onesignal.notifications')]" />
+</metadata>
+

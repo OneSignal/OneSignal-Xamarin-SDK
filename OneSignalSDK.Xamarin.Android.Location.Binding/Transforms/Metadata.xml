@@ -1,0 +1,6 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.onesignal.location']" name="managedName">Com.OneSignal.Android.Location</attr>
+
+  <remove-node path="/api/package[starts-with(@name, 'com.onesignal.location')]" />
+</metadata>
+

@@ -1,0 +1,6 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.onesignal.inAppMessages']" name="managedName">Com.OneSignal.Android.InAppMessages</attr>
+
+  <remove-node path="/api/package[starts-with(@name, 'com.onesignal.inAppMessages')]" />
+</metadata>
+
