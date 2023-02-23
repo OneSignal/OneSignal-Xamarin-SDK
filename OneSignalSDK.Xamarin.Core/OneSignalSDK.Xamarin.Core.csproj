@@ -2,40 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>OneSignalSDK.Xamarin.Core</AssemblyName>
-    <PackageId>OneSignalSDK.Xamarin.Core</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <ReleaseVersion>4.3.2</ReleaseVersion>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugSymbols>true</DebugSymbols>
-    <Optimize></Optimize>
-    <DefineConstants></DefineConstants>
-    <ConsolePause>true</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <NoWarn></NoWarn>
-    <AllowUnsafeBlocks></AllowUnsafeBlocks>
-    <CheckForOverflowUnderflow></CheckForOverflowUnderflow>
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
+    <None Remove="Debug\" />
+    <None Remove="InAppMessages\" />
+    <None Remove="Internal\" />
+    <None Remove="Location\" />
+    <None Remove="Notifications\" />
+    <None Remove="Session\" />
+    <None Remove="User\" />
+    <None Remove="User\Subscriptions\" />
+    <None Remove="Internal\Utilities\" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Remove="NETStandard.Library" />
-    <None Remove="Microsoft.NETCore.Portable.Compatibility" />
+    <Folder Include="Debug\" />
+    <Folder Include="InAppMessages\" />
+    <Folder Include="Internal\" />
+    <Folder Include="Location\" />
+    <Folder Include="Notifications\" />
+    <Folder Include="Session\" />
+    <Folder Include="User\" />
+    <Folder Include="User\Subscriptions\" />
+    <Folder Include="Internal\Utilities\" />
   </ItemGroup>
 </Project>
