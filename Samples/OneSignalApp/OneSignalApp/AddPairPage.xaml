@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="OneSignalApp.AddPairPage">
+
+    <StackLayout Margin="10" Spacing="10" >
+        <Label Text="{Binding TitleLabel}" Style="{StaticResource HeadingLabel}" />
+        <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+
+        <Label Text="{Binding KeyLabel}" />
+        <Entry Text="{Binding Key}"/>
+        <Label Text="{Binding ValueLabel}" />
+        <Entry Text="{Binding Value}"/>
+        <Grid ColumnSpacing="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Text="Cancel" Clicked="CancelButton_Clicked" />
+            <Button Grid.Column="1" Text="OK" Clicked="OkayButton_Clicked" />
+        </Grid>
+    </StackLayout>
+</ContentPage>
+
