@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OneSignalApp.Converters"
+             x:Class="OneSignalApp.MainPage">
+
+<ContentPage.Resources>
+        <local:BoolNotConverter x:Key="BoolNot" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid IsVisible="{Binding HasGivenPrivacyConsent, Converter={StaticResource BoolNot}}" >
+            <Label Text="You must provide consent in order to access" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,00,100"/>
+            <Button Text="Provide Consent" Command="{Binding GivePrivacyConsentCommand}" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+
+        <ScrollView IsVisible="{Binding HasGivenPrivacyConsent}">
+            <StackLayout Spacing="10" Padding="20,20">
+                <Label Text="App" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID:" />
+                    <Label Grid.Column="1" Text="{Binding AppId}" HorizontalTextAlignment="End" />
+                </Grid>
+
+                <Button Text="SDK Validation" Command="{Binding ValidationCommand}" />
+
+                <Button Text="Revoke Consent" Command="{Binding RevokePrivacyConsentCommand}" />
+                <Button Text="Login User" Command="{Binding LoginUserCommand}" />
+                <Button Text="Logout User" Command="{Binding LogoutUserCommand}" />
+
+
+                <Label Text="Aliases" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add Alias" Command="{Binding AddAliasCommand}" />
+
+
+                <Label Text="Push" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID:" />
+                    <Label Grid.Column="1" Text="{Binding PushSubscriptionId}" HorizontalTextAlignment="End" />
+                </Grid>
+                <Grid IsEnabled="{Binding HasPushPermission}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Enabled:" />
+                    <Switch Grid.Column="1" IsToggled="{Binding IsPushEnabled}" HorizontalOptions="End" />
+                </Grid>
+                <Button Text="Prompt For Push" Command="{Binding PromptForPushCommand}" IsVisible="{Binding HasPushPermission, Converter={StaticResource BoolNot}}" />
+
+
+                <Label Text="Emails" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add Email" Command="{Binding AddEmailCommand}" />
+
+
+                <Label Text="SMSs" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add SMS" Command="{Binding AddSMSCommand}" />
+
+
+                <Label Text="Tags" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add Tag" Command="{Binding AddTagCommand}"/>
+
+
+                <Label Text="Outcome Events" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add Outcome" Command="{Binding AddOutcomeCommand}"/>
+
+
+                <Label Text="In-App Messaging" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Pause In-App Messages:" />
+                    <Switch Grid.Column="1" IsToggled="{Binding IsIAMPaused}" HorizontalOptions="End" />
+                </Grid>
+
+
+                <Label Text="Triggers" Style="{StaticResource HeadingLabel}" /> 
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Button Text="Add Trigger" Command="{Binding AddTriggerCommand}" />
+
+
+                <Label Text="Location" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Location Shared:" />
+                    <Switch Grid.Column="1" IsToggled="{Binding IsLocationShared}" HorizontalOptions="End" />
+                </Grid>
+                <Button Text="Prompt Location" Command="{Binding PromptForLocationCommand}" />
+
+
+                <Label Text="Live Activities" Style="{StaticResource HeadingLabel}" />
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                <Grid RowSpacing="10" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.Column="0" Placeholder="Activity ID" Text="{Binding LiveActivityId}" />
+                    <Button Grid.Row="0" Grid.Column="1" Text="Enter Live Activity" Command="{Binding EnterLiveActivityCommand}" />
+                    <Button Grid.Row="1" Grid.Column="1" Text="Exit Live Activity" Command="{Binding ExitLiveActivityCommand}" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
+
