@@ -51,15 +51,36 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AndroidOneSignal.cs" />
+    <Compile Include="AndroidDebugManager.cs" />
+    <Compile Include="AndroidInAppMessagesManager.cs" />
+    <Compile Include="AndroidLocationManager.cs" />
+    <Compile Include="AndroidNotificationsManager.cs" />
+    <Compile Include="AndroidSessionManager.cs" />
+    <Compile Include="AndroidUserManager.cs" />
+    <Compile Include="Utilities\AndroidConsumer.cs" />
+    <Compile Include="Utilities\FromNativeConversion.cs" />
+    <Compile Include="Utilities\ToNativeConversion.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OneSignalSDK.Xamarin.Android.Binding\OneSignalSDK.Xamarin.Android.Binding.csproj">
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Android.Core.Binding\OneSignalSDK.Xamarin.Android.Core.Binding.csproj">
       <Project>{B8B96DE4-3CF6-42B8-829D-B159EB8B1343}</Project>
-      <Name>OneSignalSDK.Xamarin.Android.Binding</Name>
+      <Name>OneSignalSDK.Xamarin.Android.Core.Binding</Name>
     </ProjectReference>
     <ProjectReference Include="..\OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj">
       <Project>{696E809F-5373-470D-A0A9-C12DEAEE265A}</Project>
       <Name>OneSignalSDK.Xamarin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Android.InAppMessages.Binding\OneSignalSDK.Xamarin.Android.InAppMessages.Binding.csproj">
+      <Project>{DFF0E734-69E6-48F2-A28D-7302C21F629A}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.InAppMessages.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Android.Location.Binding\OneSignalSDK.Xamarin.Android.Location.Binding.csproj">
+      <Project>{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.Location.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalSDK.Xamarin.Android.Notifications.Binding\OneSignalSDK.Xamarin.Android.Notifications.Binding.csproj">
+      <Project>{88D6C488-7458-4B74-AC18-41D62EC87C2C}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.Notifications.Binding</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

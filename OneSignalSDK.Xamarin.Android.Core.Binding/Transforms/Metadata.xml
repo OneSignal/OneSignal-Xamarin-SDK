@@ -1,0 +1,26 @@
+﻿<metadata>
+	<attr path="/api/package[@name='com.onesignal']" name="managedName">Com.OneSignal.Android</attr>
+	<attr path="/api/package[@name='com.onesignal.common']" name="managedName">Com.OneSignal.Android.Common</attr>
+	<attr path="/api/package[@name='com.onesignal.debug']" name="managedName">Com.OneSignal.Android.Debug</attr>
+	<attr path="/api/package[@name='com.onesignal.inAppMessages']" name="managedName">Com.OneSignal.Android.InAppMessages</attr>
+	<attr path="/api/package[@name='com.onesignal.location']" name="managedName">Com.OneSignal.Android.Location</attr>
+	<attr path="/api/package[@name='com.onesignal.notifications']" name="managedName">Com.OneSignal.Android.Notifications</attr>
+	<attr path="/api/package[@name='com.onesignal.session']" name="managedName">Com.OneSignal.Android.Session</attr>
+	<attr path="/api/package[@name='com.onesignal.user']" name="managedName">Com.OneSignal.Android.User</attr>
+	<attr path="/api/package[@name='com.onesignal.user.subscriptions']" name="managedName">Com.OneSignal.Android.User.Subscriptions</attr>
+
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.events')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.exceptions')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.modeling')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.modules')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.services')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.common.threading')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.core')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.debug.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.inAppMessages.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.location.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.notifications.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.session.internal')]" />
+	<remove-node path="/api/package[starts-with(@name, 'com.onesignal.user.internal')]" />
+</metadata>

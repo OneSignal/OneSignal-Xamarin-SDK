@@ -89,9 +89,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.Binding\OneSignalSDK.Xamarin.Android.Binding.csproj">
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.Core.Binding\OneSignalSDK.Xamarin.Android.Core.Binding.csproj">
       <Project>{B8B96DE4-3CF6-42B8-829D-B159EB8B1343}</Project>
-      <Name>OneSignalSDK.Xamarin.Android.Binding</Name>
+      <Name>OneSignalSDK.Xamarin.Android.Core.Binding</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android\OneSignalSDK.Xamarin.Android.csproj">
       <Project>{6E226C47-E47E-421A-96C2-70BD64746DD2}</Project>
@@ -108,6 +108,18 @@
     <ProjectReference Include="..\OneSignalApp\OneSignalApp.csproj">
       <Project>{307837B9-857B-4717-B854-EC618BE8300C}</Project>
       <Name>OneSignalApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.InAppMessages.Binding\OneSignalSDK.Xamarin.Android.InAppMessages.Binding.csproj">
+      <Project>{DFF0E734-69E6-48F2-A28D-7302C21F629A}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.InAppMessages.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.Location.Binding\OneSignalSDK.Xamarin.Android.Location.Binding.csproj">
+      <Project>{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.Location.Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OneSignalSDK.Xamarin.Android.Notifications.Binding\OneSignalSDK.Xamarin.Android.Notifications.Binding.csproj">
+      <Project>{88D6C488-7458-4B74-AC18-41D62EC87C2C}</Project>
+      <Name>OneSignalSDK.Xamarin.Android.Notifications.Binding</Name>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

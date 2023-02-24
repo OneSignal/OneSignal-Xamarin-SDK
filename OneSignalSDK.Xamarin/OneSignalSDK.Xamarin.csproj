@@ -4,6 +4,7 @@
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid12.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <ReleaseVersion>4.3.2</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalApp", "Samples\One
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalNotificationServiceExtension", "Samples\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj", "{8371D5C7-45E8-4B42-B1D4-3B475E5BF48B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Android.Binding", "OneSignalSDK.Xamarin.Android.Binding\OneSignalSDK.Xamarin.Android.Binding.csproj", "{B8B96DE4-3CF6-42B8-829D-B159EB8B1343}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Android.Core.Binding", "OneSignalSDK.Xamarin.Android.Core.Binding\OneSignalSDK.Xamarin.Android.Core.Binding.csproj", "{B8B96DE4-3CF6-42B8-829D-B159EB8B1343}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.iOS.Binding", "OneSignalSDK.Xamarin.iOS.Binding\OneSignalSDK.Xamarin.iOS.Binding.csproj", "{04A479D8-BE46-4FBF-8143-DAE749F49E8D}"
 EndProject
@@ -31,6 +31,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Core", "OneSignalSDK.Xamarin.Core\OneSignalSDK.Xamarin.Core.csproj", "{696E809F-5373-470D-A0A9-C12DEAEE265A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin", "OneSignalSDK.Xamarin\OneSignalSDK.Xamarin.csproj", "{FBBE5003-806F-49AD-A079-9FCABA641B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Android.Notifications.Binding", "OneSignalSDK.Xamarin.Android.Notifications.Binding\OneSignalSDK.Xamarin.Android.Notifications.Binding.csproj", "{88D6C488-7458-4B74-AC18-41D62EC87C2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Android.Location.Binding", "OneSignalSDK.Xamarin.Android.Location.Binding\OneSignalSDK.Xamarin.Android.Location.Binding.csproj", "{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalSDK.Xamarin.Android.InAppMessages.Binding", "OneSignalSDK.Xamarin.Android.InAppMessages.Binding\OneSignalSDK.Xamarin.Android.InAppMessages.Binding.csproj", "{DFF0E734-69E6-48F2-A28D-7302C21F629A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -174,6 +180,42 @@ Global
 		{FBBE5003-806F-49AD-A079-9FCABA641B5F}.Release|iPhone.Build.0 = Release|Any CPU
 		{FBBE5003-806F-49AD-A079-9FCABA641B5F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FBBE5003-806F-49AD-A079-9FCABA641B5F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|iPhone.Build.0 = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{88D6C488-7458-4B74-AC18-41D62EC87C2C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|iPhone.Build.0 = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{ECF1809D-1A4A-4816-B03D-BBE7438E82B2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|iPhone.Build.0 = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DFF0E734-69E6-48F2-A28D-7302C21F629A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
