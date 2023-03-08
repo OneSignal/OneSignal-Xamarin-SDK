@@ -40,34 +40,6 @@ namespace OneSignalSDK.Xamarin {
             Debug.WriteLine("Additional instance of OneSignalIOS created.");
          }
 
-         OneSignalNative.AddPermissionObserver(new OSPermissionObserver());
-         OneSignalNative.AddSubscriptionObserver(new OSSubscriptionObserver());
-         OneSignalNative.AddEmailSubscriptionObserver(new OSEmailSubscriptionObserver());
-         OneSignalNative.AddSMSSubscriptionObserver(new OSSMSSubscriptionObserver());
-
-         OneSignalNative.SetNotificationWillShowInForegroundHandler(
-            delegate(OneSignaliOS.OSNotification nativeNotification, OneSignaliOS.OSNotificationDisplayResponse response) {
-               if (_instance.NotificationWillShow == null) {
-                  response.Invoke(nativeNotification);
-                  return;
-               }
-
-               Notification notification = NativeConversion.NotificationToXam(nativeNotification);
-               Notification resultNotif = _instance.NotificationWillShow(notification);
-               // OneSignal-iOS-SDK doesn't support modifications to notifications,
-               //   null is used to prevent showing.
-               response.Invoke(resultNotif != null ? nativeNotification : null);
-            }
-         );
-
-         OneSignalNative.SetNotificationOpenedHandler(new OneSignaliOS.OSNotificationOpenedBlock(
-            result => new OSNotificationOpenedHandler().NotificationOpened(result)));
-
-         OneSignalNative.SetInAppMessageClickHandler(new OneSignaliOS.OSInAppMessageClickBlock((OneSignaliOS.OSInAppMessageAction arg0) =>
-         new OSInAppMessageClickHandler().InAppMessageClicked(arg0)));
-
-         OneSignalNative.SetInAppMessageLifecycleHandler(new OSInAppMessageLifeCycleHandler());
-
          _instance = this;
       }
 
