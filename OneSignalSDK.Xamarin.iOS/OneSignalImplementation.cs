@@ -229,6 +229,7 @@ namespace OneSignalSDK.Xamarin {
          count = 0;
          foreach (var key in keys) {
             nsKeys[count] = NSString.FromData(key, NSStringEncoding.UTF8);
+            count++;
          }
 
          OneSignalNative.DeleteTags(nsKeys, response => proxy.OnResponse(true), response => proxy.OnResponse(false));
