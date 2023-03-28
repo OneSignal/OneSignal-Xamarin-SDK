@@ -10,7 +10,7 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>OneSignal.iOS.Binding</AssemblyName>
     <NoBindingEmbedding>true</NoBindingEmbedding>
-    <ReleaseVersion>4.3.3</ReleaseVersion>
+    <ReleaseVersion>4.3.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
