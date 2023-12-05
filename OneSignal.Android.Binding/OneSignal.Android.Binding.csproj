@@ -44,6 +44,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additions\*.cs"/>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
   </ItemGroup>
