@@ -11,7 +11,7 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>OneSignalLiveActivity.Binding</AssemblyName>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <ReleaseVersion>4.3.4</ReleaseVersion>
+    <ReleaseVersion>4.3.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
