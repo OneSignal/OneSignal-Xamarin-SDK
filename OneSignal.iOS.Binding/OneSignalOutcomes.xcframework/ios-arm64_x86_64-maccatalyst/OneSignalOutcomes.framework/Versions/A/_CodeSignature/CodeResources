@@ -6,7 +6,11 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		N6O65CroHCIvuZnvaprYK21f5VM=
+		RiEH3bSxn4gMhEvEJURXfOpo9d0=
+		</data>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<data>
+		PwgittcriXUkfQRGp7Cs8/w9HQM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -148,7 +152,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			b2WZtRnu3TwMA5E/felWhZoDG0brRXrtmRyEPb6CrQU=
+			V54KuzFdoJCHnzfeiLQAUgt9Djv2lJFIjIbPHQNZKJ8=
+			</data>
+		</dict>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RJx2rj8T3+Zgrp7ng0BRcerjepJwkNnYHG552/GdZj4=
 			</data>
 		</dict>
 	</dict>

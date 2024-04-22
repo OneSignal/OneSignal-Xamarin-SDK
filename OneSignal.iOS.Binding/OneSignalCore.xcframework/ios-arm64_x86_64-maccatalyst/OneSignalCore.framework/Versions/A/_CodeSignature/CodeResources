@@ -6,7 +6,11 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		wGmu4bd6K/olz+9uB6WEEqIL0pQ=
+		MNSoZjzKtQKkJLhkdk0vLZ9tra8=
+		</data>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<data>
+		XlIKkK6ZsRF9uaJ3GJUkQOw9WVU=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -85,7 +89,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cdunHi7N1J8gJfTDwI5B4v8EIL2G6WSPjJzrU9SxP6Y=
+			0PQtsxG+XvpPsNp5o+/n4jB0SNSV4aPUyLROEXZaYBA=
 			</data>
 		</dict>
 		<key>Headers/OneSignalCore.h</key>
@@ -106,7 +110,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fXXHmsA5in9ZjZz8sHnl3WaN/xiOjw63toiJ0AzJTE4=
+			GajjtheSMz3cfqOsaWZFUEdWm75d/HAwr00JdpDcUp0=
 			</data>
 		</dict>
 		<key>Headers/OneSignalRequest.h</key>
@@ -141,7 +145,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3udMyvHp/sxaVK/QGHPUGGPAA+AT5c/4SWFXwLxpcNc=
+			GtRo3fldyjE7z2E+ZzTMbVXU6S6zdxGKnbApe36BmSg=
+			</data>
+		</dict>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			g2luGY1Qnqmr7GYOsrX4x85UQRA+lLE7nPLikUEQQ3Y=
 			</data>
 		</dict>
 	</dict>
