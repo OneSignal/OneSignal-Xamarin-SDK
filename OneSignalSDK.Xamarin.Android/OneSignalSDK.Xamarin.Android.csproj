@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>OneSignalSDK.Xamarin</RootNamespace>
     <AssemblyName>OneSignalSDK.Xamarin</AssemblyName>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidTlsProvider>
@@ -284,6 +284,7 @@
     </Compile>
     <Compile Include="Utilities\NativeConversion.cs" />
     <Compile Include="OneSignalCallbacks.cs" />
+    <Compile Include="NotificationExtensionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneSignal.Android.Binding\OneSignal.Android.Binding.csproj">
