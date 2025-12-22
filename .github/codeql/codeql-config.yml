@@ -1,0 +1,17 @@
+name: "CodeQL Config"
+
+# Exclude Samples directory - these are reference implementations, not production SDK code
+# Also exclude build artifacts and binary dependencies
+paths-ignore:
+  - "Samples/**"
+  - "**/*.aar"
+  - "**/*.xcframework"
+  - "**/bin/**"
+  - "**/obj/**"
+  - "**/packages/**"
+  - "**/DerivedData/**"
+  - "**/build/**"
+
+# Use standard security and quality queries
+queries:
+  - uses: security-and-quality
