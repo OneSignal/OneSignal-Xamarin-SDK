@@ -1,14 +1,3 @@
-# For most projects, this workflow file will not need changing; you simply need
-# to commit it to your repository.
-#
-# You may wish to alter this file to override the set of languages analyzed,
-# or to provide custom queries or build logic.
-#
-# ******** NOTE ********
-# We have attempted to detect the languages in your repository. Please check
-# the `language` matrix defined below to confirm you have the correct set of
-# supported CodeQL languages.
-#
 name: "CodeQL Advanced"
 
 concurrency:
@@ -31,17 +20,13 @@ jobs:
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     permissions:
       # required for all workflows
       security-events: write
 
       # required to fetch internal or private CodeQL packs
       packages: read
-
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
 
     strategy:
       fail-fast: false
@@ -50,25 +35,11 @@ jobs:
           - language: actions
             build-mode: none
           - language: csharp
-            build-mode: manual
-          # Swift removed - all Swift code is in Samples/ directory which is excluded from scanning
-        # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
-        # Use `c-cpp` to analyze code written in C, C++ or both
-        # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
-        # Use 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
-        # To learn more about changing the languages that are analyzed or customizing the build mode for your analysis,
-        # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
-        # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
-        # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
+            build-mode: none
+            dependency-caching: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # Add any setup steps before running the `github/codeql-action/init` action.
-      # This includes steps like installing compilers or runtimes (`actions/setup-node`
-      # or others). This is typically only required for manual builds.
-      # - name: Setup runtime (example)
-      #   uses: actions/setup-example@v1
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
@@ -76,35 +47,8 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
+          dependency-caching: ${{ matrix.dependency-caching }}
           config-file: .github/codeql/codeql-config.yml
-          # The config file excludes Samples directory and build artifacts
-          # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-
-      # If the analyze step fails for one of the languages you are analyzing with
-      # "We were unable to automatically build your code", modify the matrix above
-      # to set the build mode to "manual" for that language. Then modify this step
-      # to build your code.
-      # ℹ️ Command-line programs to run using the OS shell.
-      # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-      - name: Setup .NET
-        if: matrix.language == 'csharp'
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "6.0.x"
-
-      # Build only the portable .NET Standard SDK projects that can build on Ubuntu.
-      # Xamarin iOS/Android platform-specific projects require macOS and platform tooling.
-      - name: Restore (C#)
-        if: matrix.language == 'csharp'
-        run: |
-          dotnet restore OneSignalSDK.Xamarin.Core/OneSignalSDK.Xamarin.Core.csproj
-          dotnet restore OneSignalSDK.Xamarin/OneSignalSDK.Xamarin.csproj
-
-      - name: Build (C#)
-        if: matrix.language == 'csharp'
-        run: |
-          dotnet build OneSignalSDK.Xamarin.Core/OneSignalSDK.Xamarin.Core.csproj -c Release --no-restore
-          dotnet build OneSignalSDK.Xamarin/OneSignalSDK.Xamarin.csproj -c Release --no-restore
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4

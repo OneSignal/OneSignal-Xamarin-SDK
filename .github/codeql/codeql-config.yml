@@ -4,6 +4,7 @@ name: "CodeQL Config"
 # Also exclude build artifacts and binary dependencies
 paths-ignore:
   - "Samples/**"
+  - "SDK/**"
   - "**/*.aar"
   - "**/*.xcframework"
   - "**/bin/**"
